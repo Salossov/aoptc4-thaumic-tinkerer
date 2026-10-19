@@ -201,6 +201,13 @@ tasks.register('magnetVisualRulesTest', JavaExec) {
 }
 tasks.named('check') { dependsOn 'magnetVisualRulesTest' }
 
+tasks.register('machinesVisualRulesTest', JavaExec) {
+    dependsOn 'verificationClasses'
+    classpath = sourceSets.verification.runtimeClasspath
+    mainClass = 'thaumic.tinkerer.verification.MachinesVisualRulesTest'
+}
+tasks.named('check') { dependsOn 'machinesVisualRulesTest' }
+
 def releaseJar = tasks.named('jar', Jar).flatMap { it.archiveFile }
 def auditReport = layout.buildDirectory.file('reports/release-audit.json')
 tasks.register('auditRelease') {

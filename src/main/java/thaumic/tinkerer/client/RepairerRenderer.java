@@ -12,6 +12,7 @@ import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.Level;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -23,7 +24,7 @@ import thaumic.tinkerer.block.*;
 /** Original ModelRepairer, transforms and animation; native item rendering supports modern components. */
 @EventBusSubscriber(modid=ThaumicTinkerer.ID,bus=EventBusSubscriber.Bus.MOD,value=Dist.CLIENT)
 public final class RepairerRenderer implements BlockEntityRenderer<RepairerBlockEntity> {
-    private static final ResourceLocation TEXTURE=ThaumicTinkerer.id("textures/model/repairer.png");
+    private static final ResourceLocation TEXTURE=RepairerVisualTransform.MODEL_TEXTURE;
     private final ModelPart model=bake();
     public RepairerRenderer(){}
     private static float f(JsonObject object,String key,int i){return object.getAsJsonArray(key).get(i).getAsFloat();}
@@ -39,41 +40,69 @@ public final class RepairerRenderer implements BlockEntityRenderer<RepairerBlock
         }catch(IOException error){throw new IllegalStateException(error);}
     }
     @Override public void render(RepairerBlockEntity tile,float partial,PoseStack pose,MultiBufferSource buffers,int light,int overlay){
-        float rotation=switch(tile.orientation()){case NORTH->0;case SOUTH->180;case WEST->270;default->90;};
-        draw(tile.getItem(0),tile.ticksExisted,tile.tookLastTick,rotation,pose,buffers,light,overlay);
+        float rotation=RepairerVisualTransform.getFacingRotation(tile.orientation());
+        draw(tile.getItem(0),tile.ticksExisted,tile.tookLastTick,rotation,pose,buffers,light,overlay,tile.getLevel());
     }
     private void parts(boolean glass,PoseStack pose,MultiBufferSource buffers,int light,int overlay){
         var output=buffers.getBuffer(RenderType.entityTranslucent(TEXTURE));
         var names=glass?new String[]{"Glass1","Glass2","Glass3","Glass4","Glass5"}:new String[]{"Base","Support1","Support2","Support3","Support4","Top1","Top2","Top3","Top4","Opening1","Opening2","Opening3","Opening4"};
         for(var name:names)model.getChild(name).render(pose,output,light,overlay);
     }
-    void draw(ItemStack stack,int ticks,boolean active,float rotation,PoseStack pose,MultiBufferSource buffers,int light,int overlay){
-        float degrees=ticks*.75f%360;
-        pose.pushPose();pose.translate(0,2,1);pose.scale(1,-1,-1);pose.translate(.5,.5,.5);pose.mulPose(Axis.YP.rotationDegrees(rotation));
-        parts(false,pose,buffers,light,overlay);pose.scale(1,-1,-1);
+    void draw(ItemStack stack,int ticks,boolean active,float rotation,PoseStack pose,MultiBufferSource buffers,int light,int overlay,Level level){
+        float degrees=RepairerVisualTransform.rotationDegrees(ticks);
+        pose.pushPose();
+        pose.translate(RepairerVisualTransform.TILE_TRANSLATE_X,RepairerVisualTransform.TILE_TRANSLATE_Y,RepairerVisualTransform.TILE_TRANSLATE_Z);
+        pose.scale(RepairerVisualTransform.TILE_SCALE_X,RepairerVisualTransform.TILE_SCALE_Y,RepairerVisualTransform.TILE_SCALE_Z);
+        pose.translate(RepairerVisualTransform.TILE_CENTER_X,RepairerVisualTransform.TILE_CENTER_Y,RepairerVisualTransform.TILE_CENTER_Z);
+        pose.mulPose(Axis.YP.rotationDegrees(rotation));
+        parts(false,pose,buffers,light,overlay);
+        flush(buffers);
+        pose.scale(1,-1,-1);
+
         if(!stack.isEmpty()){
-            pose.pushPose();pose.scale(.5f,.5f,.5f);pose.translate(-.5,-2.5+Math.sin(ticks/10f)*.1f,0);
-            pose.translate(.5,.5,.03125);pose.mulPose(Axis.YP.rotationDegrees(degrees));pose.translate(0,0,-.0625);
-            Minecraft.getInstance().getItemRenderer().renderStatic(stack,ItemDisplayContext.NONE,light,overlay,pose,buffers,null,0);pose.popPose();
+            pose.pushPose();
+            pose.scale(RepairerVisualTransform.ITEM_SCALE,RepairerVisualTransform.ITEM_SCALE,RepairerVisualTransform.ITEM_SCALE);
+            pose.translate(-.5,RepairerVisualTransform.itemTranslationY(ticks),0);
+            pose.translate(.5,.5,.03125);
+            pose.mulPose(Axis.YP.rotationDegrees(degrees));
+            pose.translate(-.5,-.5,-.03125);
+            // The source sprite center is (.5,.5,-1/32), while native models
+            // render around zero. Keep that center for the modern item model.
+            pose.translate(.5,.5,-.03125);
+            Minecraft.getInstance().getItemRenderer().renderStatic(stack,ItemDisplayContext.NONE,light,overlay,pose,buffers,level,0);
+            pose.popPose();
+            flush(buffers);
         }
-        pose.scale(1,-1,-1);pose.mulPose(Axis.YP.rotationDegrees(rotation));parts(true,pose,buffers,light,overlay);pose.scale(1,-1,-1);
-        pose.translate(0,-.525,0);pose.mulPose(Axis.YP.rotationDegrees(degrees));
-        var output=buffers.getBuffer(OverlayTypes.overlay(active));var last=pose.last();float size=.625f;
+
+        // Source glass is rendered after the item and receives another facing
+        // rotation. The paired reflections cancel before that extra rotation.
+        pose.scale(1,-1,-1);
+        pose.mulPose(Axis.YP.rotationDegrees(rotation));
+        parts(true,pose,buffers,light,overlay);
+        flush(buffers);
+        pose.scale(1,-1,-1);
+        pose.translate(0,RepairerVisualTransform.OVERLAY_TRANSLATE_Y,0);
+        pose.mulPose(Axis.YP.rotationDegrees(degrees));
+        var output=buffers.getBuffer(OverlayTypes.overlay(active));
+        var last=pose.last();
+        float size=RepairerVisualTransform.OVERLAY_HALF_SIZE;
         output.addVertex(last,-size,0,size).setColor(-1).setUv(0,1).setOverlay(overlay).setLight(light).setNormal(last,0,1,0);
         output.addVertex(last,size,0,size).setColor(-1).setUv(1,1).setOverlay(overlay).setLight(light).setNormal(last,0,1,0);
         output.addVertex(last,size,0,-size).setColor(-1).setUv(1,0).setOverlay(overlay).setLight(light).setNormal(last,0,1,0);
-        output.addVertex(last,-size,0,-size).setColor(-1).setUv(0,0).setOverlay(overlay).setLight(light).setNormal(last,0,1,0);pose.popPose();
+        output.addVertex(last,-size,0,-size).setColor(-1).setUv(0,0).setOverlay(overlay).setLight(light).setNormal(last,0,1,0);
+        pose.popPose();
     }
+    private static void flush(MultiBufferSource buffers){if(buffers instanceof MultiBufferSource.BufferSource source)source.endBatch();}
     @SubscribeEvent public static void register(EntityRenderersEvent.RegisterRenderers event){event.registerBlockEntityRenderer(RepairerContent.TILE.get(),context->new RepairerRenderer());}
     private static final class ItemRenderer extends BlockEntityWithoutLevelRenderer {
         private final RepairerRenderer renderer=new RepairerRenderer();
         ItemRenderer(){super(Minecraft.getInstance().getBlockEntityRenderDispatcher(),Minecraft.getInstance().getEntityModels());}
-        @Override public void renderByItem(ItemStack stack,ItemDisplayContext context,PoseStack pose,MultiBufferSource buffers,int light,int overlay){renderer.draw(ItemStack.EMPTY,0,true,180,pose,buffers,light,overlay);}
+        @Override public void renderByItem(ItemStack stack,ItemDisplayContext context,PoseStack pose,MultiBufferSource buffers,int light,int overlay){renderer.draw(ItemStack.EMPTY,0,true,180,pose,buffers,light,overlay,null);}
     }
     @SubscribeEvent public static void extensions(RegisterClientExtensionsEvent event){event.registerItem(new IClientItemExtensions(){private ItemRenderer renderer;@Override public BlockEntityWithoutLevelRenderer getCustomRenderer(){if(renderer==null)renderer=new ItemRenderer();return renderer;}},RepairerContent.BLOCK.get().asItem());}
     private static final class OverlayTypes extends RenderType {
         private static final RenderType ON=createOverlay(true),OFF=createOverlay(false);
-        private static RenderType createOverlay(boolean active){return create("thaumictinkerer_repairer_overlay",DefaultVertexFormat.NEW_ENTITY,VertexFormat.Mode.QUADS,256,false,true,CompositeState.builder().setShaderState(RENDERTYPE_ENTITY_TRANSLUCENT_SHADER).setTextureState(new TextureStateShard(ThaumicTinkerer.id("textures/misc/"+(active?"repair":"repair_off")+".png"),false,false)).setTransparencyState(TRANSLUCENT_TRANSPARENCY).setCullState(CULL).setWriteMaskState(COLOR_WRITE).setLightmapState(LIGHTMAP).setOverlayState(OVERLAY).createCompositeState(false));}
+        private static RenderType createOverlay(boolean active){return create("thaumictinkerer_repairer_overlay",DefaultVertexFormat.NEW_ENTITY,VertexFormat.Mode.QUADS,256,false,true,CompositeState.builder().setShaderState(RENDERTYPE_ENTITY_TRANSLUCENT_SHADER).setTextureState(new TextureStateShard(active?RepairerVisualTransform.REPAIR_OVERLAY:RepairerVisualTransform.REPAIR_OFF_OVERLAY,false,false)).setTransparencyState(TRANSLUCENT_TRANSPARENCY).setCullState(NO_CULL).setWriteMaskState(COLOR_WRITE).setLightmapState(LIGHTMAP).setOverlayState(OVERLAY).createCompositeState(false));}
         static RenderType overlay(boolean active){return active?ON:OFF;}
         private OverlayTypes(String name,VertexFormat format,VertexFormat.Mode mode,int size,boolean crumble,boolean sorted,Runnable setup,Runnable clear){super(name,format,mode,size,crumble,sorted,setup,clear);}
     }

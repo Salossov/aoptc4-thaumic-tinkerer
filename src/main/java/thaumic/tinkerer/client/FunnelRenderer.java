@@ -18,11 +18,11 @@ public final class FunnelRenderer implements BlockEntityRenderer<FunnelBlockEnti
     public FunnelRenderer(BlockEntityRendererProvider.Context context){}
     @SubscribeEvent public static void register(EntityRenderersEvent.RegisterRenderers event){event.registerBlockEntityRenderer(FunnelContent.TILE.get(),FunnelRenderer::new);}
     @Override public void render(FunnelBlockEntity tile,float partial,PoseStack pose,MultiBufferSource buffers,int light,int overlay){
-        var stack=tile.getItem(0);if(!(stack.getItem() instanceof IEssentiaJarItem))return;
+        var stack=tile.getItem(0);if(stack.isEmpty()||!(stack.getItem() instanceof IEssentiaJarItem))return;
         pose.pushPose();
         // Legacy .365 centre minus ENTITY's .25 shift = .115 base. Native NONE
         // shifts its item by .5, so its centre is .615 for the same world geometry.
-        pose.translate(.5,.615,.5);
+        pose.translate(FunnelVisualTransform.RENDER_CENTER_X,FunnelVisualTransform.RENDER_CENTER_Y,FunnelVisualTransform.RENDER_CENTER_Z);
         Minecraft.getInstance().getItemRenderer().renderStatic(stack,ItemDisplayContext.NONE,light,overlay,pose,buffers,tile.getLevel(),0);
         pose.popPose();
     }
