@@ -1,34 +1,71 @@
 package thaumic.tinkerer.client;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.renderer.*;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
-import net.minecraft.client.renderer.item.ItemProperties;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.block.model.BakedQuad;
+import net.minecraft.client.renderer.texture.TextureAtlas;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.model.*;
+import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.ChunkRenderTypeSet;
+import net.neoforged.neoforge.client.event.ModelEvent;
+import net.neoforged.neoforge.client.model.BakedModelWrapper;
+import net.neoforged.neoforge.client.model.data.ModelData;
 import thaumic.tinkerer.ThaumicTinkerer;
 import thaumic.tinkerer.crop.*;
 
-/** Original crop planes, -1/16 render offset and compound-aspect world tint. */
+/** Source crop mesh in the ordinary chunk pipeline, without entity diffuse shading. */
 @EventBusSubscriber(modid=ThaumicTinkerer.ID,bus=EventBusSubscriber.Bus.MOD,value=Dist.CLIENT)
-public final class InfusedCropRenderer implements BlockEntityRenderer<InfusedCropBlockEntity> {
-    private static final String[] TEXTURES={"aer","ignis","aqua","terra","ordo","perditio","generic"};
-    @SubscribeEvent public static void register(EntityRenderersEvent.RegisterRenderers event){event.registerBlockEntityRenderer(InfusedContent.CROP_TILE.get(),context->new InfusedCropRenderer());}
-    @SubscribeEvent public static void setup(FMLClientSetupEvent event){event.enqueueWork(()->ItemProperties.register(InfusedContent.SEEDS.get(),ThaumicTinkerer.id("seed_aspect"),(stack,level,entity,seed)->{var aspect=InfusedSeedsItem.aspect(stack);return aspect==null?0:InfusedCropBlock.textureIndex(aspect);}));}
-    @Override public void render(InfusedCropBlockEntity tile,float partial,PoseStack pose,MultiBufferSource buffers,int light,int overlay){
-        var aspect=tile.aspect;int color=aspect!=null&&!aspect.isPrimal()?aspect.getColor():0xffffff;
-        var texture=ThaumicTinkerer.id("textures/block/crop_"+TEXTURES[InfusedCropBlock.textureIndex(aspect)]+"_"+InfusedCropBlock.textureAge(tile.getBlockState().getValue(InfusedCropBlock.AGE))+".png");
-        var vertices=buffers.getBuffer(RenderType.entityCutout(texture));pose.pushPose();pose.translate(0,-.0625,0);var transform=pose.last();
-        for(boolean axis:new boolean[]{true,false})for(float offset:new float[]{.25f,.75f})for(int face=0;face<2;face++){
-            float[][] corners=axis?new float[][]{{offset,1,0,0,0},{offset,0,0,0,1},{offset,0,1,1,1},{offset,1,1,1,0}}:new float[][]{{0,1,offset,0,0},{0,0,offset,0,1},{1,0,offset,1,1},{1,1,offset,1,0}};
-            boolean reverse=(offset==.75f)^(face==1);
-            // The bytecode emits eight faces: back faces have their own U
-            // direction. One uncullable quad would mirror their source art.
-            for(int i=0;i<4;i++){var point=corners[reverse?3-i:i];vertices.addVertex(transform,point[0],point[1],point[2]).setColor((color>>16&255)/255f,(color>>8&255)/255f,(color&255)/255f,1).setUv(corners[i][3],corners[i][4]).setOverlay(overlay).setLight(light).setNormal(transform,0,1,0);}
+public final class InfusedCropRenderer {
+    @SubscribeEvent public static void bake(ModelEvent.ModifyBakingResult event){
+        var sprites=new TextureAtlasSprite[7][4];
+        for(int aspect=0;aspect<7;aspect++)for(int stage=0;stage<4;stage++){
+            var path=ThaumicTinkerer.id("block/crop_"+CropVisualTransform.TEXTURE_NAMES[aspect]+"_"+stage);
+            sprites[aspect][stage]=event.getTextureGetter().apply(new Material(TextureAtlas.LOCATION_BLOCKS,path));
         }
-        pose.popPose();
+        event.getModels().replaceAll((key,model)->key.id().equals(ThaumicTinkerer.id("infused_grain_block"))&&key.variant().startsWith("age=")?new CropModel(model,sprites):model);
     }
+    public static final class CropModel extends BakedModelWrapper<BakedModel> {
+        private final TextureAtlasSprite[][] sprites;
+        private final Map<CropRenderData,List<BakedQuad>> cache=new ConcurrentHashMap<>();
+        public CropModel(BakedModel original,TextureAtlasSprite[][] sprites){super(original);this.sprites=sprites;}
+        @Override public boolean useAmbientOcclusion(){return false;}
+        @Override public TextureAtlasSprite getParticleIcon(){return sprites[6][0];}
+        @Override public TextureAtlasSprite getParticleIcon(ModelData data){var value=appearance(null,data);return sprites[value.texture()][value.stage()];}
+        @Override public ChunkRenderTypeSet getRenderTypes(BlockState state,RandomSource random,ModelData data){return ChunkRenderTypeSet.of(RenderType.cutout());}
+        @Override public List<BakedQuad> getQuads(BlockState state,Direction side,RandomSource random){return getQuads(state,side,random,ModelData.EMPTY,null);}
+        @Override public List<BakedQuad> getQuads(BlockState state,Direction side,RandomSource random,ModelData data,RenderType type){
+            if(side!=null||type!=null&&type!=RenderType.cutout())return List.of();
+            return cache.computeIfAbsent(appearance(state,data),this::mesh);
+        }
+        private static CropRenderData appearance(BlockState state,ModelData data){
+            var value=data.get(CropRenderData.PROPERTY);if(value==null)value=CropRenderData.EMPTY;
+            int stage=state!=null&&state.hasProperty(InfusedCropBlock.AGE)?InfusedCropBlock.textureAge(state.getValue(InfusedCropBlock.AGE)):value.stage();
+            return new CropRenderData(value.texture(),stage,value.color());
+        }
+        private List<BakedQuad> mesh(CropRenderData appearance){
+            var result=new ArrayList<BakedQuad>();var sprite=sprites[appearance.texture()][appearance.stage()];
+            int rgb=appearance.color(),abgr=0xff000000|(rgb&255)<<16|rgb&0xff00|rgb>>16&255;
+            for(var quad:CropVisualTransform.CROP_QUADS){
+                int[] vertices=new int[32];int offset=0;
+                for(var point:quad){
+                    vertices[offset++]=Float.floatToRawIntBits(point[0]);
+                    vertices[offset++]=Float.floatToRawIntBits(point[1]+CropVisualTransform.CROP_Y_OFFSET_F);
+                    vertices[offset++]=Float.floatToRawIntBits(point[2]);vertices[offset++]=abgr;
+                    vertices[offset++]=Float.floatToRawIntBits(sprite.getU(point[3]));vertices[offset++]=Float.floatToRawIntBits(sprite.getV(point[4]));
+                    vertices[offset++]=0;vertices[offset++]=0x00007f00;
+                }
+                // World tessellator: block light, no directional shade or AO.
+                result.add(new BakedQuad(vertices,-1,Direction.UP,sprite,false,false));
+            }
+            return List.copyOf(result);
+        }
+    }
+    private InfusedCropRenderer(){}
 }

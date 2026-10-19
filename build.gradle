@@ -180,6 +180,13 @@ tasks.register('analyzerVisualRulesTest', JavaExec) {
 }
 tasks.named('check') { dependsOn 'analyzerVisualRulesTest' }
 
+tasks.register('cropVisualRulesTest', JavaExec) {
+    dependsOn 'verificationClasses'
+    classpath = sourceSets.verification.runtimeClasspath
+    mainClass = 'thaumic.tinkerer.verification.CropVisualRulesTest'
+}
+tasks.named('check') { dependsOn 'cropVisualRulesTest' }
+
 def releaseJar = tasks.named('jar', Jar).flatMap { it.archiveFile }
 def auditReport = layout.buildDirectory.file('reports/release-audit.json')
 tasks.register('auditRelease') {

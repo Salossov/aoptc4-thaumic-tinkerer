@@ -46,6 +46,11 @@ public final class InfusedCropBlockEntity extends BlockEntity implements IAspect
     private void trail(BlockPos neighbour,Aspect learned){if(level.isClientSide())for(int i=0;i<50;i++)ParticleApi.essentiaTrail(level,neighbour,worldPosition,50,learned.getColor(),1);}
     public void reduceSaturatedAspects(){CropAspectData.saturate(primalTendencies,50);}
     public void changed(){setChanged();if(level!=null)level.sendBlockUpdated(worldPosition,getBlockState(),getBlockState(),2);}
+    @Override public net.neoforged.neoforge.client.model.data.ModelData getModelData(){
+        int color=aspect!=null&&!aspect.isPrimal()?aspect.getColor()&0xffffff:0xffffff;
+        var data=new CropRenderData(InfusedCropBlock.textureIndex(aspect),InfusedCropBlock.textureAge(getBlockState().getValue(InfusedCropBlock.AGE)),color);
+        return net.neoforged.neoforge.client.model.data.ModelData.builder().with(CropRenderData.PROPERTY,data).build();
+    }
     @Override public AspectList getAspects(){return aspect==null?null:new AspectList().add(aspect,1);}
     @Override public void setAspects(AspectList values){}
     @Override public boolean doesContainerAccept(Aspect aspect){return false;}
@@ -55,7 +60,10 @@ public final class InfusedCropBlockEntity extends BlockEntity implements IAspect
     @Override public int containerContains(Aspect aspect){return 0;}
     @Override protected void saveAdditional(CompoundTag tag,HolderLookup.Provider registries){super.saveAdditional(tag,registries);write(tag);}
     private void write(CompoundTag tag){tag.put("mainAspect",CropAspectData.write(new AspectList().add(aspect,1)));tag.put("aspectTendencies",CropAspectData.write(primalTendencies));}
-    @Override protected void loadAdditional(CompoundTag tag,HolderLookup.Provider registries){super.loadAdditional(tag,registries);aspect=CropAspectData.first(CropAspectData.read(tag.getCompound("mainAspect")));primalTendencies=CropAspectData.read(tag.getCompound("aspectTendencies"));reduceSaturatedAspects();}
+    @Override protected void loadAdditional(CompoundTag tag,HolderLookup.Provider registries){
+        super.loadAdditional(tag,registries);aspect=CropAspectData.first(CropAspectData.read(tag.getCompound("mainAspect")));primalTendencies=CropAspectData.read(tag.getCompound("aspectTendencies"));reduceSaturatedAspects();
+        if(level!=null&&level.isClientSide()){requestModelDataUpdate();level.sendBlockUpdated(worldPosition,getBlockState(),getBlockState(),2);}
+    }
     @Override public CompoundTag getUpdateTag(HolderLookup.Provider registries){var tag=new CompoundTag();write(tag);return tag;}
     @Override public ClientboundBlockEntityDataPacket getUpdatePacket(){return ClientboundBlockEntityDataPacket.create(this);}
 }

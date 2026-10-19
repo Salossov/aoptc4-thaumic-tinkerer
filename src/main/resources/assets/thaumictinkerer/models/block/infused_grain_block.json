@@ -1,5 +1,36 @@
 {
+  "ambientocclusion": false,
+  "render_type": "minecraft:cutout",
   "textures": {
-    "particle": "thaumictinkerer:block/crop_ignis_0"
-  }
+    "particle": "thaumictinkerer:block/crop_generic_0",
+    "crop_aer_0": "thaumictinkerer:block/crop_aer_0",
+    "crop_aer_1": "thaumictinkerer:block/crop_aer_1",
+    "crop_aer_2": "thaumictinkerer:block/crop_aer_2",
+    "crop_aer_3": "thaumictinkerer:block/crop_aer_3",
+    "crop_ignis_0": "thaumictinkerer:block/crop_ignis_0",
+    "crop_ignis_1": "thaumictinkerer:block/crop_ignis_1",
+    "crop_ignis_2": "thaumictinkerer:block/crop_ignis_2",
+    "crop_ignis_3": "thaumictinkerer:block/crop_ignis_3",
+    "crop_aqua_0": "thaumictinkerer:block/crop_aqua_0",
+    "crop_aqua_1": "thaumictinkerer:block/crop_aqua_1",
+    "crop_aqua_2": "thaumictinkerer:block/crop_aqua_2",
+    "crop_aqua_3": "thaumictinkerer:block/crop_aqua_3",
+    "crop_terra_0": "thaumictinkerer:block/crop_terra_0",
+    "crop_terra_1": "thaumictinkerer:block/crop_terra_1",
+    "crop_terra_2": "thaumictinkerer:block/crop_terra_2",
+    "crop_terra_3": "thaumictinkerer:block/crop_terra_3",
+    "crop_ordo_0": "thaumictinkerer:block/crop_ordo_0",
+    "crop_ordo_1": "thaumictinkerer:block/crop_ordo_1",
+    "crop_ordo_2": "thaumictinkerer:block/crop_ordo_2",
+    "crop_ordo_3": "thaumictinkerer:block/crop_ordo_3",
+    "crop_perditio_0": "thaumictinkerer:block/crop_perditio_0",
+    "crop_perditio_1": "thaumictinkerer:block/crop_perditio_1",
+    "crop_perditio_2": "thaumictinkerer:block/crop_perditio_2",
+    "crop_perditio_3": "thaumictinkerer:block/crop_perditio_3",
+    "crop_generic_0": "thaumictinkerer:block/crop_generic_0",
+    "crop_generic_1": "thaumictinkerer:block/crop_generic_1",
+    "crop_generic_2": "thaumictinkerer:block/crop_generic_2",
+    "crop_generic_3": "thaumictinkerer:block/crop_generic_3"
+  },
+  "elements": []
 }

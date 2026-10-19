@@ -19,7 +19,7 @@ import thaumcraft.api.aspects.*;
 public final class InfusedCropBlock extends CropBlock implements EntityBlock {
     public InfusedCropBlock(){super(Properties.ofFullCopy(Blocks.WHEAT).noLootTable());}
     @Override public MapCodec<? extends CropBlock> codec(){return simpleCodec(properties->new InfusedCropBlock());}
-    @Override protected RenderShape getRenderShape(BlockState state){return RenderShape.ENTITYBLOCK_ANIMATED;}
+    @Override protected RenderShape getRenderShape(BlockState state){return RenderShape.MODEL;}
     @Override protected VoxelShape getShape(BlockState state,BlockGetter level,BlockPos pos,CollisionContext context){return box(0,0,0,16,4,16);}
     @Override protected boolean isRandomlyTicking(BlockState state){return true;}
     @Override protected void randomTick(BlockState state,ServerLevel level,BlockPos pos,RandomSource random){if(!canSurvive(state,level,pos))level.destroyBlock(pos,true);}
