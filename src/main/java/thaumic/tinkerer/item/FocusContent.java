@@ -21,14 +21,14 @@ public final class FocusContent {
     public static final DeferredItem<DislocationFocusItem> DISLOCATION=ThaumicTinkerer.ITEMS.register("focus_dislocation",DislocationFocusItem::new);
     public static void initialize() { }
     public static void registerAddon(AddonRegistrationEvent event) {
-        FocusBehaviors.register(DISLOCATION.get(),DISLOCATION.get(),ThaumicTinkerer.id("wand/focus_dislocation"),ThaumicTinkerer.id("item/focus_dislocation_ornament"));
+        FocusBehaviors.register(DISLOCATION.get(),DISLOCATION.get(),ThaumicTinkerer.id("wand/focus_dislocation"),ThaumicTinkerer.id("item/focus_dislocation_ornament"),ThaumicTinkerer.id("staff/focus_dislocation"));
         AddonRegistry.research(new ResearchDefinition("thaumictinkerer:focus_dislocation",TinkererResearch.CATEGORY,List.of("thaumictinkerer:focus_flight"),Map.of("alienis",2,"praecantatio",1,"permutatio",1),2,false,true,-5,-5,
                 List.of("page.thaumictinkerer.focus_dislocation.0","page.thaumictinkerer.focus_dislocation.1"),List.of("thaumictinkerer:focus_dislocation"),"thaumictinkerer:focus_dislocation",false,false,false,true,List.of(),List.of("page.thaumictinkerer.focus_dislocation.0","page.thaumictinkerer.focus_dislocation.1","thaumictinkerer:focus_dislocation"),false,0,List.of(),List.of(),List.of(),List.of("INFUSION")),thaumcraft.api.world.ContentRules::mirrorsEnabled);
         for (var entry : Map.of("focus_smelt", SMELT, "focus_flight", FLIGHT, "focus_telekinesis", TELEKINESIS,
                 "focus_heal", HEAL, "focus_deflect", DEFLECT, "focus_ender_chest", ENDER_CHEST).entrySet()) {
             var item = entry.getValue().get();
             boolean ornament = item.kind() == TinkererFocusItem.Kind.SMELT || item.kind() == TinkererFocusItem.Kind.FLIGHT || item.kind() == TinkererFocusItem.Kind.TELEKINESIS;
-            FocusBehaviors.register(item, item, ThaumicTinkerer.id("wand/" + entry.getKey()), ornament ? ThaumicTinkerer.id("item/" + entry.getKey() + "_ornament") : null);
+            FocusBehaviors.register(item, item, ThaumicTinkerer.id("wand/" + entry.getKey()), ornament ? ThaumicTinkerer.id("item/" + entry.getKey() + "_ornament") : null, ThaumicTinkerer.id("staff/" + entry.getKey()));
         }
         research("focus_smelt", "FOCUSEXCAVATION", Map.of("ignis", 2, "potentia", 1, "praecantatio", 1), -2, -2, false, false);
         research("focus_flight", "thaumictinkerer:focus_smelt", Map.of("motus", 1, "praecantatio", 1, "aer", 2), -3, -4, false, true);

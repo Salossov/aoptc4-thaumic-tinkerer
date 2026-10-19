@@ -14,8 +14,8 @@ public final class KamiFocusContent {
     private static boolean registered;
     public static synchronized void registerBehaviors(){
         if(registered)return;
-        FocusBehaviors.register(FOCUS_XP_DRAIN.get(),FOCUS_XP_DRAIN.get(),ThaumicTinkerer.id("wand/focus_xp_drain"),null);
-        FocusBehaviors.register(FOCUS_SHADOWBEAM.get(),FOCUS_SHADOWBEAM.get(),ThaumicTinkerer.id("wand/focus_shadowbeam"),ThaumicTinkerer.id("item/focus_shadowbeam_ornament"));
+        FocusBehaviors.register(FOCUS_XP_DRAIN.get(),FOCUS_XP_DRAIN.get(),ThaumicTinkerer.id("wand/focus_xp_drain"),null,ThaumicTinkerer.id("staff/focus_xp_drain"));
+        FocusBehaviors.register(FOCUS_SHADOWBEAM.get(),FOCUS_SHADOWBEAM.get(),ThaumicTinkerer.id("wand/focus_shadowbeam"),ThaumicTinkerer.id("item/focus_shadowbeam_ornament"),ThaumicTinkerer.id("staff/focus_shadowbeam"));
         registered=true;
     }
     public static void register(IEventBus bus){AddonRegistrationEvent.BUS.addListener((AddonRegistrationEvent event)->registerBehaviors());}

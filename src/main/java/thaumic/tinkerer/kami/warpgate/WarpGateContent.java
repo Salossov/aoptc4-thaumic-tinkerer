@@ -47,7 +47,7 @@ public final class WarpGateContent {
         });
 
         AddonRegistrationEvent.BUS.addListener((AddonRegistrationEvent event) ->
-                FocusBehaviors.register(FOCUS_RECALL.get(), FOCUS_RECALL.get(), ThaumicTinkerer.id("wand/focus_recall"), null));
+                FocusBehaviors.register(FOCUS_RECALL.get(), FOCUS_RECALL.get(), ThaumicTinkerer.id("wand/focus_recall"), null, ThaumicTinkerer.id("staff/focus_recall")));
     }
 
     public static void display(CreativeModeTab.Output output) {
