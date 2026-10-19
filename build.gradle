@@ -173,6 +173,13 @@ tasks.register('toolModeMessageRulesTest', JavaExec) {
 }
 tasks.named('check') { dependsOn 'toolModeMessageRulesTest' }
 
+tasks.register('analyzerVisualRulesTest', JavaExec) {
+    dependsOn 'verificationClasses'
+    classpath = sourceSets.verification.runtimeClasspath
+    mainClass = 'thaumic.tinkerer.verification.AnalyzerVisualRulesTest'
+}
+tasks.named('check') { dependsOn 'analyzerVisualRulesTest' }
+
 def releaseJar = tasks.named('jar', Jar).flatMap { it.archiveFile }
 def auditReport = layout.buildDirectory.file('reports/release-audit.json')
 tasks.register('auditRelease') {

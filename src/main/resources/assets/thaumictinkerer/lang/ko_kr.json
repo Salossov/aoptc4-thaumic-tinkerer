@@ -376,5 +376,6 @@
   "item.thaumictinkerer.block_talisman": "블랙홀 부적",
   "tc.research_name.thaumictinkerer:block_talisman": "블랙홀 부적",
   "tc.research_text.thaumictinkerer:block_talisman": "정신이 버틸 수 있는 그 이상의 압력",
-  "page.thaumictinkerer.kami.block_talisman.0": "이 부적으로 원하는 블럭을 우클릭해서 각인을 한 뒤 허공에 우클릭해서 활성화하면 인벤토리에 각인시킨 블럭이 한 뭉치 넘게 있을 경우 그 한 뭉치를 제외한 나머지 넘치는 블럭들을 응축시켜 놓습니다. 상자 등에 우클릭을 해서 내용물을 다른 곳으로 옮길 수 있으며 일반적인 블럭처럼 설치할 수 도 있습니다.<BR><BR>이 부적은 같은 종류의 블럭을 20억개 이상 저장할 수 있습니다. 인벤토리가 조약돌로 가득 차 버리는 일은 이제 없을겁니다. 부적이 비었을 경우 Shift 우클릭을 해서 다른 블럭을 저장하도록 바꿀 수 있습니다."
+  "page.thaumictinkerer.kami.block_talisman.0": "이 부적으로 원하는 블럭을 우클릭해서 각인을 한 뒤 허공에 우클릭해서 활성화하면 인벤토리에 각인시킨 블럭이 한 뭉치 넘게 있을 경우 그 한 뭉치를 제외한 나머지 넘치는 블럭들을 응축시켜 놓습니다. 상자 등에 우클릭을 해서 내용물을 다른 곳으로 옮길 수 있으며 일반적인 블럭처럼 설치할 수 도 있습니다.<BR><BR>이 부적은 같은 종류의 블럭을 20억개 이상 저장할 수 있습니다. 인벤토리가 조약돌로 가득 차 버리는 일은 이제 없을겁니다. 부적이 비었을 경우 Shift 우클릭을 해서 다른 블럭을 저장하도록 바꿀 수 있습니다.",
+  "thaumictinkerer.documentation.peripherals": "https://github.com/Vazkii/ThaumicTinkerer/wiki/Peripheral-Documentation"
 }

@@ -414,5 +414,6 @@
   "item.thaumictinkerer.block_talisman": "黑洞指环",
   "tc.research_name.thaumictinkerer:block_talisman": "黑洞指环",
   "tc.research_text.thaumictinkerer:block_talisman": "头脑所不能承受之压",
-  "page.thaumictinkerer.kami.block_talisman.0": "这枚指环能够被用来压缩放置任意类型的方块.手持它拿着某种方块右击即可建立绑定关系,此后按住右键就能将物品栏中的数量超过一个堆叠的同类方块收诸其内,并会保留至少一个堆叠于物品栏.收入的物品通过右击可以放回物品栏,也可以直接放置在地上.<BR><BR>它最多能容纳超过2百万同类型的方块,这下子不会存在圆石没地方搁的问题了吧.护身符空置时按住shift右击可以切换绑定对象."
+  "page.thaumictinkerer.kami.block_talisman.0": "这枚指环能够被用来压缩放置任意类型的方块.手持它拿着某种方块右击即可建立绑定关系,此后按住右键就能将物品栏中的数量超过一个堆叠的同类方块收诸其内,并会保留至少一个堆叠于物品栏.收入的物品通过右击可以放回物品栏,也可以直接放置在地上.<BR><BR>它最多能容纳超过2百万同类型的方块,这下子不会存在圆石没地方搁的问题了吧.护身符空置时按住shift右击可以切换绑定对象.",
+  "thaumictinkerer.documentation.peripherals": "https://github.com/Vazkii/ThaumicTinkerer/wiki/Peripheral-Documentation"
 }

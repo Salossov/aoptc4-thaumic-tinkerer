@@ -412,5 +412,6 @@
   "item.thaumictinkerer.block_talisman": "Кольцо черной дыры",
   "tc.research_name.thaumictinkerer:block_talisman": "Кольцо черной дыры",
   "tc.research_text.thaumictinkerer:block_talisman": "Давление больше, чем Вы можете представить",
-  "page.thaumictinkerer.kami.block_talisman.0": "Это кольцо может вобрать в себя много блоков одного типа. Нужно применить его на нужном блоке и собрать его. Используя кольцо за другом блоке, Вы установите на него выбранный блок.<BR><BR>Приблизительно 2 миллиарда блоков в одном кольце. Неплохо, да? Булыжник больше не представляет проблемы."
+  "page.thaumictinkerer.kami.block_talisman.0": "Это кольцо может вобрать в себя много блоков одного типа. Нужно применить его на нужном блоке и собрать его. Используя кольцо за другом блоке, Вы установите на него выбранный блок.<BR><BR>Приблизительно 2 миллиарда блоков в одном кольце. Неплохо, да? Булыжник больше не представляет проблемы.",
+  "thaumictinkerer.documentation.peripherals": "https://github.com/Vazkii/ThaumicTinkerer/wiki/Peripheral-Documentation"
 }
