@@ -1,0 +1,37 @@
+{
+  "type": "thaumcraft:arcane",
+  "neoforge:conditions": [
+    {
+      "type": "thaumictinkerer:kami_enabled"
+    }
+  ],
+  "research": "thaumictinkerer:ichorium",
+  "result": {
+    "id": "thaumictinkerer:ichorium",
+    "count": 1
+  },
+  "vis": {
+    "ignis": 100,
+    "terra": 100,
+    "aqua": 100,
+    "aer": 100,
+    "ordo": 100,
+    "perditio": 100
+  },
+  "pattern": [
+    " T ",
+    "IDI",
+    " I "
+  ],
+  "key": {
+    "T": {
+      "item": "thaumcraft:thaumium_ingot"
+    },
+    "I": {
+      "item": "thaumictinkerer:ichor"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    }
+  }
+}

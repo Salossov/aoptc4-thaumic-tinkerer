@@ -66,7 +66,7 @@ public final class ThaumicTinkerer {
 
     public ThaumicTinkerer(IEventBus bus, net.neoforged.fml.ModContainer container) {
         container.registerConfig(net.neoforged.fml.config.ModConfig.Type.STARTUP, TinkererConfig.SPEC);
-        if(TinkererConfig.KAMI_FORCE_ENABLED.get()) {thaumic.tinkerer.kami.KamiArmorContent.register(bus);thaumic.tinkerer.kami.KamiUtilityContent.register();}
+        if(TinkererConfig.KAMI_FORCE_ENABLED.get()) {thaumic.tinkerer.kami.KamiArmorContent.register(bus);thaumic.tinkerer.kami.KamiUtilityContent.register(bus);}
         thaumic.tinkerer.enchantment.TinkererEnchantments.register(bus);
         thaumic.tinkerer.crop.InfusedContent.register(bus);
         thaumic.tinkerer.summon.SummonContent.register(bus);
@@ -90,6 +90,8 @@ public final class ThaumicTinkerer {
         ITEMS.register(bus);
         RECIPES.register(bus);
         thaumic.tinkerer.crafting.ShareTomeCondition.register(bus);
+        thaumic.tinkerer.kami.KamiEnabledCondition.register(bus);
+        thaumic.tinkerer.crafting.LegacyDisplayCountIngredient.register(bus);
         TABS.register(bus);
         thaumcraft.api.addon.AddonRegistrationEvent.BUS.addListener(TinkererResearch::register);
         thaumcraft.api.addon.AddonRegistrationEvent.BUS.addListener(thaumic.tinkerer.item.FocusContent::registerAddon);

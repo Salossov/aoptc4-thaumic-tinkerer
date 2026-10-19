@@ -1,0 +1,44 @@
+{
+  "type": "thaumcraft:infusion",
+  "neoforge:conditions": [
+    {
+      "type": "thaumictinkerer:kami_enabled"
+    }
+  ],
+  "research": "thaumictinkerer:ichor",
+  "result": {
+    "id": "thaumictinkerer:ichor",
+    "count": 8
+  },
+  "instability": 7,
+  "aspects": {
+    "humanus": 32,
+    "lux": 32,
+    "spiritus": 64
+  },
+  "input": {
+    "item": "minecraft:nether_star"
+  },
+  "components": [
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "type": "thaumictinkerer:legacy_display_count",
+      "ingredient": {
+        "item": "thaumictinkerer:ender_shard"
+      },
+      "display_count": 8
+    },
+    {
+      "item": "minecraft:ender_eye"
+    },
+    {
+      "type": "thaumictinkerer:legacy_display_count",
+      "ingredient": {
+        "item": "thaumictinkerer:nether_shard"
+      },
+      "display_count": 8
+    }
+  ]
+}

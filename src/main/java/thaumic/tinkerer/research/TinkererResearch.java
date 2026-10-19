@@ -13,6 +13,7 @@ public final class TinkererResearch {
     public static final String SPELL_CLOTH = ThaumicTinkerer.ID + ":spell_cloth";
 
     public static void register(AddonRegistrationEvent event) {
+        if(thaumic.tinkerer.TinkererConfig.KAMI_FORCE_ENABLED.get())thaumic.tinkerer.kami.KamiFoundationResearch.register();
         thaumic.tinkerer.enchantment.EnchanterCatalog.research();
         thaumic.tinkerer.fire.ImbuedFireContent.research();
         thaumic.tinkerer.crop.InfusedResearch.register();

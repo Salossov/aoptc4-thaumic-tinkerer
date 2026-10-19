@@ -1,0 +1,37 @@
+{
+  "type": "thaumcraft:arcane",
+  "neoforge:conditions": [
+    {
+      "type": "thaumictinkerer:kami_enabled"
+    }
+  ],
+  "research": "thaumictinkerer:cap_ichor",
+  "result": {
+    "id": "thaumictinkerer:ichor_cap",
+    "count": 2
+  },
+  "vis": {
+    "ignis": 100,
+    "terra": 100,
+    "aqua": 100,
+    "aer": 100,
+    "ordo": 100,
+    "perditio": 100
+  },
+  "pattern": [
+    "ICI",
+    " M ",
+    "ICI"
+  ],
+  "key": {
+    "M": {
+      "item": "thaumictinkerer:ichorium"
+    },
+    "I": {
+      "item": "thaumictinkerer:ichor"
+    },
+    "C": {
+      "item": "thaumcraft:thaumium_wand_cap"
+    }
+  }
+}

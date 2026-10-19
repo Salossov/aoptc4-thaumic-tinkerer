@@ -13,10 +13,16 @@ public final class TinkererConfig {
     public static final ModConfigSpec.BooleanValue IMBUED_FIRE_CAKE;
     public static final ModConfigSpec.BooleanValue CROPS_ALLOW_BONEMEAL;
     public static final ModConfigSpec.BooleanValue KAMI_FORCE_ENABLED;
+    public static final ModConfigSpec.ConfigValue<String> KAMI_NETHER_DIMENSION;
+    public static final ModConfigSpec.ConfigValue<String> KAMI_END_DIMENSION;
     static {
         var builder = new ModConfigSpec.Builder();
         KAMI_FORCE_ENABLED=builder.comment("Force-enable KAMI content, as in the release 164 default.")
                 .define("general.kami.forceenabled",true);
+        KAMI_NETHER_DIMENSION=builder.comment("Dimension for nether-shard drops; namespaced dimension ID replaces the old numeric ID.")
+                .define("general.kami.dimension.nether.id","minecraft:the_nether",TinkererConfig::dimensionName);
+        KAMI_END_DIMENSION=builder.comment("Dimension for ender-shard drops; namespaced dimension ID replaces the old numeric ID.")
+                .define("general.kami.dimension.end.id","minecraft:the_end",TinkererConfig::dimensionName);
         DEBUG_COMMANDS=builder.comment("Enable original debug commands for every player (original permission behavior).")
                 .define("general.debugCommands.enabled",false);
         FLIGHT = builder.comment("Enable the mod's magical flight (original modFlight.enabled).")
@@ -32,4 +38,5 @@ public final class TinkererConfig {
         SPEC = builder.build();
     }
     private TinkererConfig() { }
+    private static boolean dimensionName(Object value) {return value instanceof String name&&name.contains(":")&&net.minecraft.resources.ResourceLocation.tryParse(name)!=null;}
 }

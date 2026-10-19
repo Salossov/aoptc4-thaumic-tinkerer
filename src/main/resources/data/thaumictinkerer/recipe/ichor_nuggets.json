@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "neoforge:conditions": [
+    {
+      "type": "thaumictinkerer:kami_enabled"
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "thaumictinkerer:ichorium"
+    }
+  ],
+  "result": {
+    "id": "thaumictinkerer:ichor_nugget",
+    "count": 9
+  }
+}
