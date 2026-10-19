@@ -95,6 +95,7 @@ public final class ThaumicTinkerer {
         thaumic.tinkerer.crafting.LegacyDisplayCountIngredient.register(bus);
         thaumic.tinkerer.crafting.LegacyPotionIngredient.register(bus);
         TABS.register(bus);
+        thaumic.tinkerer.compat.TinkererResearchImc.register(bus);
         thaumcraft.api.addon.AddonRegistrationEvent.BUS.addListener(TinkererResearch::register);
         thaumcraft.api.addon.AddonRegistrationEvent.BUS.addListener(thaumic.tinkerer.item.FocusContent::registerAddon);
         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(SpellClothRecipe::crafted);

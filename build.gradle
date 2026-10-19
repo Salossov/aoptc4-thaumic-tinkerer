@@ -215,6 +215,13 @@ tasks.register('warpGateClientRulesTest', JavaExec) {
 }
 tasks.named('check') { dependsOn 'warpGateClientRulesTest' }
 
+tasks.register('researchImcRulesTest', JavaExec) {
+    dependsOn 'verificationClasses'
+    classpath = sourceSets.verification.runtimeClasspath
+    mainClass = 'thaumic.tinkerer.verification.ResearchImcPureRulesTest'
+}
+tasks.named('check') { dependsOn 'researchImcRulesTest' }
+
 def releaseJar = tasks.named('jar', Jar).flatMap { it.archiveFile }
 def auditReport = layout.buildDirectory.file('reports/release-audit.json')
 tasks.register('auditRelease') {

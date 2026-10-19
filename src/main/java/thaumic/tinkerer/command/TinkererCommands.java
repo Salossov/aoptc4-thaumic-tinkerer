@@ -16,6 +16,7 @@ import thaumic.tinkerer.crop.InfusedCropBlockEntity;
 /** Exact debug flag permission: enabled means all players, including non-operators. */
 public final class TinkererCommands {
     public static void register(RegisterCommandsEvent event){
+        KamiUnlockedCommand.register(event.getDispatcher());
         event.getDispatcher().register(Commands.literal("maxresearch").requires(source->TinkererConfig.DEBUG_COMMANDS.get())
                 .executes(TinkererCommands::maxResearch)
                 .then(Commands.argument("ignored",StringArgumentType.greedyString()).executes(TinkererCommands::maxResearch)));
