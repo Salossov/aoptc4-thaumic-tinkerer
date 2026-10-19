@@ -1,0 +1,74 @@
+{
+  "type": "thaumcraft:infusion",
+  "neoforge:conditions": [
+    {
+      "type": "thaumictinkerer:kami_enabled"
+    }
+  ],
+  "research": "thaumictinkerer:ichor_pick_gem",
+  "instability": 15,
+  "aspects": {
+    "ignis": 50,
+    "perfodio": 64,
+    "metallum": 32,
+    "terra": 32,
+    "meto": 32,
+    "lucrum": 16,
+    "sensus": 16
+  },
+  "input": {
+    "item": "thaumictinkerer:ichor_pick"
+  },
+  "components": [
+    {
+      "item": "thaumictinkerer:ichorium"
+    },
+    {
+      "item": "thaumictinkerer:ichor"
+    },
+    {
+      "type": "neoforge:components",
+      "items": "thaumcraft:elemental_pickaxe",
+      "components": {
+        "minecraft:damage": 0
+      },
+      "strict": false
+    },
+    {
+      "item": "thaumcraft:focus_excavation"
+    },
+    {
+      "item": "minecraft:tnt"
+    },
+    {
+      "item": "thaumcraft:native_cinnabar_cluster"
+    },
+    {
+      "item": "thaumcraft:native_iron_cluster"
+    },
+    {
+      "item": "thaumcraft:native_gold_cluster"
+    },
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "thaumcraft:focus_excavation"
+    },
+    {
+      "type": "neoforge:components",
+      "items": "thaumcraft:elemental_pickaxe",
+      "components": {
+        "minecraft:damage": 0
+      },
+      "strict": false
+    },
+    {
+      "item": "thaumictinkerer:ichor_cloth"
+    }
+  ],
+  "result": {
+    "id": "thaumictinkerer:ichor_pick_gem",
+    "count": 1
+  }
+}

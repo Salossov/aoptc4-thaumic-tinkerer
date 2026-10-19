@@ -4,6 +4,10 @@
     {
       "id": "thaumictinkerer:ichor_shovel",
       "required": false
+    },
+    {
+      "id": "thaumictinkerer:ichor_shovel_gem",
+      "required": false
     }
   ]
 }

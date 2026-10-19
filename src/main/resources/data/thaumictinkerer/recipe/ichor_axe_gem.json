@@ -1,0 +1,74 @@
+{
+  "type": "thaumcraft:infusion",
+  "neoforge:conditions": [
+    {
+      "type": "thaumictinkerer:kami_enabled"
+    }
+  ],
+  "research": "thaumictinkerer:ichor_axe_gem",
+  "instability": 15,
+  "aspects": {
+    "aqua": 50,
+    "perfodio": 64,
+    "instrumentum": 32,
+    "arbor": 32,
+    "meto": 32,
+    "messis": 16,
+    "sensus": 16
+  },
+  "input": {
+    "item": "thaumictinkerer:ichor_axe"
+  },
+  "components": [
+    {
+      "item": "thaumictinkerer:ichorium"
+    },
+    {
+      "item": "thaumictinkerer:ichor"
+    },
+    {
+      "type": "neoforge:components",
+      "items": "thaumcraft:elemental_axe",
+      "components": {
+        "minecraft:damage": 0
+      },
+      "strict": false
+    },
+    {
+      "item": "thaumcraft:focus_excavation"
+    },
+    {
+      "item": "minecraft:tnt"
+    },
+    {
+      "item": "thaumcraft:native_cinnabar_cluster"
+    },
+    {
+      "item": "thaumcraft:native_iron_cluster"
+    },
+    {
+      "item": "thaumcraft:native_gold_cluster"
+    },
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "thaumcraft:focus_excavation"
+    },
+    {
+      "type": "neoforge:components",
+      "items": "thaumcraft:elemental_axe",
+      "components": {
+        "minecraft:damage": 0
+      },
+      "strict": false
+    },
+    {
+      "item": "thaumictinkerer:ichor_cloth"
+    }
+  ],
+  "result": {
+    "id": "thaumictinkerer:ichor_axe_gem",
+    "count": 1
+  }
+}

@@ -13,8 +13,10 @@ import thaumic.tinkerer.kami.tool.IchorTools;
 @EventBusSubscriber(modid=ThaumicTinkerer.ID,bus=EventBusSubscriber.Bus.MOD,value=Dist.CLIENT)
 public final class AdvancedToolClient {
     @SubscribeEvent public static void setup(FMLClientSetupEvent event) {
-        if(TinkererConfig.KAMI_FORCE_ENABLED.get())event.enqueueWork(()->ItemProperties.register(
-                IchorTools.AWAKENED_SWORD.get(),ThaumicTinkerer.id("variant"),(stack,level,entity,seed)->AdvancedToolMode.get(stack)));
+        if(TinkererConfig.KAMI_FORCE_ENABLED.get())event.enqueueWork(()->{
+            for(var item:IchorTools.awakened())ItemProperties.register(
+                    item.get(),ThaumicTinkerer.id("variant"),(stack,level,entity,seed)->AdvancedToolMode.get(stack));
+        });
     }
     private AdvancedToolClient(){}
 }

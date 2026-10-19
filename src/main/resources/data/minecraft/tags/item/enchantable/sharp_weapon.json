@@ -2,6 +2,7 @@
   "replace": false,
   "values": [],
   "remove": [
-    "thaumictinkerer:ichor_axe"
+    "thaumictinkerer:ichor_axe",
+    "thaumictinkerer:ichor_axe_gem"
   ]
 }

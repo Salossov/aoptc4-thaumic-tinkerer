@@ -375,5 +375,18 @@
   "item.thaumictinkerer.ichor_pouch": "Bodenloser Beutel",
   "tc.research_name.thaumictinkerer:ichor_pouch": "Bodenloser Beutel",
   "tc.research_text.thaumictinkerer:ichor_pouch": "Haha, he said bottom",
-  "page.thaumictinkerer.kami.ichor_pouch.0": "Indem du einen Fokusbeutel mit Items wie dem Tragbaren Loch versetzt hast, hast du es nicht nur geschafft, ihm zu ermöglichen, anderes als Foki zu halten, sondern auch, seine Speichergröße massiv zu erweitern.<BR><BR>Dieser Beutel kann nicht nur mehr halten als vier Truhen, er dient auch immer noch als gewöhnlicher Fokusbeutel, was es Foki in ihm ermöglicht, sich wie gewohnt auf den Stab aufzusetzen. Sag deinen Inventarproblemen Auf Wiedersehen."
+  "page.thaumictinkerer.kami.ichor_pouch.0": "Indem du einen Fokusbeutel mit Items wie dem Tragbaren Loch versetzt hast, hast du es nicht nur geschafft, ihm zu ermöglichen, anderes als Foki zu halten, sondern auch, seine Speichergröße massiv zu erweitern.<BR><BR>Dieser Beutel kann nicht nur mehr halten als vier Truhen, er dient auch immer noch als gewöhnlicher Fokusbeutel, was es Foki in ihm ermöglicht, sich wie gewohnt auf den Stab aufzusetzen. Sag deinen Inventarproblemen Auf Wiedersehen.",
+  "item.thaumictinkerer.ichor_pick_gem": "Erweckte Ichoriumspitzhacke",
+  "tc.research_name.thaumictinkerer:ichor_pick_gem": "Erweckte Ichoriumspitzhacke",
+  "tc.research_text.thaumictinkerer:ichor_pick_gem": "Wer braucht schon einen Steinbruch?",
+  "page.thaumictinkerer.kami.ichor_pick_gem.0": "Du hast das wahre Potential einer Ichoriumspitzhacke erweckt. Diese Spitzhacke enthält alle Eigenschaften der regulären, jedoch kannst du mit einem Shift-Rechtsklick den Modus ändern, in dem sie sich befindet.<BR><BR>Im Block-Modus (Grün) wird sie Blöcke normal abbauen.<BR><BR>Im Quadrat-Modus (Rot) wird sie ein 5x5-Feld um den abzubauenden Block herum abbauen. Der Abbaubereich ist ein wenig versetzt, um Bergbau zu vereinfachen.<BR><BR>Im Linien-Modus (Blau)",
+  "page.thaumictinkerer.kami.ichor_pick_gem.1": "wird sie eine 10-Block lange Linie, beginnend bei dem abzubauenden Block, abbauen. Sie kann auch Bedrock abbauen, was dich dem Herz der Erde noch näher bringt, denn du glaubst, dass es noch ertragreicher sein könnte, dort zu graben.",
+  "item.thaumictinkerer.ichor_shovel_gem": "Erweckte Ichoriumschaufel",
+  "tc.research_name.thaumictinkerer:ichor_shovel_gem": "Erweckte Ichoriumschaufel",
+  "tc.research_text.thaumictinkerer:ichor_shovel_gem": "Hier war im Englischen ein Wortspiel",
+  "page.thaumictinkerer.kami.ichor_shovel_gem.0": "Du hast das wahre Potential einer Ichoriumschaufel erweckt. Diese Schaufel enthält alle Eigenschaften der regulären, jedoch kannst du mit einem Shift-Rechtsklick den Modus ändern, in dem sie sich befindet.<BR><BR>Im Block-Modus (Grün) wird sie Blöcke normal abbauen.<BR><BR>Im Quadrat-Modus (Rot) wird sie ein 5x5-Feld um den abzubauenden Block herum abbauen.<BR><BR>Im Säulen-Modus (Blau) wird sie eine Säule des selben Blocktyps wie der abzubauende Block abbauen, 8 Blöcke ober- und unterhalb.",
+  "item.thaumictinkerer.ichor_axe_gem": "Erweckte Ichoriumaxt",
+  "tc.research_name.thaumictinkerer:ichor_axe_gem": "Erweckte Ichoriumaxt",
+  "tc.research_text.thaumictinkerer:ichor_axe_gem": "Bricht dich wie ein Kleeblatt",
+  "page.thaumictinkerer.kami.ichor_axe_gem.0": "Du hast das wahre Potential einer Ichoriumaxt erweckt. Diese Axt enthält alle Eigenschaften der regulären, jedoch kannst du mit einem Shift-Rechtsklick den Modus ändern, in dem sie sich befindet.<BR><BR>Im Block-Modus (Grün) wird sie Blöcke normal abbauen.<BR><BR>Im Quadrat-Modus (Rot) wird sie ein 5x5-Feld um den abzubauenden Block herum abbauen.<BR><BR>Im Baum-Modus (Blau) wird sie ganze Bäume fällen, wenn nur einer ihrer Blöcke abgebaut wird.<BR><BR>Diese Axt ist auch beherrscht auch das vernichten der Pflanzenwelt extrem gut."
 }

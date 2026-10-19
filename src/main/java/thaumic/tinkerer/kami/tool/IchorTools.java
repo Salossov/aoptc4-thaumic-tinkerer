@@ -80,14 +80,18 @@ public final class IchorTools {
     public static final DeferredItem<Axe> AXE=ThaumicTinkerer.ITEMS.register("ichor_axe",Axe::new);
     public static final DeferredItem<Sword> SWORD=ThaumicTinkerer.ITEMS.register("ichor_sword",Sword::new);
     public static final DeferredItem<AwakenedIchorSword> AWAKENED_SWORD=ThaumicTinkerer.ITEMS.register("ichor_sword_gem",AwakenedIchorSword::new);
+    public static final DeferredItem<AwakenedDiggers.Pick> AWAKENED_PICK=ThaumicTinkerer.ITEMS.register("ichor_pick_gem",AwakenedDiggers.Pick::new);
+    public static final DeferredItem<AwakenedDiggers.Shovel> AWAKENED_SHOVEL=ThaumicTinkerer.ITEMS.register("ichor_shovel_gem",AwakenedDiggers.Shovel::new);
+    public static final DeferredItem<AwakenedDiggers.Axe> AWAKENED_AXE=ThaumicTinkerer.ITEMS.register("ichor_axe_gem",AwakenedDiggers.Axe::new);
     public static List<DeferredItem<? extends TieredItem>> sourceOrder(){return List.of(PICK,SHOVEL,AXE,SWORD);}
+    public static List<DeferredItem<? extends TieredItem>> awakened(){return List.of(AWAKENED_PICK,AWAKENED_SHOVEL,AWAKENED_AXE,AWAKENED_SWORD);}
     public static void register(IEventBus bus){bus.addListener(IchorTools::components);}
     private static void components(ModifyDefaultComponentsEvent event) {
         // TieredItem adds durability even for uses=-1. Remove both defaults before
         // stacks/codecs are exposed, retaining the original non-damageable item.
         for(var item:sourceOrder())event.modify(item.get(),patch->patch.remove(DataComponents.MAX_DAMAGE).remove(DataComponents.DAMAGE));
-        event.modify(AWAKENED_SWORD.get(),patch->patch.remove(DataComponents.MAX_DAMAGE).remove(DataComponents.DAMAGE));
+        for(var item:awakened())event.modify(item.get(),patch->patch.remove(DataComponents.MAX_DAMAGE).remove(DataComponents.DAMAGE));
     }
-    public static void display(CreativeModeTab.Output output){for(var item:sourceOrder())output.accept(item.get());output.accept(AWAKENED_SWORD.get());}
+    public static void display(CreativeModeTab.Output output){for(var item:sourceOrder())output.accept(item.get());for(var item:awakened())output.accept(item.get());}
     private IchorTools(){}
 }

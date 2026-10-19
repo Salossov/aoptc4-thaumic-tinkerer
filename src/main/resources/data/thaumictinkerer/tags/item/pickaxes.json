@@ -4,6 +4,10 @@
     {
       "id": "thaumictinkerer:ichor_pick",
       "required": false
+    },
+    {
+      "id": "thaumictinkerer:ichor_pick_gem",
+      "required": false
     }
   ]
 }

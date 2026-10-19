@@ -6,6 +6,9 @@
     "thaumictinkerer:ichor_shovel",
     "thaumictinkerer:ichor_axe",
     "thaumictinkerer:ichor_sword",
-    "thaumictinkerer:ichor_sword_gem"
+    "thaumictinkerer:ichor_sword_gem",
+    "thaumictinkerer:ichor_pick_gem",
+    "thaumictinkerer:ichor_shovel_gem",
+    "thaumictinkerer:ichor_axe_gem"
   ]
 }

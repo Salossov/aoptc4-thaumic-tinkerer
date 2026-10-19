@@ -396,5 +396,18 @@
   "item.thaumictinkerer.ichor_pouch": "Poche sans fond",
   "tc.research_name.thaumictinkerer:ichor_pouch": "Poche sans fond",
   "tc.research_text.thaumictinkerer:ichor_pouch": "Et ton cerveau, il a un fond ?",
-  "page.thaumictinkerer.kami.ichor_pouch.0": "By infusing a Focus Pouch with items such as the Portable Hole focus, you managed to allow it to not only store more than Foci, but also to have a very extensive storage space.<BR><BR>This pouch can not only carry more than four chests, but it also doubles as a standard Focus Pouch, allowing any foci within it to be inserted in a wand like normally. You can kiss your inventory problems goodbye."
+  "page.thaumictinkerer.kami.ichor_pouch.0": "By infusing a Focus Pouch with items such as the Portable Hole focus, you managed to allow it to not only store more than Foci, but also to have a very extensive storage space.<BR><BR>This pouch can not only carry more than four chests, but it also doubles as a standard Focus Pouch, allowing any foci within it to be inserted in a wand like normally. You can kiss your inventory problems goodbye.",
+  "item.thaumictinkerer.ichor_pick_gem": "Piche d'Ichorium conscient",
+  "tc.research_name.thaumictinkerer:ichor_pick_gem": "Pioche d'Ichorium conscient",
+  "tc.research_text.thaumictinkerer:ichor_pick_gem": "Qui a besoin d'une carrière pour miner ?",
+  "page.thaumictinkerer.kami.ichor_pick_gem.0": "You awakened the real potential of an Ichorium Pickaxe. This pickaxe contains all the traits from the regular one, however, by shift right clicking on it, you can change what mode it's on.<BR><BR>On Block Mode (Green) it'll break blocks normally.<BR><BR>On Square Mode (Red) it'll break a 5x5 area around the original block broken. The area is offset, to allow for easy mining<BR><BR>On Line Mode (Blue)",
+  "page.thaumictinkerer.kami.ichor_pick_gem.1": "It'll break a 10 block long line starting on the original block. It can also break bedrock, taking you deeper into the the heart of the earth. You believe digging there might prove to be more fruitful.",
+  "item.thaumictinkerer.ichor_shovel_gem": "Pelle d'Ichorium conscient",
+  "tc.research_name.thaumictinkerer:ichor_shovel_gem": "Pelle d'Ichorium conscient",
+  "tc.research_text.thaumictinkerer:ichor_shovel_gem": "Plus jamais de gravier !",
+  "page.thaumictinkerer.kami.ichor_shovel_gem.0": "You awakened the real potential of an Ichorium Shovel. This shovel contains all the traits from the regular one, however, by shift right clicking on it, you can change what mode it's on.<BR><BR>On Block Mode (Green) it'll break blocks normally.<BR><BR>On Square Mode (Red) it'll break a 5x5 area around the original block broken.<BR><BR>On Column Mode (Blue) it'll break a column of the same type of block as the one originally broken, 8 blocks above and below.",
+  "item.thaumictinkerer.ichor_axe_gem": "Hâche d'Ichorium conscient",
+  "tc.research_name.thaumictinkerer:ichor_axe_gem": "Hâche d'Ichorium conscient",
+  "tc.research_text.thaumictinkerer:ichor_axe_gem": "On coupe à ras ?",
+  "page.thaumictinkerer.kami.ichor_axe_gem.0": "You awakened the real potential of an Ichorium Axe. This axe contains all the traits from the regular one, however, by shift right clicking on it, you can change what mode it's on.<BR><BR>On Block Mode (Green) it'll break blocks normally.<BR><BR>On Square Mode (Red) it'll break a 5x5 area around the original block broken.<BR><BR>On Tree Mode (Blue) it'll break entire trees by simply cutting down one of their blocks.<BR><BR>This axe is also extremely proficient at cutting plant life."
 }

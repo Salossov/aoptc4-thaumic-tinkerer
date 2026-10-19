@@ -1,0 +1,17 @@
+{
+  "parent": "thaumictinkerer:item/ichor_shovel_gem0",
+  "overrides": [
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 1
+      },
+      "model": "thaumictinkerer:item/ichor_shovel_gem1"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 2
+      },
+      "model": "thaumictinkerer:item/ichor_shovel_gem2"
+    }
+  ]
+}

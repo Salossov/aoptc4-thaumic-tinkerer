@@ -359,5 +359,18 @@
   "item.thaumictinkerer.ichor_pouch": "무한의 주머니",
   "tc.research_name.thaumictinkerer:ichor_pouch": "무한의 주머니",
   "tc.research_text.thaumictinkerer:ichor_pouch": "바닥이 뭔가요?",
-  "page.thaumictinkerer.kami.ichor_pouch.0": "포커스 주머니에 포터블 홀 포커스 같은 아이템들을 융합시킨 결과 포커스뿐만 아니라 다른 것 또한 담을 수 있게 되었으며, 용량도 엄청나게 커겼습니다.<BR><BR>이 주머니의 용량은 상자의 4배, 평범한 포커스 주머니의 2배에 달하며, 이 주머니에 넣은 포커스 역시 일반적인 포커스 주머니에 넣어둔 포커스처럼 손쉽게 완드에 장착시킬 수 있습니다. 이제 인벤토리 공간 문제와는 영원히 작별이군요."
+  "page.thaumictinkerer.kami.ichor_pouch.0": "포커스 주머니에 포터블 홀 포커스 같은 아이템들을 융합시킨 결과 포커스뿐만 아니라 다른 것 또한 담을 수 있게 되었으며, 용량도 엄청나게 커겼습니다.<BR><BR>이 주머니의 용량은 상자의 4배, 평범한 포커스 주머니의 2배에 달하며, 이 주머니에 넣은 포커스 역시 일반적인 포커스 주머니에 넣어둔 포커스처럼 손쉽게 완드에 장착시킬 수 있습니다. 이제 인벤토리 공간 문제와는 영원히 작별이군요.",
+  "item.thaumictinkerer.ichor_pick_gem": "풀려난 이코륨 곡괭이",
+  "tc.research_name.thaumictinkerer:ichor_pick_gem": "풀려난 이코륨 곡괭이",
+  "tc.research_text.thaumictinkerer:ichor_pick_gem": "쿼리? 그게 뭐야?",
+  "page.thaumictinkerer.kami.ichor_pick_gem.0": "이코륨 곡괭이의 진정한 힘을 이끌어내는 방법을 알아내었습니다. 이 곡괭이는 기본적인 특성은 일반적인 이코륨 곡괭이와 같지만, Shift 우클릭을 할 경우 곡괭이의 특성을 바꿀 수 있습니다.<BR><BR>단일 블럭 모드(초록색)는 아무런 특수능력 없이 블럭을 캐냅니다.<BR><BR>정사각형 모드(빨간색)는 5x5 공간을 한번에 캐냅니다. 손쉬운 채굴을 위해 캐내는 범위의 중심축은 사용자의 약간 위쪽에 위치합니다.",
+  "page.thaumictinkerer.kami.ichor_pick_gem.1": "일렬 모드(파란색)는 캔 블럭으로부터 10칸을 일렬로 더 캐냅니다. 이 기능으로 기반암을 뚫는 것 또한 가능하며, 지구의 중심부로 들어갈 수 있게 됩니다. 그곳에는 수많은 광맥들이 있을 것이라 추정되고 있습니다.",
+  "item.thaumictinkerer.ichor_shovel_gem": "풀려난 이코륨 삽",
+  "tc.research_name.thaumictinkerer:ichor_shovel_gem": "풀려난 이코륨 삽",
+  "tc.research_text.thaumictinkerer:ichor_shovel_gem": "이제 자갈은 그만!",
+  "page.thaumictinkerer.kami.ichor_shovel_gem.0": "이코륨 삽의 진정한 힘을 이끌어내는 방법을 알아내었습니다. 이 삽은 기본적인 특성은 일반적인 이코륨 삽과 같지만, Shift 우클릭을 할 경우 삽의 특성을 바꿀 수 있습니다.<BR><BR>단일 블럭 모드(초록색)는 아무런 특수능력 없이 블럭을 캐냅니다.<BR><BR>정사각형 모드(빨간색)는 5x5 공간을 한번에 캐냅니다.<BR><BR>수직 모드(파란색)는 처음 채굴한 블럭을 중심으로 위아래로 8블럭 내의 같은 종류의 블럭을 한꺼번에 채굴합니다.",
+  "item.thaumictinkerer.ichor_axe_gem": "풀려난 이코륨 도끼",
+  "tc.research_name.thaumictinkerer:ichor_axe_gem": "풀려난 이코륨 도끼",
+  "tc.research_text.thaumictinkerer:ichor_axe_gem": "토끼풀을 꺾는듯한 편안함",
+  "page.thaumictinkerer.kami.ichor_axe_gem.0": "이코륨 도끼의 진정한 힘을 이끌어내는 방법을 알아내었습니다. 이 도끼는 기본적인 특성은 일반적인 이코륨 도끼와 같지만, Shift 우클릭을 할 경우 도끼의 특성을 바꿀 수 있습니다.<BR><BR>단일 블럭 모드(초록색)는 아무런 특수능력 없이 블럭을 캐냅니다.<BR><BR>정사각형 모드(빨간색)는 5x5 공간을 한번에 캐냅니다.<BR><BR>나무 모드(파란색)는 나무의 한 블럭을 베어냄으로써 나무 한 그루를 전부 벌목할 수 있습니다.<BR><BR>또한 이 도끼는 식물을 베어내는 데 매우 적합합니다."
 }
