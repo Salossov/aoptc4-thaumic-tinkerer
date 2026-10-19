@@ -11,6 +11,7 @@ public final class KamiUtilityContent {
     public static void register(IEventBus bus) {
         KamiMaterials.register();
         thaumic.tinkerer.kami.tool.IchorTools.register(bus);
+        SoulHearts.register(bus);
         // Release: the blood sword subscribes during preInit, shard drops during
         // init. Its replacement drops must be processed before shard additions.
         bus.addListener((FMLCommonSetupEvent event)->event.enqueueWork(DimensionalShardDrops::register));

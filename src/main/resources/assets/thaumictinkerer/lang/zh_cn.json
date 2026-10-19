@@ -388,5 +388,10 @@
   "item.thaumictinkerer.ichor_sword": "灵宝剑",
   "tc.research_name.thaumictinkerer:ichor_tools": "灵宝工具",
   "tc.research_text.thaumictinkerer:ichor_tools": "最顶级的耗子…工具",
-  "page.thaumictinkerer.kami.ichor_tools.0": "你发现了如何利用灵宝制作工具.这些工具非常强大,比钻石做的还了不起,更了不起的是,还不用坏.<BR><BR>要制作这样了不起的工具,木棍当手柄就不太合适了,你决定换成银树杖芯来代替."
+  "page.thaumictinkerer.kami.ichor_tools.0": "你发现了如何利用灵宝制作工具.这些工具非常强大,比钻石做的还了不起,更了不起的是,还不用坏.<BR><BR>要制作这样了不起的工具,木棍当手柄就不太合适了,你决定换成银树杖芯来代替.",
+  "item.thaumictinkerer.ichor_sword_gem": "觉醒灵宝剑",
+  "tc.research_name.thaumictinkerer:ichor_sword_gem": "觉醒灵宝剑",
+  "tc.research_text.thaumictinkerer:ichor_sword_gem": "以撒的妈刀",
+  "page.thaumictinkerer.kami.ichor_sword_gem.0": "你唤醒了灵宝剑真正的力量.这柄剑不仅将保留沉睡状态下具有的一应能力,还获得了模式切换功能,只需要按住shift右击即可.<BR><BR>在单杀模式(绿色)下它按正常方式进行攻击.<BR><BR>在区域模式(红色)下它将会伤害到被击中目标三格范围的所有生物.<BR><BR>在狩魂模式(蓝色)下它的威力将会略微减小,但每一击都能使得持剑者增加一颗魂心. <BR>[下页]",
+  "page.thaumictinkerer.kami.ichor_sword_gem.1": "魂心相当于一次性的生命值.如角色拥有魂心,魂心条将会显示在饱腹度上方,状如金属.它们能够代替玩家承受伤害,而它们受到伤害后会随之消失."
 }

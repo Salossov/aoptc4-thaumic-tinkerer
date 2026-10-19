@@ -366,5 +366,10 @@
   "item.thaumictinkerer.ichor_sword": "Ichoriumschwert",
   "tc.research_name.thaumictinkerer:ichor_tools": "Ichoriumwerkzeug",
   "tc.research_text.thaumictinkerer:ichor_tools": "Die höchste Stufe aller Ratt... Werkzeuge",
-  "page.thaumictinkerer.kami.ichor_tools.0": "Du hast entdeckt, wie man Werkzeug aus Ichorium herstellt. Diese Werkzeuge sind extrem mächtig, noch mächtiger als Diamant, zusätzlich werden sie niemals zerbrechen.<BR><BR>Für die Kreierung dieser Werkzeuge sind gewöhnliche Stöcke nicht genug, du entschiedest dich, stattdessen Silberholzstäbe zu verwenden."
+  "page.thaumictinkerer.kami.ichor_tools.0": "Du hast entdeckt, wie man Werkzeug aus Ichorium herstellt. Diese Werkzeuge sind extrem mächtig, noch mächtiger als Diamant, zusätzlich werden sie niemals zerbrechen.<BR><BR>Für die Kreierung dieser Werkzeuge sind gewöhnliche Stöcke nicht genug, du entschiedest dich, stattdessen Silberholzstäbe zu verwenden.",
+  "item.thaumictinkerer.ichor_sword_gem": "Erwecktes Ichoriumschwert",
+  "tc.research_name.thaumictinkerer:ichor_sword_gem": "Erwecktes Ichoriumschwert",
+  "tc.research_text.thaumictinkerer:ichor_sword_gem": "Mom's Messer",
+  "page.thaumictinkerer.kami.ichor_sword_gem.0": "Du hast das wahre Potential eines Ichoriumschwerts erweckt. Dieses Schwert enthält alle Eigenschaften des regulären, jedoch kannst du mit einem Shift-Rechtsklick den Modus ändern, in dem es sich befindet.<BR><BR>Im Einzel-Modus (Grün) wird es Monster normal attackieren.<BR><BR>Im Bereichs-Modus (Rot) wird es alle Monster des selben Typs in einem 3-Block-Radius um das attackierte herum angreifen.<BR><BR>Im Seelen-Modus (Blau) wird es weniger Schaden verursachen als gewöhnlich, aber jeder Schlag wird dem Angreifer ein Seelenherz verleihen.<BR>[fortgesetzt]",
+  "page.thaumictinkerer.kami.ichor_sword_gem.1": "Seelenherzen sind Herzen, die nur einmal verwendet werden können. Die werden als metallische Herzen unterhalb deiner Nahrungsanzeige stehen, wenn existent. Die blockieren Schaden, den der Träger erhalten würde, aber verschwinden in diesem Prozess."
 }
