@@ -136,7 +136,7 @@ public class WarpGateBlockEntity extends BlockEntity implements Container, MenuP
 
     private static void sparkles(ServerPlayer player, ServerLevel level) {
         for (int i = 0; i < 20; i++) {
-            ParticleApi.sparkle(level,
+            ParticleApi.broadcastSparkle(level,
                     (float) player.getX() + level.random.nextFloat() - 0.5F,
                     (float) player.getY() + level.random.nextFloat(),
                     (float) player.getZ() + level.random.nextFloat() - 0.5F, 6);
