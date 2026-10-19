@@ -46,7 +46,22 @@ def codeChickenLibJar = file(providers.gradleProperty('codeChickenLibJar')
         .getOrElse('libs/CodeChickenLib-1.21.1-4.6.1.529.jar'))
 def multipartJar = file(providers.gradleProperty('multipartJar')
         .getOrElse('libs/CBMultipart-1.21.1-3.5.0.155.jar'))
+def jadeJar = file(providers.gradleProperty('jadeJar')
+        .getOrElse('libs/Jade-1.21.1-NeoForge-15.10.1.jar'))
+def wthitApiJar = file(providers.gradleProperty('wthitApiJar')
+        .getOrElse('libs/wthit-api-neo-12.5.5.jar'))
+def wthitJar = file(providers.gradleProperty('wthitJar')
+        .getOrElse('libs/wthit-neo-12.5.5.jar'))
+def badPacketsJar = file(providers.gradleProperty('badPacketsJar')
+        .getOrElse('libs/badpackets-neo-0.8.2.jar'))
 dependencies {
+    compileOnly files(jadeJar, wthitApiJar)
+    if (providers.gradleProperty('withJade').map { it.toBoolean() }.getOrElse(false)) {
+        verificationRuntimeOnly files(jadeJar)
+    }
+    if (providers.gradleProperty('withWthit').map { it.toBoolean() }.getOrElse(false)) {
+        verificationRuntimeOnly files(wthitJar, badPacketsJar)
+    }
     compileOnly files(botaniaJar)
     compileOnly files(enderStorageJar, codeChickenLibJar)
     compileOnly files(multipartJar)
@@ -165,6 +180,7 @@ tasks.register('auditRelease') {
                     classCount++
                     if (entry.name.startsWith('thaumcraft/') || entry.name.startsWith('net/minecraft/') || entry.name.startsWith('dan200/') ||
                             entry.name.startsWith('codechicken/') || entry.name.startsWith('vazkii/') ||
+                            entry.name.startsWith('snownee/jade/') || entry.name.startsWith('mcp/mobius/waila/') ||
                             entry.name.contains('/verification/') || entry.name.endsWith('SpellClothRulesTest.class')) {
                         forbidden.add(entry.name)
                     }
@@ -178,6 +194,10 @@ tasks.register('auditRelease') {
                     }
                     if ((pool =~ /appeng\/(?!api\/)[A-Za-z0-9_\/$]+/).find()) {
                         forbidden.add("Internal AE2 reference in ${entry.name}")
+                    }
+                    if ((pool =~ /snownee\/jade\/(?!api\/)[A-Za-z0-9_\/$]+/).find() ||
+                            (pool =~ /mcp\/mobius\/waila\/(?!api\/)[A-Za-z0-9_\/$]+/).find()) {
+                        forbidden.add("Internal tooltip mod reference in ${entry.name}")
                     }
                 }
                 if (entry.name.contains('thaumictinkerer_tests') || entry.name.startsWith('tt_verification_materials/') || (entry.name.endsWith('/empty.nbt') || entry.name.endsWith('/summon_space.nbt'))) {

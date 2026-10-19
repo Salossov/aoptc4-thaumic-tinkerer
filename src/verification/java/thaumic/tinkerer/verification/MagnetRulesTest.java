@@ -91,12 +91,13 @@ public final class MagnetRulesTest {
             level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3); level.setBlock(pos.east(), Blocks.AIR.defaultBlockState(), 3);
         }
     }
-    @GameTest(template = "empty", timeoutTicks = 100)
+    @GameTest(template = "summon_space", timeoutTicks = 100)
     public static void mobMagnet(GameTestHelper helper) {
         VerificationReports.install(); checks = 0;
-        var level = helper.getLevel(); var anchor = helper.absolutePos(new BlockPos(2, 40, 2));
-        // Keep the complete seven-block query radius and spawned mobs inside the loaded test chunk.
-        var pos = new BlockPos((anchor.getX() >> 4) * 16 + 8, anchor.getY(), (anchor.getZ() >> 4) * 16 + 8); var centre = Vec3.atCenterOf(pos);
+        var level = helper.getLevel();
+        // The whole query radius must stay within the template's forced chunk footprint.
+        // Snapping an empty 5x5 template to a chunk centre could put its mobs in hidden sections.
+        var pos = helper.absolutePos(new BlockPos(16, 40, 16)); var centre = Vec3.atCenterOf(pos);
         var stub = FocusRulesTest.player(helper, "[TTMobMagnet]");
         var player = new net.minecraft.server.level.ServerPlayer(level.getServer(), level, stub.getGameProfile(), net.minecraft.server.level.ClientInformation.createDefault()) {
             @Override public BlockPos adjustSpawnLocation(net.minecraft.server.level.ServerLevel world, BlockPos spawn) { return spawn; }
@@ -125,9 +126,10 @@ public final class MagnetRulesTest {
             var mould = new ItemStack(ThaumicTinkerer.SOUL_MOULD.get()); CustomData.update(DataComponents.CUSTOM_DATA, mould, tag -> tag.putString("pattern", "minecraft:cow"));
             tile.setItem(0, mould);
             check(tile.accepts(baby) && !tile.accepts(zombie), "pattern and age filters combine");
-            for (var entity : List.of(adult, baby, zombie)) { entity.setPos(centre.add(3, 0, 0)); entity.setDeltaMovement(Vec3.ZERO); level.addFreshEntity(entity); }
+            for (var entity : List.of(adult, baby, zombie)) { entity.setPos(centre.add(3, 0, 0)); entity.setDeltaMovement(Vec3.ZERO); check(level.addFreshEntity(entity),"native mob fixture is accepted by the level"); }
+            check(level.getEntities((Entity)null,tile.effectBox(15),tile::accepts).contains(baby),"target mob is visible in the native entity-section query before ticking the magnet");
             level.setBlock(pos.east(), Blocks.REDSTONE_BLOCK.defaultBlockState(), 3); tile.tick();
-            check(baby.getDeltaMovement().x < 0 && adult.getDeltaMovement().equals(Vec3.ZERO) && zombie.getDeltaMovement().equals(Vec3.ZERO), "actual mob tick moves only the matching age and pattern");
+            check(baby.getDeltaMovement().x < 0 && adult.getDeltaMovement().equals(Vec3.ZERO) && zombie.getDeltaMovement().equals(Vec3.ZERO), "actual mob tick moves only the matching age and pattern; signal="+tile.signal()+" baby="+baby.getDeltaMovement()+" adult="+adult.getDeltaMovement()+" zombie="+zombie.getDeltaMovement()+" accepted="+tile.accepts(baby));
             tile.setPulling(false); tile.tick();
             check(baby.getDeltaMovement().x > 0, "actual mob repulsion uses the same selected filter");
             tile.setPulling(true);

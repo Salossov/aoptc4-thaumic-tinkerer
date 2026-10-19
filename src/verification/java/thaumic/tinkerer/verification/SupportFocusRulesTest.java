@@ -154,7 +154,7 @@ public final class SupportFocusRulesTest {
         check(AddonRegistry.disabledResearch().contains("thaumictinkerer:focus_deflect") != enabled, "server catalog condition is reevaluated, not frozen at mod initialization");
         var report = java.nio.file.Path.of(System.getProperty("thaumictinkerer.testReport") + ".mode.json");
         java.nio.file.Files.createDirectories(report.getParent());
-        java.nio.file.Files.writeString(report, "{\"mirrors\":" + enabled + ",\"computercraft\":"+net.neoforged.fml.ModList.get().isLoaded("computercraft")+",\"ae2\":"+net.neoforged.fml.ModList.get().isLoaded("ae2")+",\"botania\":"+net.neoforged.fml.ModList.get().isLoaded("botania")+",\"enderstorage\":"+net.neoforged.fml.ModList.get().isLoaded("enderstorage")+",\"bloodmagic\":"+net.neoforged.fml.ModList.get().isLoaded("bloodmagic")+",\"multipart\":"+net.neoforged.fml.ModList.get().isLoaded("cb_microblock")+"}\n");
+        java.nio.file.Files.writeString(report, "{\"mirrors\":" + enabled + ",\"computercraft\":"+net.neoforged.fml.ModList.get().isLoaded("computercraft")+",\"ae2\":"+net.neoforged.fml.ModList.get().isLoaded("ae2")+",\"botania\":"+net.neoforged.fml.ModList.get().isLoaded("botania")+",\"enderstorage\":"+net.neoforged.fml.ModList.get().isLoaded("enderstorage")+",\"bloodmagic\":"+net.neoforged.fml.ModList.get().isLoaded("bloodmagic")+",\"multipart\":"+net.neoforged.fml.ModList.get().isLoaded("cb_microblock")+",\"jade\":"+net.neoforged.fml.ModList.get().isLoaded("jade")+",\"wthit\":"+net.neoforged.fml.ModList.get().isLoaded("wthit")+"}\n");
         System.out.println("TT_MIRROR_RULES_PASS enabled=" + enabled + " checks=" + checks); helper.succeed();
     }
 }

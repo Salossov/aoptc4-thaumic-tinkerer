@@ -1,0 +1,10 @@
+{
+  "thaumictinkerer:device_details": {
+    "entrypoints": {
+      "common": "thaumic.tinkerer.integration.WthitCompatibility",
+      "client": "thaumic.tinkerer.integration.WthitClientCompatibility"
+    },
+    "side": "*",
+    "required": ["thaumictinkerer"]
+  }
+}
