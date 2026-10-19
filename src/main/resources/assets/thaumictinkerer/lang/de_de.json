@@ -371,5 +371,9 @@
   "tc.research_name.thaumictinkerer:ichor_sword_gem": "Erwecktes Ichoriumschwert",
   "tc.research_text.thaumictinkerer:ichor_sword_gem": "Mom's Messer",
   "page.thaumictinkerer.kami.ichor_sword_gem.0": "Du hast das wahre Potential eines Ichoriumschwerts erweckt. Dieses Schwert enthält alle Eigenschaften des regulären, jedoch kannst du mit einem Shift-Rechtsklick den Modus ändern, in dem es sich befindet.<BR><BR>Im Einzel-Modus (Grün) wird es Monster normal attackieren.<BR><BR>Im Bereichs-Modus (Rot) wird es alle Monster des selben Typs in einem 3-Block-Radius um das attackierte herum angreifen.<BR><BR>Im Seelen-Modus (Blau) wird es weniger Schaden verursachen als gewöhnlich, aber jeder Schlag wird dem Angreifer ein Seelenherz verleihen.<BR>[fortgesetzt]",
-  "page.thaumictinkerer.kami.ichor_sword_gem.1": "Seelenherzen sind Herzen, die nur einmal verwendet werden können. Die werden als metallische Herzen unterhalb deiner Nahrungsanzeige stehen, wenn existent. Die blockieren Schaden, den der Träger erhalten würde, aber verschwinden in diesem Prozess."
+  "page.thaumictinkerer.kami.ichor_sword_gem.1": "Seelenherzen sind Herzen, die nur einmal verwendet werden können. Die werden als metallische Herzen unterhalb deiner Nahrungsanzeige stehen, wenn existent. Die blockieren Schaden, den der Träger erhalten würde, aber verschwinden in diesem Prozess.",
+  "item.thaumictinkerer.ichor_pouch": "Bodenloser Beutel",
+  "tc.research_name.thaumictinkerer:ichor_pouch": "Bodenloser Beutel",
+  "tc.research_text.thaumictinkerer:ichor_pouch": "Haha, he said bottom",
+  "page.thaumictinkerer.kami.ichor_pouch.0": "Indem du einen Fokusbeutel mit Items wie dem Tragbaren Loch versetzt hast, hast du es nicht nur geschafft, ihm zu ermöglichen, anderes als Foki zu halten, sondern auch, seine Speichergröße massiv zu erweitern.<BR><BR>Dieser Beutel kann nicht nur mehr halten als vier Truhen, er dient auch immer noch als gewöhnlicher Fokusbeutel, was es Foki in ihm ermöglicht, sich wie gewohnt auf den Stab aufzusetzen. Sag deinen Inventarproblemen Auf Wiedersehen."
 }

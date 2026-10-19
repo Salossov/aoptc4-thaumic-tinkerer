@@ -12,10 +12,11 @@ public final class KamiUtilityContent {
         KamiMaterials.register();
         thaumic.tinkerer.kami.tool.IchorTools.register(bus);
         SoulHearts.register(bus);
+        thaumic.tinkerer.kami.pouch.IchorPouchContent.register(bus);
         // Release: the blood sword subscribes during preInit, shard drops during
         // init. Its replacement drops must be processed before shard additions.
         bus.addListener((FMLCommonSetupEvent event)->event.enqueueWork(DimensionalShardDrops::register));
     }
-    public static void display(CreativeModeTab.Output output) {KamiMaterials.display(output);output.accept(CAT_AMULET.get());thaumic.tinkerer.kami.tool.IchorTools.display(output);}
+    public static void display(CreativeModeTab.Output output) {KamiMaterials.display(output);output.accept(CAT_AMULET.get());thaumic.tinkerer.kami.tool.IchorTools.display(output);thaumic.tinkerer.kami.pouch.IchorPouchContent.display(output);}
     private KamiUtilityContent() {}
 }

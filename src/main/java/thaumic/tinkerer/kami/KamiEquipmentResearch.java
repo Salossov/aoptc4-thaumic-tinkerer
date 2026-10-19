@@ -24,6 +24,7 @@ public final class KamiEquipmentResearch {
         node("ichorcloth_legs_gem","ichorcloth_legs_gem","ichorcloth_armor",17,9,Map.of("ignis",2,"sano",1,"lucrum",1,"potentia",1),0,List.of("ichorcloth_legs_gem"),true);
         node("ichorcloth_boots_gem","ichorcloth_boots_gem","ichorcloth_armor",15,10,Map.of("terra",2,"iter",1,"perfodio",1,"herba",1),0,List.of("ichorcloth_boots_gem"),false);
         node("cat_amulet","cat_amulet","ichorium",13,10,Map.of("cognitio",2,"ordo",1,"tenebrae",1,"mortuus",1),0,List.of("cat_amulet"),false);
+        node("ichor_pouch","ichor_pouch","ichor_cloth",13,6,Map.of("vacuos",2,"pannus",1,"alienis",1,"humanus",1),0,List.of("ichor_pouch"),false);
     }
     private KamiEquipmentResearch() {}
 }
