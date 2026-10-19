@@ -83,6 +83,7 @@ public final class ThaumicTinkerer {
         thaumic.tinkerer.block.MobilizerContent.register(bus);
         thaumic.tinkerer.integration.Ae2Movement.register(bus);
         thaumic.tinkerer.integration.MultipartCompatibility.register(bus);
+        thaumic.tinkerer.kami.TinkererPlayerLifecycle.register(bus);
         if (thaumic.tinkerer.block.GolemConnectorContent.enabled()) { thaumic.tinkerer.block.GolemConnectorContent.register(bus); thaumic.tinkerer.block.AspectAnalyzerContent.register(bus); }
         ITEMS.register(bus);
         RECIPES.register(bus);

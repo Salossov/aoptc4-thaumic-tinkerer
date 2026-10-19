@@ -38,6 +38,8 @@ public final class TinkererFocusItem extends ItemFocusBasic implements FocusBeha
     // missing a target or temporarily lacking vis does not erase stored progress.
     private static final Map<String, SmeltData> SMELTING = new HashMap<>();
     private static final Map<String, Integer> HEALING = new HashMap<>();
+    public static void playerLogin(String name) {HEALING.put(name,0);}
+    public static void playerLogout(String name) {SMELTING.remove(name);HEALING.remove(name);}
     private record SmeltData(BlockPos pos, int remaining) { }
     public TinkererFocusItem(Kind kind) { super(new Properties().durability(1).rarity(Rarity.RARE)); this.kind = kind; }
     public Kind kind() { return kind; }
