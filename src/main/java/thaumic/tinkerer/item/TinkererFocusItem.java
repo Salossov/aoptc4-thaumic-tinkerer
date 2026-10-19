@@ -118,7 +118,7 @@ public final class TinkererFocusItem extends ItemFocusBasic implements FocusBeha
         if (!TinkererConfig.FLIGHT.get() || !WandApi.consume(wand, player, getVisCost(focus), true)) return false;
         // Original passes the WAND to getUpgradeLevel, not its attached focus. Keep that quirk.
         double force = 2d / 3 * (1 + getUpgradeLevel(wand, FocusUpgradeType.potency) * .2);
-        PlayerMotionApi.launch(player, player.getLookAngle().scale(force));
+        PlayerMotionApi.launch(player, LegacyMotion.look(player.getYRot(), player.getXRot()).scale(force));
         double rawY=thaumic.tinkerer.util.LegacyPlayerCoordinates.rawY(player);
         for(int count=0;count<5;count++)ParticleApi.broadcastSmokeSpiral(player.serverLevel(),new ParticleApi.SmokeSpiral(
                 player.getX(),rawY-player.getDeltaMovement().y,player.getZ(),2f,(int)(Math.random()*360),(int)rawY,647935));
@@ -127,7 +127,7 @@ public final class TinkererFocusItem extends ItemFocusBasic implements FocusBeha
     }
     private boolean pull(ServerPlayer player, ItemStack wand, ItemStack focus) {
         Vec3 target = player.position().add(0, player.getBbHeight() / 2d, 0);
-        if (!player.isShiftKeyDown()) target = target.add(player.getLookAngle().scale(5));
+        if (!player.isShiftKeyDown()) target = target.add(LegacyMotion.look(player.getYRot(), player.getXRot()).scale(5));
         target = target.add(0, .5, 0);
         var entities = player.level().getEntitiesOfClass(ItemEntity.class, new AABB(target.subtract(6, 6, 6), target.add(6, 6, 6)));
         if (entities.isEmpty() || !WandApi.consume(wand, player, getVisCost(focus), true)) return false;
