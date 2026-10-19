@@ -2,6 +2,10 @@
   "replace": false,
   "values": [
     "thaumictinkerer:xp_talisman",
-    "thaumictinkerer:cleansing_talisman"
+    "thaumictinkerer:cleansing_talisman",
+    {
+      "id": "thaumictinkerer:cat_amulet",
+      "required": false
+    }
   ]
 }
