@@ -1,0 +1,43 @@
+{
+  "type": "thaumcraft:infusion",
+  "neoforge:conditions": [
+    {
+      "type": "thaumictinkerer:kami_enabled"
+    }
+  ],
+  "research": "thaumictinkerer:block_talisman",
+  "result": {
+    "id": "thaumictinkerer:block_talisman",
+    "count": 1
+  },
+  "instability": 9,
+  "aspects": {
+    "vacuos": 65,
+    "tenebrae": 32,
+    "praecantatio": 50,
+    "alienis": 32
+  },
+  "input": {
+    "item": "thaumcraft:focus_portable_hole"
+  },
+  "components": [
+    {
+      "item": "thaumictinkerer:ichor"
+    },
+    {
+      "item": "minecraft:ender_chest"
+    },
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "thaumictinkerer:ichor"
+    },
+    {
+      "item": "thaumcraft:taint_goo"
+    },
+    {
+      "item": "thaumcraft:void_jar"
+    }
+  ]
+}

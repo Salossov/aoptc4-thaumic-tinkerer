@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "thaumictinkerer:block_talisman",
+      "required": false
+    }
+  ]
+}

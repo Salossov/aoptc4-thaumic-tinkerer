@@ -408,5 +408,9 @@
   "item.thaumictinkerer.ichor_axe_gem": "Пробуждённый ихориевый топор",
   "tc.research_name.thaumictinkerer:ichor_axe_gem": "Пробуждённый ихориевый топор",
   "tc.research_text.thaumictinkerer:ichor_axe_gem": "Срежу как клевер",
-  "page.thaumictinkerer.kami.ichor_axe_gem.0": "Вы пробудили потенциал Ихориевого топора. Этот топор настолько же мощен, как и не пробужденный, но имеет режимы.<BR><BR> На режиме блока (Зеленый) он будет рубить блоки как обычно.<BR><BR>На режиме площади (Красный) он будет рубить зону 5х5.<BR><BR>На режиме дерева (Синий) он будет рубить все дерево.<BR><BR>This axe is also extremely proficient at cutting plant life."
+  "page.thaumictinkerer.kami.ichor_axe_gem.0": "Вы пробудили потенциал Ихориевого топора. Этот топор настолько же мощен, как и не пробужденный, но имеет режимы.<BR><BR> На режиме блока (Зеленый) он будет рубить блоки как обычно.<BR><BR>На режиме площади (Красный) он будет рубить зону 5х5.<BR><BR>На режиме дерева (Синий) он будет рубить все дерево.<BR><BR>This axe is also extremely proficient at cutting plant life.",
+  "item.thaumictinkerer.block_talisman": "Кольцо черной дыры",
+  "tc.research_name.thaumictinkerer:block_talisman": "Кольцо черной дыры",
+  "tc.research_text.thaumictinkerer:block_talisman": "Давление больше, чем Вы можете представить",
+  "page.thaumictinkerer.kami.block_talisman.0": "Это кольцо может вобрать в себя много блоков одного типа. Нужно применить его на нужном блоке и собрать его. Используя кольцо за другом блоке, Вы установите на него выбранный блок.<BR><BR>Приблизительно 2 миллиарда блоков в одном кольце. Неплохо, да? Булыжник больше не представляет проблемы."
 }

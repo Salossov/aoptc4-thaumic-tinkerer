@@ -15,6 +15,8 @@ public final class TabletPlayer extends FakePlayer {
     private final AnimationTabletBlockEntity tablet;
     private final Map<Holder<Attribute>,Set<ResourceLocation>> applied=new HashMap<>();
     public TabletPlayer(ServerLevel level,AnimationTabletBlockEntity tablet){super(level,new GameProfile(UUID.fromString("a8f026a0-135b-11e4-9191-0800200c9a66"),"[ThaumcraftTablet]"));this.tablet=tablet;}
+    /** Stable owner of this transient player's held action. */
+    public AnimationTabletBlockEntity tablet(){return tablet;}
     public void prepare(){
         getAbilities().instabuild=false;var p=tablet.getBlockPos();setPos(p.getX()+.5,p.getY()+1.6,p.getZ()+.5);stopRiding();ejectPassengers();setDeltaMovement(0,0,0);setHealth(20);deathTime=0;fallDistance=0;setOnGround(false);
         float yaw=switch(tablet.rotation()){case 0->180;case 1->0;case 2->90;default->-90;};setYRot(yaw);setYHeadRot(yaw);setXRot(-15);
