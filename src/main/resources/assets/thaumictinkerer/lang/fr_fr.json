@@ -422,5 +422,9 @@
   "item.thaumictinkerer.placement_mirror": "Miroir du Terraformeur",
   "tc.research_name.thaumictinkerer:placement_mirror": "Miroir du Terraformeur",
   "tc.research_text.thaumictinkerer:placement_mirror": "Œil de Mercure",
-  "page.thaumictinkerer.kami.placement_mirror.0": "Through studying the world, you constructed a glass that allows you place a large array of blocks in the world using the power of your mind.<BR><BR>To set a block to place, one would shift-right click this glass in that block. Shift-right clicking the item in the air changes the amount of blocks it'll place.<BR><BR>When placing blocks in the world, a phantom visualization of how the blocks will appear is shown. On right click, the blocks will be consumed and placed, either from the inventory, or any Black Hole Rings that contain the required block."
+  "page.thaumictinkerer.kami.placement_mirror.0": "Through studying the world, you constructed a glass that allows you place a large array of blocks in the world using the power of your mind.<BR><BR>To set a block to place, one would shift-right click this glass in that block. Shift-right clicking the item in the air changes the amount of blocks it'll place.<BR><BR>When placing blocks in the world, a phantom visualization of how the blocks will appear is shown. On right click, the blocks will be consumed and placed, either from the inventory, or any Black Hole Rings that contain the required block.",
+  "item.thaumictinkerer.focus_xp_drain": "Foci de baguette: Aspirateur d'expérience",
+  "tc.research_name.thaumictinkerer:focus_xp_drain": "Foci de baguette: Aspirateur d'expérience",
+  "tc.research_text.thaumictinkerer:focus_xp_drain": "Vis écologique",
+  "page.thaumictinkerer.kami.focus_xp_drain.0": "After creating a wand that can have an insane amount of vis, you got to the conclusion that you need an alternate source of vis.<BR><BR>To that end, you created a focus that draws from your Experience pool, turning it into vis at a fast, but not very efficient rate."
 }

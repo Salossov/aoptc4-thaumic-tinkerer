@@ -423,5 +423,9 @@
   "item.thaumictinkerer.placement_mirror": "世界塑造者的观察镜",
   "tc.research_name.thaumictinkerer:placement_mirror": "世界塑造者的观察镜",
   "tc.research_text.thaumictinkerer:placement_mirror": "水银之眼",
-  "page.thaumictinkerer.kami.placement_mirror.0": "通过研究这个世界,你制造出一枚透镜,能够让你使用意念将大量的方块放置到大地上.<BR><BR>拿着这枚透镜右击某种方块就能将其设置成指定方块.对着空气按住shift右击就能切换要放置的方块数量.<BR><BR>放置前会生成预览幻象,右击则会消耗方块将其放置出来,方块的来源既可以是物品栏,也可以是黑洞护身符,只要装有足够数量的指定方块即可."
+  "page.thaumictinkerer.kami.placement_mirror.0": "通过研究这个世界,你制造出一枚透镜,能够让你使用意念将大量的方块放置到大地上.<BR><BR>拿着这枚透镜右击某种方块就能将其设置成指定方块.对着空气按住shift右击就能切换要放置的方块数量.<BR><BR>放置前会生成预览幻象,右击则会消耗方块将其放置出来,方块的来源既可以是物品栏,也可以是黑洞护身符,只要装有足够数量的指定方块即可.",
+  "item.thaumictinkerer.focus_xp_drain": "法杖核心:经验抽取",
+  "tc.research_name.thaumictinkerer:focus_xp_drain": "法杖核心:经验抽取",
+  "tc.research_text.thaumictinkerer:focus_xp_drain": "环保魔力",
+  "page.thaumictinkerer.kami.focus_xp_drain.0": "自从制造出蕴含着疯狂数量的魔力的法杖,你就打定主意想要研究出魔力的替代资源.<BR><BR>最终,你制造出一种能够抽取经验池,将其快速地转换成魔力的法杖核心,可惜效率并不是非常高."
 }

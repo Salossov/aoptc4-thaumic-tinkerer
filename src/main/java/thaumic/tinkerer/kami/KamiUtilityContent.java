@@ -10,6 +10,7 @@ public final class KamiUtilityContent {
     public static final DeferredItem<CatAmuletItem> CAT_AMULET=ThaumicTinkerer.ITEMS.register("cat_amulet",CatAmuletItem::new);
     public static void register(IEventBus bus) {
         KamiMaterials.register();
+        thaumic.tinkerer.kami.focus.KamiFocusContent.register(bus);
         thaumic.tinkerer.kami.construction.KamiConstructionContent.initialize();
         thaumic.tinkerer.kami.blocktalisman.BlockTalismanContent.initialize();
         thaumic.tinkerer.kami.tool.IchorTools.register(bus);
@@ -19,6 +20,6 @@ public final class KamiUtilityContent {
         // init. Its replacement drops must be processed before shard additions.
         bus.addListener((FMLCommonSetupEvent event)->event.enqueueWork(DimensionalShardDrops::register));
     }
-    public static void display(CreativeModeTab.Output output) {KamiMaterials.display(output);output.accept(CAT_AMULET.get());thaumic.tinkerer.kami.tool.IchorTools.display(output);thaumic.tinkerer.kami.pouch.IchorPouchContent.display(output);thaumic.tinkerer.kami.blocktalisman.BlockTalismanContent.display(output);thaumic.tinkerer.kami.construction.KamiConstructionContent.display(output);}
+    public static void display(CreativeModeTab.Output output) {KamiMaterials.display(output);output.accept(CAT_AMULET.get());thaumic.tinkerer.kami.tool.IchorTools.display(output);thaumic.tinkerer.kami.pouch.IchorPouchContent.display(output);thaumic.tinkerer.kami.blocktalisman.BlockTalismanContent.display(output);thaumic.tinkerer.kami.construction.KamiConstructionContent.display(output);thaumic.tinkerer.kami.focus.KamiFocusContent.display(output);}
     private KamiUtilityContent() {}
 }

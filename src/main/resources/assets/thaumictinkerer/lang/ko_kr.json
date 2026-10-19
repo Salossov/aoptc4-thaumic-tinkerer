@@ -385,5 +385,9 @@
   "item.thaumictinkerer.placement_mirror": "조물주의 돋보기",
   "tc.research_name.thaumictinkerer:placement_mirror": "조물주의 돋보기",
   "tc.research_text.thaumictinkerer:placement_mirror": "화성의 눈",
-  "page.thaumictinkerer.kami.placement_mirror.0": "세계에 대한 계속된 연구 끝에, 정신력을 이용해 다량의 블럭을 한꺼번에 설치할 수 있게 해 주는 돋보기를 만들어내었습니다.<BR><BR>설치할 블럭은 돋보기를 원하는 블럭에 Shift 우클릭 함으로써 설정할 수 있습니다. 허공에 대고 Shift 우클릭을 해서 한번에 설치할 블럭의 갯수를 설정할 수 있습니다.<BR><BR>블럭을 설치할 경우, 블럭이 어떤 형태로 설치되는지가 홀로그램으로 표시됩니다. 우클릭을 하면 해당 모양으로 블럭들이 설치가 되며, 설치되는 블럭은 인벤토리나 필요한 블럭을 담고 있는 블랙홀 부적에서 소모됩니다."
+  "page.thaumictinkerer.kami.placement_mirror.0": "세계에 대한 계속된 연구 끝에, 정신력을 이용해 다량의 블럭을 한꺼번에 설치할 수 있게 해 주는 돋보기를 만들어내었습니다.<BR><BR>설치할 블럭은 돋보기를 원하는 블럭에 Shift 우클릭 함으로써 설정할 수 있습니다. 허공에 대고 Shift 우클릭을 해서 한번에 설치할 블럭의 갯수를 설정할 수 있습니다.<BR><BR>블럭을 설치할 경우, 블럭이 어떤 형태로 설치되는지가 홀로그램으로 표시됩니다. 우클릭을 하면 해당 모양으로 블럭들이 설치가 되며, 설치되는 블럭은 인벤토리나 필요한 블럭을 담고 있는 블랙홀 부적에서 소모됩니다.",
+  "item.thaumictinkerer.focus_xp_drain": "완드 포커스: Exp. 흡수",
+  "tc.research_name.thaumictinkerer:focus_xp_drain": "완드 포커스: Exp. 흡수",
+  "tc.research_text.thaumictinkerer:focus_xp_drain": "환경 친화적 비스",
+  "page.thaumictinkerer.kami.focus_xp_drain.0": "엄청난 양의 비스를 담을 수 있는 완드가 개발되면서 다른 비스 공급원이 필요하게 되었습니다.<BR><BR>이를 위해 그리 효율적이진 않지만, 경험치를 비스로 빠르게 변환시켜주는 새로운 포커스를 고안하였습니다."
 }
