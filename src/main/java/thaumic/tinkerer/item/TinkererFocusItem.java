@@ -76,12 +76,13 @@ public final class TinkererFocusItem extends ItemFocusBasic implements FocusBeha
         String name = player.getGameProfile().getName();
         int progress = HEALING.getOrDefault(name, 0) + 1;
         HEALING.put(name, progress);
-        ParticleApi.sparkle(player.level(), (float) player.getX() + player.level().random.nextFloat() - .5f,
+        ParticleApi.broadcastSparkle(player.serverLevel(), (float) player.getX() + player.level().random.nextFloat() - .5f,
                (float) thaumic.tinkerer.util.LegacyPlayerCoordinates.rawY(player) + player.level().random.nextFloat(), (float) player.getZ() + player.level().random.nextFloat() - .5f, 0);
         if (progress < 30 - getUpgradeLevel(wand, FocusUpgradeType.potency) * 10 / 3) return false;
         HEALING.put(name, 0);
         WandApi.consume(wand, player, getVisCost(focus), true); player.heal(1);
-        player.level().playSound(null, player.blockPosition(), SoundEvent.createVariableRangeEvent(net.minecraft.resources.ResourceLocation.parse("thaumcraft:wand")), SoundSource.PLAYERS, .5f, 1);
+        player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
+                SoundEvent.createVariableRangeEvent(net.minecraft.resources.ResourceLocation.parse("thaumcraft:wand")), SoundSource.PLAYERS, .5f, 1);
         return true;
     }
     private boolean deflect(ServerPlayer player, ItemStack wand, ItemStack focus) {
@@ -117,14 +118,15 @@ public final class TinkererFocusItem extends ItemFocusBasic implements FocusBeha
         return true;
     }
     private boolean pull(ServerPlayer player, ItemStack wand, ItemStack focus) {
-        Vec3 target = player.position().add(0, player.getBbHeight() / 2d, 0);
+        Vec3 target = player.position().add(0, player.getBbHeight() / 2f, 0);
         if (!player.isShiftKeyDown()) target = target.add(LegacyMotion.look(player.getYRot(), player.getXRot()).scale(5));
         target = target.add(0, .5, 0);
         var entities = player.level().getEntitiesOfClass(ItemEntity.class, new AABB(target.subtract(6, 6, 6), target.add(6, 6, 6)));
         if (entities.isEmpty() || !WandApi.consume(wand, player, getVisCost(focus), true)) return false;
         for (var entity : entities) {
             LegacyMotion.towards(entity, target, .3333f);
-            ParticleApi.sparkle(player.level(), (float) entity.getX(), (float) entity.getY(), (float) entity.getZ(), 0);
+            // EntityItem's old raw posY included its fixed 0.125 yOffset above the feet.
+            ParticleApi.broadcastSparkle(player.serverLevel(), (float) entity.getX(), (float) (entity.getY() + .125), (float) entity.getZ(), 0);
         }
         return true;
     }
