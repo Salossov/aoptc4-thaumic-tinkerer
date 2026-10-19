@@ -427,5 +427,15 @@
   "item.thaumictinkerer.focus_xp_drain": "法杖核心:经验抽取",
   "tc.research_name.thaumictinkerer:focus_xp_drain": "法杖核心:经验抽取",
   "tc.research_text.thaumictinkerer:focus_xp_drain": "环保魔力",
-  "page.thaumictinkerer.kami.focus_xp_drain.0": "自从制造出蕴含着疯狂数量的魔力的法杖,你就打定主意想要研究出魔力的替代资源.<BR><BR>最终,你制造出一种能够抽取经验池,将其快速地转换成魔力的法杖核心,可惜效率并不是非常高."
+  "page.thaumictinkerer.kami.focus_xp_drain.0": "自从制造出蕴含着疯狂数量的魔力的法杖,你就打定主意想要研究出魔力的替代资源.<BR><BR>最终,你制造出一种能够抽取经验池,将其快速地转换成魔力的法杖核心,可惜效率并不是非常高.",
+  "block.thaumictinkerer.warp_gate": "仙域之门",
+  "item.thaumictinkerer.sky_pearl": "仙域珍珠",
+  "item.thaumictinkerer.focus_recall": "法杖核心:仙域召唤",
+  "tc.research_name.thaumictinkerer:warp_gate": "仙域之门",
+  "tc.research_text.thaumictinkerer:warp_gate": "电波变换",
+  "page.thaumictinkerer.kami.warp_gate.0": "你设计出一种能够让你传送到其他位置的复杂装置.将仙域珍珠(参见下页)放入这台设备中,它将允许玩家传送到世界上的许多其他位置.<BR><BR>一共可以设置10个位置.在设备的图形界面(右击开启)中你可以禁止其他仙域之门与之相连.<BR><BR>要查看能够前去的可能位置列表,在设备上方潜行即可.",
+  "page.thaumictinkerer.kami.warp_gate.1": "为方便仙域之门定位,需要用仙域珍珠进行标记.手持它们按住shift右击仙域之门即可标记其位置(注意,对着空气按住shift右击会清楚地珍珠所保持之坐标).<BR><BR>将仙域珍珠嵌入开启的仙域之门,即可传送到它标记的那扇仙域之门.传送是单向的,双向传送需要两颗珍珠.<BR><BR>为方便区分珍珠在仙域之门界面列表重点名字,可以利用铁砧为它们重命名.",
+  "tc.research_name.thaumictinkerer:focus_recall": "法杖核心:仙域召唤",
+  "tc.research_text.thaumictinkerer:focus_recall": "炉石居处即家园",
+  "page.thaumictinkerer.kami.focus_recall.0": "使用仙域之门传送固然很好,但你决心更进一步,制作一种用于传送的核心,让你无论身处何地都能进行传送.<BR><BR>如事先将绑定好后的仙域珍珠放入施法者的快捷栏内,经过短暂的吟唱后,就能够将施法者传送到绑定位置,犹如踏入仙域之门一般.当然,传送是以消耗魔力为代价的."
 }

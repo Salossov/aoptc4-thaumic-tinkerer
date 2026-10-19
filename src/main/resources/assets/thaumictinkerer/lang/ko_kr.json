@@ -389,5 +389,15 @@
   "item.thaumictinkerer.focus_xp_drain": "완드 포커스: Exp. 흡수",
   "tc.research_name.thaumictinkerer:focus_xp_drain": "완드 포커스: Exp. 흡수",
   "tc.research_text.thaumictinkerer:focus_xp_drain": "환경 친화적 비스",
-  "page.thaumictinkerer.kami.focus_xp_drain.0": "엄청난 양의 비스를 담을 수 있는 완드가 개발되면서 다른 비스 공급원이 필요하게 되었습니다.<BR><BR>이를 위해 그리 효율적이진 않지만, 경험치를 비스로 빠르게 변환시켜주는 새로운 포커스를 고안하였습니다."
+  "page.thaumictinkerer.kami.focus_xp_drain.0": "엄청난 양의 비스를 담을 수 있는 완드가 개발되면서 다른 비스 공급원이 필요하게 되었습니다.<BR><BR>이를 위해 그리 효율적이진 않지만, 경험치를 비스로 빠르게 변환시켜주는 새로운 포커스를 고안하였습니다.",
+  "block.thaumictinkerer.warp_gate": "차원 관문",
+  "item.thaumictinkerer.sky_pearl": "천상의 진주",
+  "item.thaumictinkerer.focus_recall": "완드 포커스: 차원 회귀",
+  "tc.research_name.thaumictinkerer:warp_gate": "차원 관문",
+  "tc.research_text.thaumictinkerer:warp_gate": "전자파 변환",
+  "page.thaumictinkerer.kami.warp_gate.0": "차원 관문은 사용자의 공간적 위치를 전환할 수 있는 복잡한 장치입니다. 이 기계에 천상의 진주가 장착되어 있을 경우 기계를 통해 어디로든 텔레포트를 할 수 있습니다.<BR><BR>텔레포트 지점은 최대 10군데를 지정할 수 있습니다. 기계의 GUI에서 다른 관문이 이곳과 연결되는 것을 차단할 수 도 있습니다.<BR><BR>목적지 목록을 보고 싶다면 장치 위에서 Shift를 누르세요.",
+  "page.thaumictinkerer.kami.warp_gate.1": "관문의 목적지를 설정하기 위해서는 천상의 진주에 목적지가 지정되어있어야 합니다. 진주를 원하는 목적지의 차원 관문에 Shift 우클릭함으로써 목적지 지정을 할 수 있습니다. 허공에 Shift 우클릭을 할 경우 목적지가 초기화됩니다..<BR><BR>이 진주를 관문에 장착하면 진주에 등록된 목적지로의 텔레포트가 가능해집니다. 이 텔레포트는 단방향이며, 쌍방향 텔레포트를 위해서는 반대쪽의 관문에도 진주가 장착되어있어야 합니다.<BR><BR>모루를 사용하여 진주에 이름을 붙일 경우 관문의 목적지 목록에 진주의 이름이 표시되므로 좀 더 쉽게 원하는 목적지를 찾을 수 있습니다.",
+  "tc.research_name.thaumictinkerer:focus_recall": "완드 포커스: 차원 회귀",
+  "tc.research_text.thaumictinkerer:focus_recall": "가족이 있는 곳만을 집이라 부를 수 있는 법",
+  "page.thaumictinkerer.kami.focus_recall.0": "차원 관문을 통한 텔레포트도 쓸만 하지만, 차원 관문을 포커스로 만들어서 어디서든 쓸 수 있다면 더 좋지 않을까요?.<BR><BR>이 포커스는, 핫바에 원하는 곳에 연결되어있는 천상의 진주가 있을 경우, 사용시 시전자를 연결된 위치로 텔레포트시킵니다. 이 작업에는 비스를 필요로 합니다."
 }

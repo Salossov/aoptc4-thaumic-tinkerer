@@ -13,7 +13,10 @@ public final class KamiResearch {
     public static final List<String> BLACKLIST=new CopyOnWriteArrayList<>(List.of("MINILITH"));
     private static final Set<String> NODES=new LinkedHashSet<>();
     private static final Set<String> CATEGORIES=Set.of(TinkererResearch.CATEGORY,"BASICS","GOLEMANCY","ARTIFICE","ALCHEMY","THAUMATURGY");
-    public static void register(ResearchDefinition definition) {NODES.add(definition.key());AddonRegistry.research(definition);}
+    public static void register(ResearchDefinition definition) {register(definition,()->true);}
+    public static void register(ResearchDefinition definition,java.util.function.BooleanSupplier enabled) {
+        NODES.add(definition.key());AddonRegistry.research(definition,enabled);
+    }
     public static void catalogRule() {ResearchCatalogRules.register(ThaumicTinkerer.id("kami_requirements"),KamiResearch::requirements);}
     public static List<String> requirements(ResearchDefinition definition,Map<String,ResearchDefinition> catalog) {
         if(!NODES.contains(definition.key())||definition.autoUnlock())return List.of();

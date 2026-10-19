@@ -405,5 +405,15 @@
   "item.thaumictinkerer.focus_xp_drain": "Stabfokus: Erfahrungsabsorption",
   "tc.research_name.thaumictinkerer:focus_xp_drain": "Stabfokus: Erfahrungsabsorption",
   "tc.research_text.thaumictinkerer:focus_xp_drain": "Umweltfreundliches Vis",
-  "page.thaumictinkerer.kami.focus_xp_drain.0": "Nachdem du einen Stab kreiert hast, der eine gewaltige Menge Vis speichern kann, kamst du zu dem Schluss, dass du eine alternative Quelle für Vis benötigst.<BR><BR>Deshalb hast du einen Fokus kreiert, der deine Erfahrungspunkte absorbiert, um sie schnell, aber nicht sehr effizient in Vis umzuwandeln."
+  "page.thaumictinkerer.kami.focus_xp_drain.0": "Nachdem du einen Stab kreiert hast, der eine gewaltige Menge Vis speichern kann, kamst du zu dem Schluss, dass du eine alternative Quelle für Vis benötigst.<BR><BR>Deshalb hast du einen Fokus kreiert, der deine Erfahrungspunkte absorbiert, um sie schnell, aber nicht sehr effizient in Vis umzuwandeln.",
+  "block.thaumictinkerer.warp_gate": "Himmelstor",
+  "item.thaumictinkerer.sky_pearl": "Himmelsperle",
+  "item.thaumictinkerer.focus_recall": "Stabfokus: Himmelsrückruf",
+  "tc.research_name.thaumictinkerer:warp_gate": "Himmelstor",
+  "tc.research_text.thaumictinkerer:warp_gate": "EM-Wellenwechsel",
+  "page.thaumictinkerer.kami.warp_gate.0": "Du hast einen komplexen Mechanismus erdacht, der es dir erlaubt, deine eigene Position in der Welt zu verändern. Dieser Block wird, wenn er Himmelsperlen enthält (siehe nächste Seite), erlauben, sich zu verschiedenen Punkten in der Welt zu teleportieren.<BR><BR>Eine Gesamtzahl von 10 Orten kann eingestellt werden. Du kannst andere Tore daran hindern, sich mit einem bestimmten zu verbinden, indem du das in der GUI des Blocks (die du per Rechtsklick öffnen kannst) einstellst.<BR><BR>Um eine Liste verfügbarer Ziele aufzurufen, schleiche auf dem Block.",
+  "page.thaumictinkerer.kami.warp_gate.1": "Um Zielorte eines Tores einzustellen, müssen sie mit Himmelsperlen markiert werden. Diese Items können mit Shift-Rechtsklick auf ein Himmelstor die Position dieses Tores markieren (Anmerkung: Shift-rechtsklicke in Luft, um den Ort zu löschen).<BR><BR>Wenn du die Perlen in ein Himmelstor platzierst, ermöglicht das, sich zu dem Himmelstor, an das die Perle gebunden ist, zu teleportieren. Dieser Teleport ist nur in eine Richtung möglich, somit sind zwei Perlen für den Teleport hin und zurück nötig.<BR><BR>Wenn du diese Perlen in einem Amboss umbenennst, werden ihre Namen in der GUI des Tores angezeigt, was einfache Kennzeichnung erlaubt.",
+  "tc.research_name.thaumictinkerer:focus_recall": "Stabfokus: Himmelsrückruf",
+  "tc.research_text.thaumictinkerer:focus_recall": "Home is where the Hearthstone is",
+  "page.thaumictinkerer.kami.focus_recall.0": "Himmelstore für Teleportation zu nutzen, ist schön und gut, aber du hast dich entschieden, einen Schritt weiter zu gehen und einen Fokus zu kreieren, der genau das kann, nur von überall.<BR><BR>Dieser Fokus wird, wenn sich eine gebundene Himmelsperle in der Hotbar befindet, den Nutzer, nach kurzer Zauberzeit, zu jener Position teleportieren, als hätte er ein Himmelstor verwendet. Selbstverständlich benötigt das Teleportieren Vis aus deinem Stab."
 }

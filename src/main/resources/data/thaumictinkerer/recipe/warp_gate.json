@@ -1,0 +1,45 @@
+{
+  "type": "thaumcraft:infusion",
+  "neoforge:conditions": [
+    {
+      "type": "thaumictinkerer:kami_enabled"
+    },
+    {
+      "type": "thaumcraft:mirrors_enabled"
+    }
+  ],
+  "research": "thaumictinkerer:warp_gate",
+  "result": {
+    "id": "thaumictinkerer:warp_gate",
+    "count": 1
+  },
+  "instability": 8,
+  "aspects": {
+    "iter": 64,
+    "alienis": 50,
+    "volatus": 50
+  },
+  "input": {
+    "item": "thaumcraft:paving_stone_travel"
+  },
+  "components": [
+    {
+      "item": "thaumictinkerer:ichor"
+    },
+    {
+      "item": "thaumictinkerer:ender_shard"
+    },
+    {
+      "item": "thaumictinkerer:dislocator"
+    },
+    {
+      "item": "thaumictinkerer:nether_shard"
+    },
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:feather"
+    }
+  ]
+}

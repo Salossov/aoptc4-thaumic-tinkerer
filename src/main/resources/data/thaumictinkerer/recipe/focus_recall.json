@@ -1,0 +1,42 @@
+{
+  "type": "thaumcraft:infusion",
+  "neoforge:conditions": [
+    {
+      "type": "thaumictinkerer:kami_enabled"
+    }
+  ],
+  "research": "thaumictinkerer:focus_recall",
+  "result": {
+    "id": "thaumictinkerer:focus_recall",
+    "count": 1
+  },
+  "instability": 10,
+  "aspects": {
+    "iter": 100,
+    "alienis": 64,
+    "praecantatio": 50
+  },
+  "input": {
+    "item": "thaumictinkerer:sky_pearl"
+  },
+  "components": [
+    {
+      "item": "thaumictinkerer:ichor"
+    },
+    {
+      "item": "thaumictinkerer:ichor"
+    },
+    {
+      "item": "minecraft:ender_pearl"
+    },
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "thaumcraft:magic_mirror"
+    },
+    {
+      "item": "thaumcraft:focus_portable_hole"
+    }
+  ]
+}

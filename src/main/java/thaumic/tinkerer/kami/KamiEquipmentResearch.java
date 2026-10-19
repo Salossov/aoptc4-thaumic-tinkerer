@@ -17,6 +17,7 @@ public final class KamiEquipmentResearch {
         KamiResearch.register(new ResearchDefinition(id(key),TinkererResearch.CATEGORY,List.of(id(parent)),aspects,5,false,true,x,y,texts,recipes,id(icon),false,false,false,false,List.of(),order,false,warp,List.of(),List.of(),List.of(),List.of()));
     }
     public static void register() {
+        thaumic.tinkerer.kami.warpgate.WarpGateResearch.register();
         node("focus_xp_drain","focus_xp_drain","rod_ichorcloth",12,3,Map.of("cognitio",2,"praecantatio",1,"auram",1,"humanus",1),0,List.of("focus_xp_drain"),false);
         node("ichorcloth_armor","ichorcloth_helm","ichor_cloth",17,5,Map.of("tutamen",2,"pannus",1,"lux",1,"fabrico",1),4,
                 List.of("ichorcloth_helm","ichorcloth_chest","ichorcloth_legs","ichorcloth_boots"),false);

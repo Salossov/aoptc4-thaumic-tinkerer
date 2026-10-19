@@ -17,6 +17,10 @@
     "thaumictinkerer:levitational_locomotive",
     "thaumictinkerer:levitational_locomotive_relay",
     "thaumictinkerer:dislocator",
-    "thaumictinkerer:spawner"
+    "thaumictinkerer:spawner",
+    {
+      "id": "thaumictinkerer:warp_gate",
+      "required": false
+    }
   ]
 }
