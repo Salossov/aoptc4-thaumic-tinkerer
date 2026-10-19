@@ -1,0 +1,45 @@
+{
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "portal": "thaumictinkerer:block/bedrock_portal",
+    "particle": "thaumictinkerer:block/bedrock_portal"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "down": {
+          "texture": "#portal"
+        },
+        "up": {
+          "texture": "#portal"
+        },
+        "north": {
+          "texture": "#portal",
+          "cullface": "north"
+        },
+        "south": {
+          "texture": "#portal",
+          "cullface": "south"
+        },
+        "west": {
+          "texture": "#portal",
+          "cullface": "west"
+        },
+        "east": {
+          "texture": "#portal",
+          "cullface": "east"
+        }
+      }
+    }
+  ]
+}

@@ -24,6 +24,10 @@ import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.bus.api.EventPriority;
+import net.neoforged.neoforge.common.CommonHooks;
+import net.neoforged.neoforge.common.util.TriState;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.level.LevelEvent;
 import net.neoforged.neoforge.event.server.ServerStoppedEvent;
@@ -32,6 +36,7 @@ import thaumcraft.api.world.BlockMaterials;
 import thaumcraft.api.world.ChunkPreparationApi;
 import thaumic.tinkerer.ThaumicTinkerer;
 import thaumic.tinkerer.TinkererConfig;
+import thaumic.tinkerer.kami.bedrock.*;
 import static thaumic.tinkerer.kami.tool.AwakenedMiningShape.*;
 
 /** Original extra-block order, with player-owned asynchronous FULL preparation.
@@ -50,14 +55,15 @@ public final class AwakenedMining {
         for(var family:TREE_BLOCK_FAMILIES)if(reference.defaultBlockState().is(family)&&state.is(family))return true;
         return false;
     }
+    private enum Outcome { PASS, CONSUMED, DEFERRED, DENIED }
     private record Plan(Kind kind,Direction face,BlockPos aim,Bounds bounds,boolean tree){}
     private static final class Job implements AutoCloseable {
         final ServerPlayer player;final ServerLevel level;final ItemStack stack,snapshot;
-        final int slot,mode;final BlockPos origin;final BlockState initial;final Kind kind;final Plan plan;
+        final int slot,mode;final BlockPos origin;final BlockState initial;BlockState expected;final Kind kind;final Plan plan;final boolean early;boolean denied;
         final ChunkPreparationApi.Request request;boolean resuming;
-        Job(ServerPlayer player,ItemStack stack,BlockPos origin,Kind kind,Plan plan,Collection<ChunkPos> chunks){
+        Job(ServerPlayer player,ItemStack stack,BlockPos origin,Kind kind,Plan plan,Collection<ChunkPos> chunks,boolean early){
             this.player=player;level=player.serverLevel();this.stack=stack;snapshot=stack.copy();slot=player.getInventory().selected;
-            mode=AdvancedToolMode.get(stack);this.origin=origin.immutable();initial=level.getBlockState(origin);this.kind=kind;this.plan=plan;
+            mode=AdvancedToolMode.get(stack);this.origin=origin.immutable();initial=level.getBlockState(origin);this.kind=kind;this.plan=plan;this.early=early;expected=initial;
             request=ChunkPreparationApi.prepare(player,chunks);
         }
         boolean valid(){
@@ -65,7 +71,7 @@ public final class AwakenedMining {
                     &&level.getServer().getPlayerList().getPlayer(player.getUUID())==player
                     &&player.getInventory().selected==slot&&player.getMainHandItem()==stack&&ItemStack.matches(stack,snapshot)
                     &&AdvancedToolMode.get(stack)==mode&&level.getChunkSource().getChunkNow(origin.getX()>>4,origin.getZ()>>4)!=null
-                    &&level.getBlockState(origin)==initial&&player.canInteractWithBlock(origin,1.0);
+                    &&level.getBlockState(origin)==expected&&player.canInteractWithBlock(origin,1.0);
         }
         @Override public void close(){request.close();if(PENDING.get(player)==this)PENDING.remove(player);}
     }
@@ -80,53 +86,103 @@ public final class AwakenedMining {
         };
     }
     public static boolean start(ItemStack stack,BlockPos origin,ServerPlayer player,Kind kind){
-        if(!TinkererConfig.KAMI_FORCE_ENABLED.get()||!player.isAlive()||player.isRemoved()||BREAKING.contains(player))return false;
+        return begin(stack,origin,player,kind,false)!=Outcome.PASS;
+    }
+    private static Outcome result(Job job){boolean consumed=perform(job);return job.denied?Outcome.DENIED:consumed?Outcome.CONSUMED:Outcome.PASS;}
+    private static Outcome begin(ItemStack stack,BlockPos origin,ServerPlayer player,Kind kind,boolean early){
+        if(!TinkererConfig.KAMI_FORCE_ENABLED.get()||!player.isAlive()||player.isRemoved()||BREAKING.contains(player))return Outcome.PASS;
         var previous=PENDING.get(player);
         if(previous!=null){
             if(previous.resuming){
-                if(!previous.valid())return true;
+                if(!previous.valid())return Outcome.CONSUMED;
                 if(previous.plan!=null){
                     var view=new LoadedView(previous.level);var ray=raytrace(view,player,true);
                     if(!view.missing.isEmpty()||ray.getType()!=HitResult.Type.BLOCK||ray.getDirection()!=previous.plan.face
-                            ||!ray.getBlockPos().equals(previous.plan.aim))return true;
-                    return perform(previous);
+                            ||!ray.getBlockPos().equals(previous.plan.aim))return Outcome.CONSUMED;
+                    return result(previous);
                 }
-                // The first phase only prepared the sight ray. Plan the actual
-                // mining region now while those sight columns are still held.
-            } else if(previous.origin.equals(origin)&&previous.stack==stack&&previous.valid())return true;
+                // First phase prepared the sight ray. Plan the mining region
+                // while those sight columns are still held.
+            } else if(previous.origin.equals(origin)&&previous.stack==stack&&previous.valid())return Outcome.DEFERRED;
             else previous.close();
         }
         int mode=AdvancedToolMode.get(stack);
         var level=player.serverLevel();var state=level.getBlockState(origin);
-        if((mode!=1&&mode!=2)||!rightMaterial(state,kind))return false;
+        var change=bedrockChange(level,origin,state,kind);
+        boolean extra=mode==1||mode==2;
+        if((!extra&&change==BedrockMiningRules.Change.NONE)||!rightMaterial(state,kind))return Outcome.PASS;
         var view=new LoadedView(level);var ray=raytrace(view,player,true);
-        if(!view.missing.isEmpty())return defer(new Job(player,stack,origin,kind,null,view.visited));
-        if(ray.getType()!=HitResult.Type.BLOCK)return false;
+        if(!view.missing.isEmpty())return defer(new Job(player,stack,origin,kind,null,view.visited,early));
+        if(ray.getType()!=HitResult.Type.BLOCK)return Outcome.PASS;
         boolean tree=mode==2&&kind==Kind.AXE;
-        if(tree&&!state.is(BlockTags.LOGS))return false;
-        if(!tree){
+        if(tree&&!state.is(BlockTags.LOGS))return Outcome.PASS;
+        // Bedrock's non-fluid repeat must happen AFTER its central replacement.
+        if(extra&&!tree&&change==BedrockMiningRules.Change.NONE){
             var second=raytrace(view,player,false);
-            if(!view.missing.isEmpty())return defer(new Job(player,stack,origin,kind,null,view.visited));
-            if(second.getType()!=HitResult.Type.BLOCK)return false;
+            if(!view.missing.isEmpty())return defer(new Job(player,stack,origin,kind,null,view.visited,early));
+            if(second.getType()!=HitResult.Type.BLOCK)return Outcome.PASS;
         }
-        var face=ray.getDirection();var bounds=AwakenedMiningShape.bounds(kind,mode,face.getStepX(),face.getStepY(),face.getStepZ());
+        var face=ray.getDirection();var bounds=extra?AwakenedMiningShape.bounds(kind,mode,face.getStepX(),face.getStepY(),face.getStepZ()):null;
         var plan=new Plan(kind,face,ray.getBlockPos().immutable(),bounds,tree);var chunks=new LinkedHashSet<>(view.visited);
         // Leaf-update callbacks inspect +/-3 around a log selected within +/-24.
-        int minX=tree?-27:bounds.xs()-1,maxX=tree?27:bounds.xe();
-        int minZ=tree?-27:bounds.zs()-1,maxZ=tree?27:bounds.ze();
+        int minX=tree?-27:bounds==null?-1:bounds.xs()-1,maxX=tree?27:bounds==null?1:bounds.xe();
+        int minZ=tree?-27:bounds==null?-1:bounds.zs()-1,maxZ=tree?27:bounds==null?1:bounds.ze();
         for(int x=(origin.getX()+minX)>>4;x<=(origin.getX()+maxX)>>4;x++)
             for(int z=(origin.getZ()+minZ)>>4;z<=(origin.getZ()+maxZ)>>4;z++)chunks.add(new ChunkPos(x,z));
-        var job=new Job(player,stack,origin,kind,plan,chunks);
+        if(change!=BedrockMiningRules.Change.NONE){
+            // The second ray can see through the removed center. Prepare its
+            // entire reach before mutation, including the player drop location.
+            int reach=Mth.ceil(player.blockInteractionRange()+1.5);
+            for(int x=Mth.floor(player.getX()-reach)>>4;x<=Mth.floor(player.getX()+reach)>>4;x++)
+                for(int z=Mth.floor(player.getZ()-reach)>>4;z<=Mth.floor(player.getZ()+reach)>>4;z++)chunks.add(new ChunkPos(x,z));
+        }
+        var job=new Job(player,stack,origin,kind,plan,chunks,early);
         if(job.request.advance(2)){
-            try{return perform(job);}finally{job.close();}
+            try{return result(job);}finally{job.close();}
         }
         return defer(job);
     }
-    private static boolean defer(Job job){PENDING.put(job.player,job);return true;}
+    private static BedrockMiningRules.Change bedrockChange(ServerLevel level,BlockPos pos,BlockState state,Kind kind){
+        return kind==Kind.PICK&&state.is(Blocks.BEDROCK)?BedrockMiningRules.change(BedrockPortals.enabled(),
+                BedrockPortalWorlds.isSurfaceWorld(level),level.dimension()==BedrockContent.DIMENSION,pos.getY()):BedrockMiningRules.Change.NONE;
+    }
+    private static Outcome defer(Job job){PENDING.put(job.player,job);return Outcome.DEFERRED;}
+    /** Survival never reaches native destroyBlock on hardness -1. The release
+     * calls its item hook directly from LEFT_CLICK_BLOCK, before native mining.
+     */
+    @SubscribeEvent(priority=EventPriority.LOWEST)
+    public static void leftClick(PlayerInteractEvent.LeftClickBlock event){
+        if(event.isCanceled()||event.getUseItem()==TriState.FALSE||event.getAction()!=PlayerInteractEvent.LeftClickBlock.Action.START
+                ||!(event.getEntity() instanceof ServerPlayer player)||BREAKING.contains(player)
+                ||!(player.getMainHandItem().getItem() instanceof AwakenedDiggers.Pick))return;
+        var level=player.serverLevel();var pos=event.getPos();
+        // This event precedes vanilla's validation. Never read a cold packet
+        // coordinate before validating its reach and currently loaded column.
+        if(level.isOutsideBuildHeight(pos)||!player.canInteractWithBlock(pos,1)||player.isSpectator()
+                ||player.blockActionRestricted(level,pos,player.gameMode.getGameModeForPlayer())||!level.mayInteract(player,pos)
+                ||level.getChunkSource().getChunkNow(pos.getX()>>4,pos.getZ()>>4)==null||!level.getBlockState(pos).is(Blocks.BEDROCK))return;
+        var outcome=begin(player.getMainHandItem(),pos,player,Kind.PICK,true);
+        if(outcome==Outcome.DEFERRED||outcome==Outcome.DENIED)event.setCanceled(true);
+        // Warm success falls through: creative removes the newly made portal
+        // with this same click; survival sees its unbreakable hardness.
+    }
     private static boolean perform(Job job){
         if(!job.valid())return true;
+        if(job.early){
+            if(job.player.blockActionRestricted(job.level,job.origin,job.player.gameMode.getGameModeForPlayer())
+                    ||!job.level.mayInteract(job.player,job.origin)
+                    ||CommonHooks.fireBlockBreak(job.level,job.player.gameMode.getGameModeForPlayer(),job.player,job.origin,job.expected).isCanceled()
+                    ||!job.valid()){job.denied=true;return true;}
+        }
         BREAKING.add(job.player);
         try{
+            var change=bedrockChange(job.level,job.origin,job.expected,job.kind);
+            if(change!=BedrockMiningRules.Change.NONE){
+                var replacement=change==BedrockMiningRules.Change.PORTAL?BedrockContent.PORTAL.get().defaultBlockState():Blocks.AIR.defaultBlockState();
+                job.level.setBlockAndUpdate(job.origin,replacement);job.expected=job.level.getBlockState(job.origin);
+                if(job.expected!=replacement)return true;
+            }
+            if(job.plan.bounds==null)return job.level.getBlockState(job.origin).isAir();
             if(job.plan.tree){if(!fellTree(job))return true;}
             else {
                 // The source repeats a non-fluid ray before enumerating extras.
@@ -221,7 +277,16 @@ public final class AwakenedMining {
             if(!job.valid()){job.close();continue;}
             if(!job.request.advance(2))continue;
             job.resuming=true;
-            try{job.player.gameMode.destroyBlock(job.origin);}finally{job.resuming=false;job.close();}
+            try{
+                if(job.early){
+                    var outcome=begin(job.stack,job.origin,job.player,job.kind,true);
+                    if(outcome!=Outcome.DENIED&&outcome!=Outcome.DEFERRED&&job.player.isCreative()
+                            &&job.level.getBlockState(job.origin).is(BedrockContent.PORTAL.get())){
+                        BREAKING.add(job.player);
+                        try{job.player.gameMode.destroyBlock(job.origin);}finally{BREAKING.remove(job.player);}
+                    }
+                }else job.player.gameMode.destroyBlock(job.origin);
+            }finally{job.resuming=false;job.close();}
         }
     }
     @SubscribeEvent public static void unloaded(LevelEvent.Unload event){for(var job:List.copyOf(PENDING.values()))if(job.level==event.getLevel())job.close();}
