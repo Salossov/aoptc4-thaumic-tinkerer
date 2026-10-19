@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "thaumictinkerer:blood_sword"
+    "thaumictinkerer:blood_sword",
+    "#thaumictinkerer:swords"
   ]
 }

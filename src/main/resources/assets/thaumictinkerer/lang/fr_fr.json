@@ -380,5 +380,12 @@
   "page.thaumictinkerer.kami.ichorcloth_boots_gem.0": "You found a way of upgrading the Ichorcloth Boots into a more powerful form.<BR><BR>These boots allow for extremely smooth movement, akin to the Boots of the Traveller. The wearer's speed, jump height and jump reach all become magnified by wearing the boots, making movement a breeze. One can also walk on 1 high blocks as if they are slabs, this can be suppressed by sneaking.<BR>Wearing the boots also induces a constant Haste II effect, turns any dirt below them into grass and negates all fall damage. Pressing U will toggle this armors effects.",
   "tc.research_name.thaumictinkerer:cat_amulet": "Amulette féline",
   "tc.research_text.thaumictinkerer:cat_amulet": "Miaou ?",
-  "page.thaumictinkerer.kami.cat_amulet.0": "It didn't take you long to come to the conclusion that you hated all those times a creeper snuck up on you.<BR><BR>To that end, using the knowledge you have that creepers run away from cats, you have devised an amulet that by simply being carried on you makes all creepers run in fear of your presence. Not only that, but they'll be petrified to the point of not gathering enough stoke to explode. Great. It must be worn in your amulet slot to take effect."
+  "page.thaumictinkerer.kami.cat_amulet.0": "It didn't take you long to come to the conclusion that you hated all those times a creeper snuck up on you.<BR><BR>To that end, using the knowledge you have that creepers run away from cats, you have devised an amulet that by simply being carried on you makes all creepers run in fear of your presence. Not only that, but they'll be petrified to the point of not gathering enough stoke to explode. Great. It must be worn in your amulet slot to take effect.",
+  "item.thaumictinkerer.ichor_pick": "Pioche d'Ichorium",
+  "item.thaumictinkerer.ichor_shovel": "Pelle d'Ichorium",
+  "item.thaumictinkerer.ichor_axe": "Hâche d'Ichorium",
+  "item.thaumictinkerer.ichor_sword": "Épée d'Ichorium",
+  "tc.research_name.thaumictinkerer:ichor_tools": "Outils d'Ichorium",
+  "tc.research_text.thaumictinkerer:ichor_tools": "Le nec plus ultra des outils",
+  "page.thaumictinkerer.kami.ichor_tools.0": "You discovered how to create tools out of Ichorium. These tools are extremely powerful, even more so than diamond, furthermore, they never break.<BR><BR>For the creation of these tools, mundane sticks aren't enough, you decided to use Silverwood rods in replacement."
 }

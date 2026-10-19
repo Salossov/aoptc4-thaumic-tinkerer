@@ -359,5 +359,12 @@
   "page.thaumictinkerer.kami.ichorcloth_boots_gem.0": "Du hast einen Weg gefunden, die Ichortuchstiefel in eine noch mächtigere Form umzuwandeln.<BR><BR>Diese Stiefel erlauben extrem geschmeidige Bewegungen, gleich den Stiefeln des Reisenden. Geschwindigkeit, Sprunghöhe und Sprungreichweite des Trägers werden durch das Tragen der Stiefel erhöht, was Bewegung zu einem Kinderspiel macht. Er kann auch über 1 Block hohe Anhöhen gehen, als wären sie Stufen, dies kann durch Schleichen unterdrückt werden.<BR>Das Tragen der Stiefel gibt auch konstanten Eile-II-Effekt, verwandelt allen Dreck unterhalb in Gras und negiert jeglichen Fallschaden.",
   "tc.research_name.thaumictinkerer:cat_amulet": "Katzenamulett",
   "tc.research_text.thaumictinkerer:cat_amulet": "In der Cafeteria wird nicht mit Katzen gekämpft",
-  "page.thaumictinkerer.kami.cat_amulet.0": "Es dauerte nicht lange, bis du zu dem Schluss kamst, dass du all die Male hasst, wenn sich ein Creeper an dich anschlich.<BR><BR>Um das zu beenden, hast du, das Wissen nutzend, dass Creeper vor Katzen fliehen, ein Amulett erdacht, dass, wenn lediglich getragen, alle Creeper vor Furcht vor deiner Präsenz fliehen lässt. Nicht nur das, denn sie werden so stark gelähmt sein, dass sie es nicht fertigbringen werden, zu explodieren. Großartig."
+  "page.thaumictinkerer.kami.cat_amulet.0": "Es dauerte nicht lange, bis du zu dem Schluss kamst, dass du all die Male hasst, wenn sich ein Creeper an dich anschlich.<BR><BR>Um das zu beenden, hast du, das Wissen nutzend, dass Creeper vor Katzen fliehen, ein Amulett erdacht, dass, wenn lediglich getragen, alle Creeper vor Furcht vor deiner Präsenz fliehen lässt. Nicht nur das, denn sie werden so stark gelähmt sein, dass sie es nicht fertigbringen werden, zu explodieren. Großartig.",
+  "item.thaumictinkerer.ichor_pick": "Ichoriumspitzhacke",
+  "item.thaumictinkerer.ichor_shovel": "Ichoriumschaufel",
+  "item.thaumictinkerer.ichor_axe": "Ichoriumaxt",
+  "item.thaumictinkerer.ichor_sword": "Ichoriumschwert",
+  "tc.research_name.thaumictinkerer:ichor_tools": "Ichoriumwerkzeug",
+  "tc.research_text.thaumictinkerer:ichor_tools": "Die höchste Stufe aller Ratt... Werkzeuge",
+  "page.thaumictinkerer.kami.ichor_tools.0": "Du hast entdeckt, wie man Werkzeug aus Ichorium herstellt. Diese Werkzeuge sind extrem mächtig, noch mächtiger als Diamant, zusätzlich werden sie niemals zerbrechen.<BR><BR>Für die Kreierung dieser Werkzeuge sind gewöhnliche Stöcke nicht genug, du entschiedest dich, stattdessen Silberholzstäbe zu verwenden."
 }

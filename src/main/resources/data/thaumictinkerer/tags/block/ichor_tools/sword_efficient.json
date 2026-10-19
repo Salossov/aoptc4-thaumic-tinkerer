@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "#thaumcraft:materials/plants",
+    "#thaumcraft:materials/vine",
+    "#thaumcraft:materials/coral",
+    "#thaumcraft:materials/leaves",
+    "#thaumcraft:materials/gourd"
+  ]
+}

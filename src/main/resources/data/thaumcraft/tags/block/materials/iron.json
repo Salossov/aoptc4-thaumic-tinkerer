@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "thaumictinkerer:repairer",
+    "thaumictinkerer:animation_tablet",
+    "thaumictinkerer:magnet",
+    "thaumictinkerer:mob_magnet",
+    "thaumictinkerer:spawner",
+    "thaumictinkerer:levitational_locomotive",
+    "thaumictinkerer:levitational_locomotive_relay",
+    "thaumictinkerer:interface",
+    "thaumictinkerer:dislocator"
+  ]
+}

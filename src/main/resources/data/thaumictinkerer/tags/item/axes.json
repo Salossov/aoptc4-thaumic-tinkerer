@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "thaumictinkerer:ichor_axe",
+      "required": false
+    }
+  ]
+}

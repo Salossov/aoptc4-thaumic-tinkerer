@@ -381,5 +381,12 @@
   "page.thaumictinkerer.kami.ichorcloth_boots_gem.0": "你研究出一种方法,能够改造灵布靴子,让它变得更加强大.<BR><BR>类似旅行者之靴，这双靴子也能赋予穿戴者卓绝顺畅的运动能力,让穿戴者更更快,更更高,更更远,让运动变得犹如微风迎面般容易.穿戴者将能直接跨过一格高的台阶,除非处于潜行状态.<BR>穿戴后还自带获得急迫II的buff效果,并且会让走过的泥土发芽变成草地,无视一切掉落伤害.按U可关闭护甲特殊效果.",
   "tc.research_name.thaumictinkerer:cat_amulet": "猫神护身符",
   "tc.research_text.thaumictinkerer:cat_amulet": "别在茶餐厅和猫打架",
-  "page.thaumictinkerer.kami.cat_amulet.0": "没费多久功夫,你就想出法子让那些你憎恶的爬行者再也无法近身.<BR><BR>最终,利用爬行者畏惧猫的知识,你设计出了一枚能让爬行者避之如虎的护身符.不仅如此,这些可怜的家伙吓得发愣,都聚集不起火力自爆了.赞耶!装备在项链栏才有效."
+  "page.thaumictinkerer.kami.cat_amulet.0": "没费多久功夫,你就想出法子让那些你憎恶的爬行者再也无法近身.<BR><BR>最终,利用爬行者畏惧猫的知识,你设计出了一枚能让爬行者避之如虎的护身符.不仅如此,这些可怜的家伙吓得发愣,都聚集不起火力自爆了.赞耶!装备在项链栏才有效.",
+  "item.thaumictinkerer.ichor_pick": "灵宝镐",
+  "item.thaumictinkerer.ichor_shovel": "灵宝铲",
+  "item.thaumictinkerer.ichor_axe": "灵宝斧",
+  "item.thaumictinkerer.ichor_sword": "灵宝剑",
+  "tc.research_name.thaumictinkerer:ichor_tools": "灵宝工具",
+  "tc.research_text.thaumictinkerer:ichor_tools": "最顶级的耗子…工具",
+  "page.thaumictinkerer.kami.ichor_tools.0": "你发现了如何利用灵宝制作工具.这些工具非常强大,比钻石做的还了不起,更了不起的是,还不用坏.<BR><BR>要制作这样了不起的工具,木棍当手柄就不太合适了,你决定换成银树杖芯来代替."
 }

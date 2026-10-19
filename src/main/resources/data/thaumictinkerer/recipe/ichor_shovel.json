@@ -1,0 +1,29 @@
+{
+  "type": "thaumcraft:arcane",
+  "neoforge:conditions": [
+    {
+      "type": "thaumictinkerer:kami_enabled"
+    }
+  ],
+  "research": "thaumictinkerer:ichor_tools",
+  "result": {
+    "id": "thaumictinkerer:ichor_shovel",
+    "count": 1
+  },
+  "vis": {
+    "terra": 75
+  },
+  "pattern": [
+    " I ",
+    " R ",
+    " R "
+  ],
+  "key": {
+    "R": {
+      "item": "thaumcraft:silverwood_wand_rod"
+    },
+    "I": {
+      "item": "thaumictinkerer:ichorium"
+    }
+  }
+}

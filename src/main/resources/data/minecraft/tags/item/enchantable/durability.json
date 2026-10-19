@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [],
+  "remove": [
+    "thaumictinkerer:ichor_pick",
+    "thaumictinkerer:ichor_shovel",
+    "thaumictinkerer:ichor_axe",
+    "thaumictinkerer:ichor_sword"
+  ]
+}

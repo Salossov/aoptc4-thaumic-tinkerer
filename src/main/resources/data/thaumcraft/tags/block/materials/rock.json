@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "thaumictinkerer:enchanter",
+    "thaumictinkerer:funnel",
+    "thaumictinkerer:dark_quartz",
+    "thaumictinkerer:chiseled_dark_quartz",
+    "thaumictinkerer:dark_quartz_pillar",
+    "thaumictinkerer:dark_quartz_slab",
+    "thaumictinkerer:dark_quartz_slab_full",
+    "thaumictinkerer:dark_quartz_stairs"
+  ]
+}

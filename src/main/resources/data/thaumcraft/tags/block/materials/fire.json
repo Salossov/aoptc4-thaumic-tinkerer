@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "thaumictinkerer:fire_aer",
+    "thaumictinkerer:fire_terra",
+    "thaumictinkerer:fire_ignis",
+    "thaumictinkerer:fire_aqua",
+    "thaumictinkerer:fire_ordo",
+    "thaumictinkerer:fire_perditio"
+  ]
+}

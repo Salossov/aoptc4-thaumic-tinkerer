@@ -1,0 +1,29 @@
+{
+  "type": "thaumcraft:arcane",
+  "neoforge:conditions": [
+    {
+      "type": "thaumictinkerer:kami_enabled"
+    }
+  ],
+  "research": "thaumictinkerer:ichor_tools",
+  "result": {
+    "id": "thaumictinkerer:ichor_pick",
+    "count": 1
+  },
+  "vis": {
+    "ignis": 75
+  },
+  "pattern": [
+    "III",
+    " R ",
+    " R "
+  ],
+  "key": {
+    "R": {
+      "item": "thaumcraft:silverwood_wand_rod"
+    },
+    "I": {
+      "item": "thaumictinkerer:ichorium"
+    }
+  }
+}
