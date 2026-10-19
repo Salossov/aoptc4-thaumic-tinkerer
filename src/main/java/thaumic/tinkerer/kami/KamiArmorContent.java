@@ -31,7 +31,7 @@ public final class KamiArmorContent {
     public static final DeferredItem<AwakenedIchorclothArmorItem> GEM_CHEST=awakened("chest",ArmorItem.Type.CHESTPLATE);
     public static final DeferredItem<AwakenedIchorclothArmorItem> GEM_LEGS=awakened("legs",ArmorItem.Type.LEGGINGS);
     public static final DeferredItem<AwakenedIchorclothArmorItem> GEM_BOOTS=awakened("boots",ArmorItem.Type.BOOTS);
-    public static void register(IEventBus bus) {MATERIALS.register(bus);}
+    public static void register(IEventBus bus) {MATERIALS.register(bus);KamiArmorEffects.register();}
     public static void display(CreativeModeTab.Output output) {for(var item:List.of(HELM,CHEST,LEGS,BOOTS,GEM_HELM,GEM_CHEST,GEM_LEGS,GEM_BOOTS))output.accept(item.get());}
     private KamiArmorContent() {}
 }

@@ -3,6 +3,7 @@ package thaumic.tinkerer.item;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -96,6 +97,11 @@ public final class TinkererFocusItem extends ItemFocusBasic implements FocusBeha
     }
     private boolean deflect(ServerPlayer player, ItemStack wand, ItemStack focus) {
         if (!WandApi.consume(wand, player, getVisCost(focus), true)) return false;
+        protectFromProjectiles(player);
+        return true;
+    }
+    /** Shared by the original deflection focus and both chestplate tick callbacks. */
+    public static void protectFromProjectiles(Player player) {
         var bounds = new AABB(player.getX() - 4, player.getY() - 4, player.getZ() - 4, player.getX() + 3, player.getY() + 3, player.getZ() + 3);
         for (var entity : player.level().getEntities(player, bounds, thaumic.tinkerer.api.ProjectileHooks::isProjectile)) {
             if (thaumic.tinkerer.api.ProjectileHooks.blacklisted(entity) || thaumic.tinkerer.api.ProjectileHooks.owner(entity) == player) continue;
@@ -106,7 +112,6 @@ public final class TinkererFocusItem extends ItemFocusBasic implements FocusBeha
             // The original changes position only, leaving trajectory, owner and speed intact.
             entity.setPosRaw(entity.getX() + motion.x, entity.getY() + motion.y, entity.getZ() + motion.z);
         }
-        return true;
     }
     private boolean chest(ServerPlayer player, ItemStack wand, ItemStack focus) {
         if(net.neoforged.fml.ModList.get().isLoaded("enderstorage")){

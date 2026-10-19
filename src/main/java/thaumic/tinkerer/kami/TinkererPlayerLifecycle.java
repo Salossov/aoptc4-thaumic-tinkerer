@@ -8,7 +8,7 @@ import net.neoforged.neoforge.network.PacketDistributor;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import thaumic.tinkerer.item.TinkererFocusItem;
 
-/** Source PlayerTracker login packet and focus-state cleanup; armor effects add their own cleanup. */
+/** Source PlayerTracker login packet and focus/armor-state cleanup. */
 public final class TinkererPlayerLifecycle {
     public static void register(IEventBus bus) {
         bus.addListener((RegisterPayloadHandlersEvent event)->event.registrar("1").playBidirectional(
@@ -24,6 +24,7 @@ public final class TinkererPlayerLifecycle {
     }
     public static void logout(PlayerEvent.PlayerLoggedOutEvent event) {
         TinkererFocusItem.playerLogout(event.getEntity().getGameProfile().getName());
+        KamiArmorEffects.logout(event.getEntity());
     }
     private TinkererPlayerLifecycle() {}
 }
