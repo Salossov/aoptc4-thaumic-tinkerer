@@ -437,5 +437,9 @@
   "page.thaumictinkerer.kami.warp_gate.1": "为方便仙域之门定位,需要用仙域珍珠进行标记.手持它们按住shift右击仙域之门即可标记其位置(注意,对着空气按住shift右击会清楚地珍珠所保持之坐标).<BR><BR>将仙域珍珠嵌入开启的仙域之门,即可传送到它标记的那扇仙域之门.传送是单向的,双向传送需要两颗珍珠.<BR><BR>为方便区分珍珠在仙域之门界面列表重点名字,可以利用铁砧为它们重命名.",
   "tc.research_name.thaumictinkerer:focus_recall": "法杖核心:仙域召唤",
   "tc.research_text.thaumictinkerer:focus_recall": "炉石居处即家园",
-  "page.thaumictinkerer.kami.focus_recall.0": "使用仙域之门传送固然很好,但你决心更进一步,制作一种用于传送的核心,让你无论身处何地都能进行传送.<BR><BR>如事先将绑定好后的仙域珍珠放入施法者的快捷栏内,经过短暂的吟唱后,就能够将施法者传送到绑定位置,犹如踏入仙域之门一般.当然,传送是以消耗魔力为代价的."
+  "page.thaumictinkerer.kami.focus_recall.0": "使用仙域之门传送固然很好,但你决心更进一步,制作一种用于传送的核心,让你无论身处何地都能进行传送.<BR><BR>如事先将绑定好后的仙域珍珠放入施法者的快捷栏内,经过短暂的吟唱后,就能够将施法者传送到绑定位置,犹如踏入仙域之门一般.当然,传送是以消耗魔力为代价的.",
+  "item.thaumictinkerer.focus_shadowbeam": "法杖核心:阴影之束",
+  "tc.research_name.thaumictinkerer:focus_shadowbeam": "法杖核心:阴影之束",
+  "tc.research_text.thaumictinkerer:focus_shadowbeam": "老人看守",
+  "page.thaumictinkerer.kami.focus_shadowbeam.0": "你制造出一种法杖核心,能够发出一道能量束,灼伤它所扫过路径上的所有生物.<BR><BR>能量束射程相当远,并且能够在镜面方块上进行反射."
 }

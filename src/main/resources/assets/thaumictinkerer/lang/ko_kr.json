@@ -399,5 +399,9 @@
   "page.thaumictinkerer.kami.warp_gate.1": "관문의 목적지를 설정하기 위해서는 천상의 진주에 목적지가 지정되어있어야 합니다. 진주를 원하는 목적지의 차원 관문에 Shift 우클릭함으로써 목적지 지정을 할 수 있습니다. 허공에 Shift 우클릭을 할 경우 목적지가 초기화됩니다..<BR><BR>이 진주를 관문에 장착하면 진주에 등록된 목적지로의 텔레포트가 가능해집니다. 이 텔레포트는 단방향이며, 쌍방향 텔레포트를 위해서는 반대쪽의 관문에도 진주가 장착되어있어야 합니다.<BR><BR>모루를 사용하여 진주에 이름을 붙일 경우 관문의 목적지 목록에 진주의 이름이 표시되므로 좀 더 쉽게 원하는 목적지를 찾을 수 있습니다.",
   "tc.research_name.thaumictinkerer:focus_recall": "완드 포커스: 차원 회귀",
   "tc.research_text.thaumictinkerer:focus_recall": "가족이 있는 곳만을 집이라 부를 수 있는 법",
-  "page.thaumictinkerer.kami.focus_recall.0": "차원 관문을 통한 텔레포트도 쓸만 하지만, 차원 관문을 포커스로 만들어서 어디서든 쓸 수 있다면 더 좋지 않을까요?.<BR><BR>이 포커스는, 핫바에 원하는 곳에 연결되어있는 천상의 진주가 있을 경우, 사용시 시전자를 연결된 위치로 텔레포트시킵니다. 이 작업에는 비스를 필요로 합니다."
+  "page.thaumictinkerer.kami.focus_recall.0": "차원 관문을 통한 텔레포트도 쓸만 하지만, 차원 관문을 포커스로 만들어서 어디서든 쓸 수 있다면 더 좋지 않을까요?.<BR><BR>이 포커스는, 핫바에 원하는 곳에 연결되어있는 천상의 진주가 있을 경우, 사용시 시전자를 연결된 위치로 텔레포트시킵니다. 이 작업에는 비스를 필요로 합니다.",
+  "item.thaumictinkerer.focus_shadowbeam": "완드 포커스: 섀도우 빔",
+  "tc.research_name.thaumictinkerer:focus_shadowbeam": "완드 포커스: 섀도우 빔",
+  "tc.research_text.thaumictinkerer:focus_shadowbeam": "공허의 에너지",
+  "page.thaumictinkerer.kami.focus_shadowbeam.0": "이 포커스는 강력한 에너지 광선을 발사하여 광선의 궤적 안의 모든 것들에 데미지를 입힙니다.<BR><BR>이 광선의 범위는 괜찮은 편이며 벽에 부딫혀도 사라지지 않고 반사되어 계속해서 뻗어나갑니다."
 }

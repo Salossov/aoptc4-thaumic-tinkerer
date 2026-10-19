@@ -19,6 +19,7 @@ public final class KamiEquipmentResearch {
     public static void register() {
         thaumic.tinkerer.kami.warpgate.WarpGateResearch.register();
         node("focus_xp_drain","focus_xp_drain","rod_ichorcloth",12,3,Map.of("cognitio",2,"praecantatio",1,"auram",1,"humanus",1),0,List.of("focus_xp_drain"),false);
+        node("focus_shadowbeam","focus_shadowbeam","rod_ichorcloth",14,4,Map.of("tenebrae",2,"praecantatio",1,"alienis",1,"vitium",1),0,List.of("focus_shadowbeam"),false);
         node("ichorcloth_armor","ichorcloth_helm","ichor_cloth",17,5,Map.of("tutamen",2,"pannus",1,"lux",1,"fabrico",1),4,
                 List.of("ichorcloth_helm","ichorcloth_chest","ichorcloth_legs","ichorcloth_boots"),false);
         node("ichorcloth_helm_gem","ichorcloth_helm_gem","ichorcloth_armor",18,3,Map.of("aqua",2,"sano",1,"fames",1,"auram",1),0,List.of("ichorcloth_helm_gem"),false);
