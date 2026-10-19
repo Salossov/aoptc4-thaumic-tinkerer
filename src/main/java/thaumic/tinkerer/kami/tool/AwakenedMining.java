@@ -40,6 +40,8 @@ import thaumcraft.api.world.BlockMaterials;
 import thaumcraft.api.world.ChunkPreparationApi;
 import thaumic.tinkerer.ThaumicTinkerer;
 import thaumic.tinkerer.TinkererConfig;
+import thaumic.tinkerer.block.AnimationTabletBlockEntity;
+import thaumic.tinkerer.block.TabletPlayer;
 import thaumic.tinkerer.kami.bedrock.*;
 import static thaumic.tinkerer.kami.tool.AwakenedMiningShape.*;
 
@@ -63,19 +65,31 @@ public final class AwakenedMining {
     private record Plan(Kind kind,Direction face,BlockPos aim,Bounds bounds,boolean tree){}
     private static final class Job implements AutoCloseable {
         final ServerPlayer player;final ServerLevel level;final ItemStack stack,snapshot;
+        final AnimationTabletBlockEntity tablet;final BlockPos tabletPosition;final int rotation;final boolean redstone,toolInHand;
         final int slot,mode;final BlockPos origin;final BlockState initial;BlockState expected;final Kind kind;final Plan plan;final boolean early;boolean denied;
         final ChunkPreparationApi.Request request;boolean resuming;
         Job(ServerPlayer player,ItemStack stack,BlockPos origin,Kind kind,Plan plan,Collection<ChunkPos> chunks,boolean early){
             this.player=player;level=player.serverLevel();this.stack=stack;snapshot=stack.copy();slot=player.getInventory().selected;
+            tablet=player instanceof TabletPlayer actor?actor.tablet():null;tabletPosition=tablet==null?null:tablet.getBlockPos().immutable();
+            rotation=tablet==null?0:tablet.rotation();redstone=tablet!=null&&tablet.redstone;toolInHand=player.getMainHandItem()==stack;
             mode=AdvancedToolMode.get(stack);this.origin=origin.immutable();initial=level.getBlockState(origin);this.kind=kind;this.plan=plan;this.early=early;expected=initial;
-            request=ChunkPreparationApi.prepare(player,chunks);
+            request=tablet==null?ChunkPreparationApi.prepare(player,chunks):ChunkPreparationApi.prepare(tablet,chunks);
         }
         boolean valid(){
-            return !request.closed()&&player.isAlive()&&!player.isRemoved()&&player.level()==level
-                    &&level.getServer().getPlayerList().getPlayer(player.getUUID())==player
-                    &&player.getInventory().selected==slot&&player.getMainHandItem()==stack&&ItemStack.matches(stack,snapshot)
-                    &&AdvancedToolMode.get(stack)==mode&&level.getChunkSource().getChunkNow(origin.getX()>>4,origin.getZ()>>4)!=null
-                    &&level.getBlockState(origin)==expected&&player.canInteractWithBlock(origin,1.0);
+            if(request.closed()||!player.isAlive()||player.isRemoved()||player.level()!=level||!ItemStack.matches(stack,snapshot)
+                    ||AdvancedToolMode.get(stack)!=mode||level.getChunkSource().getChunkNow(origin.getX()>>4,origin.getZ()>>4)==null
+                    ||level.getBlockState(origin)!=expected||!player.canInteractWithBlock(origin,1.0))return false;
+            if(tablet==null)return level.getServer().getPlayerList().getPlayer(player.getUUID())==player
+                    &&player.getInventory().selected==slot&&player.getMainHandItem()==stack;
+            if(tablet.isRemoved()||tablet.getLevel()!=level||!tablet.getBlockPos().equals(tabletPosition)||tablet.player()!=player
+                    ||!tablet.leftClick||tablet.rotation()!=rotation||tablet.redstone!=redstone||tablet.getItem(0)!=stack||!tablet.target().equals(origin))return false;
+            var owner=level.getChunkSource().getChunkNow(tabletPosition.getX()>>4,tabletPosition.getZ()>>4);
+            return owner!=null&&owner.getBlockEntities().get(tabletPosition)==tablet;
+        }
+        void resumeTablet(){
+            var previous=player.getMainHandItem();player.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND,toolInHand?stack:ItemStack.EMPTY);
+            try{tablet.tryHarvestBlock();}
+            finally{player.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND,previous==stack?tablet.getItem(0):previous);tablet.sync();}
         }
         @Override public void close(){request.close();if(PENDING.get(player)==this)PENDING.remove(player);}
     }
@@ -255,7 +269,7 @@ public final class AwakenedMining {
         float yaw=player.getYRot(),pitch=player.getXRot();
         float cos=Mth.cos(-yaw*((float)Math.PI/180)-(float)Math.PI),sin=Mth.sin(-yaw*((float)Math.PI/180)-(float)Math.PI);
         float cp=-Mth.cos(-pitch*((float)Math.PI/180)),sp=Mth.sin(-pitch*((float)Math.PI/180));
-        var start=new Vec3(player.getX(),player.getY()+1.62,player.getZ());
+        var start=new Vec3(player.getX(),thaumic.tinkerer.util.LegacyPlayerCoordinates.rayY(player),player.getZ());
         double reach=player instanceof ServerPlayer?player.blockInteractionRange()+(player.isCreative()?0:.5):clientRange;
         var end=start.add(sin*cp*reach,sp*reach,cos*cp*reach);
         return view.clip(new ClipContext(start,end,ClipContext.Block.OUTLINE,fluids?ClipContext.Fluid.SOURCE_ONLY:ClipContext.Fluid.NONE,player){
@@ -288,19 +302,21 @@ public final class AwakenedMining {
     @SubscribeEvent public static void tick(LevelTickEvent.Post event){
         if(!(event.getLevel() instanceof ServerLevel level))return;
         for(var job:List.copyOf(PENDING.values()))if(job.level==level){
-            if(!job.valid()){job.close();continue;}
-            if(!job.request.advance(2))continue;
-            job.resuming=true;
             try{
-                if(job.early){
-                    var outcome=begin(job.stack,job.origin,job.player,job.kind,true);
-                    if(outcome!=Outcome.DENIED&&outcome!=Outcome.DEFERRED&&job.player.isCreative()
-                            &&job.level.getBlockState(job.origin).is(BedrockContent.PORTAL.get())){
-                        BREAKING.add(job.player);
-                        try{job.player.gameMode.destroyBlock(job.origin);}finally{BREAKING.remove(job.player);}
-                    }
-                }else job.player.gameMode.destroyBlock(job.origin);
-            }finally{job.resuming=false;job.close();}
+                if(!job.valid()){job.close();continue;}
+                if(!job.request.advance(2))continue;
+                job.resuming=true;
+                try{
+                    if(job.early){
+                        var outcome=begin(job.stack,job.origin,job.player,job.kind,true);
+                        if(outcome!=Outcome.DENIED&&outcome!=Outcome.DEFERRED&&job.player.isCreative()
+                                &&job.level.getBlockState(job.origin).is(BedrockContent.PORTAL.get())){
+                            BREAKING.add(job.player);
+                            try{job.player.gameMode.destroyBlock(job.origin);}finally{BREAKING.remove(job.player);}
+                        }
+                    }else if(job.tablet!=null)job.resumeTablet();else job.player.gameMode.destroyBlock(job.origin);
+                }finally{job.resuming=false;job.close();}
+            }catch(RuntimeException|Error failure){job.close();throw failure;}
         }
     }
     @SubscribeEvent public static void unloaded(LevelEvent.Unload event){for(var job:List.copyOf(PENDING.values()))if(job.level==event.getLevel())job.close();}

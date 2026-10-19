@@ -77,7 +77,7 @@ public final class TinkererFocusItem extends ItemFocusBasic implements FocusBeha
         int progress = HEALING.getOrDefault(name, 0) + 1;
         HEALING.put(name, progress);
         ParticleApi.sparkle(player.level(), (float) player.getX() + player.level().random.nextFloat() - .5f,
-                (float) player.getY() + player.level().random.nextFloat(), (float) player.getZ() + player.level().random.nextFloat() - .5f, 0);
+               (float) thaumic.tinkerer.util.LegacyPlayerCoordinates.rawY(player) + player.level().random.nextFloat(), (float) player.getZ() + player.level().random.nextFloat() - .5f, 0);
         if (progress < 30 - getUpgradeLevel(wand, FocusUpgradeType.potency) * 10 / 3) return false;
         HEALING.put(name, 0);
         WandApi.consume(wand, player, getVisCost(focus), true); player.heal(1);
@@ -119,8 +119,9 @@ public final class TinkererFocusItem extends ItemFocusBasic implements FocusBeha
         // Original passes the WAND to getUpgradeLevel, not its attached focus. Keep that quirk.
         double force = 2d / 3 * (1 + getUpgradeLevel(wand, FocusUpgradeType.potency) * .2);
         PlayerMotionApi.launch(player, player.getLookAngle().scale(force));
+        double rawY=thaumic.tinkerer.util.LegacyPlayerCoordinates.rawY(player);
         for(int count=0;count<5;count++)ParticleApi.broadcastSmokeSpiral(player.serverLevel(),new ParticleApi.SmokeSpiral(
-                player.getX(),player.getY()-player.getDeltaMovement().y,player.getZ(),2f,(int)(Math.random()*360),(int)player.getY(),647935));
+                player.getX(),rawY-player.getDeltaMovement().y,player.getZ(),2f,(int)(Math.random()*360),(int)rawY,647935));
         player.level().playSound(null, player.blockPosition(), SoundEvent.createVariableRangeEvent(net.minecraft.resources.ResourceLocation.parse("thaumcraft:wind")), SoundSource.PLAYERS, .4f, 1);
         return true;
     }

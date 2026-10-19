@@ -14,7 +14,14 @@ public final class ClothTestMod {
     public static final String ID = ThaumicTinkerer.ID;
     public static Item PROTECTED;
     public static Item ENCHANTMENT_PICKAXE, ENCHANTMENT_SWORD, ENCHANTMENT_BOW;
-    public static Item TABLET_PROBE;
+    public static Item TABLET_PROBE,TABLET_BREAK_PROBE;
+    public static final class TabletBreakProbe extends Item implements thaumcraft.api.world.IBlockStartBreakTool {
+        public static final class State {public int calls;public boolean defer,emptyHand;}
+        public static final java.util.Map<net.minecraft.world.item.ItemStack,State> states=new java.util.IdentityHashMap<>();
+        public TabletBreakProbe(){super(new Properties().durability(32));}
+        @Override public boolean onBlockStartBreak(net.minecraft.world.item.ItemStack stack,net.minecraft.core.BlockPos pos,net.minecraft.server.level.ServerPlayer player){var state=states.computeIfAbsent(stack,key->new State());state.calls++;state.emptyHand=player.getMainHandItem().isEmpty();return state.defer;}
+        @Override public boolean mineBlock(net.minecraft.world.item.ItemStack stack,net.minecraft.world.level.Level level,net.minecraft.world.level.block.state.BlockState block,net.minecraft.core.BlockPos pos,net.minecraft.world.entity.LivingEntity player){stack.hurtAndBreak(1,player,net.minecraft.world.entity.EquipmentSlot.MAINHAND);return true;}
+    }
     public static final class TabletProbe extends Item {
         public static final java.util.List<String> calls=new java.util.ArrayList<>();
         public static boolean replaceHand;
@@ -41,6 +48,7 @@ public final class ClothTestMod {
             helper.register(ThaumicTinkerer.id("test_enchantment_sword"),ENCHANTMENT_SWORD);
             helper.register(ThaumicTinkerer.id("test_enchantment_bow"),ENCHANTMENT_BOW);
             TABLET_PROBE=new TabletProbe();helper.register(ThaumicTinkerer.id("test_tablet_probe"),TABLET_PROBE);
+            TABLET_BREAK_PROBE=new TabletBreakProbe();helper.register(ThaumicTinkerer.id("test_tablet_break_probe"),TABLET_BREAK_PROBE);
         });
     }
 }

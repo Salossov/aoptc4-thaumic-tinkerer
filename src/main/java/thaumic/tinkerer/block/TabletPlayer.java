@@ -13,12 +13,15 @@ import net.neoforged.neoforge.common.util.FakePlayer;
 /** One independent player per tablet, retaining the original shared identity and reset/drop order. */
 public final class TabletPlayer extends FakePlayer {
     private final AnimationTabletBlockEntity tablet;
+    private double legacyY,preparedFeetY;
     private final Map<Holder<Attribute>,Set<ResourceLocation>> applied=new HashMap<>();
     public TabletPlayer(ServerLevel level,AnimationTabletBlockEntity tablet){super(level,new GameProfile(UUID.fromString("a8f026a0-135b-11e4-9191-0800200c9a66"),"[ThaumcraftTablet]"));this.tablet=tablet;}
     /** Stable owner of this transient player's held action. */
     public AnimationTabletBlockEntity tablet(){return tablet;}
+    /** Retain exact original raw Y without a lossy feet -> raw round-trip. */
+    public double legacyRawY(){return legacyY+(getY()-preparedFeetY);}
     public void prepare(){
-        getAbilities().instabuild=false;var p=tablet.getBlockPos();setPos(p.getX()+.5,p.getY()+1.6,p.getZ()+.5);stopRiding();ejectPassengers();setDeltaMovement(0,0,0);setHealth(20);deathTime=0;fallDistance=0;setOnGround(false);
+        getAbilities().instabuild=false;var p=tablet.getBlockPos();legacyY=thaumic.tinkerer.util.LegacyPlayerCoordinates.tabletRawY(p.getY());preparedFeetY=thaumic.tinkerer.util.LegacyPlayerCoordinates.tabletFeetY(p.getY());setPos(p.getX()+.5,preparedFeetY,p.getZ()+.5);stopRiding();ejectPassengers();setDeltaMovement(0,0,0);setHealth(20);deathTime=0;fallDistance=0;setOnGround(false);
         float yaw=switch(tablet.rotation()){case 0->180;case 1->0;case 2->90;default->-90;};setYRot(yaw);setYHeadRot(yaw);setXRot(-15);
         var inventory=getInventory();for(int i=0;i<inventory.getContainerSize();i++)if(i!=inventory.selected){var stack=inventory.getItem(i);if(!stack.isEmpty()){spawnAtLocation(stack,1);inventory.setItem(i,ItemStack.EMPTY);}}
         inventory.clearContent();

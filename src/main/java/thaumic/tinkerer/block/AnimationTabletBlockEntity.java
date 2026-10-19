@@ -92,10 +92,26 @@ public final class AnimationTabletBlockEntity extends BlockEntity implements Con
         if(stage!=durabilityRemainingOnBlock){((ServerLevel)level).destroyBlockProgress(player().getId(),p,stage);durabilityRemainingOnBlock=stage;}if(damage>=1){tryHarvestBlock();stopBreaking();}
     }
     public boolean tryHarvestBlock(){
-        if(!(level instanceof ServerLevel server))return false;var p=target();var state=level.getBlockState(p);var fake=player();var tool=stack;
+        if(!(level instanceof ServerLevel server)||!server.getServer().isSameThread()||!liveOwner(server))return false;var p=target();
+        if(!server.isInWorldBounds(p)||!server.getWorldBorder().isWithinBounds(p)||server.getChunkSource().getChunkNow(p.getX()>>4,p.getZ()>>4)==null)return false;
+        var state=level.getBlockState(p);var fake=player();var tool=stack;
+        if(state.isAir()||!server.mayInteract(fake,p)||fake.blockActionRestricted(server,p,fake.gameMode.getGameModeForPlayer())
+                ||state.getBlock() instanceof net.minecraft.world.level.block.GameMasterBlock&&!fake.canUseGameMasterBlocks())return false;
         if(!tool.isEmpty()&&!tool.getItem().canAttackBlock(state,level,p,fake))return false;
+        var before=tool.copy();var ownerState=getBlockState();boolean wasLeftClick=leftClick,wasRedstone=redstone;
+        if(net.neoforged.neoforge.common.CommonHooks.fireBlockBreak(server,fake.gameMode.getGameModeForPlayer(),fake,p,state).isCanceled())return false;
+        if(!liveOwner(server)||getBlockState()!=ownerState||leftClick!=wasLeftClick||redstone!=wasRedstone||!target().equals(p)||stack!=tool||!ItemStack.matches(tool,before)||server.getBlockState(p)!=state)return false;
+        // The source passes the stored tool even when its transient player's
+        // held slot was cleared by the intervening tablet tick. Keep that hand.
+        if(tool.getItem() instanceof thaumcraft.api.world.IBlockStartBreakTool hook&&hook.onBlockStartBreak(tool,p,fake))return false;
+        if(!liveOwner(server)||stack!=tool||getBlockState()!=ownerState||!target().equals(p))return false;
+        state=server.getBlockState(p);if(state.isAir())return false;
         boolean harvest=state.canHarvestBlock(level,p,fake);var tile=level.getBlockEntity(p);if(!tool.isEmpty())tool.mineBlock(level,state,p,fake);state.getBlock().playerWillDestroy(level,p,state,fake);
         boolean removed=state.onDestroyedByPlayer(level,p,fake,harvest,state.getFluidState());if(removed){state.getBlock().destroy(level,p,state);if(harvest)state.getBlock().playerDestroy(level,fake,p,state,tile,fake.getMainHandItem());}return removed;
+    }
+    private boolean liveOwner(ServerLevel server){
+        if(isRemoved()||level!=server)return false;var chunk=server.getChunkSource().getChunkNow(worldPosition.getX()>>4,worldPosition.getZ()>>4);
+        return chunk!=null&&chunk.getBlockEntities().get(worldPosition)==this;
     }
     @Override public boolean triggerEvent(int event,int argument){if(event==0){initiateSwing();return true;}return false;}
     public void sync(){super.setChanged();if(level!=null)level.sendBlockUpdated(worldPosition,getBlockState(),getBlockState(),2);}
