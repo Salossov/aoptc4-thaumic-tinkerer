@@ -92,6 +92,7 @@ public final class ThaumicTinkerer {
         thaumcraft.api.addon.AddonRegistrationEvent.BUS.addListener(thaumic.tinkerer.item.FocusContent::registerAddon);
         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(SpellClothRecipe::crafted);
         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(thaumic.tinkerer.command.TinkererCommands::register);
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(thaumic.tinkerer.crop.InfusedBonemeal::onBonemeal);
     }
 
     public static ResourceLocation id(String path) { return ResourceLocation.fromNamespaceAndPath(ID, path); }
