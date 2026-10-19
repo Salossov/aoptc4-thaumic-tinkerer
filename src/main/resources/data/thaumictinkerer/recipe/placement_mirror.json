@@ -1,0 +1,43 @@
+{
+  "type": "thaumcraft:infusion",
+  "neoforge:conditions": [
+    {
+      "type": "thaumictinkerer:kami_enabled"
+    }
+  ],
+  "research": "thaumictinkerer:placement_mirror",
+  "result": {
+    "id": "thaumictinkerer:placement_mirror",
+    "count": 1
+  },
+  "instability": 12,
+  "aspects": {
+    "fabrico": 65,
+    "vitreus": 32,
+    "praecantatio": 50,
+    "cognitio": 32
+  },
+  "input": {
+    "item": "thaumictinkerer:block_talisman"
+  },
+  "components": [
+    {
+      "item": "thaumictinkerer:ichor"
+    },
+    {
+      "item": "minecraft:dropper"
+    },
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:glass"
+    },
+    {
+      "item": "minecraft:blaze_powder"
+    },
+    {
+      "item": "thaumictinkerer:ichor"
+    }
+  ]
+}

@@ -381,5 +381,9 @@
   "item.thaumictinkerer.protoclay": "조물주의 흙",
   "tc.research_name.thaumictinkerer:protoclay": "조물주의 흙",
   "tc.research_text.thaumictinkerer:protoclay": "창조의 흙",
-  "page.thaumictinkerer.kami.protoclay.0": "도구를 상황에 따라 알맞게 바꿔가며 사용하는 것도 참 일이죠.<BR><BR>이코륨이 섞인 이 특이한 혼합물은 소지자가 들고있는 도구를 엉뚱한 블럭에 사용할 경우 그 블럭에 사용하기 적합한 '풀려난 이코륨'도구로 바꿔줍니다.<BR><BR>예를 들어, 흙 블럭을 풀려난 이코륨 곡괭이로 캐려고 할 경우 인벤토리 어딘가에 퓰려난 이코륨 삽이 있을 경우 곡괭이와 삽을 서로 교체해서 흙을 빠르게 파낼 수 있도록 해 줍니다."
+  "page.thaumictinkerer.kami.protoclay.0": "도구를 상황에 따라 알맞게 바꿔가며 사용하는 것도 참 일이죠.<BR><BR>이코륨이 섞인 이 특이한 혼합물은 소지자가 들고있는 도구를 엉뚱한 블럭에 사용할 경우 그 블럭에 사용하기 적합한 '풀려난 이코륨'도구로 바꿔줍니다.<BR><BR>예를 들어, 흙 블럭을 풀려난 이코륨 곡괭이로 캐려고 할 경우 인벤토리 어딘가에 퓰려난 이코륨 삽이 있을 경우 곡괭이와 삽을 서로 교체해서 흙을 빠르게 파낼 수 있도록 해 줍니다.",
+  "item.thaumictinkerer.placement_mirror": "조물주의 돋보기",
+  "tc.research_name.thaumictinkerer:placement_mirror": "조물주의 돋보기",
+  "tc.research_text.thaumictinkerer:placement_mirror": "화성의 눈",
+  "page.thaumictinkerer.kami.placement_mirror.0": "세계에 대한 계속된 연구 끝에, 정신력을 이용해 다량의 블럭을 한꺼번에 설치할 수 있게 해 주는 돋보기를 만들어내었습니다.<BR><BR>설치할 블럭은 돋보기를 원하는 블럭에 Shift 우클릭 함으로써 설정할 수 있습니다. 허공에 대고 Shift 우클릭을 해서 한번에 설치할 블럭의 갯수를 설정할 수 있습니다.<BR><BR>블럭을 설치할 경우, 블럭이 어떤 형태로 설치되는지가 홀로그램으로 표시됩니다. 우클릭을 하면 해당 모양으로 블럭들이 설치가 되며, 설치되는 블럭은 인벤토리나 필요한 블럭을 담고 있는 블랙홀 부적에서 소모됩니다."
 }

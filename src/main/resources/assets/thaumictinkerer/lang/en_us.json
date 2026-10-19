@@ -421,5 +421,9 @@
   "item.thaumictinkerer.protoclay": "Protoclay",
   "tc.research_name.thaumictinkerer:protoclay": "Protoclay",
   "tc.research_text.thaumictinkerer:protoclay": "Stolen from the Creation",
-  "page.thaumictinkerer.kami.protoclay.0": "You grew tired of having to constantly swap your tools.<BR><BR>This mixture will, by melding with the Ichorium, switch any Awakened Ichorium tools being held by the one used for the block being pointed at, case one tries to break it with the wrong tool.<BR><BR>As an example, trying to break a dirt block with an Awakened Ichorium Pickaxe while a Shovel is present elsewhere in the inventory will swap the two, and allow for fast disposal of the dirt block."
+  "page.thaumictinkerer.kami.protoclay.0": "You grew tired of having to constantly swap your tools.<BR><BR>This mixture will, by melding with the Ichorium, switch any Awakened Ichorium tools being held by the one used for the block being pointed at, case one tries to break it with the wrong tool.<BR><BR>As an example, trying to break a dirt block with an Awakened Ichorium Pickaxe while a Shovel is present elsewhere in the inventory will swap the two, and allow for fast disposal of the dirt block.",
+  "item.thaumictinkerer.placement_mirror": "Worldshaper's Looking Glass",
+  "tc.research_name.thaumictinkerer:placement_mirror": "Worldshaper's Looking Glass",
+  "tc.research_text.thaumictinkerer:placement_mirror": "Eye of Mercury",
+  "page.thaumictinkerer.kami.placement_mirror.0": "Through studying the world, you constructed a glass that allows you place a large array of blocks in the world using the power of your mind.<BR><BR>To set a block to place, one would shift-right click this glass in that block. Shift-right clicking the item in the air changes the amount of blocks it'll place.<BR><BR>When placing blocks in the world, a phantom visualization of how the blocks will appear is shown. On right click, the blocks will be consumed and placed, either from the inventory, or any Black Hole Rings that contain the required block."
 }

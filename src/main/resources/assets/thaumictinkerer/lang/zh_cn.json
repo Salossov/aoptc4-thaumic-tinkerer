@@ -419,5 +419,9 @@
   "item.thaumictinkerer.protoclay": "息壤",
   "tc.research_name.thaumictinkerer:protoclay": "息壤",
   "tc.research_text.thaumictinkerer:protoclay": "从造物主那偷来的",
-  "page.thaumictinkerer.kami.protoclay.0": "你厌倦了总是要轮换工具的日子.<BR><BR>这团混有灵宝的物质,能够在你使用错误工具进行操作时自动将手持工具切换为合适的觉醒灵宝工具.<BR><BR>例如,一旦你试图用觉醒灵宝镐挖土,而物品栏里却有觉醒灵宝铲时,手持工具会马上自动替换成觉醒灵宝铲,以便让你更快速地挖下泥土."
+  "page.thaumictinkerer.kami.protoclay.0": "你厌倦了总是要轮换工具的日子.<BR><BR>这团混有灵宝的物质,能够在你使用错误工具进行操作时自动将手持工具切换为合适的觉醒灵宝工具.<BR><BR>例如,一旦你试图用觉醒灵宝镐挖土,而物品栏里却有觉醒灵宝铲时,手持工具会马上自动替换成觉醒灵宝铲,以便让你更快速地挖下泥土.",
+  "item.thaumictinkerer.placement_mirror": "世界塑造者的观察镜",
+  "tc.research_name.thaumictinkerer:placement_mirror": "世界塑造者的观察镜",
+  "tc.research_text.thaumictinkerer:placement_mirror": "水银之眼",
+  "page.thaumictinkerer.kami.placement_mirror.0": "通过研究这个世界,你制造出一枚透镜,能够让你使用意念将大量的方块放置到大地上.<BR><BR>拿着这枚透镜右击某种方块就能将其设置成指定方块.对着空气按住shift右击就能切换要放置的方块数量.<BR><BR>放置前会生成预览幻象,右击则会消耗方块将其放置出来,方块的来源既可以是物品栏,也可以是黑洞护身符,只要装有足够数量的指定方块即可."
 }

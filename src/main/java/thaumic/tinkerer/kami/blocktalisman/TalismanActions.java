@@ -36,6 +36,10 @@ public final class TalismanActions {
     private static final Set<ServerPlayer> REPLAYING=Collections.newSetFromMap(new IdentityHashMap<>());
     /** null continues immediately; a result means deferred or rejected. */
     public static InteractionResult prepare(UseOnContext context){
+        return prepare(context,-1);
+    }
+    /** Same owner/replay rules for the mirror's wider placement region. */
+    public static InteractionResult prepare(UseOnContext context,int requestedMargin){
         if(!(context.getLevel() instanceof ServerLevel level))return null;
         if(!(context.getPlayer() instanceof ServerPlayer player))return InteractionResult.FAIL;
         if(REPLAYING.contains(player))return null;
@@ -49,7 +53,7 @@ public final class TalismanActions {
         var target=clicked.relative(context.getClickedFace());
         // Ordinary placement/neighbor checks fit within two blocks. Modern
         // scaffolding searches up to seven horizontal cells before placement.
-        int margin=BlockTalismanItem.getBlock(context.getItemInHand()).asItem() instanceof ScaffoldingBlockItem?8:2;
+        int margin=requestedMargin>=0?requestedMargin:BlockTalismanItem.getBlock(context.getItemInHand()).asItem() instanceof ScaffoldingBlockItem?8:2;
         var chunks=new ArrayList<ChunkPos>();boolean cold=false;
         for(int x=(Math.min(clicked.getX(),target.getX())-margin)>>4;x<=(Math.max(clicked.getX(),target.getX())+margin)>>4;x++)
             for(int z=(Math.min(clicked.getZ(),target.getZ())-margin)>>4;z<=(Math.max(clicked.getZ(),target.getZ())+margin)>>4;z++){
