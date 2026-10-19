@@ -1,0 +1,6 @@
+{
+  "parent": "thaumcraft:wand/blaze_iron",
+  "textures": {
+    "cap": "thaumictinkerer:models/wand_cap_ichor"
+  }
+}

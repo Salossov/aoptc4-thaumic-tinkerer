@@ -15,6 +15,7 @@ public final class KamiFoundationResearch {
     }
     public static void register() {
         KamiResearch.catalogRule();
+        KamiWandContent.register();
         node("dimension_shards","ender_shard",7,8,Map.of(),List.of(),List.of(),0,true,true);
         node("ichor","ichor",9,8,Map.of("humanus",1,"lux",2,"spiritus",1,"vitium",1),List.of(),List.of(),5,false,false);
         node("ichor_cloth","ichor_cloth",11,7,Map.of("pannus",2,"lux",1,"fabrico",1,"sensus",1),List.of(id("ichor")),List.of(),0,false,false);

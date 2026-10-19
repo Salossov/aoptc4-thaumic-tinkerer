@@ -1,0 +1,6 @@
+{
+  "parent": "thaumcraft:staff/reed_iron",
+  "textures": {
+    "cap": "thaumictinkerer:models/wand_cap_ichor"
+  }
+}

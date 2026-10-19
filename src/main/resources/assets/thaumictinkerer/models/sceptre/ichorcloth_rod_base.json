@@ -1,0 +1,191 @@
+{
+  "ambientocclusion": false,
+  "textures": {
+    "rod": "thaumcraft:models/wand_rod_wood",
+    "cap": "thaumcraft:models/wand_cap_iron",
+    "particle": "thaumcraft:models/wand_rod_wood"
+  },
+  "elements": [
+    {
+      "from": [
+        7.3,
+        1.7,
+        7.3
+      ],
+      "to": [
+        8.7,
+        14.3,
+        8.7
+      ],
+      "faces": {
+        "east": {
+          "uv": [
+            2,
+            5,
+            3,
+            14
+          ],
+          "texture": "#rod",
+          "rotation": 0
+        },
+        "west": {
+          "uv": [
+            0,
+            5,
+            1,
+            14
+          ],
+          "texture": "#rod",
+          "rotation": 0
+        },
+        "south": {
+          "uv": [
+            1,
+            5,
+            2,
+            14
+          ],
+          "texture": "#rod",
+          "rotation": 0
+        },
+        "north": {
+          "uv": [
+            3,
+            5,
+            4,
+            14
+          ],
+          "texture": "#rod",
+          "rotation": 0
+        },
+        "up": {
+          "uv": [
+            1,
+            4,
+            2,
+            5
+          ],
+          "texture": "#rod",
+          "rotation": 180
+        },
+        "down": {
+          "uv": [
+            2,
+            4,
+            3,
+            5
+          ],
+          "texture": "#rod",
+          "rotation": 180
+        }
+      }
+    }
+  ],
+  "display": {
+    "gui": {
+      "rotation": [
+        30,
+        -45,
+        66
+      ],
+      "scale": [
+        0.72,
+        0.72,
+        0.72
+      ]
+    },
+    "ground": {
+      "translation": [
+        0,
+        3,
+        0
+      ],
+      "scale": [
+        0.45,
+        0.45,
+        0.45
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        0,
+        -45,
+        0
+      ],
+      "translation": [
+        0,
+        0.8,
+        0
+      ],
+      "scale": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        0,
+        45,
+        0
+      ],
+      "translation": [
+        0,
+        0.8,
+        0
+      ],
+      "scale": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        3,
+        1
+      ],
+      "scale": [
+        0.75,
+        0.75,
+        0.75
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        3,
+        1
+      ],
+      "scale": [
+        0.75,
+        0.75,
+        0.75
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        0,
+        45
+      ],
+      "scale": [
+        0.75,
+        0.75,
+        0.75
+      ]
+    }
+  },
+  "gui_light": "side"
+}

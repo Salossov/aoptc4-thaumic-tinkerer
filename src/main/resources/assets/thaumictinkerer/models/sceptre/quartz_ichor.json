@@ -1,0 +1,6 @@
+{
+  "parent": "thaumcraft:sceptre/quartz_iron",
+  "textures": {
+    "cap": "thaumictinkerer:models/wand_cap_ichor"
+  }
+}

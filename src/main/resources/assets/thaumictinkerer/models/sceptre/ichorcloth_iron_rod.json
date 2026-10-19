@@ -1,0 +1,8 @@
+{
+  "parent": "thaumictinkerer:sceptre/ichorcloth_rod_base",
+  "textures": {
+    "rod": "thaumictinkerer:models/wand_rod_ichorcloth",
+    "cap": "thaumcraft:models/wand_cap_iron",
+    "particle": "thaumictinkerer:models/wand_rod_ichorcloth"
+  }
+}

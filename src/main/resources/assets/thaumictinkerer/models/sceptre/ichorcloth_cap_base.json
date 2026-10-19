@@ -1,0 +1,339 @@
+{
+  "ambientocclusion": false,
+  "textures": {
+    "rod": "thaumcraft:models/wand_rod_wood",
+    "cap": "thaumcraft:models/wand_cap_iron",
+    "particle": "thaumcraft:models/wand_rod_wood"
+  },
+  "elements": [
+    {
+      "from": [
+        6.908,
+        14.09,
+        6.908
+      ],
+      "to": [
+        9.092,
+        15.91,
+        9.092
+      ],
+      "faces": {
+        "east": {
+          "uv": [
+            2,
+            1,
+            3,
+            2
+          ],
+          "texture": "#cap",
+          "rotation": 0
+        },
+        "west": {
+          "uv": [
+            0,
+            1,
+            1,
+            2
+          ],
+          "texture": "#cap",
+          "rotation": 0
+        },
+        "south": {
+          "uv": [
+            1,
+            1,
+            2,
+            2
+          ],
+          "texture": "#cap",
+          "rotation": 0
+        },
+        "north": {
+          "uv": [
+            3,
+            1,
+            4,
+            2
+          ],
+          "texture": "#cap",
+          "rotation": 0
+        },
+        "up": {
+          "uv": [
+            1,
+            0,
+            2,
+            1
+          ],
+          "texture": "#cap",
+          "rotation": 180
+        },
+        "down": {
+          "uv": [
+            2,
+            0,
+            3,
+            1
+          ],
+          "texture": "#cap",
+          "rotation": 180
+        }
+      }
+    },
+    {
+      "from": [
+        7.16,
+        0.3,
+        7.16
+      ],
+      "to": [
+        8.84,
+        1.7,
+        8.84
+      ],
+      "faces": {
+        "east": {
+          "uv": [
+            2,
+            1,
+            3,
+            2
+          ],
+          "texture": "#cap",
+          "rotation": 0
+        },
+        "west": {
+          "uv": [
+            0,
+            1,
+            1,
+            2
+          ],
+          "texture": "#cap",
+          "rotation": 0
+        },
+        "south": {
+          "uv": [
+            1,
+            1,
+            2,
+            2
+          ],
+          "texture": "#cap",
+          "rotation": 0
+        },
+        "north": {
+          "uv": [
+            3,
+            1,
+            4,
+            2
+          ],
+          "texture": "#cap",
+          "rotation": 0
+        },
+        "up": {
+          "uv": [
+            1,
+            0,
+            2,
+            1
+          ],
+          "texture": "#cap",
+          "rotation": 180
+        },
+        "down": {
+          "uv": [
+            2,
+            0,
+            3,
+            1
+          ],
+          "texture": "#cap",
+          "rotation": 180
+        }
+      }
+    },
+    {
+      "from": [
+        7.16,
+        11.178,
+        7.16
+      ],
+      "to": [
+        8.84,
+        12.102,
+        8.84
+      ],
+      "faces": {
+        "east": {
+          "uv": [
+            2,
+            1,
+            3,
+            2
+          ],
+          "texture": "#cap",
+          "rotation": 0
+        },
+        "west": {
+          "uv": [
+            0,
+            1,
+            1,
+            2
+          ],
+          "texture": "#cap",
+          "rotation": 0
+        },
+        "south": {
+          "uv": [
+            1,
+            1,
+            2,
+            2
+          ],
+          "texture": "#cap",
+          "rotation": 0
+        },
+        "north": {
+          "uv": [
+            3,
+            1,
+            4,
+            2
+          ],
+          "texture": "#cap",
+          "rotation": 0
+        },
+        "up": {
+          "uv": [
+            1,
+            0,
+            2,
+            1
+          ],
+          "texture": "#cap",
+          "rotation": 180
+        },
+        "down": {
+          "uv": [
+            2,
+            0,
+            3,
+            1
+          ],
+          "texture": "#cap",
+          "rotation": 180
+        }
+      }
+    }
+  ],
+  "display": {
+    "gui": {
+      "rotation": [
+        30,
+        -45,
+        66
+      ],
+      "scale": [
+        0.72,
+        0.72,
+        0.72
+      ]
+    },
+    "ground": {
+      "translation": [
+        0,
+        3,
+        0
+      ],
+      "scale": [
+        0.45,
+        0.45,
+        0.45
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        0,
+        -45,
+        0
+      ],
+      "translation": [
+        0,
+        0.8,
+        0
+      ],
+      "scale": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        0,
+        45,
+        0
+      ],
+      "translation": [
+        0,
+        0.8,
+        0
+      ],
+      "scale": [
+        0.55,
+        0.55,
+        0.55
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        3,
+        1
+      ],
+      "scale": [
+        0.75,
+        0.75,
+        0.75
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        3,
+        1
+      ],
+      "scale": [
+        0.75,
+        0.75,
+        0.75
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        0,
+        45
+      ],
+      "scale": [
+        0.75,
+        0.75,
+        0.75
+      ]
+    }
+  },
+  "gui_light": "side"
+}
