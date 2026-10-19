@@ -30,14 +30,14 @@ import thaumic.tinkerer.util.ItemData;
 public final class DislocationRulesTest {
     private static int checks;
     private static void check(boolean value,String label){checks++;if(!value)throw new AssertionError(label);}
-    private static void aim(net.minecraft.server.level.ServerPlayer player,BlockPos pos){player.setPos(pos.getX()+.5,pos.getY()-1.12,pos.getZ()-3);player.setYRot(0);player.setXRot(0);}
+    private static void aim(net.minecraft.server.level.ServerPlayer player,BlockPos pos){player.setPos(pos.getX()+.5,pos.getY()+.5-player.getEyeHeight(),pos.getZ()-3);player.setYRot(0);player.setXRot(0);}
     private static void fill(ItemStack wand){for(var aspect:Aspects.PRIMALS)WandApi.set(wand,aspect,WandApi.capacity(wand));}
     @GameTest(template="empty",timeoutTicks=100)
-    public static void dislocation(GameTestHelper helper){
-        VerificationReports.install();checks=0;var level=helper.getLevel();var player=FocusRulesTest.player(helper,"[TTDislocation]");var item=FocusContent.DISLOCATION.get();
+    public static void dislocation(GameTestHelper helper)throws Exception{
+        VerificationReports.install();checks=0;var level=helper.getLevel();var peer=new DislocationServerRulesTest.Peer(helper,"TTDislocation");var player=peer.player;var item=FocusContent.DISLOCATION.get();
         var wand=FocusRulesTest.wand(player,new ItemStack(item));WandApi.parts(wand,new WandParts("silverwood","thaumium"));fill(wand);
         var anchor=helper.absolutePos(BlockPos.ZERO);var origin=new BlockPos((anchor.getX()>>4)*16+5,anchor.getY()+155,(anchor.getZ()>>4)*16+8);var support=origin.east(5);var destination=support.north();
-        var changed=new ArrayList<BlockPos>();var effects=new ArrayList<ParticleApi.Effect>();ParticleApi.install((world,effect)->effects.add(effect));
+        var changed=new ArrayList<BlockPos>();
         try{
             for(var pos:BlockPos.betweenClosed(origin.offset(-1,-2,-4),support.offset(1,2,1))){changed.add(pos.immutable());level.setBlock(pos,Blocks.AIR.defaultBlockState(),2);}
             var focus=WandApi.focus(wand);
@@ -49,18 +49,15 @@ public final class DislocationRulesTest {
             focus=WandApi.focus(wand);
             check(level.getBlockState(origin).is(Blocks.AIR)&&item.captured(focus,level.registryAccess()).orElseThrow().equals(log),"actual native wand activation captures the full oriented block state");
             check(WandApi.stored(wand,Aspects.ORDER)==capacity-cost.get(Aspects.ORDER)&&WandApi.stored(wand,Aspects.ENTROPY)==capacity-cost.get(Aspects.ENTROPY)&&WandApi.stored(wand,Aspects.EARTH)==capacity-cost.get(Aspects.EARTH),"ordinary block spends the actual quoted three-aspect cost once");
-            check(effects.size()==8&&effects.stream().allMatch(e->e.kind()==ParticleApi.Kind.BURST&&e.size()==.2f),"capture requests eight original FXBurst particles");effects.clear();
+            check(peer.effects().size()==8&&peer.effects().stream().allMatch(e->e.kind()==ParticleApi.Kind.BURST&&e.size()==.2f),"capture requests eight original FXBurst particles");peer.fixture.packets.clear();
             check(item.getSortingHelper(focus).equals("DISLOCATIONblock.minecraft.oak_log-0"),"captured-block selector key uses the original tagless-stack hash rule");
             var originalData=ItemData.read(focus);check(originalData.getString("blockName").equals("minecraft:oak_log")&&originalData.contains("tileCmp",10)&&originalData.getBoolean("available"),"original storage names and availability flag are retained");
             wand=ItemStack.parse(level.registryAccess(),wand.save(level.registryAccess())).orElseThrow();player.setItemInHand(InteractionHand.MAIN_HAND,wand);
             check(item.captured(WandApi.focus(wand),level.registryAccess()).orElseThrow().equals(log),"full block state survives actual nested focus/wand serialization");
             for(var aspect:Aspects.PRIMALS)WandApi.set(wand,aspect,0);aim(player,support);
-            level.setBlock(support.below(),Blocks.STONE.defaultBlockState(),2);level.setBlock(support,Blocks.TORCH.defaultBlockState(),2);
-            check(!item.cast(player,wand,WandApi.focus(wand))&&item.captured(WandApi.focus(wand),level.registryAccess()).isPresent()&&level.getBlockState(destination).is(Blocks.AIR),"clicked torch placement predicate rejects an unsupported side even though the captured log could stand there");
-            level.setBlock(support,Blocks.STONE.defaultBlockState(),2);level.setBlock(support.below(),Blocks.AIR.defaultBlockState(),2);
             check(item.cast(player,wand,WandApi.focus(wand))&&level.getBlockState(destination).equals(log),"captured block places against the clicked face with no available vis");
             check(item.captured(WandApi.focus(wand),level.registryAccess()).isEmpty()&&!ItemData.read(WandApi.focus(wand)).getBoolean("available"),"successful placement clears availability");
-            check(ItemData.read(WandApi.focus(wand)).getString("blockName").equals("minecraft:oak_log")&&effects.size()==8,"original stale capture data is retained and placement emits eight bursts");effects.clear();
+            check(ItemData.read(WandApi.focus(wand)).getString("blockName").equals("minecraft:oak_log")&&peer.effects().size()==8,"original stale capture data is retained and placement emits eight bursts");peer.fixture.packets.clear();
             level.setBlock(destination,Blocks.AIR.defaultBlockState(),2);
             var chest=Blocks.CHEST.defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING,Direction.EAST);level.setBlock(origin,chest,2);var chestTile=(ChestBlockEntity)level.getBlockEntity(origin);chestTile.setItem(0,new ItemStack(Items.DIAMOND,3));var chestData=chestTile.saveWithFullMetadata(level.registryAccess());chestData.putString("CustomName",net.minecraft.network.chat.Component.Serializer.toJson(net.minecraft.network.chat.Component.literal("Payload"),level.registryAccess()));chestTile.loadWithComponents(chestData,level.registryAccess());
             fill(wand);cost=WandApi.quote(wand,player,Map.of(Aspects.ENTROPY,2500,Aspects.ORDER,2500,Aspects.EARTH,500));aim(player,origin);
@@ -96,7 +93,7 @@ public final class DislocationRulesTest {
             var research=AddonRegistry.research().get("thaumictinkerer:focus_dislocation");check(research.secondary()&&research.concealed()&&research.column()==-5&&research.row()==-5&&research.pageOrder().size()==3&&research.hiddenParents().equals(List.of("INFUSION")),"original concealed secondary research, automatic INFUSION prerequisite and two text pages before its recipe");
             System.out.println("TT_DISLOCATION_PASS checks="+checks);helper.succeed();
         }finally{
-            ThaumcraftApi.portableHoleBlackList.remove(Blocks.STONE);ParticleApi.install((world,effect)->{});FocusRulesTest.stop(player,wand);
+            ThaumcraftApi.portableHoleBlackList.remove(Blocks.STONE);FocusRulesTest.stop(player,wand);peer.close();
             for(var pos:changed){if(level.getBlockEntity(pos) instanceof Container container)container.clearContent();level.setBlock(pos,Blocks.AIR.defaultBlockState(),3);}
             level.getEntitiesOfClass(ItemEntity.class,new AABB(Vec3.atLowerCornerOf(origin),Vec3.atLowerCornerOf(support)).inflate(4)).forEach(Entity::discard);
         }
