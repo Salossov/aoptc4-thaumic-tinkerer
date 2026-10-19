@@ -30,7 +30,6 @@ import thaumcraft.api.entities.PlayerAirControlEvent;
 import thaumic.tinkerer.ThaumicTinkerer;
 import thaumic.tinkerer.TinkererConfig;
 import thaumic.tinkerer.item.BrightNitorItem;
-import thaumic.tinkerer.item.TinkererFocusItem;
 
 /** Release-164 callbacks. Keep the different source metadata tests (==0 versus !=1)
  * and the passive effects which do not depend on the global toggle.
@@ -51,6 +50,7 @@ public final class KamiArmorEffects {
     private static int variant(Player player,EquipmentSlot slot) {return AwakenedIchorclothArmorItem.variant(player.getItemBySlot(slot));}
     private static String flightKey(Player player) {return player.getGameProfile().getName()+":"+player.level().isClientSide();}
     public static void logout(Player player) {
+        thaumic.tinkerer.item.DeflectionActions.cancelArmor(player);
         String name=player.getGameProfile().getName();FLIGHT.remove(name+":false");FLIGHT.remove(name+":true");HIGH_STEP.remove(name);
         var step=player.getAttribute(Attributes.STEP_HEIGHT);if(step!=null)step.removeModifier(STEP);
     }
@@ -61,8 +61,8 @@ public final class KamiArmorEffects {
         boolean chest=wears(player,EquipmentSlot.CHEST,KamiArmorContent.GEM_CHEST.get());
         if(chest&&enabled&&variant(player,EquipmentSlot.CHEST)!=1) {
             // Both the inherited listener and the chest's own listener call this.
-            TinkererFocusItem.protectFromProjectiles(player);
-            TinkererFocusItem.protectFromProjectiles(player);
+            thaumic.tinkerer.item.DeflectionActions.armor(player);
+            thaumic.tinkerer.item.DeflectionActions.armor(player);
         }
         flight(player,chest&&enabled&&variant(player,EquipmentSlot.CHEST)==0&&TinkererConfig.FLIGHT.get());
         if(wears(player,EquipmentSlot.LEGS,KamiArmorContent.GEM_LEGS.get())&&enabled&&variant(player,EquipmentSlot.LEGS)!=1)leggings(player);

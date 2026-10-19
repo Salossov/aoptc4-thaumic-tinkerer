@@ -30,7 +30,7 @@ public final class TinkererFocusItem extends ItemFocusBasic implements FocusBeha
     private final Kind kind;
     private static final Map<String, Integer> HEALING = new HashMap<>();
     public static void playerLogin(String name) {HEALING.put(name,0);}
-    public static void playerLogout(String name) {thaumic.tinkerer.item.smelting.SmeltingFocus.logout(name);HEALING.remove(name);}
+    public static void playerLogout(String name) {thaumic.tinkerer.item.smelting.SmeltingFocus.logout(name);DeflectionActions.logout(name);HEALING.remove(name);}
     public TinkererFocusItem(Kind kind) { super(new Properties().durability(1).rarity(Rarity.RARE)); this.kind = kind; }
     public Kind kind() { return kind; }
     @Override public String getSortingHelper(ItemStack stack){return switch(kind){case SMELT->"SMELT";case FLIGHT->"FLIGHT";case TELEKINESIS->"TELEKINESIS";case HEAL->"HEAL";case DEFLECT->"DEFLECT";case ENDER_CHEST->{
@@ -70,7 +70,7 @@ public final class TinkererFocusItem extends ItemFocusBasic implements FocusBeha
     @Override public boolean cast(ServerPlayer player, ItemStack wand, ItemStack focus) {
         return switch (kind) { case SMELT -> smelt(player, wand, focus); case FLIGHT -> fly(player, wand, focus); case TELEKINESIS -> pull(player, wand, focus); case HEAL -> heal(player, wand, focus); case DEFLECT -> deflect(player, wand, focus); case ENDER_CHEST -> chest(player, wand, focus); };
     }
-    @Override public void end(ServerPlayer player, ItemStack wand, ItemStack focus) { if (kind == Kind.HEAL) HEALING.put(player.getGameProfile().getName(), 0); if(kind==Kind.SMELT)thaumic.tinkerer.item.smelting.SmeltingActions.cancel(player); }
+    @Override public void end(ServerPlayer player, ItemStack wand, ItemStack focus) { if (kind == Kind.HEAL) HEALING.put(player.getGameProfile().getName(), 0); if(kind==Kind.SMELT)thaumic.tinkerer.item.smelting.SmeltingActions.cancel(player); if(kind==Kind.DEFLECT)DeflectionActions.cancelFocus(player); }
     private boolean heal(ServerPlayer player, ItemStack wand, ItemStack focus) {
         if (!WandApi.consume(wand, player, getVisCost(focus), false) || player.getHealth() <= 0 || player.getHealth() >= player.getMaxHealth()) return false;
         String name = player.getGameProfile().getName();
@@ -86,21 +86,12 @@ public final class TinkererFocusItem extends ItemFocusBasic implements FocusBeha
     }
     private boolean deflect(ServerPlayer player, ItemStack wand, ItemStack focus) {
         if (!WandApi.consume(wand, player, getVisCost(focus), true)) return false;
-        protectFromProjectiles(player);
+        DeflectionActions.focus(player,wand,focus);
         return true;
     }
-    /** Shared by the original deflection focus and both chestplate tick callbacks. */
+    /** Original public helper, independent of a particular focus or armor callback. */
     public static void protectFromProjectiles(Player player) {
-        var bounds = new AABB(player.getX() - 4, player.getY() - 4, player.getZ() - 4, player.getX() + 3, player.getY() + 3, player.getZ() + 3);
-        for (var entity : player.level().getEntities(player, bounds, thaumic.tinkerer.api.ProjectileHooks::isProjectile)) {
-            if (thaumic.tinkerer.api.ProjectileHooks.blacklisted(entity) || thaumic.tinkerer.api.ProjectileHooks.owner(entity) == player) continue;
-            var motion = entity.getDeltaMovement(); double length = motion.length();
-            if (length != 0) motion = motion.scale(1 / length);
-            motion = motion.scale(entity.position().distanceTo(player.position()) * 2);
-            for (int i = 0; i < 6; i++) ParticleApi.sparkle(player.level(), (float) entity.getX(), (float) entity.getY(), (float) entity.getZ(), 6);
-            // The original changes position only, leaving trajectory, owner and speed intact.
-            entity.setPosRaw(entity.getX() + motion.x, entity.getY() + motion.y, entity.getZ() + motion.z);
-        }
+        DeflectionActions.direct(player);
     }
     private boolean chest(ServerPlayer player, ItemStack wand, ItemStack focus) {
         if(net.neoforged.fml.ModList.get().isLoaded("enderstorage")){
