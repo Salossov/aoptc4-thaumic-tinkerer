@@ -326,5 +326,13 @@
   "ttwaila.pullingAdultType": "Traction : Adulte %s",
   "ttwaila.pullingChildType": "Traction : Enfant %s",
   "ttwaila.pushingAdultType": "Poussée : Adulte %s",
-  "ttwaila.pushingChildType": "Poussée : Enfant %s"
+  "ttwaila.pushingChildType": "Poussée : Enfant %s",
+  "item.thaumictinkerer.ichorcloth_helm": "Chapeau en tissu d'Ichor",
+  "item.thaumictinkerer.ichorcloth_chest": "Robe en tissu d'Ichor",
+  "item.thaumictinkerer.ichorcloth_legs": "Jambières en tissu d'Ichor",
+  "item.thaumictinkerer.ichorcloth_boots": "Bottes en tissu d'Ichor",
+  "item.thaumictinkerer.ichorcloth_helm_gem": "Capuche des Profondeurs abyssales",
+  "item.thaumictinkerer.ichorcloth_chest_gem": "Robes de la Stratosphère",
+  "item.thaumictinkerer.ichorcloth_legs_gem": "Jambières du Manteau brûlant",
+  "item.thaumictinkerer.ichorcloth_boots_gem": "Bottes du Bouclier de l'horizon"
 }

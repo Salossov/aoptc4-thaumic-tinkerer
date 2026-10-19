@@ -328,5 +328,13 @@
   "ttwaila.pullingChildType": "Pulling: Child %s",
   "ttwaila.pushingAdultType": "Pushing: Adult %s",
   "ttwaila.pushingChildType": "Pushing: Child %s",
-  "config.jade.plugin_thaumictinkerer.device_details": "Device details"
+  "config.jade.plugin_thaumictinkerer.device_details": "Device details",
+  "item.thaumictinkerer.ichorcloth_helm": "Ichorcloth Cowl",
+  "item.thaumictinkerer.ichorcloth_chest": "Ichorcloth Robe",
+  "item.thaumictinkerer.ichorcloth_legs": "Ichorcloth Leggings",
+  "item.thaumictinkerer.ichorcloth_boots": "Ichorcloth Boots",
+  "item.thaumictinkerer.ichorcloth_helm_gem": "Cowl of the Abyssal Depths",
+  "item.thaumictinkerer.ichorcloth_chest_gem": "Robes of the Stratosphere",
+  "item.thaumictinkerer.ichorcloth_legs_gem": "Leggings of the Burning Mantle",
+  "item.thaumictinkerer.ichorcloth_boots_gem": "Boots of the Horizontal Shield"
 }

@@ -289,5 +289,13 @@
   "ttwaila.pullingAdultType": "Pulling: Adult %s",
   "ttwaila.pullingChildType": "Pulling: Child %s",
   "ttwaila.pushingAdultType": "Pushing: Adult %s",
-  "ttwaila.pushingChildType": "Pushing: Child %s"
+  "ttwaila.pushingChildType": "Pushing: Child %s",
+  "item.thaumictinkerer.ichorcloth_helm": "이코르 두건",
+  "item.thaumictinkerer.ichorcloth_chest": "이코르 로브",
+  "item.thaumictinkerer.ichorcloth_legs": "이코르 레깅스",
+  "item.thaumictinkerer.ichorcloth_boots": "이코르 부츠",
+  "item.thaumictinkerer.ichorcloth_helm_gem": "심연의 두건",
+  "item.thaumictinkerer.ichorcloth_chest_gem": "천상의 로브",
+  "item.thaumictinkerer.ichorcloth_legs_gem": "타오르는 맨틀의 레깅스",
+  "item.thaumictinkerer.ichorcloth_boots_gem": "수평 방어의 부츠"
 }

@@ -327,5 +327,13 @@
   "ttwaila.pullingAdultType": "牵引:成熟体%s",
   "ttwaila.pullingChildType": "牵引:幼体%s",
   "ttwaila.pushingAdultType": "推开:成熟体%s",
-  "ttwaila.pushingChildType": "推开:幼体%s"
+  "ttwaila.pushingChildType": "推开:幼体%s",
+  "item.thaumictinkerer.ichorcloth_helm": "灵布头巾",
+  "item.thaumictinkerer.ichorcloth_chest": "灵布法袍",
+  "item.thaumictinkerer.ichorcloth_legs": "灵布护腿",
+  "item.thaumictinkerer.ichorcloth_boots": "灵布靴子",
+  "item.thaumictinkerer.ichorcloth_helm_gem": "无尽深渊之帽",
+  "item.thaumictinkerer.ichorcloth_chest_gem": "云霄塔之法袍",
+  "item.thaumictinkerer.ichorcloth_legs_gem": "熔岩地幔之护腿",
+  "item.thaumictinkerer.ichorcloth_boots_gem": "地平线盾牌之靴"
 }

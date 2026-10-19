@@ -60,11 +60,13 @@ public final class ThaumicTinkerer {
                 thaumic.tinkerer.block.DarkQuartzContent.display(output);
                 thaumic.tinkerer.block.GasContent.display(output);
                 thaumic.tinkerer.item.FocusContent.display(output);
+                if(TinkererConfig.KAMI_FORCE_ENABLED.get())thaumic.tinkerer.kami.KamiArmorContent.display(output);
             })
             .build());
 
     public ThaumicTinkerer(IEventBus bus, net.neoforged.fml.ModContainer container) {
         container.registerConfig(net.neoforged.fml.config.ModConfig.Type.STARTUP, TinkererConfig.SPEC);
+        if(TinkererConfig.KAMI_FORCE_ENABLED.get())thaumic.tinkerer.kami.KamiArmorContent.register(bus);
         thaumic.tinkerer.enchantment.TinkererEnchantments.register(bus);
         thaumic.tinkerer.crop.InfusedContent.register(bus);
         thaumic.tinkerer.summon.SummonContent.register(bus);

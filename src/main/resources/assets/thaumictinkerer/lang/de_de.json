@@ -305,5 +305,13 @@
   "ttwaila.pullingAdultType": "Anziehend: %s (Erwachsen)",
   "ttwaila.pullingChildType": "Anziehend: %s (Kind)",
   "ttwaila.pushingAdultType": "Abstoßend: %s (Erwachsen)",
-  "ttwaila.pushingChildType": "Abstoßend: %s (Kind)"
+  "ttwaila.pushingChildType": "Abstoßend: %s (Kind)",
+  "item.thaumictinkerer.ichorcloth_helm": "Ichortuchkappe",
+  "item.thaumictinkerer.ichorcloth_chest": "Ichortuchrobe",
+  "item.thaumictinkerer.ichorcloth_legs": "Ichortuchhose",
+  "item.thaumictinkerer.ichorcloth_boots": "Ichortuchstiefel",
+  "item.thaumictinkerer.ichorcloth_helm_gem": "Kappe der Abgrundtiefe",
+  "item.thaumictinkerer.ichorcloth_chest_gem": "Robe der Stratosphäre",
+  "item.thaumictinkerer.ichorcloth_legs_gem": "Hose der Brennenden Hülle",
+  "item.thaumictinkerer.ichorcloth_boots_gem": "Stiefel des Horizontalen Schildes"
 }

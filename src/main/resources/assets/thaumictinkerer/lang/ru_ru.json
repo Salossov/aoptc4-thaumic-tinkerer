@@ -325,5 +325,13 @@
   "ttwaila.pullingChildType": "Затянуто детенышей %s",
   "ttwaila.pushingAdultType": "Вытолкнуто взрослых %s",
   "ttwaila.pushingChildType": "Вытолкнуто детенышей %s",
-  "config.jade.plugin_thaumictinkerer.device_details": "Состояние устройств"
+  "config.jade.plugin_thaumictinkerer.device_details": "Состояние устройств",
+  "item.thaumictinkerer.ichorcloth_helm": "Ихоровый капюшон",
+  "item.thaumictinkerer.ichorcloth_chest": "Ихоровая роба",
+  "item.thaumictinkerer.ichorcloth_legs": "Ихоровые шаровары",
+  "item.thaumictinkerer.ichorcloth_boots": "Ихоровые сапоги",
+  "item.thaumictinkerer.ichorcloth_helm_gem": "Капюшон адских глубин",
+  "item.thaumictinkerer.ichorcloth_chest_gem": "Роба стратосферы",
+  "item.thaumictinkerer.ichorcloth_legs_gem": "Пылающие шаровары",
+  "item.thaumictinkerer.ichorcloth_boots_gem": "Щитовые сапоги"
 }
