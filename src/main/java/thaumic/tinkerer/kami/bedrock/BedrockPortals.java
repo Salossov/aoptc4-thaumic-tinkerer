@@ -62,7 +62,7 @@ public final class BedrockPortals {
         @Override public void close(){request.close();if(PENDING.get(player)==this)PENDING.remove(player);}
     }
     public static void touch(ServerPlayer player,BlockPos portal){
-        if(!enabled()||player.isRemoved()||!player.isAlive())return;
+        if(!enabled()||player.isRemoved()||!player.isAlive()||BedrockEntityPortals.hasPending(player))return;
         var old=PENDING.get(player);if(old!=null){if(old.valid())return;old.close();}
         var source=player.serverLevel();boolean entering=BedrockPortalWorlds.isSurfaceWorld(source);
         if(!entering&&source.dimension()!=BedrockContent.DIMENSION)return;
@@ -76,7 +76,7 @@ public final class BedrockPortals {
             if(trip.request.advance(2))try{trip.perform();}finally{trip.close();}
         }
     }
-    @SubscribeEvent public static void unload(LevelEvent.Unload event){for(var trip:List.copyOf(PENDING.values()))if(trip.source==event.getLevel()||trip.target==event.getLevel())trip.close();}
+    @SubscribeEvent public static void unload(LevelEvent.Unload event){if(!(event.getLevel() instanceof ServerLevel))return;for(var trip:List.copyOf(PENDING.values()))if(trip.source==event.getLevel()||trip.target==event.getLevel())trip.close();}
     @SubscribeEvent public static void stop(ServerStoppedEvent event){for(var trip:List.copyOf(PENDING.values()))if(trip.source.getServer()==event.getServer())trip.close();}
     public static boolean hasPending(ServerPlayer player){return PENDING.containsKey(player);}
     private BedrockPortals(){}

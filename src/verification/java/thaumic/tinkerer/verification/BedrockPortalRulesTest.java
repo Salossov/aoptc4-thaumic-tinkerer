@@ -34,6 +34,9 @@ public final class BedrockPortalRulesTest {
         check(state.getCollisionShape(level,pos).isEmpty(),"source portal has no collision");
         check(state.getShape(level,pos).bounds().equals(Shapes.block().bounds()),"source selection remains a full cube");
         check(block.asItem()==Items.AIR&&!state.isAir(),"no ItemBlock, ordinary persistent block state");
+        check(level.getBlockEntity(pos) instanceof BedrockPortalBlockEntity,"source tile type is actually installed on placement");
+        var saved=level.getBlockEntity(pos).saveWithFullMetadata(level.registryAccess());
+        check(net.minecraft.world.level.block.entity.BlockEntity.loadStatic(pos,state,saved,level.registryAccess()) instanceof BedrockPortalBlockEntity,"native registered tile save/load");
         check(BedrockPortalWorlds.isSurfaceWorld(level)==(level.dimension()==Level.OVERWORLD),"default dimension-key tag contains ordinary world");
         var destination=level.getServer().getLevel(BedrockContent.DIMENSION);
         if(destination!=null)check(!BedrockPortalWorlds.isSurfaceWorld(destination),"bedrock is excluded by default");
@@ -81,6 +84,57 @@ public final class BedrockPortalRulesTest {
             }).thenWaitUntil(()->check(!AwakenedMining.hasPending(player),"creative action preparation finishes"))
             .thenExecute(()->check(level.getBlockState(root).isAir(),"creative's same click removes newly created portal"))
             .thenSucceed();
+    }
+    @GameTest(template="summon_space",batch="bedrock_portal",timeoutTicks=100)
+    public static void nativeEntityGroupStagingAndOwnerCancellation(GameTestHelper helper){
+        VerificationReports.install();if(!BedrockPortals.enabled()){helper.succeed();return;}
+        var level=helper.getLevel();var pos=helper.absolutePos(new BlockPos(8,4,8));
+        level.setBlockAndUpdate(pos,BedrockContent.PORTAL.get().defaultBlockState());
+        var owner=(BedrockPortalBlockEntity)level.getBlockEntity(pos);
+        var boat=net.minecraft.world.entity.EntityType.BOAT.create(level);var rider=net.minecraft.world.entity.EntityType.PIG.create(level);
+        check(boat!=null&&rider!=null,"native vehicle and rider types");
+        boat.setPos(pos.getX()+.5,pos.getY()+.1,pos.getZ()+.5);rider.setPos(boat.position());
+        level.addFreshEntity(boat);level.addFreshEntity(rider);check(rider.startRiding(boat,true),"native passenger link");
+        try{
+            BedrockEntityPortals.touch(owner,rider);
+            check(BedrockEntityPortals.hasPending(boat)&&BedrockEntityPortals.hasPending(rider),"rider contact claims one modern root-vehicle operation");
+            check(boat.level()==level&&rider.level()==level&&rider.getVehicle()==boat,"staging neither transfers nor dismounts group");
+            check(level.getBlockState(pos).is(BedrockContent.PORTAL.get()),"no construction during initial request creation");
+            level.setBlockAndUpdate(pos,Blocks.AIR.defaultBlockState());
+            check(!BedrockEntityPortals.hasPending(boat)&&!BedrockEntityPortals.hasPending(rider),"owner removal cancels entire staged group immediately");
+            check(rider.getVehicle()==boat,"cancellation retains original passenger link");
+        }finally{BedrockEntityPortals.removed(owner);rider.discard();boat.discard();level.setBlockAndUpdate(pos,Blocks.AIR.defaultBlockState());}
+        helper.succeed();
+    }
+    @GameTest(template="summon_space",batch="bedrock_portal",timeoutTicks=100)
+    public static void nativeModernPortalExitRectanglesAndRotation(GameTestHelper helper)throws ReflectiveOperationException {
+        VerificationReports.install();var level=helper.getLevel();var entity=net.minecraft.world.entity.EntityType.PIG.create(level);
+        check(entity!=null,"native exit dimensions");entity.setYRot(17);entity.setXRot(25);entity.setDeltaMovement(.3,.1,-.2);
+        for(int orientation:new int[]{1,0}){
+            var origin=helper.absolutePos(new BlockPos(orientation==1?4:12,4,8));
+            var site=new LegacyPortalSearch.Site(origin.getX(),origin.getY(),origin.getZ(),orientation,false);
+            var axis=orientation==1?Direction.Axis.X:Direction.Axis.Z;
+            for(var cell:LegacyPortalSearch.frame(site)){
+                var pos=new BlockPos(cell.pos().x(),cell.pos().y(),cell.pos().z());
+                var state=cell.fill()==LegacyPortalSearch.Fill.OBSIDIAN?Blocks.OBSIDIAN.defaultBlockState():Blocks.NETHER_PORTAL.defaultBlockState().setValue(net.minecraft.world.level.block.NetherPortalBlock.AXIS,axis);
+                level.setBlock(pos,state,2);
+            }
+            var transition=BedrockPortalExit.transition(level,origin,entity);
+            var rectangle=new net.minecraft.BlockUtil.FoundRectangle(origin,2,3);
+            var nativeMethod=net.minecraft.world.level.block.NetherPortalBlock.class.getDeclaredMethod("createDimensionTransition",
+                    net.minecraft.server.level.ServerLevel.class,net.minecraft.BlockUtil.FoundRectangle.class,Direction.Axis.class,
+                    net.minecraft.world.phys.Vec3.class,net.minecraft.world.entity.Entity.class,net.minecraft.world.phys.Vec3.class,
+                    float.class,float.class,net.minecraft.world.level.portal.DimensionTransition.PostDimensionTransition.class);
+            nativeMethod.setAccessible(true);
+            var nativeResult=nativeMethod.invoke(null,level,rectangle,Direction.Axis.X,new net.minecraft.world.phys.Vec3(.5,0,0),entity,
+                    entity.getDeltaMovement(),entity.getYRot(),entity.getXRot(),net.minecraft.world.level.portal.DimensionTransition.DO_NOTHING);
+            check(transition.equals(nativeResult),"actual native1.21 NetherPortalBlock exit, including collision-free placement");
+            check(transition.yRot()==(axis==Direction.Axis.X?17:107)&&transition.xRot()==25,"modern axis rotation preserves pitch");
+            var speed=axis==Direction.Axis.X?entity.getDeltaMovement():new net.minecraft.world.phys.Vec3(-.2,.1,-.3);
+            check(transition.speed().equals(speed),"modern90degree horizontal velocity rotation");
+            for(var cell:LegacyPortalSearch.frame(site))level.setBlock(new BlockPos(cell.pos().x(),cell.pos().y(),cell.pos().z()),Blocks.AIR.defaultBlockState(),2);
+        }
+        entity.discard();helper.succeed();
     }
     private BedrockPortalRulesTest(){}
 }
