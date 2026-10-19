@@ -1,6 +1,5 @@
 package thaumic.tinkerer.client;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import java.util.List;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
@@ -26,7 +25,7 @@ public final class AspectAnalyzerScreen extends AbstractContainerScreen<AspectAn
     @SubscribeEvent public static void register(RegisterMenuScreensEvent event){if(GolemConnectorContent.enabled())event.register(AspectAnalyzerContent.MENU.get(),AspectAnalyzerScreen::new);}
     @Override protected void renderLabels(GuiGraphics graphics,int x,int y){}
     @Override protected void renderBg(GuiGraphics graphics,float partial,int mouseX,int mouseY){
-        hovered=null;graphics.blit(TEXTURE,leftPos,topPos,0,0,imageWidth,imageHeight);
+        hovered=null;GuiTextures.blit(graphics,TEXTURE,leftPos,topPos,0,0,imageWidth,imageHeight);
         var stack=menu.getSlot(0).getItem();if(stack.isEmpty()||!AspectApi.scanned(stack))return;
         int index=0;
         for(var entry:AspectAnalyzerMenu.sortedAmounts(AspectApi.aspects(minecraft.level,stack))){
@@ -36,9 +35,7 @@ public final class AspectAnalyzerScreen extends AbstractContainerScreen<AspectAn
         }
     }
     private void drawTag(GuiGraphics graphics,Aspect aspect,int amount,int x,int y){
-        graphics.flush();RenderSystem.enableBlend();RenderSystem.defaultBlendFunc();int color=aspect.getColor();
-        graphics.setColor((color>>16&255)/255f,(color>>8&255)/255f,(color&255)/255f,1);
-        graphics.blit(ResourceLocation.parse(aspect.texture()),x,y,16,16,0,0,32,32,32,32);graphics.flush();graphics.setColor(1,1,1,1);
+        GuiTextures.tinted(graphics,ResourceLocation.parse(aspect.texture()),x,y,16,16,0,0,32,32,32,32,aspect.getColor());
         if(amount<=0)return;
         graphics.pose().pushPose();graphics.pose().scale(.5f,.5f,.5f);String text=Integer.toString(amount);int tx=32-font.width(text)+x*2,ty=32-font.lineHeight+y*2;
         for(var shift:new int[][]{{-1,0},{1,0},{0,-1},{0,1}})graphics.drawString(font,text,tx+shift[0],ty+shift[1],0xff000000,false);

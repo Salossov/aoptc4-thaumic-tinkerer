@@ -28,13 +28,13 @@ public final class MobMagnetScreen extends AbstractContainerScreen<MobMagnetMenu
             if (minecraft.gameMode != null) minecraft.gameMode.handleInventoryButtonClick(menu.containerId, button);
         }
         @Override protected void renderWidget(GuiGraphics graphics, int x, int y, float partial) {
-            if (menu.searchesAdults() == (button == 0)) graphics.blit(TEXTURE, getX(), getY(), 176, 13, 13, 13);
+            if (menu.searchesAdults() == (button == 0)) GuiTextures.blit(graphics,TEXTURE, getX(), getY(), 176, 13, 13, 13);
         }
         @Override protected void updateWidgetNarration(NarrationElementOutput output) { defaultButtonNarrationText(output); }
     }
     @Override protected void renderLabels(GuiGraphics graphics, int x, int y) { }
     @Override protected void renderBg(GuiGraphics graphics, float partial, int x, int y) {
-        graphics.blit(TEXTURE, leftPos, topPos, 0, 0, imageWidth, imageHeight);
+        GuiTextures.blit(graphics,TEXTURE, leftPos, topPos, 0, 0, imageWidth, imageHeight);
         var filter = menu.getSlot(0).getItem(); Component label;
         if (filter.isEmpty()) label = Component.translatable("gui.thaumictinkerer.all");
         else {
