@@ -37,8 +37,16 @@ public final class AnimationTabletRulesTest {
     @SuppressWarnings({"rawtypes","unchecked"})
     private static void tick(ServerLevel level,BlockPos pos,int count){var state=level.getBlockState(pos);var tile=level.getBlockEntity(pos);BlockEntityTicker ticker=((EntityBlock)state.getBlock()).getTicker(level,state,tile.getType());for(int i=0;i<count;i++)ticker.tick(level,pos,state,tile);}
     private static Cow cow(ServerLevel level,BlockPos pos){var cow=new Cow(EntityType.COW,level);cow.setNoAi(true);cow.setPos(pos.getX()+.5,pos.getY(),pos.getZ()+.5);level.addFreshEntity(cow);return cow;}
-    @GameTest(template="empty",timeoutTicks=120)
+    @GameTest(template="empty",timeoutTicks=1200)
     public static void animationTablet(GameTestHelper helper)throws Exception{
+        VerificationReports.install();var level=helper.getLevel();var anchor=helper.absolutePos(BlockPos.ZERO);var pos=new BlockPos((anchor.getX()>>4)*16+8,anchor.getY()+220,(anchor.getZ()>>4)*16+8);
+        var columns=new ArrayList<net.minecraft.world.level.ChunkPos>();for(int x=(pos.getX()-20)>>4;x<=(pos.getX()+20)>>4;x++)for(int z=(pos.getZ()-20)>>4;z<=(pos.getZ()+20)>>4;z++)columns.add(new net.minecraft.world.level.ChunkPos(x,z));
+        var loader=new DislocationServerRulesTest.Peer(helper,"TTTabletOriginalLoader");var request=thaumcraft.api.world.ChunkPreparationApi.prepare(loader.player,columns);
+        var cleanup=new Runnable(){boolean closed;public void run(){if(closed)return;closed=true;request.close();loader.close();}};
+        helper.testInfo.addListener(new GameTestListener(){public void testStructureLoaded(GameTestInfo test){}public void testPassed(GameTestInfo test,GameTestRunner runner){cleanup.run();}public void testFailed(GameTestInfo test,GameTestRunner runner){cleanup.run();}public void testAddedForRerun(GameTestInfo old,GameTestInfo next,GameTestRunner runner){}});
+        helper.onEachTick(new Runnable(){boolean done;public void run(){if(done||!request.advance(2))return;done=true;try{runAnimationTablet(helper);}catch(Exception failure){cleanup.run();throw new RuntimeException(failure);}}});
+    }
+    private static void runAnimationTablet(GameTestHelper helper)throws Exception{
         VerificationReports.install();checks=0;var level=helper.getLevel();var anchor=helper.absolutePos(BlockPos.ZERO);var pos=new BlockPos((anchor.getX()>>4)*16+8,anchor.getY()+220,(anchor.getZ()>>4)*16+8);var front=pos.north();var fake=FocusRulesTest.player(helper,"[TTTablet]");
         var messages=new ArrayList<Component>();
         var player=new ServerPlayer(level.getServer(),level,fake.getGameProfile(),ClientInformation.createDefault()){

@@ -34,6 +34,7 @@ public final class AnimationTabletBlockEntity extends BlockEntity implements Con
     private boolean breaking;
     private List<Entity> detected=List.of();
     private TabletPlayer player;
+    private TabletPreparation preparation;
     public AnimationTabletBlockEntity(BlockPos pos,BlockState state){super(AnimationTabletContent.TILE.get(),pos,state);}
     public int rotation(){return Arrays.asList(AnimationTabletBlock.DIRECTIONS).indexOf(getBlockState().getValue(AnimationTabletBlock.FACING));}
     /** Original Lua getter includes the powered metadata bit. */
@@ -41,24 +42,48 @@ public final class AnimationTabletBlockEntity extends BlockEntity implements Con
     public void rotation(int value){if(value<0||value>3)throw new IllegalArgumentException("Invalid value: "+value+".");level.setBlock(worldPosition,getBlockState().setValue(AnimationTabletBlock.FACING,AnimationTabletBlock.DIRECTIONS[value]).setValue(AnimationTabletBlock.POWERED,false),3);}
     public BlockPos target(){return worldPosition.relative(getBlockState().getValue(AnimationTabletBlock.FACING));}
     public boolean isBreaking(){return breaking;}
-    @Override public boolean prepareToMove(){stopBreaking();return true;}
+    @Override public boolean prepareToMove(){cancelPreparation();stopBreaking();return true;}
+    @Override public void setRemoved(){cancelPreparation();super.setRemoved();}
+    @Override public void onChunkUnloaded(){cancelPreparation();super.onChunkUnloaded();}
     public TabletPlayer player(){if(player==null&&level instanceof ServerLevel server)player=new TabletPlayer(server,this);return player;}
     public void findEntities(){var target=target();detected=level.hasChunkAt(target)?level.getEntities((Entity)null,new AABB(target)):List.of();}
-    public boolean detect(){findEntities();return level.hasChunkAt(target())&&(!level.getBlockState(target()).isAir()||!detected.isEmpty());}
+    public boolean detect(){if(level instanceof ServerLevel&&!prepared(0))return false;findEntities();return level.hasChunkAt(target())&&(!level.getBlockState(target()).isAir()||!detected.isEmpty());}
     public void initiateSwing(){swingMod=3;swingProgress=1;}
     public boolean trigger(){if(swingProgress!=0)return false;findEntities();initiateSwing();level.blockEvent(worldPosition,getBlockState().getBlock(),0,0);return true;}
     public static void tick(Level level,BlockPos pos,BlockState state,AnimationTabletBlockEntity tile){tile.tick();}
     private void tick(){
         if(!level.isClientSide())player().prepare();ticksExisted++;
+        if(preparation!=null&&!preparation.valid()){cancelPreparation();stopBreaking();return;}
+        try{
         if(!stack.isEmpty()){
-            if(swingProgress>=45&&!level.isClientSide())swingHit();
+            if(swingProgress>=45&&!level.isClientSide()){swingHit();if(preparation!=null&&!preparation.ready())return;}
             swingMod=swingProgress<=0?0:swingProgress>=45?-3:swingMod;swingProgress+=swingMod;if(swingProgress<0)swingProgress=0;
         }else{swingMod=0;swingProgress=0;if(breaking)stopBreaking();}
+        if(level instanceof ServerLevel&&!prepared(breaking?18:0))return;
         boolean detect=detect();if(!detect)stopBreaking();if(detect&&breaking&&!level.isClientSide())continueBreaking();
         if((!redstone||breaking)&&detect&&swingProgress==0){initiateSwing();if(!level.isClientSide())level.blockEvent(worldPosition,getBlockState().getBlock(),0,0);}
+        }finally{releasePrepared();}
     }
+    private boolean prepared(int radius){
+        if(!(level instanceof ServerLevel server)||!liveOwner(server))return false;
+        var columns=TabletPreparation.columns(worldPosition,target(),radius);
+        if(preparation!=null&&!preparation.valid()){cancelPreparation();stopBreaking();return false;}
+        if(preparation!=null&&!preparation.covers(columns)){preparation.close();preparation=null;}
+        if(preparation==null){if(TabletPreparation.loaded(server,columns))return true;preparation=new TabletPreparation(this,columns);}
+        try{return preparation.advance();}catch(RuntimeException|Error failure){cancelPreparation();throw failure;}
+    }
+    private void cancelPreparation(){
+        if(preparation!=null){preparation.close();preparation=null;swingProgress=0;swingMod=0;}
+    }
+    private void releasePrepared(){if(preparation!=null&&preparation.ready()){preparation.close();preparation=null;}}
     public void swingHit(){
-        if(stack.isEmpty()||level.isClientSide())return;var p=target();if(!level.hasChunkAt(p))return;var state=level.getBlockState(p);var held=stack;var fake=player();fake.setItemInHand(InteractionHand.MAIN_HAND,held);boolean done=false;
+        if(stack.isEmpty()||level.isClientSide()||!prepared(18))return;
+        // Only a deferred hit refreshes the detection that was unavailable while waiting.
+        if(preparation!=null)findEntities();
+        try{performSwingHit();}finally{releasePrepared();}
+    }
+    private void performSwingHit(){
+        var p=target();if(!level.hasChunkAt(p))return;var state=level.getBlockState(p);var held=stack;var fake=player();fake.setItemInHand(InteractionHand.MAIN_HAND,held);boolean done=false;
         if(leftClick){
             var entity=detected.isEmpty()?null:detected.get(level.random.nextInt(detected.size()));
             if(entity!=null){fake.weaponAttributes(held);fake.attack(entity);done=true;}
