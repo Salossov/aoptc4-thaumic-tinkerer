@@ -1,0 +1,21 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "thaumictinkerer:imbued_fire_enabled"
+    }
+  ],
+  "type": "thaumcraft:crucible",
+  "research": "thaumictinkerer:fire_terra",
+  "catalyst": {
+    "item": "thaumcraft:earth_shard"
+  },
+  "result": {
+    "id": "thaumictinkerer:fire_terra",
+    "count": 1
+  },
+  "aspects": {
+    "ignis": 5,
+    "praecantatio": 5,
+    "terra": 5
+  }
+}

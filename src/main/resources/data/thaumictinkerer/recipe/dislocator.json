@@ -1,0 +1,33 @@
+{
+  "type": "thaumcraft:arcane",
+  "research": "thaumictinkerer:dislocator",
+  "pattern": [
+    " M ",
+    " I ",
+    " C "
+  ],
+  "vis": {
+    "terra": 5,
+    "perditio": 5
+  },
+  "key": {
+    "M": {
+      "item": "thaumcraft:mirrored_glass"
+    },
+    "I": {
+      "item": "thaumictinkerer:interface"
+    },
+    "C": {
+      "item": "minecraft:comparator"
+    }
+  },
+  "result": {
+    "id": "thaumictinkerer:dislocator",
+    "count": 1
+  },
+  "neoforge:conditions": [
+    {
+      "type": "thaumcraft:mirrors_enabled"
+    }
+  ]
+}

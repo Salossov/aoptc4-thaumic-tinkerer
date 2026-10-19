@@ -1,0 +1,16 @@
+{
+  "type": "thaumcraft:crucible",
+  "research": "thaumictinkerer:spell_cloth",
+  "catalyst": {
+    "item": "thaumcraft:enchanted_fabric"
+  },
+  "result": {
+    "id": "thaumictinkerer:spell_cloth",
+    "count": 1
+  },
+  "aspects": {
+    "praecantatio": 10,
+    "perditio": 6,
+    "permutatio": 4
+  }
+}

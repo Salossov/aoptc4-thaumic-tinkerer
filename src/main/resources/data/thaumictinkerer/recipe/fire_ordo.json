@@ -1,0 +1,21 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "thaumictinkerer:imbued_fire_enabled"
+    }
+  ],
+  "type": "thaumcraft:crucible",
+  "research": "thaumictinkerer:fire_ordo",
+  "catalyst": {
+    "item": "thaumcraft:order_shard"
+  },
+  "result": {
+    "id": "thaumictinkerer:fire_ordo",
+    "count": 1
+  },
+  "aspects": {
+    "ignis": 5,
+    "praecantatio": 5,
+    "ordo": 5
+  }
+}

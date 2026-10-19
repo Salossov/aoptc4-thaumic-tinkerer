@@ -1,0 +1,37 @@
+{
+  "type": "thaumcraft:arcane",
+  "research": "thaumictinkerer:revealing_helm",
+  "pattern": [
+    "GH"
+  ],
+  "key": {
+    "G": {
+      "type": "neoforge:components",
+      "items": "thaumcraft:goggles_of_revealing",
+      "components": {
+        "minecraft:damage": 0
+      },
+      "strict": false
+    },
+    "H": {
+      "type": "neoforge:components",
+      "items": "thaumcraft:thaumium_helmet",
+      "components": {
+        "minecraft:damage": 0
+      },
+      "strict": false
+    }
+  },
+  "result": {
+    "id": "thaumictinkerer:revealing_helm",
+    "count": 1
+  },
+  "vis": {
+    "terra": 5,
+    "ignis": 5,
+    "aqua": 5,
+    "aer": 5,
+    "ordo": 5,
+    "perditio": 5
+  }
+}

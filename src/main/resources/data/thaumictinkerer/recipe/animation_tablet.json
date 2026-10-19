@@ -1,0 +1,28 @@
+{
+  "type": "thaumcraft:arcane",
+  "research": "thaumictinkerer:animation_tablet",
+  "pattern": [
+    "GIG",
+    "ICI"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "C": {
+      "item": "thaumcraft:golem_core_blank"
+    }
+  },
+  "vis": {
+    "aer": 25,
+    "ordo": 15,
+    "ignis": 10
+  },
+  "result": {
+    "id": "thaumictinkerer:animation_tablet",
+    "count": 1
+  }
+}

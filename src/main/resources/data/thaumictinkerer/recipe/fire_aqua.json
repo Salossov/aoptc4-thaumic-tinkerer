@@ -1,0 +1,21 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "thaumictinkerer:imbued_fire_enabled"
+    }
+  ],
+  "type": "thaumcraft:crucible",
+  "research": "thaumictinkerer:fire_aqua",
+  "catalyst": {
+    "item": "thaumcraft:water_shard"
+  },
+  "result": {
+    "id": "thaumictinkerer:fire_aqua",
+    "count": 1
+  },
+  "aspects": {
+    "ignis": 5,
+    "praecantatio": 5,
+    "aqua": 5
+  }
+}

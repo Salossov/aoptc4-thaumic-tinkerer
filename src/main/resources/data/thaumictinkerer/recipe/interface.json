@@ -1,0 +1,31 @@
+{
+  "type": "thaumcraft:arcane",
+  "research": "thaumictinkerer:interface",
+  "pattern": [
+    "BRB",
+    "LEL",
+    "BRB"
+  ],
+  "key": {
+    "B": {
+      "item": "thaumcraft:arcane_stone"
+    },
+    "E": {
+      "item": "minecraft:ender_pearl"
+    },
+    "L": {
+      "item": "minecraft:lapis_lazuli"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "id": "thaumictinkerer:interface",
+    "count": 1
+  },
+  "vis": {
+    "ordo": 12,
+    "perditio": 16
+  }
+}

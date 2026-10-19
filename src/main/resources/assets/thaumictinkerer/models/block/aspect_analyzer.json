@@ -1,0 +1,51 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "0": "thaumictinkerer:block/aspect_analyzer_0",
+    "1": "thaumictinkerer:block/aspect_analyzer_1",
+    "2": "thaumictinkerer:block/aspect_analyzer_2",
+    "3": "thaumictinkerer:block/aspect_analyzer_3",
+    "4": "thaumictinkerer:block/aspect_analyzer_4",
+    "particle": "#0"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "down": {
+          "texture": "#0",
+          "cullface": "down"
+        },
+        "up": {
+          "texture": "#0",
+          "cullface": "up"
+        },
+        "north": {
+          "texture": "#1",
+          "cullface": "north"
+        },
+        "south": {
+          "texture": "#2",
+          "cullface": "south"
+        },
+        "west": {
+          "texture": "#3",
+          "cullface": "west"
+        },
+        "east": {
+          "texture": "#4",
+          "cullface": "east"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,504 @@
+{
+  "aer": [
+    {
+      "inputs": [
+        "minecraft:oak_log",
+        "minecraft:spruce_log",
+        "minecraft:birch_log",
+        "minecraft:jungle_log",
+        "minecraft:oak_wood",
+        "minecraft:spruce_wood",
+        "minecraft:birch_wood",
+        "minecraft:jungle_wood"
+      ],
+      "result": {
+        "block": "minecraft:sand"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:oak_leaves",
+        "minecraft:spruce_leaves",
+        "minecraft:birch_leaves",
+        "minecraft:jungle_leaves"
+      ],
+      "result": {
+        "block": "minecraft:sandstone"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:acacia_leaves",
+        "minecraft:dark_oak_leaves"
+      ],
+      "result": {
+        "block": "minecraft:sandstone"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:acacia_log",
+        "minecraft:dark_oak_log",
+        "minecraft:acacia_wood",
+        "minecraft:dark_oak_wood"
+      ],
+      "result": {
+        "block": "minecraft:sand"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:ice"
+      ],
+      "result": {
+        "block": "minecraft:glass"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:water"
+      ],
+      "result": {
+        "block": "minecraft:cake"
+      },
+      "cake": true
+    },
+    {
+      "inputs": [
+        "minecraft:dirt",
+        "minecraft:coarse_dirt",
+        "minecraft:podzol"
+      ],
+      "result": {
+        "block": "minecraft:sand"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:grass_block"
+      ],
+      "result": {
+        "block": "minecraft:sand"
+      },
+      "cake": false
+    }
+  ],
+  "terra": [
+    {
+      "inputs": [
+        "minecraft:sand",
+        "minecraft:red_sand"
+      ],
+      "result": {
+        "block": "minecraft:dirt"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:gravel"
+      ],
+      "result": {
+        "block": "minecraft:clay"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:nether_bricks"
+      ],
+      "result": {
+        "block": "minecraft:oak_planks"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:nether_brick_fence"
+      ],
+      "result": {
+        "block": "minecraft:oak_fence"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:nether_brick_stairs"
+      ],
+      "result": {
+        "block": "minecraft:oak_stairs",
+        "properties": {
+          "facing": "east"
+        }
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:cactus"
+      ],
+      "result": {
+        "block": "minecraft:oak_log"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:snow"
+      ],
+      "result": {
+        "block": "thaumictinkerer:legacy_dry_shrub"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:stone"
+      ],
+      "result": {
+        "block": "minecraft:dirt"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:spawner"
+      ],
+      "result": {
+        "block": "minecraft:iron_block"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:oak_log",
+        "minecraft:spruce_log",
+        "minecraft:birch_log",
+        "minecraft:jungle_log",
+        "minecraft:oak_wood",
+        "minecraft:spruce_wood",
+        "minecraft:birch_wood",
+        "minecraft:jungle_wood"
+      ],
+      "result": {
+        "block": "minecraft:dirt"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:acacia_log",
+        "minecraft:dark_oak_log",
+        "minecraft:acacia_wood",
+        "minecraft:dark_oak_wood"
+      ],
+      "result": {
+        "block": "minecraft:dirt"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:oak_leaves",
+        "minecraft:spruce_leaves",
+        "minecraft:birch_leaves",
+        "minecraft:jungle_leaves"
+      ],
+      "result": {
+        "block": "minecraft:dirt"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:acacia_leaves",
+        "minecraft:dark_oak_leaves"
+      ],
+      "result": {
+        "block": "minecraft:dirt"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:cobblestone"
+      ],
+      "result": {
+        "block": "minecraft:dirt"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:oak_planks",
+        "minecraft:spruce_planks",
+        "minecraft:birch_planks",
+        "minecraft:jungle_planks",
+        "minecraft:acacia_planks",
+        "minecraft:dark_oak_planks"
+      ],
+      "result": {
+        "block": "minecraft:dirt"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:glass"
+      ],
+      "result": {
+        "block": "minecraft:dirt"
+      },
+      "cake": false
+    }
+  ],
+  "ignis": [
+    {
+      "inputs": [
+        "minecraft:grass_block"
+      ],
+      "result": {
+        "block": "minecraft:netherrack"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:dirt",
+        "minecraft:coarse_dirt",
+        "minecraft:podzol"
+      ],
+      "result": {
+        "block": "minecraft:netherrack"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:sand",
+        "minecraft:red_sand"
+      ],
+      "result": {
+        "block": "minecraft:soul_sand"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:gravel"
+      ],
+      "result": {
+        "block": "minecraft:soul_sand"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:clay"
+      ],
+      "result": {
+        "block": "minecraft:glowstone"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:coal_ore"
+      ],
+      "result": {
+        "block": "minecraft:nether_quartz_ore"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:iron_ore"
+      ],
+      "result": {
+        "block": "minecraft:nether_quartz_ore"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:diamond_ore"
+      ],
+      "result": {
+        "block": "minecraft:nether_quartz_ore"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:emerald_ore"
+      ],
+      "result": {
+        "block": "minecraft:nether_quartz_ore"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:gold_block"
+      ],
+      "result": {
+        "block": "minecraft:nether_quartz_ore"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:lapis_ore"
+      ],
+      "result": {
+        "block": "minecraft:nether_quartz_ore"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:redstone_ore"
+      ],
+      "result": {
+        "block": "minecraft:nether_quartz_ore"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:redstone_ore"
+      ],
+      "result": {
+        "block": "minecraft:nether_quartz_ore"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:water"
+      ],
+      "result": {
+        "block": "minecraft:lava"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:wheat"
+      ],
+      "result": {
+        "block": "minecraft:nether_wart"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:potatoes"
+      ],
+      "result": {
+        "block": "minecraft:nether_wart"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:carrots"
+      ],
+      "result": {
+        "block": "minecraft:nether_wart"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:poppy",
+        "minecraft:blue_orchid",
+        "minecraft:allium",
+        "minecraft:azure_bluet",
+        "minecraft:red_tulip",
+        "minecraft:orange_tulip",
+        "minecraft:white_tulip",
+        "minecraft:pink_tulip",
+        "minecraft:oxeye_daisy"
+      ],
+      "result": {
+        "block": "minecraft:brown_mushroom"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:dandelion"
+      ],
+      "result": {
+        "block": "minecraft:dandelion"
+      },
+      "cake": false
+    }
+  ],
+  "aqua": [
+    {
+      "inputs": [
+        "minecraft:sand",
+        "minecraft:red_sand"
+      ],
+      "result": {
+        "block": "minecraft:ice"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:netherrack"
+      ],
+      "result": {
+        "block": "minecraft:snow_block"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:soul_sand"
+      ],
+      "result": {
+        "block": "minecraft:ice"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:glowstone"
+      ],
+      "result": {
+        "block": "minecraft:ice"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:lava"
+      ],
+      "result": {
+        "block": "minecraft:obsidian"
+      },
+      "cake": false
+    },
+    {
+      "inputs": [
+        "minecraft:lava"
+      ],
+      "result": {
+        "block": "minecraft:obsidian"
+      },
+      "cake": false
+    }
+  ],
+  "ordo": [],
+  "perditio": []
+}

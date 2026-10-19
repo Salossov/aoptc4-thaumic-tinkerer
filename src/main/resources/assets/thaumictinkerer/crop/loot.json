@@ -1,0 +1,1437 @@
+{
+  "entries": [
+    {
+      "aspect": "aer",
+      "item": "thaumictinkerer:infused_grain_aer",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "ignis",
+      "item": "thaumictinkerer:infused_grain_ignis",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "terra",
+      "item": "thaumictinkerer:infused_grain_terra",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "aqua",
+      "item": "thaumictinkerer:infused_grain_aqua",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "ordo",
+      "item": "minecraft:glass",
+      "count": 64,
+      "weight": 1
+    },
+    {
+      "aspect": "perditio",
+      "item": "minecraft:sand",
+      "count": 64,
+      "weight": 1
+    },
+    {
+      "aspect": "alienis",
+      "item": "minecraft:ender_pearl",
+      "count": 4,
+      "weight": 10
+    },
+    {
+      "aspect": "alienis",
+      "item": "minecraft:ender_eye",
+      "count": 4,
+      "weight": 5
+    },
+    {
+      "aspect": "alienis",
+      "expand_tag": "thaumictinkerer:crop_loot/extras/bucket_ender",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "bucketEnder"
+    },
+    {
+      "aspect": "alienis",
+      "expand_tag": "thaumictinkerer:crop_loot/extras/bucket_ender",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "bucketEnder"
+    },
+    {
+      "aspect": "arbor",
+      "variant_tag": "thaumictinkerer:crop_loot/variants/old_log",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "variant_tag": "thaumictinkerer:crop_loot/variants/old_log2",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "variant_tag": "thaumictinkerer:crop_loot/variants/old_planks",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "variant_tag": "thaumictinkerer:crop_loot/variants/old_slab",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "item": "minecraft:oak_stairs",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "item": "minecraft:spruce_stairs",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "item": "minecraft:birch_stairs",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "item": "minecraft:jungle_stairs",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "item": "minecraft:acacia_stairs",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "item": "minecraft:dark_oak_stairs",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "item": "minecraft:stick",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "item": "thaumcraft:greatwood_log",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "item": "thaumcraft:silverwood_log",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "item": "thaumcraft:greatwood_planks",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "item": "thaumcraft:silverwood_planks",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "item": "thaumcraft:greatwood_slab",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "item": "thaumcraft:silverwood_slab",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "expand_tag": "thaumictinkerer:crop_loot/extras/wood",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "variant_tag": "thaumictinkerer:crop_loot/variants/old_log",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "variant_tag": "thaumictinkerer:crop_loot/variants/old_log2",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "variant_tag": "thaumictinkerer:crop_loot/variants/old_planks",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "variant_tag": "thaumictinkerer:crop_loot/variants/old_slab",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "item": "minecraft:oak_stairs",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "item": "minecraft:spruce_stairs",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "item": "minecraft:birch_stairs",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "item": "minecraft:jungle_stairs",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "item": "minecraft:acacia_stairs",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "item": "minecraft:dark_oak_stairs",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "item": "minecraft:stick",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "item": "thaumcraft:greatwood_log",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "item": "thaumcraft:silverwood_log",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "item": "thaumcraft:greatwood_planks",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "item": "thaumcraft:silverwood_planks",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "item": "thaumcraft:greatwood_slab",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "item": "thaumcraft:silverwood_slab",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "expand_tag": "thaumictinkerer:crop_loot/extras/wood",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "wood"
+    },
+    {
+      "aspect": "arbor",
+      "item": "minecraft:oak_log",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "auram",
+      "all_wisp_essences": true,
+      "weight": 1
+    },
+    {
+      "aspect": "bestia",
+      "item": "thaumictinkerer:legacy_spawn_egg",
+      "count": 1,
+      "legacy_entity_id": 0,
+      "weight": 1
+    },
+    {
+      "aspect": "bestia",
+      "item": "thaumictinkerer:legacy_spawn_egg",
+      "count": 1,
+      "legacy_entity_id": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "bestia",
+      "item": "thaumictinkerer:legacy_spawn_egg",
+      "count": 1,
+      "legacy_entity_id": 2,
+      "weight": 1
+    },
+    {
+      "aspect": "bestia",
+      "item": "thaumictinkerer:legacy_spawn_egg",
+      "count": 1,
+      "legacy_entity_id": 3,
+      "weight": 1
+    },
+    {
+      "aspect": "bestia",
+      "item": "thaumictinkerer:legacy_spawn_egg",
+      "count": 1,
+      "legacy_entity_id": 4,
+      "weight": 1
+    },
+    {
+      "aspect": "bestia",
+      "item": "thaumictinkerer:legacy_spawn_egg",
+      "count": 1,
+      "legacy_entity_id": 5,
+      "weight": 1
+    },
+    {
+      "aspect": "bestia",
+      "item": "thaumictinkerer:legacy_spawn_egg",
+      "count": 1,
+      "legacy_entity_id": 6,
+      "weight": 1
+    },
+    {
+      "aspect": "bestia",
+      "item": "thaumictinkerer:legacy_spawn_egg",
+      "count": 1,
+      "legacy_entity_id": 7,
+      "weight": 1
+    },
+    {
+      "aspect": "bestia",
+      "item": "thaumictinkerer:legacy_spawn_egg",
+      "count": 1,
+      "legacy_entity_id": 8,
+      "weight": 1
+    },
+    {
+      "aspect": "bestia",
+      "item": "thaumictinkerer:legacy_spawn_egg",
+      "count": 1,
+      "legacy_entity_id": 9,
+      "weight": 1
+    },
+    {
+      "aspect": "bestia",
+      "item": "thaumictinkerer:legacy_spawn_egg",
+      "count": 1,
+      "legacy_entity_id": 10,
+      "weight": 1
+    },
+    {
+      "aspect": "bestia",
+      "item": "thaumictinkerer:legacy_spawn_egg",
+      "count": 1,
+      "legacy_entity_id": 11,
+      "weight": 1
+    },
+    {
+      "aspect": "bestia",
+      "item": "thaumictinkerer:legacy_spawn_egg",
+      "count": 1,
+      "legacy_entity_id": 12,
+      "weight": 1
+    },
+    {
+      "aspect": "bestia",
+      "item": "thaumictinkerer:legacy_spawn_egg",
+      "count": 1,
+      "legacy_entity_id": 13,
+      "weight": 1
+    },
+    {
+      "aspect": "bestia",
+      "item": "thaumictinkerer:legacy_spawn_egg",
+      "count": 1,
+      "legacy_entity_id": 14,
+      "weight": 1
+    },
+    {
+      "aspect": "bestia",
+      "item": "thaumictinkerer:legacy_spawn_egg",
+      "count": 1,
+      "legacy_entity_id": 15,
+      "weight": 1
+    },
+    {
+      "aspect": "bestia",
+      "item": "thaumictinkerer:legacy_spawn_egg",
+      "count": 1,
+      "legacy_entity_id": 16,
+      "weight": 1
+    },
+    {
+      "aspect": "bestia",
+      "item": "thaumictinkerer:legacy_spawn_egg",
+      "count": 1,
+      "legacy_entity_id": 17,
+      "weight": 1
+    },
+    {
+      "aspect": "bestia",
+      "item": "thaumictinkerer:legacy_spawn_egg",
+      "count": 1,
+      "legacy_entity_id": 18,
+      "weight": 1
+    },
+    {
+      "aspect": "bestia",
+      "item": "thaumictinkerer:legacy_spawn_egg",
+      "count": 1,
+      "legacy_entity_id": 19,
+      "weight": 1
+    },
+    {
+      "aspect": "bestia",
+      "item": "thaumictinkerer:legacy_spawn_egg",
+      "count": 1,
+      "legacy_entity_id": 20,
+      "weight": 1
+    },
+    {
+      "aspect": "bestia",
+      "item": "thaumictinkerer:legacy_spawn_egg",
+      "count": 1,
+      "legacy_entity_id": 21,
+      "weight": 1
+    },
+    {
+      "aspect": "bestia",
+      "item": "thaumictinkerer:legacy_spawn_egg",
+      "count": 1,
+      "legacy_entity_id": 22,
+      "weight": 1
+    },
+    {
+      "aspect": "bestia",
+      "item": "thaumictinkerer:legacy_spawn_egg",
+      "count": 1,
+      "legacy_entity_id": 23,
+      "weight": 1
+    },
+    {
+      "aspect": "cognitio",
+      "item": "minecraft:paper",
+      "count": 64,
+      "weight": 15
+    },
+    {
+      "aspect": "cognitio",
+      "item": "minecraft:book",
+      "count": 32,
+      "weight": 10
+    },
+    {
+      "aspect": "cognitio",
+      "item": "minecraft:bookshelf",
+      "count": 16,
+      "weight": 5
+    },
+    {
+      "aspect": "cognitio",
+      "enchantment": "minecraft:protection",
+      "weight": 1
+    },
+    {
+      "aspect": "cognitio",
+      "enchantment": "minecraft:fire_protection",
+      "weight": 1
+    },
+    {
+      "aspect": "cognitio",
+      "enchantment": "minecraft:feather_falling",
+      "weight": 1
+    },
+    {
+      "aspect": "cognitio",
+      "enchantment": "minecraft:blast_protection",
+      "weight": 1
+    },
+    {
+      "aspect": "cognitio",
+      "enchantment": "minecraft:projectile_protection",
+      "weight": 1
+    },
+    {
+      "aspect": "cognitio",
+      "enchantment": "minecraft:respiration",
+      "weight": 1
+    },
+    {
+      "aspect": "cognitio",
+      "enchantment": "minecraft:aqua_affinity",
+      "weight": 1
+    },
+    {
+      "aspect": "cognitio",
+      "enchantment": "minecraft:thorns",
+      "weight": 1
+    },
+    {
+      "aspect": "cognitio",
+      "enchantment": "minecraft:sharpness",
+      "weight": 1
+    },
+    {
+      "aspect": "cognitio",
+      "enchantment": "minecraft:smite",
+      "weight": 1
+    },
+    {
+      "aspect": "cognitio",
+      "enchantment": "minecraft:bane_of_arthropods",
+      "weight": 1
+    },
+    {
+      "aspect": "cognitio",
+      "enchantment": "minecraft:knockback",
+      "weight": 1
+    },
+    {
+      "aspect": "cognitio",
+      "enchantment": "minecraft:fire_aspect",
+      "weight": 1
+    },
+    {
+      "aspect": "cognitio",
+      "enchantment": "minecraft:looting",
+      "weight": 1
+    },
+    {
+      "aspect": "cognitio",
+      "enchantment": "minecraft:efficiency",
+      "weight": 1
+    },
+    {
+      "aspect": "cognitio",
+      "enchantment": "minecraft:silk_touch",
+      "weight": 1
+    },
+    {
+      "aspect": "cognitio",
+      "enchantment": "minecraft:unbreaking",
+      "weight": 1
+    },
+    {
+      "aspect": "cognitio",
+      "enchantment": "minecraft:fortune",
+      "weight": 1
+    },
+    {
+      "aspect": "cognitio",
+      "enchantment": "minecraft:power",
+      "weight": 1
+    },
+    {
+      "aspect": "cognitio",
+      "enchantment": "minecraft:punch",
+      "weight": 1
+    },
+    {
+      "aspect": "cognitio",
+      "enchantment": "minecraft:flame",
+      "weight": 1
+    },
+    {
+      "aspect": "cognitio",
+      "enchantment": "minecraft:infinity",
+      "weight": 1
+    },
+    {
+      "aspect": "cognitio",
+      "enchantment": "minecraft:luck_of_the_sea",
+      "weight": 1
+    },
+    {
+      "aspect": "cognitio",
+      "enchantment": "minecraft:lure",
+      "weight": 1
+    },
+    {
+      "aspect": "corpus",
+      "item": "thaumcraft:zombie_brain",
+      "count": 16,
+      "weight": 4
+    },
+    {
+      "aspect": "corpus",
+      "item": "thaumcraft:zombie_brain",
+      "count": 16,
+      "weight": 1
+    },
+    {
+      "aspect": "exanimis",
+      "item": "minecraft:rotten_flesh",
+      "count": 32,
+      "weight": 1
+    },
+    {
+      "aspect": "fabrico",
+      "item": "thaumictinkerer:dark_quartz",
+      "count": 32,
+      "weight": 1
+    },
+    {
+      "aspect": "fabrico",
+      "item": "thaumcraft:crucible",
+      "count": 16,
+      "weight": 1
+    },
+    {
+      "aspect": "fames",
+      "item": "minecraft:nether_wart",
+      "count": 16,
+      "weight": 1
+    },
+    {
+      "aspect": "gelum",
+      "item": "minecraft:snowball",
+      "count": 16,
+      "weight": 1
+    },
+    {
+      "aspect": "gelum",
+      "expand_tag": "thaumictinkerer:crop_loot/extras/rod_blizz",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "rodBlizz"
+    },
+    {
+      "aspect": "gelum",
+      "expand_tag": "thaumictinkerer:crop_loot/extras/rod_blizz",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "rodBlizz"
+    },
+    {
+      "aspect": "herba",
+      "variant_tag": "thaumictinkerer:crop_loot/variants/old_sapling",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "sapling"
+    },
+    {
+      "aspect": "herba",
+      "item": "thaumcraft:greatwood_sapling",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "sapling"
+    },
+    {
+      "aspect": "herba",
+      "item": "thaumcraft:silverwood_sapling",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "sapling"
+    },
+    {
+      "aspect": "herba",
+      "expand_tag": "thaumictinkerer:crop_loot/extras/sapling",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "sapling"
+    },
+    {
+      "aspect": "herba",
+      "variant_tag": "thaumictinkerer:crop_loot/variants/old_sapling",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "sapling"
+    },
+    {
+      "aspect": "herba",
+      "item": "thaumcraft:greatwood_sapling",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "sapling"
+    },
+    {
+      "aspect": "herba",
+      "item": "thaumcraft:silverwood_sapling",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "sapling"
+    },
+    {
+      "aspect": "herba",
+      "expand_tag": "thaumictinkerer:crop_loot/extras/sapling",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "sapling"
+    },
+    {
+      "aspect": "herba",
+      "item": "minecraft:oak_sapling",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "herba",
+      "item": "minecraft:spruce_sapling",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "herba",
+      "item": "minecraft:birch_sapling",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "herba",
+      "item": "minecraft:jungle_sapling",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "herba",
+      "item": "minecraft:acacia_sapling",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "herba",
+      "item": "minecraft:dark_oak_sapling",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "humanus",
+      "item": "thaumcraft:golem_core_fill",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "humanus",
+      "item": "thaumcraft:golem_core_empty",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "humanus",
+      "item": "thaumcraft:golem_core_gather",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "humanus",
+      "item": "thaumcraft:golem_core_harvest",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "humanus",
+      "item": "thaumcraft:golem_core_guard",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "humanus",
+      "item": "thaumcraft:golem_core_liquid",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "humanus",
+      "item": "thaumcraft:golem_core_alchemy",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "humanus",
+      "item": "thaumcraft:golem_core_lumber",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "humanus",
+      "item": "thaumcraft:golem_core_use",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "humanus",
+      "item": "thaumcraft:golem_core_butcher",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "humanus",
+      "item": "thaumcraft:golem_core_sorting",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "humanus",
+      "item": "thaumcraft:golem_core_fishing",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "tutamen",
+      "item": "minecraft:diamond_boots",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "tutamen",
+      "item": "minecraft:diamond_leggings",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "tutamen",
+      "item": "minecraft:diamond_chestplate",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "tutamen",
+      "item": "minecraft:diamond_helmet",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "perfodio",
+      "item": "thaumcraft:thaumium_pickaxe",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "meto",
+      "item": "thaumcraft:thaumium_hoe",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "telum",
+      "item": "thaumcraft:thaumium_sword",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "instrumentum",
+      "item": "thaumcraft:thaumium_shovel",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "instrumentum",
+      "item": "thaumcraft:thaumium_axe",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "iter",
+      "item": "thaumcraft:paving_stone_travel",
+      "count": 8,
+      "weight": 1
+    },
+    {
+      "aspect": "limus",
+      "item": "minecraft:slime_ball",
+      "count": 16,
+      "weight": 1
+    },
+    {
+      "aspect": "limus",
+      "item": "minecraft:slime_ball",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "slime"
+    },
+    {
+      "aspect": "limus",
+      "expand_tag": "thaumictinkerer:crop_loot/extras/slime",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "slime"
+    },
+    {
+      "aspect": "limus",
+      "item": "minecraft:slime_ball",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "slime"
+    },
+    {
+      "aspect": "limus",
+      "expand_tag": "thaumictinkerer:crop_loot/extras/slime",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "slime"
+    },
+    {
+      "aspect": "lucrum",
+      "item": "minecraft:gold_ingot",
+      "count": 4,
+      "weight": 1
+    },
+    {
+      "aspect": "lux",
+      "item": "minecraft:glowstone_dust",
+      "count": 16,
+      "weight": 5
+    },
+    {
+      "aspect": "lux",
+      "item": "thaumcraft:nitor",
+      "count": 4,
+      "weight": 1
+    },
+    {
+      "aspect": "lux",
+      "item": "thaumictinkerer:bright_nitor",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "machina",
+      "item": "minecraft:piston",
+      "count": 8,
+      "weight": 1
+    },
+    {
+      "aspect": "machina",
+      "expand_tag": "thaumictinkerer:crop_loot/extras/gear",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "gear"
+    },
+    {
+      "aspect": "machina",
+      "expand_tag": "thaumictinkerer:crop_loot/extras/gear",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "gear"
+    },
+    {
+      "aspect": "messis",
+      "item": "minecraft:wheat",
+      "count": 32,
+      "weight": 1
+    },
+    {
+      "aspect": "metallum",
+      "item": "minecraft:iron_ingot",
+      "count": 4,
+      "weight": 100
+    },
+    {
+      "aspect": "metallum",
+      "item": "minecraft:iron_ore",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "iron"
+    },
+    {
+      "aspect": "metallum",
+      "item": "minecraft:iron_block",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "iron"
+    },
+    {
+      "aspect": "metallum",
+      "item": "minecraft:iron_ingot",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "iron"
+    },
+    {
+      "aspect": "metallum",
+      "item": "minecraft:iron_nugget",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "iron"
+    },
+    {
+      "aspect": "metallum",
+      "item": "thaumcraft:native_iron_cluster",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "iron"
+    },
+    {
+      "aspect": "metallum",
+      "expand_tag": "thaumictinkerer:crop_loot/extras/iron",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "iron"
+    },
+    {
+      "aspect": "metallum",
+      "item": "minecraft:iron_ore",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "iron"
+    },
+    {
+      "aspect": "metallum",
+      "item": "minecraft:iron_block",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "iron"
+    },
+    {
+      "aspect": "metallum",
+      "item": "minecraft:iron_ingot",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "iron"
+    },
+    {
+      "aspect": "metallum",
+      "item": "minecraft:iron_nugget",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "iron"
+    },
+    {
+      "aspect": "metallum",
+      "item": "thaumcraft:native_iron_cluster",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "iron"
+    },
+    {
+      "aspect": "metallum",
+      "expand_tag": "thaumictinkerer:crop_loot/extras/iron",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "iron"
+    },
+    {
+      "aspect": "mortuus",
+      "item": "minecraft:bone",
+      "count": 32,
+      "weight": 1
+    },
+    {
+      "aspect": "motus",
+      "item": "minecraft:rail",
+      "count": 1,
+      "weight": 10
+    },
+    {
+      "aspect": "motus",
+      "item": "minecraft:activator_rail",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "pannus",
+      "item": "minecraft:white_wool",
+      "count": 16,
+      "weight": 30
+    },
+    {
+      "aspect": "pannus",
+      "item": "minecraft:string",
+      "count": 15,
+      "weight": 10
+    },
+    {
+      "aspect": "pannus",
+      "item": "minecraft:white_wool",
+      "count": 4,
+      "weight": 1
+    },
+    {
+      "aspect": "pannus",
+      "item": "minecraft:orange_wool",
+      "count": 4,
+      "weight": 1
+    },
+    {
+      "aspect": "pannus",
+      "item": "minecraft:magenta_wool",
+      "count": 4,
+      "weight": 1
+    },
+    {
+      "aspect": "pannus",
+      "item": "minecraft:light_blue_wool",
+      "count": 4,
+      "weight": 1
+    },
+    {
+      "aspect": "pannus",
+      "item": "minecraft:yellow_wool",
+      "count": 4,
+      "weight": 1
+    },
+    {
+      "aspect": "pannus",
+      "item": "minecraft:lime_wool",
+      "count": 4,
+      "weight": 1
+    },
+    {
+      "aspect": "pannus",
+      "item": "minecraft:pink_wool",
+      "count": 4,
+      "weight": 1
+    },
+    {
+      "aspect": "pannus",
+      "item": "minecraft:gray_wool",
+      "count": 4,
+      "weight": 1
+    },
+    {
+      "aspect": "pannus",
+      "item": "minecraft:light_gray_wool",
+      "count": 4,
+      "weight": 1
+    },
+    {
+      "aspect": "pannus",
+      "item": "minecraft:cyan_wool",
+      "count": 4,
+      "weight": 1
+    },
+    {
+      "aspect": "pannus",
+      "item": "minecraft:purple_wool",
+      "count": 4,
+      "weight": 1
+    },
+    {
+      "aspect": "pannus",
+      "item": "minecraft:blue_wool",
+      "count": 4,
+      "weight": 1
+    },
+    {
+      "aspect": "pannus",
+      "item": "minecraft:brown_wool",
+      "count": 4,
+      "weight": 1
+    },
+    {
+      "aspect": "pannus",
+      "item": "minecraft:green_wool",
+      "count": 4,
+      "weight": 1
+    },
+    {
+      "aspect": "pannus",
+      "item": "minecraft:red_wool",
+      "count": 4,
+      "weight": 1
+    },
+    {
+      "aspect": "pannus",
+      "item": "minecraft:black_wool",
+      "count": 4,
+      "weight": 1
+    },
+    {
+      "aspect": "permutatio",
+      "expand_tag": "thaumictinkerer:crop_loot/extras/ingot_copper",
+      "count": 4,
+      "weight": 1,
+      "legacy_group": "ingotCopper"
+    },
+    {
+      "aspect": "permutatio",
+      "item": "thaumcraft:cinnabar_ore",
+      "count": 4,
+      "weight": 1
+    },
+    {
+      "aspect": "potentia",
+      "item": "thaumcraft:alumentum",
+      "count": 12,
+      "weight": 1
+    },
+    {
+      "aspect": "praecantatio",
+      "item": "thaumcraft:air_shard",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "shard"
+    },
+    {
+      "aspect": "praecantatio",
+      "item": "thaumcraft:fire_shard",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "shard"
+    },
+    {
+      "aspect": "praecantatio",
+      "item": "thaumcraft:water_shard",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "shard"
+    },
+    {
+      "aspect": "praecantatio",
+      "item": "thaumcraft:earth_shard",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "shard"
+    },
+    {
+      "aspect": "praecantatio",
+      "item": "thaumcraft:order_shard",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "shard"
+    },
+    {
+      "aspect": "praecantatio",
+      "item": "thaumcraft:entropy_shard",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "shard"
+    },
+    {
+      "aspect": "praecantatio",
+      "expand_tag": "thaumictinkerer:crop_loot/extras/shard",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "shard"
+    },
+    {
+      "aspect": "praecantatio",
+      "item": "thaumcraft:air_shard",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "shard"
+    },
+    {
+      "aspect": "praecantatio",
+      "item": "thaumcraft:fire_shard",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "shard"
+    },
+    {
+      "aspect": "praecantatio",
+      "item": "thaumcraft:water_shard",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "shard"
+    },
+    {
+      "aspect": "praecantatio",
+      "item": "thaumcraft:earth_shard",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "shard"
+    },
+    {
+      "aspect": "praecantatio",
+      "item": "thaumcraft:order_shard",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "shard"
+    },
+    {
+      "aspect": "praecantatio",
+      "item": "thaumcraft:entropy_shard",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "shard"
+    },
+    {
+      "aspect": "praecantatio",
+      "expand_tag": "thaumictinkerer:crop_loot/extras/shard",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "shard"
+    },
+    {
+      "aspect": "sano",
+      "item": "minecraft:golden_apple",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "sano",
+      "item": "minecraft:cake",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "sensus",
+      "item": "minecraft:lapis_lazuli",
+      "count": 20,
+      "weight": 1
+    },
+    {
+      "aspect": "spiritus",
+      "item": "minecraft:soul_sand",
+      "count": 64,
+      "weight": 2
+    },
+    {
+      "aspect": "spiritus",
+      "item": "minecraft:netherrack",
+      "count": 64,
+      "weight": 2
+    },
+    {
+      "aspect": "spiritus",
+      "item": "minecraft:nether_bricks",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "tempestas",
+      "item": "minecraft:air",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "tempestas",
+      "expand_tag": "thaumictinkerer:crop_loot/extras/cloud",
+      "count": 100,
+      "weight": 1,
+      "legacy_group": "cloud"
+    },
+    {
+      "aspect": "tenebrae",
+      "item": "minecraft:obsidian",
+      "count": 10,
+      "weight": 1
+    },
+    {
+      "aspect": "vacuos",
+      "item": "minecraft:bucket",
+      "count": 1,
+      "weight": 1
+    },
+    {
+      "aspect": "vacuos",
+      "expand_tag": "thaumictinkerer:crop_loot/extras/bucket",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "bucket"
+    },
+    {
+      "aspect": "vacuos",
+      "expand_tag": "thaumictinkerer:crop_loot/extras/bucket",
+      "count": 1,
+      "weight": 1,
+      "legacy_group": "bucket"
+    },
+    {
+      "aspect": "venenum",
+      "item": "thaumcraft:quicksilver",
+      "count": 16,
+      "weight": 1
+    },
+    {
+      "aspect": "victus",
+      "item": "minecraft:egg",
+      "count": 8,
+      "weight": 1
+    },
+    {
+      "aspect": "vinculum",
+      "item": "minecraft:cobweb",
+      "count": 4,
+      "weight": 1
+    },
+    {
+      "aspect": "vitium",
+      "item": "thaumcraft:taint_goo",
+      "count": 4,
+      "weight": 1
+    },
+    {
+      "aspect": "vitreus",
+      "item": "minecraft:diamond",
+      "count": 1,
+      "weight": 1
+    }
+  ]
+}

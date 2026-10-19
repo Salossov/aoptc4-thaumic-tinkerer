@@ -1,0 +1,43 @@
+{
+  "type": "thaumcraft:infusion",
+  "research": "thaumictinkerer:blood_sword",
+  "instability": 6,
+  "aspects": {
+    "fames": 20,
+    "tenebrae": 5,
+    "spiritus": 10,
+    "humanus": 6
+  },
+  "input": {
+    "type": "neoforge:components",
+    "items": "thaumcraft:thaumium_sword",
+    "components": {
+      "minecraft:damage": 0
+    },
+    "strict": false
+  },
+  "components": [
+    {
+      "item": "minecraft:rotten_flesh"
+    },
+    {
+      "item": "minecraft:porkchop"
+    },
+    {
+      "item": "minecraft:beef"
+    },
+    {
+      "item": "minecraft:bone"
+    },
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:ghast_tear"
+    }
+  ],
+  "result": {
+    "id": "thaumictinkerer:blood_sword",
+    "count": 1
+  }
+}

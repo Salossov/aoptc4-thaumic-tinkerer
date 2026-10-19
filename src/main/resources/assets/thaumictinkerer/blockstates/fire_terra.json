@@ -1,0 +1,122 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "north": "false",
+        "east": "false",
+        "south": "false",
+        "west": "false",
+        "up": "false"
+      },
+      "apply": [
+        {
+          "model": "thaumictinkerer:block/fire_terra_floor0"
+        },
+        {
+          "model": "thaumictinkerer:block/fire_terra_floor1"
+        }
+      ]
+    },
+    {
+      "when": {
+        "north": "true"
+      },
+      "apply": [
+        {
+          "model": "thaumictinkerer:block/fire_terra_side0"
+        },
+        {
+          "model": "thaumictinkerer:block/fire_terra_side1"
+        },
+        {
+          "model": "thaumictinkerer:block/fire_terra_side_alt0"
+        },
+        {
+          "model": "thaumictinkerer:block/fire_terra_side_alt1"
+        }
+      ]
+    },
+    {
+      "when": {
+        "east": "true"
+      },
+      "apply": [
+        {
+          "model": "thaumictinkerer:block/fire_terra_side0",
+          "y": 90
+        },
+        {
+          "model": "thaumictinkerer:block/fire_terra_side1",
+          "y": 90
+        },
+        {
+          "model": "thaumictinkerer:block/fire_terra_side_alt0",
+          "y": 90
+        },
+        {
+          "model": "thaumictinkerer:block/fire_terra_side_alt1",
+          "y": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "south": "true"
+      },
+      "apply": [
+        {
+          "model": "thaumictinkerer:block/fire_terra_side0",
+          "y": 180
+        },
+        {
+          "model": "thaumictinkerer:block/fire_terra_side1",
+          "y": 180
+        },
+        {
+          "model": "thaumictinkerer:block/fire_terra_side_alt0",
+          "y": 180
+        },
+        {
+          "model": "thaumictinkerer:block/fire_terra_side_alt1",
+          "y": 180
+        }
+      ]
+    },
+    {
+      "when": {
+        "west": "true"
+      },
+      "apply": [
+        {
+          "model": "thaumictinkerer:block/fire_terra_side0",
+          "y": 270
+        },
+        {
+          "model": "thaumictinkerer:block/fire_terra_side1",
+          "y": 270
+        },
+        {
+          "model": "thaumictinkerer:block/fire_terra_side_alt0",
+          "y": 270
+        },
+        {
+          "model": "thaumictinkerer:block/fire_terra_side_alt1",
+          "y": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "up": "true"
+      },
+      "apply": [
+        {
+          "model": "thaumictinkerer:block/fire_terra_up0"
+        },
+        {
+          "model": "thaumictinkerer:block/fire_terra_up1"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "type": "thaumcraft:infusion",
+  "research": "thaumictinkerer:summon",
+  "instability": 4,
+  "aspects": {
+    "aer": 10
+  },
+  "input": {
+    "type": "thaumictinkerer:mob_aspect",
+    "variant": 23
+  },
+  "components": [
+    {
+      "type": "thaumictinkerer:mob_aspect",
+      "variant": 23
+    },
+    {
+      "type": "thaumictinkerer:mob_aspect",
+      "variant": 23
+    },
+    {
+      "type": "thaumictinkerer:mob_aspect",
+      "variant": 23
+    },
+    {
+      "type": "thaumictinkerer:mob_aspect",
+      "variant": 23
+    },
+    {
+      "type": "thaumictinkerer:mob_aspect",
+      "variant": 23
+    },
+    {
+      "type": "thaumictinkerer:mob_aspect",
+      "variant": 23
+    },
+    {
+      "type": "thaumictinkerer:mob_aspect",
+      "variant": 23
+    },
+    {
+      "type": "thaumictinkerer:mob_aspect",
+      "variant": 23
+    }
+  ],
+  "result": {
+    "id": "thaumictinkerer:mob_aspect",
+    "count": 1,
+    "components": {
+      "thaumictinkerer:mob_aspect_variant": 44
+    }
+  }
+}

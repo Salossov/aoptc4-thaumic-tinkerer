@@ -1,0 +1,42 @@
+{
+  "type": "thaumcraft:infusion",
+  "research": "thaumictinkerer:infused_potions",
+  "input": {
+    "item": "minecraft:wheat_seeds"
+  },
+  "components": [
+    {
+      "item": "thaumcraft:earth_shard"
+    },
+    {
+      "item": "thaumcraft:earth_shard"
+    },
+    {
+      "item": "thaumcraft:earth_shard"
+    },
+    {
+      "item": "thaumcraft:earth_shard"
+    }
+  ],
+  "result": {
+    "id": "thaumictinkerer:infused_seeds",
+    "count": 1,
+    "components": {
+      "minecraft:custom_data": {
+        "mainAspect": {
+          "Aspects": [
+            {
+              "key": "terra",
+              "amount": 1
+            }
+          ]
+        }
+      }
+    }
+  },
+  "aspects": {
+    "messis": 32,
+    "meto": 32
+  },
+  "instability": 5
+}

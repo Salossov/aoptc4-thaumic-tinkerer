@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "thaumictinkerer:platform",
+    {
+      "id": "thaumictinkerer:golem_connector",
+      "required": false
+    },
+    {
+      "id": "thaumictinkerer:aspect_analyzer",
+      "required": false
+    }
+  ]
+}

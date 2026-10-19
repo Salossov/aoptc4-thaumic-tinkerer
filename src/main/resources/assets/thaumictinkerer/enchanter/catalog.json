@@ -1,0 +1,783 @@
+{
+  "enchantments": [
+    {
+      "texture": "thaumictinkerer:textures/enchants/protection.png",
+      "vanilla": true,
+      "base_aspects": {
+        "terra": 10,
+        "perditio": 7
+      },
+      "research": "",
+      "id": "minecraft:protection",
+      "legacy_id": 0,
+      "legacy_type": "armor",
+      "max_level": 4
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/fireprotection.png",
+      "vanilla": true,
+      "base_aspects": {
+        "ignis": 10,
+        "perditio": 3,
+        "aqua": 4
+      },
+      "research": "",
+      "id": "minecraft:fire_protection",
+      "legacy_id": 1,
+      "legacy_type": "armor",
+      "max_level": 4
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/featherfalling.png",
+      "vanilla": true,
+      "base_aspects": {
+        "aer": 16,
+        "ordo": 5
+      },
+      "research": "",
+      "id": "minecraft:feather_falling",
+      "legacy_id": 2,
+      "legacy_type": "armor_feet",
+      "max_level": 4
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/blastprotection.png",
+      "vanilla": true,
+      "base_aspects": {
+        "terra": 5,
+        "ignis": 5,
+        "perditio": 8
+      },
+      "research": "",
+      "id": "minecraft:blast_protection",
+      "legacy_id": 3,
+      "legacy_type": "armor",
+      "max_level": 4
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/projectileprotection.png",
+      "vanilla": true,
+      "base_aspects": {
+        "aer": 10,
+        "perditio": 7
+      },
+      "research": "",
+      "id": "minecraft:projectile_protection",
+      "legacy_id": 4,
+      "legacy_type": "armor",
+      "max_level": 4
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/respiration.png",
+      "vanilla": true,
+      "base_aspects": {
+        "aqua": 10,
+        "aer": 8,
+        "ordo": 5
+      },
+      "research": "",
+      "id": "minecraft:respiration",
+      "legacy_id": 5,
+      "legacy_type": "armor_head",
+      "max_level": 3
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/aquaaffinity.png",
+      "vanilla": true,
+      "base_aspects": {
+        "aqua": 25,
+        "ordo": 20,
+        "terra": 5
+      },
+      "research": "",
+      "id": "minecraft:aqua_affinity",
+      "legacy_id": 6,
+      "legacy_type": "armor_head",
+      "max_level": 1
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/thorns.png",
+      "vanilla": true,
+      "base_aspects": {
+        "terra": 10,
+        "perditio": 12
+      },
+      "research": "",
+      "id": "minecraft:thorns",
+      "legacy_id": 7,
+      "legacy_type": "armor_torso",
+      "max_level": 3
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/sharpness.png",
+      "vanilla": true,
+      "base_aspects": {
+        "ordo": 10
+      },
+      "research": "",
+      "id": "minecraft:sharpness",
+      "legacy_id": 16,
+      "legacy_type": "weapon",
+      "max_level": 5
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/smite.png",
+      "vanilla": true,
+      "base_aspects": {
+        "ordo": 5,
+        "aer": 5
+      },
+      "research": "",
+      "id": "minecraft:smite",
+      "legacy_id": 17,
+      "legacy_type": "weapon",
+      "max_level": 5
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/baneofawfulturds.png",
+      "vanilla": true,
+      "base_aspects": {
+        "ordo": 5,
+        "ignis": 5
+      },
+      "research": "",
+      "id": "minecraft:bane_of_arthropods",
+      "legacy_id": 18,
+      "legacy_type": "weapon",
+      "max_level": 5
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/knockback.png",
+      "vanilla": true,
+      "base_aspects": {
+        "perditio": 5,
+        "aer": 10
+      },
+      "research": "",
+      "id": "minecraft:knockback",
+      "legacy_id": 19,
+      "legacy_type": "weapon",
+      "max_level": 2
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/fireaspect.png",
+      "vanilla": true,
+      "base_aspects": {
+        "ignis": 15,
+        "terra": 4
+      },
+      "research": "",
+      "id": "minecraft:fire_aspect",
+      "legacy_id": 20,
+      "legacy_type": "weapon",
+      "max_level": 2
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/looting.png",
+      "vanilla": true,
+      "base_aspects": {
+        "aer": 10,
+        "ignis": 10,
+        "aqua": 10,
+        "terra": 10,
+        "ordo": 15,
+        "perditio": 15
+      },
+      "research": "",
+      "id": "minecraft:looting",
+      "legacy_id": 21,
+      "legacy_type": "weapon",
+      "max_level": 3
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/haste.png",
+      "vanilla": true,
+      "base_aspects": {
+        "aer": 10,
+        "perditio": 5,
+        "terra": 5
+      },
+      "research": "",
+      "id": "thaumcraft:haste",
+      "legacy_id": 150,
+      "legacy_type": "armor",
+      "max_level": 3
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/repair.png",
+      "vanilla": true,
+      "base_aspects": {
+        "aqua": 20,
+        "ignis": 20,
+        "terra": 20,
+        "aer": 20,
+        "ordo": 20,
+        "perditio": 5
+      },
+      "research": "",
+      "id": "thaumcraft:repair",
+      "legacy_id": 151,
+      "legacy_type": "all",
+      "max_level": 2
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/ascentboost.png",
+      "vanilla": false,
+      "base_aspects": {
+        "perditio": 8,
+        "aer": 10
+      },
+      "research": "thaumictinkerer:ttench_ascent_boost",
+      "id": "thaumictinkerer:ascent_boost",
+      "legacy_id": 220,
+      "legacy_type": "armor_legs",
+      "max_level": 4
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/slowfall.png",
+      "vanilla": false,
+      "base_aspects": {
+        "ordo": 8,
+        "aer": 10
+      },
+      "research": "thaumictinkerer:ttench_slow_fall",
+      "id": "thaumictinkerer:slow_fall",
+      "legacy_id": 221,
+      "legacy_type": "armor_feet",
+      "max_level": 3
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/autosmelt.png",
+      "vanilla": false,
+      "base_aspects": {
+        "perditio": 20,
+        "ignis": 30
+      },
+      "research": "thaumictinkerer:ttench_auto_smelt",
+      "id": "thaumictinkerer:auto_smelt",
+      "legacy_id": 222,
+      "legacy_type": "digger",
+      "max_level": 1
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/desintegrate.png",
+      "vanilla": false,
+      "base_aspects": {
+        "perditio": 25,
+        "aer": 10,
+        "terra": 10
+      },
+      "research": "thaumictinkerer:ttench_desintegrate",
+      "id": "thaumictinkerer:desintegrate",
+      "legacy_id": 223,
+      "legacy_type": "digger",
+      "max_level": 1
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/efficiency.png",
+      "vanilla": true,
+      "base_aspects": {
+        "perditio": 12,
+        "terra": 4
+      },
+      "research": "",
+      "id": "minecraft:efficiency",
+      "legacy_id": 32,
+      "legacy_type": "digger",
+      "max_level": 5
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/quickdraw.png",
+      "vanilla": false,
+      "base_aspects": {
+        "ordo": 10,
+        "aer": 10,
+        "aqua": 5
+      },
+      "research": "thaumictinkerer:ttench_quick_draw",
+      "id": "thaumictinkerer:quick_draw",
+      "legacy_id": 224,
+      "legacy_type": "bow",
+      "max_level": 2
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/silktouch.png",
+      "vanilla": true,
+      "base_aspects": {
+        "ordo": 50,
+        "terra": 10,
+        "perditio": 10
+      },
+      "research": "",
+      "id": "minecraft:silk_touch",
+      "legacy_id": 33,
+      "legacy_type": "digger",
+      "max_level": 1
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/vamprisim.png",
+      "vanilla": false,
+      "base_aspects": {
+        "perditio": 8,
+        "ignis": 10,
+        "aqua": 10
+      },
+      "research": "thaumictinkerer:ttench_vampirism",
+      "id": "thaumictinkerer:vampirism",
+      "legacy_id": 225,
+      "legacy_type": "weapon",
+      "max_level": 2
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/unbreaking.png",
+      "vanilla": true,
+      "base_aspects": {
+        "ordo": 15,
+        "aqua": 8,
+        "terra": 8
+      },
+      "research": "",
+      "id": "minecraft:unbreaking",
+      "legacy_id": 34,
+      "legacy_type": "breakable",
+      "max_level": 3
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/fortune.png",
+      "vanilla": true,
+      "base_aspects": {
+        "aer": 10,
+        "ignis": 10,
+        "aqua": 10,
+        "terra": 10,
+        "ordo": 15,
+        "perditio": 15
+      },
+      "research": "",
+      "id": "minecraft:fortune",
+      "legacy_id": 35,
+      "legacy_type": "digger",
+      "max_level": 3
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/dispersedstrikes.png",
+      "vanilla": false,
+      "base_aspects": {
+        "perditio": 12,
+        "ignis": 10,
+        "terra": 10
+      },
+      "research": "thaumictinkerer:ttench_vampirism",
+      "id": "thaumictinkerer:dispersed_strike",
+      "legacy_id": 166,
+      "legacy_type": "weapon",
+      "max_level": 5
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/shatter.png",
+      "vanilla": false,
+      "base_aspects": {
+        "terra": 16,
+        "perditio": 16
+      },
+      "research": "thaumictinkerer:ttench_vampirism",
+      "id": "thaumictinkerer:shatter",
+      "legacy_id": 167,
+      "legacy_type": "digger",
+      "max_level": 5
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/finalstrike.png",
+      "vanilla": false,
+      "base_aspects": {
+        "perditio": 16,
+        "ignis": 16
+      },
+      "research": "thaumictinkerer:ttench_vampirism",
+      "id": "thaumictinkerer:final_strike",
+      "legacy_id": 168,
+      "legacy_type": "weapon",
+      "max_level": 5
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/focusedstrikes.png",
+      "vanilla": false,
+      "base_aspects": {
+        "ordo": 12,
+        "aer": 10,
+        "aqua": 10
+      },
+      "research": "thaumictinkerer:ttench_vampirism",
+      "id": "thaumictinkerer:focused_strike",
+      "legacy_id": 169,
+      "legacy_type": "weapon",
+      "max_level": 5
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/pounce.png",
+      "vanilla": false,
+      "base_aspects": {
+        "terra": 16,
+        "aer": 16
+      },
+      "research": "thaumictinkerer:ttench_vampirism",
+      "id": "thaumictinkerer:pounce",
+      "legacy_id": 170,
+      "legacy_type": "armor_legs",
+      "max_level": 5
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/shockwave.png",
+      "vanilla": false,
+      "base_aspects": {
+        "terra": 16,
+        "aer": 16
+      },
+      "research": "thaumictinkerer:ttench_vampirism",
+      "id": "thaumictinkerer:shockwave",
+      "legacy_id": 171,
+      "legacy_type": "armor_feet",
+      "max_level": 5
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/tunnel.png",
+      "vanilla": false,
+      "base_aspects": {
+        "terra": 16,
+        "ordo": 16
+      },
+      "research": "thaumictinkerer:ttench_vampirism",
+      "id": "thaumictinkerer:tunnel",
+      "legacy_id": 172,
+      "legacy_type": "digger",
+      "max_level": 5
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/valiance.png",
+      "vanilla": false,
+      "base_aspects": {
+        "ordo": 12,
+        "ignis": 10,
+        "terra": 10
+      },
+      "research": "thaumictinkerer:ttench_vampirism",
+      "id": "thaumictinkerer:valiance",
+      "legacy_id": 173,
+      "legacy_type": "weapon",
+      "max_level": 5
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/power.png",
+      "vanilla": true,
+      "base_aspects": {
+        "terra": 5,
+        "ordo": 10
+      },
+      "research": "",
+      "id": "minecraft:power",
+      "legacy_id": 48,
+      "legacy_type": "bow",
+      "max_level": 5
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/punch.png",
+      "vanilla": true,
+      "base_aspects": {
+        "aer": 4,
+        "terra": 10,
+        "perditio": 5
+      },
+      "research": "",
+      "id": "minecraft:punch",
+      "legacy_id": 49,
+      "legacy_type": "bow",
+      "max_level": 2
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/flame.png",
+      "vanilla": true,
+      "base_aspects": {
+        "perditio": 5,
+        "ignis": 20,
+        "terra": 5
+      },
+      "research": "",
+      "id": "minecraft:flame",
+      "legacy_id": 50,
+      "legacy_type": "bow",
+      "max_level": 1
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/infinity.png",
+      "vanilla": true,
+      "base_aspects": {
+        "perditio": 40,
+        "ordo": 40,
+        "terra": 10
+      },
+      "research": "",
+      "id": "minecraft:infinity",
+      "legacy_id": 51,
+      "legacy_type": "bow",
+      "max_level": 1
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/luckofthesea.png",
+      "vanilla": true,
+      "base_aspects": {
+        "perditio": 20,
+        "aqua": 20
+      },
+      "research": "",
+      "id": "minecraft:luck_of_the_sea",
+      "legacy_id": 61,
+      "legacy_type": "fishing_rod",
+      "max_level": 3
+    },
+    {
+      "texture": "thaumictinkerer:textures/enchants/lure.png",
+      "vanilla": true,
+      "base_aspects": {
+        "aqua": 20,
+        "bestia": 20
+      },
+      "research": "",
+      "id": "minecraft:lure",
+      "legacy_id": 62,
+      "legacy_type": "fishing_rod",
+      "max_level": 3
+    }
+  ],
+  "research": [
+    {
+      "id": "thaumictinkerer:ttench_ascent_boost",
+      "parents": [
+        "thaumictinkerer:enchanter"
+      ],
+      "aspects": {
+        "aer": 1,
+        "motus": 1,
+        "praecantatio": 2
+      },
+      "x": 6,
+      "y": 2,
+      "complexity": 2,
+      "icon": "thaumictinkerer:textures/enchants/ascentboost.png",
+      "page": "page.thaumictinkerer.ttench_ascent_boost.0"
+    },
+    {
+      "id": "thaumictinkerer:ttench_slow_fall",
+      "parents": [
+        "thaumictinkerer:enchanter"
+      ],
+      "aspects": {
+        "aer": 1,
+        "motus": 1,
+        "praecantatio": 2
+      },
+      "x": 7,
+      "y": 3,
+      "complexity": 2,
+      "icon": "thaumictinkerer:textures/enchants/slowfall.png",
+      "page": "page.thaumictinkerer.ttench_slow_fall.0"
+    },
+    {
+      "id": "thaumictinkerer:ttench_auto_smelt",
+      "parents": [
+        "thaumictinkerer:enchanter"
+      ],
+      "aspects": {
+        "ignis": 1,
+        "perditio": 1,
+        "praecantatio": 2
+      },
+      "x": 7,
+      "y": 5,
+      "complexity": 2,
+      "icon": "thaumictinkerer:textures/enchants/autosmelt.png",
+      "page": "page.thaumictinkerer.ttench_auto_smelt.0"
+    },
+    {
+      "id": "thaumictinkerer:ttench_desintegrate",
+      "parents": [
+        "thaumictinkerer:enchanter"
+      ],
+      "aspects": {
+        "perditio": 1,
+        "vacuos": 1,
+        "praecantatio": 2
+      },
+      "x": 6,
+      "y": 6,
+      "complexity": 2,
+      "icon": "thaumictinkerer:textures/enchants/desintegrate.png",
+      "page": "page.thaumictinkerer.ttench_desintegrate.0"
+    },
+    {
+      "id": "thaumictinkerer:ttench_quick_draw",
+      "parents": [
+        "thaumictinkerer:enchanter"
+      ],
+      "aspects": {
+        "sensus": 1,
+        "telum": 1,
+        "praecantatio": 2
+      },
+      "x": 4,
+      "y": 6,
+      "complexity": 2,
+      "icon": "thaumictinkerer:textures/enchants/quickdraw.png",
+      "page": "page.thaumictinkerer.ttench_quick_draw.0"
+    },
+    {
+      "id": "thaumictinkerer:ttench_vampirism",
+      "parents": [
+        "thaumictinkerer:enchanter"
+      ],
+      "aspects": {
+        "fames": 1,
+        "telum": 1,
+        "praecantatio": 2
+      },
+      "x": 3,
+      "y": 5,
+      "complexity": 2,
+      "icon": "thaumictinkerer:textures/enchants/vamprisim.png",
+      "page": "page.thaumictinkerer.ttench_vampirism.0"
+    },
+    {
+      "id": "thaumictinkerer:ttench_focused",
+      "parents": [
+        "thaumictinkerer:ttench_vampirism"
+      ],
+      "aspects": {
+        "ordo": 1,
+        "telum": 1,
+        "praecantatio": 2
+      },
+      "x": 2,
+      "y": 7,
+      "complexity": 2,
+      "icon": "thaumictinkerer:textures/enchants/focusedstrikes.png",
+      "page": "page.thaumictinkerer.ttench_focused.0"
+    },
+    {
+      "id": "thaumictinkerer:ttench_dispersed",
+      "parents": [
+        "thaumictinkerer:ttench_vampirism"
+      ],
+      "aspects": {
+        "perditio": 1,
+        "telum": 1,
+        "praecantatio": 2
+      },
+      "x": 1,
+      "y": 6,
+      "complexity": 2,
+      "icon": "thaumictinkerer:textures/enchants/dispersedstrikes.png",
+      "page": "page.thaumictinkerer.ttench_dispersed.0"
+    },
+    {
+      "id": "thaumictinkerer:ttench_final",
+      "parents": [
+        "thaumictinkerer:ttench_focused",
+        "thaumictinkerer:ttench_dispersed"
+      ],
+      "aspects": {
+        "perditio": 3,
+        "ordo": 3,
+        "telum": 3,
+        "praecantatio": 2
+      },
+      "x": 0,
+      "y": 8,
+      "complexity": 2,
+      "icon": "thaumictinkerer:textures/enchants/finalstrike.png",
+      "page": "page.thaumictinkerer.ttench_final.0"
+    },
+    {
+      "id": "thaumictinkerer:ttench_pounce",
+      "parents": [
+        "thaumictinkerer:ttench_ascent_boost"
+      ],
+      "aspects": {
+        "aer": 3,
+        "ordo": 3,
+        "tutamen": 3,
+        "praecantatio": 2
+      },
+      "x": 7,
+      "y": 0,
+      "complexity": 2,
+      "icon": "thaumictinkerer:textures/enchants/pounce.png",
+      "page": "page.thaumictinkerer.ttench_pounce.0"
+    },
+    {
+      "id": "thaumictinkerer:ttench_shatter",
+      "parents": [
+        "thaumictinkerer:ttench_desintegrate"
+      ],
+      "aspects": {
+        "terra": 3,
+        "perditio": 3,
+        "instrumentum": 1,
+        "praecantatio": 2
+      },
+      "x": 5,
+      "y": 8,
+      "complexity": 2,
+      "icon": "thaumictinkerer:textures/enchants/shatter.png",
+      "page": "page.thaumictinkerer.ttench_shatter.0"
+    },
+    {
+      "id": "thaumictinkerer:ttench_shockwave",
+      "parents": [
+        "thaumictinkerer:ttench_slow_fall"
+      ],
+      "aspects": {
+        "aer": 3,
+        "perditio": 3,
+        "tutamen": 1,
+        "praecantatio": 2
+      },
+      "x": 9,
+      "y": 2,
+      "complexity": 2,
+      "icon": "thaumictinkerer:textures/enchants/shockwave.png",
+      "page": "page.thaumictinkerer.ttench_shockwave.0"
+    },
+    {
+      "id": "thaumictinkerer:ttench_tunnel",
+      "parents": [
+        "thaumictinkerer:ttench_auto_smelt"
+      ],
+      "aspects": {
+        "terra": 3,
+        "ordo": 3,
+        "instrumentum": 1,
+        "praecantatio": 2
+      },
+      "x": 9,
+      "y": 6,
+      "complexity": 2,
+      "icon": "thaumictinkerer:textures/enchants/tunnel.png",
+      "page": "page.thaumictinkerer.ttench_tunnel.0"
+    },
+    {
+      "id": "thaumictinkerer:ttench_valiance",
+      "parents": [
+        "thaumictinkerer:ttench_vampirism"
+      ],
+      "aspects": {
+        "telum": 3,
+        "sano": 3,
+        "praecantatio": 2
+      },
+      "x": 1,
+      "y": 4,
+      "complexity": 2,
+      "icon": "thaumictinkerer:textures/enchants/valiance.png",
+      "page": "page.thaumictinkerer.ttench_valiance.0"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "type": "thaumcraft:arcane",
+  "research": "thaumictinkerer:magnets",
+  "pattern": [
+    " I ",
+    "SIs",
+    "WFW"
+  ],
+  "key": {
+    "s": {
+      "item": "thaumcraft:earth_shard"
+    },
+    "S": {
+      "item": "thaumcraft:air_shard"
+    },
+    "W": {
+      "item": "thaumcraft:greatwood_log"
+    },
+    "F": {
+      "type": "neoforge:components",
+      "items": "thaumictinkerer:focus_telekinesis",
+      "components": {
+        "minecraft:damage": 0
+      },
+      "strict": false
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "id": "thaumictinkerer:magnet",
+    "count": 1
+  },
+  "vis": {
+    "aer": 20,
+    "ordo": 5,
+    "terra": 15,
+    "perditio": 5
+  }
+}

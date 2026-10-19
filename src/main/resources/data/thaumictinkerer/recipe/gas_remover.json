@@ -1,0 +1,31 @@
+{
+  "type": "thaumcraft:arcane",
+  "research": "thaumictinkerer:gas_remover",
+  "result": {
+    "id": "thaumictinkerer:gas_remover",
+    "count": 1
+  },
+  "pattern": [
+    "DDD",
+    "T G",
+    "QQQ"
+  ],
+  "vis": {
+    "aer": 2,
+    "ordo": 2
+  },
+  "key": {
+    "D": {
+      "item": "thaumictinkerer:dark_quartz_item"
+    },
+    "T": {
+      "item": "thaumictinkerer:gaseous_shadow"
+    },
+    "G": {
+      "item": "thaumictinkerer:gaseous_light"
+    },
+    "Q": {
+      "item": "minecraft:quartz"
+    }
+  }
+}

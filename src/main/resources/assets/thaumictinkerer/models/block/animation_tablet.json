@@ -1,0 +1,42 @@
+{
+  "textures": {
+    "0": "thaumictinkerer:block/animation_tablet_0",
+    "1": "thaumictinkerer:block/animation_tablet_1",
+    "2": "thaumictinkerer:block/animation_tablet_2",
+    "particle": "thaumictinkerer:block/animation_tablet_2"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        2,
+        16
+      ],
+      "faces": {
+        "down": {
+          "texture": "#0"
+        },
+        "up": {
+          "texture": "#1"
+        },
+        "north": {
+          "texture": "#2"
+        },
+        "south": {
+          "texture": "#2"
+        },
+        "west": {
+          "texture": "#2"
+        },
+        "east": {
+          "texture": "#2"
+        }
+      }
+    }
+  ]
+}

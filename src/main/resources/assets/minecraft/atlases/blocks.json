@@ -1,0 +1,9 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:single",
+      "resource": "thaumcraft:items/lightningring",
+      "sprite": "thaumictinkerer:magnet_ring"
+    }
+  ]
+}

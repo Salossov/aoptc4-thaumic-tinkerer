@@ -1,0 +1,32 @@
+{
+  "type": "thaumcraft:infusion",
+  "research": "INFUSED_INKWELL",
+  "instability": 2,
+  "input": {
+    "type": "neoforge:components",
+    "items": "thaumcraft:scribing_tools",
+    "components": {
+      "minecraft:damage": 0
+    },
+    "strict": false
+  },
+  "result": {
+    "id": "thaumictinkerer:infused_inkwell",
+    "count": 1
+  },
+  "components": [
+    {
+      "item": "thaumcraft:air_shard"
+    },
+    {
+      "item": "thaumcraft:warded_jar"
+    },
+    {
+      "item": "thaumcraft:quicksilver"
+    }
+  ],
+  "aspects": {
+    "vacuos": 8,
+    "tenebrae": 8
+  }
+}

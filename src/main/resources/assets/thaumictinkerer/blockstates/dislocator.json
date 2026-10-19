@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "thaumictinkerer:block/dislocator"
+    },
+    "powered=true": {
+      "model": "thaumictinkerer:block/dislocator"
+    }
+  }
+}

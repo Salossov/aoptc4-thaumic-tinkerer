@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "thaumictinkerer:block/infused_grain_block"
+    },
+    "age=1": {
+      "model": "thaumictinkerer:block/infused_grain_block"
+    },
+    "age=2": {
+      "model": "thaumictinkerer:block/infused_grain_block"
+    },
+    "age=3": {
+      "model": "thaumictinkerer:block/infused_grain_block"
+    },
+    "age=4": {
+      "model": "thaumictinkerer:block/infused_grain_block"
+    },
+    "age=5": {
+      "model": "thaumictinkerer:block/infused_grain_block"
+    },
+    "age=6": {
+      "model": "thaumictinkerer:block/infused_grain_block"
+    },
+    "age=7": {
+      "model": "thaumictinkerer:block/infused_grain_block"
+    }
+  }
+}

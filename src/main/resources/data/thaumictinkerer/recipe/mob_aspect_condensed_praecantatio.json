@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "XXX",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "type": "thaumictinkerer:mob_aspect",
+      "variant": 5
+    }
+  },
+  "result": {
+    "id": "thaumictinkerer:mob_aspect",
+    "count": 1,
+    "components": {
+      "thaumictinkerer:mob_aspect_variant": 26
+    }
+  }
+}

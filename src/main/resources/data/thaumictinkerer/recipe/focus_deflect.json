@@ -1,0 +1,36 @@
+{
+  "type": "thaumcraft:infusion",
+  "research": "thaumictinkerer:focus_deflect",
+  "result": {
+    "id": "thaumictinkerer:focus_deflect",
+    "count": 1
+  },
+  "instability": 5,
+  "aspects": {
+    "aer": 15,
+    "tutamen": 5,
+    "ordo": 20
+  },
+  "input": {
+    "type": "neoforge:components",
+    "items": "thaumictinkerer:focus_flight",
+    "components": {
+      "minecraft:damage": 0
+    },
+    "strict": false
+  },
+  "components": [
+    {
+      "item": "thaumcraft:mirrored_glass"
+    },
+    {
+      "item": "thaumcraft:mirrored_glass"
+    },
+    {
+      "item": "thaumcraft:paving_stone_warding"
+    },
+    {
+      "item": "thaumcraft:order_shard"
+    }
+  ]
+}

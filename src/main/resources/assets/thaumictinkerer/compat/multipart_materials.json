@@ -1,0 +1,162 @@
+[
+  {
+    "legacy_block": "blockCustomOre",
+    "metadata": 0,
+    "block": "thaumcraft:cinnabar_ore",
+    "render_block": "thaumcraft:cinnabar_ore",
+    "hardness": 1.5,
+    "explosion_resistance": 3,
+    "transparency": "opaque",
+    "light": 0
+  },
+  {
+    "legacy_block": "blockCustomOre",
+    "metadata": 7,
+    "block": "thaumcraft:amber_ore",
+    "render_block": "thaumcraft:amber_ore",
+    "hardness": 1.5,
+    "explosion_resistance": 3,
+    "transparency": "opaque",
+    "light": 0
+  },
+  {
+    "legacy_block": "blockWoodenDevice",
+    "metadata": 6,
+    "block": "thaumcraft:greatwood_planks",
+    "render_block": "thaumcraft:greatwood_planks",
+    "hardness": 30,
+    "explosion_resistance": 6,
+    "transparency": "transparent",
+    "light": 0
+  },
+  {
+    "legacy_block": "blockWoodenDevice",
+    "metadata": 7,
+    "block": "thaumcraft:silverwood_planks",
+    "render_block": "thaumcraft:silverwood_planks",
+    "hardness": 30,
+    "explosion_resistance": 6,
+    "transparency": "transparent",
+    "light": 0
+  },
+  {
+    "legacy_block": "blockMagicalLog",
+    "metadata": 0,
+    "block": "thaumcraft:greatwood_log",
+    "render_block": "thaumcraft:greatwood_log",
+    "hardness": 2.5,
+    "explosion_resistance": 2.5,
+    "transparency": "opaque",
+    "light": 0
+  },
+  {
+    "legacy_block": "blockMagicalLeaves",
+    "metadata": 0,
+    "block": "thaumcraft:greatwood_leaves",
+    "render_block": "thaumcraft:greatwood_leaves",
+    "hardness": 0.2,
+    "explosion_resistance": 0.2,
+    "transparency": "leaves",
+    "light": 0
+  },
+  {
+    "legacy_block": "blockCosmeticOpaque",
+    "metadata": 0,
+    "block": "thaumcraft:amber_block",
+    "render_block": "thaumcraft:amber_block",
+    "hardness": 30,
+    "explosion_resistance": 3,
+    "transparency": "transparent",
+    "light": 0
+  },
+  {
+    "legacy_block": "blockCosmeticSolid",
+    "metadata": 0,
+    "block": "thaumcraft:obsidian_tile",
+    "render_block": "thaumcraft:obsidian_tile",
+    "hardness": 30,
+    "explosion_resistance": 6,
+    "transparency": "opaque",
+    "light": 0
+  },
+  {
+    "legacy_block": "blockCosmeticSolid",
+    "metadata": 1,
+    "block": "thaumcraft:obsidian_totem",
+    "render_block": "thaumcraft:obsidian_tile",
+    "hardness": 30,
+    "explosion_resistance": 6,
+    "transparency": "opaque",
+    "light": 0
+  },
+  {
+    "legacy_block": "blockCosmeticSolid",
+    "metadata": 2,
+    "block": "thaumcraft:paving_stone_travel",
+    "render_block": "thaumcraft:paving_stone_travel",
+    "hardness": 30,
+    "explosion_resistance": 6,
+    "transparency": "opaque",
+    "light": 0
+  },
+  {
+    "legacy_block": "blockCosmeticSolid",
+    "metadata": 3,
+    "block": "thaumcraft:paving_stone_warding",
+    "render_block": "thaumcraft:paving_stone_warding",
+    "hardness": 30,
+    "explosion_resistance": 6,
+    "transparency": "opaque",
+    "light": 0
+  },
+  {
+    "legacy_block": "blockCosmeticSolid",
+    "metadata": 4,
+    "block": "thaumcraft:thaumium_block",
+    "render_block": "thaumcraft:thaumium_block",
+    "hardness": 30,
+    "explosion_resistance": 6,
+    "transparency": "opaque",
+    "light": 0
+  },
+  {
+    "legacy_block": "blockCosmeticSolid",
+    "metadata": 5,
+    "block": "thaumcraft:tallow_block",
+    "render_block": "thaumcraft:tallow_block",
+    "hardness": 30,
+    "explosion_resistance": 6,
+    "transparency": "opaque",
+    "light": 0
+  },
+  {
+    "legacy_block": "blockCosmeticSolid",
+    "metadata": 6,
+    "block": "thaumcraft:arcane_stone",
+    "render_block": "thaumcraft:arcane_stone",
+    "hardness": 30,
+    "explosion_resistance": 6,
+    "transparency": "opaque",
+    "light": 0
+  },
+  {
+    "legacy_block": "BlockDarkQuartz",
+    "metadata": 0,
+    "block": "thaumictinkerer:dark_quartz",
+    "render_block": "thaumictinkerer:dark_quartz",
+    "hardness": 0.8,
+    "explosion_resistance": 6,
+    "transparency": "opaque",
+    "light": 0
+  },
+  {
+    "legacy_block": "BlockDarkQuartz",
+    "metadata": 1,
+    "block": "thaumictinkerer:chiseled_dark_quartz",
+    "render_block": "thaumictinkerer:chiseled_dark_quartz",
+    "hardness": 0.8,
+    "explosion_resistance": 6,
+    "transparency": "opaque",
+    "light": 0
+  }
+]

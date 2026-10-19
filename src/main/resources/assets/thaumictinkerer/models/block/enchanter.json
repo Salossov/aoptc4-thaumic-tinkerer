@@ -1,0 +1,42 @@
+{
+  "textures": {
+    "0": "thaumictinkerer:block/enchanter_0",
+    "1": "thaumictinkerer:block/enchanter_1",
+    "2": "thaumictinkerer:block/enchanter_2",
+    "particle": "thaumictinkerer:block/enchanter_2"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        12,
+        16
+      ],
+      "faces": {
+        "down": {
+          "texture": "#0"
+        },
+        "up": {
+          "texture": "#1"
+        },
+        "north": {
+          "texture": "#2"
+        },
+        "south": {
+          "texture": "#2"
+        },
+        "west": {
+          "texture": "#2"
+        },
+        "east": {
+          "texture": "#2"
+        }
+      }
+    }
+  ]
+}

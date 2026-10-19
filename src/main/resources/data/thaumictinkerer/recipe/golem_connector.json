@@ -1,0 +1,38 @@
+{
+  "type": "thaumcraft:arcane",
+  "research": "thaumictinkerer:golem_connector",
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "computercraft"
+    }
+  ],
+  "vis": {
+    "aer": 20,
+    "ordo": 5,
+    "perditio": 15
+  },
+  "pattern": [
+    "WFW",
+    "sIs",
+    "WFW"
+  ],
+  "key": {
+    "W": {
+      "item": "thaumcraft:greatwood_log"
+    },
+    "F": {
+      "item": "minecraft:redstone_block"
+    },
+    "s": {
+      "item": "minecraft:ender_pearl"
+    },
+    "I": {
+      "item": "thaumcraft:golemancers_bell"
+    }
+  },
+  "result": {
+    "id": "thaumictinkerer:golem_connector",
+    "count": 1
+  }
+}

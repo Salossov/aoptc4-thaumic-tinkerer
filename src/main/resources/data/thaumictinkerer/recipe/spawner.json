@@ -1,0 +1,24 @@
+{
+  "type": "thaumcraft:arcane",
+  "research": "thaumictinkerer:summon",
+  "pattern": [
+    "WWW",
+    "SSS"
+  ],
+  "vis": {
+    "ordo": 50,
+    "perditio": 50
+  },
+  "key": {
+    "W": {
+      "item": "thaumcraft:obsidian_totem"
+    },
+    "S": {
+      "item": "minecraft:stone"
+    }
+  },
+  "result": {
+    "id": "thaumictinkerer:spawner",
+    "count": 1
+  }
+}

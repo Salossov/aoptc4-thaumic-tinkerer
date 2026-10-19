@@ -1,0 +1,44 @@
+{
+  "type": "thaumcraft:infusion",
+  "research": "thaumictinkerer:repairer",
+  "instability": 8,
+  "input": {
+    "item": "thaumcraft:thaumium_block"
+  },
+  "components": [
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "minecraft:cobblestone"
+    },
+    {
+      "item": "minecraft:oak_planks"
+    },
+    {
+      "item": "minecraft:leather"
+    },
+    {
+      "item": "thaumcraft:enchanted_fabric"
+    },
+    {
+      "item": "thaumcraft:thaumium_ingot"
+    }
+  ],
+  "aspects": {
+    "instrumentum": 15,
+    "fabrico": 20,
+    "ordo": 10,
+    "praecantatio": 15
+  },
+  "result": {
+    "id": "thaumictinkerer:repairer",
+    "count": 1
+  }
+}

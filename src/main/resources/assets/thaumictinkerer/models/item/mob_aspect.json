@@ -1,0 +1,314 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "thaumictinkerer:item/aqua"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 0
+      },
+      "model": "thaumictinkerer:item/mob_aspect_aqua"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 1
+      },
+      "model": "thaumictinkerer:item/mob_aspect_humanus"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 2
+      },
+      "model": "thaumictinkerer:item/mob_aspect_aer"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 3
+      },
+      "model": "thaumictinkerer:item/mob_aspect_volatus"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 4
+      },
+      "model": "thaumictinkerer:item/mob_aspect_ignis"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 5
+      },
+      "model": "thaumictinkerer:item/mob_aspect_praecantatio"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 6
+      },
+      "model": "thaumictinkerer:item/mob_aspect_exanimis"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 7
+      },
+      "model": "thaumictinkerer:item/mob_aspect_corpus"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 8
+      },
+      "model": "thaumictinkerer:item/mob_aspect_bestia"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 9
+      },
+      "model": "thaumictinkerer:item/mob_aspect_venenum"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 10
+      },
+      "model": "thaumictinkerer:item/mob_aspect_terra"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 11
+      },
+      "model": "thaumictinkerer:item/mob_aspect_alienis"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 12
+      },
+      "model": "thaumictinkerer:item/mob_aspect_iter"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 13
+      },
+      "model": "thaumictinkerer:item/mob_aspect_metallum"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 14
+      },
+      "model": "thaumictinkerer:item/mob_aspect_limus"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 15
+      },
+      "model": "thaumictinkerer:item/mob_aspect_pannus"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 16
+      },
+      "model": "thaumictinkerer:item/mob_aspect_messis"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 21
+      },
+      "model": "thaumictinkerer:item/mob_aspect_aqua_condensed"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 22
+      },
+      "model": "thaumictinkerer:item/mob_aspect_humanus_condensed"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 23
+      },
+      "model": "thaumictinkerer:item/mob_aspect_aer_condensed"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 24
+      },
+      "model": "thaumictinkerer:item/mob_aspect_volatus_condensed"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 25
+      },
+      "model": "thaumictinkerer:item/mob_aspect_ignis_condensed"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 26
+      },
+      "model": "thaumictinkerer:item/mob_aspect_praecantatio_condensed"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 27
+      },
+      "model": "thaumictinkerer:item/mob_aspect_exanimis_condensed"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 28
+      },
+      "model": "thaumictinkerer:item/mob_aspect_corpus_condensed"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 29
+      },
+      "model": "thaumictinkerer:item/mob_aspect_bestia_condensed"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 30
+      },
+      "model": "thaumictinkerer:item/mob_aspect_venenum_condensed"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 31
+      },
+      "model": "thaumictinkerer:item/mob_aspect_terra_condensed"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 32
+      },
+      "model": "thaumictinkerer:item/mob_aspect_alienis_condensed"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 33
+      },
+      "model": "thaumictinkerer:item/mob_aspect_iter_condensed"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 34
+      },
+      "model": "thaumictinkerer:item/mob_aspect_metallum_condensed"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 35
+      },
+      "model": "thaumictinkerer:item/mob_aspect_limus_condensed"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 36
+      },
+      "model": "thaumictinkerer:item/mob_aspect_pannus_condensed"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 37
+      },
+      "model": "thaumictinkerer:item/mob_aspect_messis_condensed"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 42
+      },
+      "model": "thaumictinkerer:item/mob_aspect_aqua_infused"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 43
+      },
+      "model": "thaumictinkerer:item/mob_aspect_humanus_infused"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 44
+      },
+      "model": "thaumictinkerer:item/mob_aspect_aer_infused"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 45
+      },
+      "model": "thaumictinkerer:item/mob_aspect_volatus_infused"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 46
+      },
+      "model": "thaumictinkerer:item/mob_aspect_ignis_infused"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 47
+      },
+      "model": "thaumictinkerer:item/mob_aspect_praecantatio_infused"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 48
+      },
+      "model": "thaumictinkerer:item/mob_aspect_exanimis_infused"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 49
+      },
+      "model": "thaumictinkerer:item/mob_aspect_corpus_infused"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 50
+      },
+      "model": "thaumictinkerer:item/mob_aspect_bestia_infused"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 51
+      },
+      "model": "thaumictinkerer:item/mob_aspect_venenum_infused"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 52
+      },
+      "model": "thaumictinkerer:item/mob_aspect_terra_infused"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 53
+      },
+      "model": "thaumictinkerer:item/mob_aspect_alienis_infused"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 54
+      },
+      "model": "thaumictinkerer:item/mob_aspect_iter_infused"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 55
+      },
+      "model": "thaumictinkerer:item/mob_aspect_metallum_infused"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 56
+      },
+      "model": "thaumictinkerer:item/mob_aspect_limus_infused"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 57
+      },
+      "model": "thaumictinkerer:item/mob_aspect_pannus_infused"
+    },
+    {
+      "predicate": {
+        "thaumictinkerer:variant": 58
+      },
+      "model": "thaumictinkerer:item/mob_aspect_messis_infused"
+    }
+  ]
+}

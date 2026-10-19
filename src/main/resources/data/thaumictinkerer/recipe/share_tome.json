@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "neoforge:conditions": [
+    {
+      "type": "thaumictinkerer:survival_share_tome_enabled"
+    }
+  ],
+  "pattern": [
+    " S ",
+    "PTP",
+    " P "
+  ],
+  "key": {
+    "S": {
+      "type": "neoforge:components",
+      "items": "thaumcraft:scribing_tools",
+      "components": {
+        "minecraft:damage": 0
+      },
+      "strict": false
+    },
+    "T": {
+      "item": "thaumcraft:thaumonomicon"
+    },
+    "P": {
+      "item": "minecraft:paper"
+    }
+  },
+  "result": {
+    "id": "thaumictinkerer:share_tome",
+    "count": 1
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/fire_up0",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "fire": "thaumictinkerer:block/fire_aer_0"
+  }
+}

@@ -1,0 +1,200 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.148'
+}
+
+group = 'thaumic.tinkerer'
+version = project.mod_version
+base { archivesName = 'ThaumicTinkerer-1.21.1' }
+java { toolchain.languageVersion = JavaLanguageVersion.of(21); withSourcesJar() }
+sourceSets {
+    verification {
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+}
+configurations.verificationImplementation.extendsFrom configurations.implementation
+configurations.verificationCompileOnly.extendsFrom configurations.compileOnly
+configurations.verificationRuntimeOnly.extendsFrom configurations.runtimeOnly
+neoForge {
+    version = project.neo_version
+    addModdingDependenciesTo sourceSets.verification
+    mods {
+        thaumictinkerer {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.verification
+        }
+    }
+    runs {
+        gameTestServer {
+            type = 'gameTestServer'
+            sourceSet = sourceSets.verification
+            gameDirectory = file(providers.gradleProperty('gameTestDirectory').getOrElse('runs/gametest'))
+            systemProperty 'neoforge.enabledGameTestNamespaces', 'thaumictinkerer'
+            systemProperty 'thaumictinkerer.testReport', file('build/test-results/gametest.xml').absolutePath
+        }
+    }
+}
+
+def apiJar = file(providers.gradleProperty('thaumcraftApiJar')
+        .getOrElse("libs/thaumcraft-api-${project.thaumcraft_version}.jar"))
+def botaniaJar = file(providers.gradleProperty('botaniaJar')
+        .getOrElse('libs/botania-neoforge-1.21.1-456-20260912.043547-15.jar'))
+def enderStorageJar = file(providers.gradleProperty('enderStorageJar')
+        .getOrElse('libs/EnderStorage-1.21.1-2.13.0.191.jar'))
+def codeChickenLibJar = file(providers.gradleProperty('codeChickenLibJar')
+        .getOrElse('libs/CodeChickenLib-1.21.1-4.6.1.529.jar'))
+def multipartJar = file(providers.gradleProperty('multipartJar')
+        .getOrElse('libs/CBMultipart-1.21.1-3.5.0.155.jar'))
+dependencies {
+    compileOnly files(botaniaJar)
+    compileOnly files(enderStorageJar, codeChickenLibJar)
+    compileOnly files(multipartJar)
+    if (providers.gradleProperty('withMultipart').map { it.toBoolean() }.getOrElse(false)) {
+        verificationRuntimeOnly files(multipartJar, codeChickenLibJar)
+    }
+    if (providers.gradleProperty('withEnderStorage').map { it.toBoolean() }.getOrElse(false)) {
+        verificationRuntimeOnly files(enderStorageJar, codeChickenLibJar)
+    }
+    if (providers.gradleProperty('withBloodMagic').map { it.toBoolean() }.getOrElse(false)) {
+        verificationRuntimeOnly files(providers.gradleProperty('bloodMagicJar')
+                .getOrElse('libs/bloodmagic-3.4.0-46-alpha.jar'))
+        verificationRuntimeOnly files(providers.gradleProperty('modopediaJar')
+                .getOrElse('libs/modopedia-neoforge-1.21.1-1.1.5.jar'))
+    }
+    if (providers.gradleProperty('withBotania').map { it.toBoolean() }.getOrElse(false)) {
+        verificationRuntimeOnly files(botaniaJar)
+        verificationRuntimeOnly 'vazkii.patchouli:Patchouli:1.21.1-92-NEOFORGE'
+    }
+    compileOnly files(apiJar)
+    compileOnly 'cc.tweaked:cc-tweaked-1.21.1-forge-api:1.120.2'
+    compileOnly 'org.appliedenergistics:appliedenergistics2:19.2.18:api'
+    if (providers.gradleProperty('withAppliedEnergistics').map { it.toBoolean() }.getOrElse(false)) {
+        verificationRuntimeOnly 'org.appliedenergistics:appliedenergistics2:19.2.18'
+    }
+    if (providers.gradleProperty('withComputerCraft').map { it.toBoolean() }.getOrElse(false)) {
+        verificationRuntimeOnly 'cc.tweaked:cc-tweaked-1.21.1-forge:1.120.2'
+    }
+    compileOnly 'top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1:api'
+    verificationRuntimeOnly files(providers.gradleProperty('thaumcraftRuntimeJar')
+            .getOrElse("libs/thaumcraft-1.21.1-${project.thaumcraft_version}.jar"))
+    verificationRuntimeOnly 'top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1'
+}
+repositories {
+    mavenCentral()
+    exclusiveContent {
+        forRepository { maven { url = 'https://maven.blamejared.com' } }
+        filter { includeGroup 'vazkii.patchouli' }
+    }
+    exclusiveContent {
+        forRepository { maven { url = 'https://maven.squiddev.cc' } }
+        filter { includeGroup 'cc.tweaked' }
+    }
+    exclusiveContent {
+        forRepository { maven { url = 'https://maven.theillusivec4.top/' } }
+        filter { includeGroup 'top.theillusivec4.curios' }
+    }
+}
+
+tasks.register('verifyApiArtifact') {
+    inputs.file(apiJar)
+    doLast {
+        if (!apiJar.isFile()) throw new GradleException("Build :api:jar in the Thaumcraft project or set -PthaumcraftApiJar=<path>: ${apiJar}")
+    }
+}
+tasks.named('compileJava') { dependsOn 'verifyApiArtifact' }
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
+tasks.withType(AbstractArchiveTask).configureEach {
+    preserveFileTimestamps = false
+    reproducibleFileOrder = true
+}
+tasks.withType(Jar).configureEach { from('NOTICE.md') }
+def artifactVersion = project.version.toString()
+tasks.named('processResources') {
+    inputs.property('mod_version', artifactVersion)
+    filesMatching('META-INF/neoforge.mods.toml') { expand(mod_version: artifactVersion) }
+}
+
+tasks.named('test') { enabled = false }
+tasks.register('clothRulesTest') {
+    dependsOn 'runGameTestServer'
+}
+tasks.register('contentRulesTest') { dependsOn 'runGameTestServer' }
+
+// The game launcher can return zero after a mod-construction crash. Never accept
+// an old report, an empty run, or a JUnit failure as a successful GameTest task.
+tasks.named('runGameTestServer') {
+    def reportFile = file('build/test-results/gametest.xml')
+    def modeFile = new File(reportFile.path + '.mode.json')
+    doFirst {
+        reportFile.delete()
+        modeFile.delete()
+    }
+    doLast {
+        if (!reportFile.isFile()) throw new GradleException('GameTest did not produce a fresh report; inspect the game loading log.')
+        def factory = javax.xml.parsers.DocumentBuilderFactory.newInstance()
+        factory.setFeature('http://apache.org/xml/features/disallow-doctype-decl', true)
+        def report = factory.newDocumentBuilder().parse(reportFile)
+        int tests = report.getElementsByTagName('testcase').length
+        if (tests == 0 || report.getElementsByTagName('failure').length > 0 || report.getElementsByTagName('error').length > 0) {
+            throw new GradleException("GameTest report is empty or failed: ${reportFile}")
+        }
+        logger.lifecycle("TT_FRESH_GAMETEST_REPORT_PASS tests=${tests}")
+    }
+}
+tasks.named('check') { dependsOn 'verificationClasses' }
+
+tasks.register('cropDataRulesTest', JavaExec) {
+    dependsOn 'verificationClasses'
+    classpath = sourceSets.verification.runtimeClasspath
+    mainClass = 'thaumic.tinkerer.verification.CropDataRulesTest'
+}
+tasks.named('check') { dependsOn 'cropDataRulesTest' }
+
+def releaseJar = tasks.named('jar', Jar).flatMap { it.archiveFile }
+def auditReport = layout.buildDirectory.file('reports/release-audit.json')
+tasks.register('auditRelease') {
+    inputs.file(releaseJar)
+    outputs.file(auditReport)
+    doLast {
+        def forbidden = []
+        int classCount = 0
+        new java.util.zip.ZipFile(releaseJar.get().asFile).withCloseable { zip ->
+            zip.entries().each { entry ->
+                if (entry.name.endsWith('.class')) {
+                    classCount++
+                    if (entry.name.startsWith('thaumcraft/') || entry.name.startsWith('net/minecraft/') || entry.name.startsWith('dan200/') ||
+                            entry.name.startsWith('codechicken/') || entry.name.startsWith('vazkii/') ||
+                            entry.name.contains('/verification/') || entry.name.endsWith('SpellClothRulesTest.class')) {
+                        forbidden.add(entry.name)
+                    }
+                    def bytes = zip.getInputStream(entry).withCloseable { it.readAllBytes() }
+                    def pool = new String(bytes, java.nio.charset.StandardCharsets.ISO_8859_1)
+                    if ((pool =~ /thaumcraft\/(?!api\/)[A-Za-z0-9_\/$]+/).find()) {
+                        forbidden.add("Internal core reference in ${entry.name}")
+                    }
+                    if ((pool =~ /dan200\/computercraft\/(?!api\/)[A-Za-z0-9_\/$]+/).find()) {
+                        forbidden.add("Internal ComputerCraft reference in ${entry.name}")
+                    }
+                    if ((pool =~ /appeng\/(?!api\/)[A-Za-z0-9_\/$]+/).find()) {
+                        forbidden.add("Internal AE2 reference in ${entry.name}")
+                    }
+                }
+                if (entry.name.contains('thaumictinkerer_tests') || entry.name.startsWith('tt_verification_materials/') || (entry.name.endsWith('/empty.nbt') || entry.name.endsWith('/summon_space.nbt'))) {
+                    forbidden.add(entry.name)
+                }
+            }
+            def metadata = zip.getInputStream(zip.getEntry('META-INF/neoforge.mods.toml'))
+                    .withCloseable { new String(it.readAllBytes(), java.nio.charset.StandardCharsets.UTF_8) }
+            if (metadata.contains('${mod_version}')) forbidden.add('Unexpanded mod version')
+            if (zip.getEntry('NOTICE.md') == null) forbidden.add('Missing attribution')
+        }
+        if (!forbidden.isEmpty()) throw new GradleException("Release audit failed: ${forbidden}")
+        def output = auditReport.get().asFile
+        output.parentFile.mkdirs()
+        output.text = groovy.json.JsonOutput.prettyPrint(groovy.json.JsonOutput.toJson(
+                [passed:true, classes:classCount, internalCoreReferences:0, bundledApiClasses:0, verificationFiles:0]))
+        logger.lifecycle("TT_RELEASE_AUDIT_PASS classes=${classCount}")
+    }
+}
+tasks.named('check') { dependsOn 'auditRelease' }

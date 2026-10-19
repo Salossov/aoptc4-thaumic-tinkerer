@@ -1,0 +1,43 @@
+{
+  "type": "thaumcraft:arcane",
+  "research": "thaumictinkerer:magnets",
+  "pattern": [
+    " G ",
+    "SGs",
+    "WFW"
+  ],
+  "key": {
+    "s": {
+      "item": "thaumcraft:earth_shard"
+    },
+    "S": {
+      "item": "thaumcraft:air_shard"
+    },
+    "W": {
+      "item": "thaumcraft:greatwood_log"
+    },
+    "F": {
+      "type": "neoforge:components",
+      "items": "thaumictinkerer:focus_telekinesis",
+      "components": {
+        "minecraft:damage": 0
+      },
+      "strict": false
+    },
+    "G": {
+      "type": "thaumictinkerer:ore_metal",
+      "tag": "c:ingots/copper",
+      "fallback": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "id": "thaumictinkerer:mob_magnet",
+    "count": 1
+  },
+  "vis": {
+    "aer": 20,
+    "ordo": 5,
+    "terra": 15,
+    "perditio": 5
+  }
+}

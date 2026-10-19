@@ -1,0 +1,467 @@
+{
+  "metadata_stride": 21,
+  "aspects": [
+    "aqua",
+    "humanus",
+    "aer",
+    "volatus",
+    "ignis",
+    "praecantatio",
+    "exanimis",
+    "corpus",
+    "bestia",
+    "venenum",
+    "terra",
+    "alienis",
+    "iter",
+    "metallum",
+    "limus",
+    "pannus",
+    "messis"
+  ],
+  "mobs": [
+    {
+      "legacy_name": "SnowMan",
+      "legacy_class": "EntitySnowman",
+      "entity": "minecraft:snow_golem",
+      "harvest_types": [
+        "minecraft:snow_golem"
+      ],
+      "aspects": [
+        "aqua",
+        "aqua",
+        "humanus"
+      ],
+      "scale": 1.1,
+      "offset": 0.0
+    },
+    {
+      "legacy_name": "Bat",
+      "legacy_class": "EntityBat",
+      "entity": "minecraft:bat",
+      "harvest_types": [
+        "minecraft:bat"
+      ],
+      "aspects": [
+        "aer",
+        "aer",
+        "volatus"
+      ],
+      "scale": 1.9,
+      "offset": -0.3
+    },
+    {
+      "legacy_name": "Blaze",
+      "legacy_class": "EntityBlaze",
+      "entity": "minecraft:blaze",
+      "harvest_types": [
+        "minecraft:blaze"
+      ],
+      "aspects": [
+        "ignis",
+        "ignis",
+        "ignis"
+      ],
+      "scale": 1.1,
+      "offset": 0.0
+    },
+    {
+      "legacy_name": "Thaumcraft.BrainyZombie",
+      "legacy_class": "EntityBrainyZombie",
+      "entity": "thaumcraft:brainy_zombie",
+      "harvest_types": [
+        "thaumcraft:brainy_zombie",
+        "thaumcraft:giant_brainy_zombie"
+      ],
+      "aspects": [
+        "praecantatio",
+        "exanimis",
+        "corpus"
+      ],
+      "scale": 1.1,
+      "offset": 0.0
+    },
+    {
+      "legacy_name": "Firebat",
+      "legacy_class": "EntityFireBat",
+      "entity": "thaumcraft:firebat",
+      "harvest_types": [
+        "thaumcraft:firebat"
+      ],
+      "aspects": [
+        "volatus",
+        "ignis",
+        "praecantatio"
+      ],
+      "scale": 1.9,
+      "offset": -0.3
+    },
+    {
+      "legacy_name": "CaveSpider",
+      "legacy_class": "EntityCaveSpider",
+      "entity": "minecraft:cave_spider",
+      "harvest_types": [
+        "minecraft:cave_spider"
+      ],
+      "aspects": [
+        "bestia",
+        "venenum",
+        "venenum"
+      ],
+      "scale": 1.1,
+      "offset": 0.0
+    },
+    {
+      "legacy_name": "Chicken",
+      "legacy_class": "EntityChicken",
+      "entity": "minecraft:chicken",
+      "harvest_types": [
+        "minecraft:chicken"
+      ],
+      "aspects": [
+        "messis",
+        "volatus",
+        "bestia"
+      ],
+      "scale": 1.1,
+      "offset": 0.0
+    },
+    {
+      "legacy_name": "Cow",
+      "legacy_class": "EntityCow",
+      "entity": "minecraft:cow",
+      "harvest_types": [
+        "minecraft:cow"
+      ],
+      "aspects": [
+        "bestia",
+        "terra",
+        "bestia"
+      ],
+      "scale": 1.1,
+      "offset": 0.0
+    },
+    {
+      "legacy_name": "Creeper",
+      "legacy_class": "EntityCreeper",
+      "entity": "minecraft:creeper",
+      "harvest_types": [
+        "minecraft:creeper"
+      ],
+      "aspects": [
+        "praecantatio",
+        "bestia",
+        "alienis"
+      ],
+      "scale": 1.1,
+      "offset": 0.0
+    },
+    {
+      "legacy_name": "Enderman",
+      "legacy_class": "EntityEnderman",
+      "entity": "minecraft:enderman",
+      "harvest_types": [
+        "minecraft:enderman"
+      ],
+      "aspects": [
+        "alienis",
+        "alienis",
+        "humanus"
+      ],
+      "scale": 0.3,
+      "offset": 0.0
+    },
+    {
+      "legacy_name": "Ghast",
+      "legacy_class": "EntityGhast",
+      "entity": "minecraft:ghast",
+      "harvest_types": [
+        "minecraft:ghast"
+      ],
+      "aspects": [
+        "ignis",
+        "volatus",
+        "volatus"
+      ],
+      "scale": 0.1,
+      "offset": 0.2
+    },
+    {
+      "legacy_name": "EntityHorse",
+      "legacy_class": "EntityHorse",
+      "entity": "minecraft:horse",
+      "harvest_types": [
+        "minecraft:horse",
+        "minecraft:donkey",
+        "minecraft:mule",
+        "minecraft:skeleton_horse",
+        "minecraft:zombie_horse"
+      ],
+      "aspects": [
+        "bestia",
+        "bestia",
+        "iter"
+      ],
+      "scale": 1.1,
+      "offset": 0.0
+    },
+    {
+      "legacy_name": "VillagerGolem",
+      "legacy_class": "EntityIronGolem",
+      "entity": "minecraft:iron_golem",
+      "harvest_types": [
+        "minecraft:iron_golem"
+      ],
+      "aspects": [
+        "metallum",
+        "metallum",
+        "humanus"
+      ],
+      "scale": 0.3,
+      "offset": 0.0
+    },
+    {
+      "legacy_name": "LavaSlime",
+      "legacy_class": "EntityMagmaCube",
+      "entity": "minecraft:magma_cube",
+      "harvest_types": [
+        "minecraft:magma_cube"
+      ],
+      "aspects": [
+        "ignis",
+        "limus",
+        "limus"
+      ],
+      "scale": 0.6,
+      "offset": 0.0
+    },
+    {
+      "legacy_name": "MushroomCow",
+      "legacy_class": "EntityMooshroom",
+      "entity": "minecraft:mooshroom",
+      "harvest_types": [
+        "minecraft:mooshroom"
+      ],
+      "aspects": [
+        "bestia",
+        "terra",
+        "messis"
+      ],
+      "scale": 1.1,
+      "offset": 0.0
+    },
+    {
+      "legacy_name": "Ozelot",
+      "legacy_class": "EntityOcelot",
+      "entity": "minecraft:ocelot",
+      "harvest_types": [
+        "minecraft:ocelot",
+        "minecraft:cat"
+      ],
+      "aspects": [
+        "bestia",
+        "terra",
+        "alienis"
+      ],
+      "scale": 1.1,
+      "offset": 0.0
+    },
+    {
+      "legacy_name": "Pig",
+      "legacy_class": "EntityPig",
+      "entity": "minecraft:pig",
+      "harvest_types": [
+        "minecraft:pig"
+      ],
+      "aspects": [
+        "bestia",
+        "terra",
+        "iter"
+      ],
+      "scale": 1.1,
+      "offset": 0.0
+    },
+    {
+      "legacy_name": "PigZombie",
+      "legacy_class": "EntityPigZombie",
+      "entity": "minecraft:zombified_piglin",
+      "harvest_types": [
+        "minecraft:zombified_piglin"
+      ],
+      "aspects": [
+        "exanimis",
+        "corpus",
+        "ignis"
+      ],
+      "scale": 1.1,
+      "offset": 0.0
+    },
+    {
+      "legacy_name": "Sheep",
+      "legacy_class": "EntitySheep",
+      "entity": "minecraft:sheep",
+      "harvest_types": [
+        "minecraft:sheep"
+      ],
+      "aspects": [
+        "terra",
+        "pannus",
+        "bestia"
+      ],
+      "scale": 1.1,
+      "offset": 0.0
+    },
+    {
+      "legacy_name": "Silverfish",
+      "legacy_class": "EntitySilverfish",
+      "entity": "minecraft:silverfish",
+      "harvest_types": [
+        "minecraft:silverfish"
+      ],
+      "aspects": [
+        "metallum",
+        "metallum",
+        "terra"
+      ],
+      "scale": 1.1,
+      "offset": 0.0
+    },
+    {
+      "legacy_name": "Skeleton",
+      "legacy_class": "EntitySkeleton",
+      "entity": "minecraft:skeleton",
+      "harvest_types": [
+        "minecraft:skeleton",
+        "minecraft:wither_skeleton"
+      ],
+      "aspects": [
+        "exanimis",
+        "humanus",
+        "exanimis"
+      ],
+      "scale": 1.1,
+      "offset": 0.0
+    },
+    {
+      "legacy_name": "Slime",
+      "legacy_class": "EntitySlime",
+      "entity": "minecraft:slime",
+      "harvest_types": [
+        "minecraft:slime"
+      ],
+      "aspects": [
+        "limus",
+        "limus",
+        "bestia"
+      ],
+      "scale": 0.6,
+      "offset": 0.0
+    },
+    {
+      "legacy_name": "Spider",
+      "legacy_class": "EntitySpider",
+      "entity": "minecraft:spider",
+      "harvest_types": [
+        "minecraft:spider"
+      ],
+      "aspects": [
+        "bestia",
+        "exanimis",
+        "exanimis"
+      ],
+      "scale": 1.1,
+      "offset": 0.0
+    },
+    {
+      "legacy_name": "Squid",
+      "legacy_class": "EntitySquid",
+      "entity": "minecraft:squid",
+      "harvest_types": [
+        "minecraft:squid"
+      ],
+      "aspects": [
+        "aqua",
+        "aqua",
+        "aqua"
+      ],
+      "scale": 0.3,
+      "offset": 0.5
+    },
+    {
+      "legacy_name": "Villager",
+      "legacy_class": "EntityVillager",
+      "entity": "minecraft:villager",
+      "harvest_types": [
+        "minecraft:villager"
+      ],
+      "aspects": [
+        "humanus",
+        "humanus",
+        "humanus"
+      ],
+      "scale": 1.1,
+      "offset": 0.0
+    },
+    {
+      "legacy_name": "Thaumcraft.Wisp",
+      "legacy_class": "EntityWisp",
+      "entity": "thaumcraft:wisp",
+      "harvest_types": [
+        "thaumcraft:wisp"
+      ],
+      "aspects": [
+        "aer",
+        "praecantatio",
+        "praecantatio"
+      ],
+      "scale": 1.1,
+      "offset": 0.0
+    },
+    {
+      "legacy_name": "Witch",
+      "legacy_class": "EntityWitch",
+      "entity": "minecraft:witch",
+      "harvest_types": [
+        "minecraft:witch"
+      ],
+      "aspects": [
+        "praecantatio",
+        "exanimis",
+        "alienis"
+      ],
+      "scale": 0.35,
+      "offset": 0.0
+    },
+    {
+      "legacy_name": "Wolf",
+      "legacy_class": "EntityWolf",
+      "entity": "minecraft:wolf",
+      "harvest_types": [
+        "minecraft:wolf"
+      ],
+      "aspects": [
+        "bestia",
+        "bestia",
+        "bestia"
+      ],
+      "scale": 1.1,
+      "offset": 0.0
+    },
+    {
+      "legacy_name": "Zombie",
+      "legacy_class": "EntityZombie",
+      "entity": "minecraft:zombie",
+      "harvest_types": [
+        "minecraft:zombie",
+        "minecraft:zombie_villager"
+      ],
+      "aspects": [
+        "corpus",
+        "corpus",
+        "exanimis"
+      ],
+      "scale": 1.1,
+      "offset": 0.0
+    }
+  ]
+}

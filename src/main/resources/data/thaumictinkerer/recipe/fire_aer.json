@@ -1,0 +1,21 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "thaumictinkerer:imbued_fire_enabled"
+    }
+  ],
+  "type": "thaumcraft:crucible",
+  "research": "thaumictinkerer:fire_aer",
+  "catalyst": {
+    "item": "thaumcraft:air_shard"
+  },
+  "result": {
+    "id": "thaumictinkerer:fire_aer",
+    "count": 1
+  },
+  "aspects": {
+    "ignis": 5,
+    "praecantatio": 5,
+    "aer": 5
+  }
+}

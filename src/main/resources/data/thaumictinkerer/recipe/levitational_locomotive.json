@@ -1,0 +1,31 @@
+{
+  "type": "thaumcraft:infusion",
+  "research": "thaumictinkerer:levitator",
+  "instability": 4,
+  "aspects": {
+    "motus": 15,
+    "ordo": 20,
+    "praecantatio": 15
+  },
+  "input": {
+    "item": "thaumcraft:levitator"
+  },
+  "components": [
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:feather"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "thaumcraft:obsidian_totem"
+    }
+  ],
+  "result": {
+    "id": "thaumictinkerer:levitational_locomotive",
+    "count": 1
+  }
+}

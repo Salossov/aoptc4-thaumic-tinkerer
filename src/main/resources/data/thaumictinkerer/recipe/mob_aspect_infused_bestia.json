@@ -1,0 +1,53 @@
+{
+  "type": "thaumcraft:infusion",
+  "research": "thaumictinkerer:summon",
+  "instability": 4,
+  "aspects": {
+    "bestia": 10
+  },
+  "input": {
+    "type": "thaumictinkerer:mob_aspect",
+    "variant": 29
+  },
+  "components": [
+    {
+      "type": "thaumictinkerer:mob_aspect",
+      "variant": 29
+    },
+    {
+      "type": "thaumictinkerer:mob_aspect",
+      "variant": 29
+    },
+    {
+      "type": "thaumictinkerer:mob_aspect",
+      "variant": 29
+    },
+    {
+      "type": "thaumictinkerer:mob_aspect",
+      "variant": 29
+    },
+    {
+      "type": "thaumictinkerer:mob_aspect",
+      "variant": 29
+    },
+    {
+      "type": "thaumictinkerer:mob_aspect",
+      "variant": 29
+    },
+    {
+      "type": "thaumictinkerer:mob_aspect",
+      "variant": 29
+    },
+    {
+      "type": "thaumictinkerer:mob_aspect",
+      "variant": 29
+    }
+  ],
+  "result": {
+    "id": "thaumictinkerer:mob_aspect",
+    "count": 1,
+    "components": {
+      "thaumictinkerer:mob_aspect_variant": 50
+    }
+  }
+}
