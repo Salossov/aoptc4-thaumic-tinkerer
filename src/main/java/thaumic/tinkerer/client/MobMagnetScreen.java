@@ -28,7 +28,8 @@ public final class MobMagnetScreen extends AbstractContainerScreen<MobMagnetMenu
             if (minecraft.gameMode != null) minecraft.gameMode.handleInventoryButtonClick(menu.containerId, button);
         }
         @Override protected void renderWidget(GuiGraphics graphics, int x, int y, float partial) {
-            if (menu.searchesAdults() == (button == 0)) GuiTextures.blit(graphics,TEXTURE, getX(), getY(), 176, 13, 13, 13);
+            int v = (menu.searchesAdults() == (button == 0)) ? MagnetVisualTransform.RADIO_TEX_V_SELECTED : MagnetVisualTransform.RADIO_TEX_V_UNSELECTED;
+            GuiTextures.blit(graphics, TEXTURE, getX(), getY(), MagnetVisualTransform.RADIO_TEX_U, v, MagnetVisualTransform.RADIO_WIDTH, MagnetVisualTransform.RADIO_HEIGHT);
         }
         @Override protected void updateWidgetNarration(NarrationElementOutput output) { defaultButtonNarrationText(output); }
     }
@@ -42,9 +43,9 @@ public final class MobMagnetScreen extends AbstractContainerScreen<MobMagnetMenu
             label = pattern.isEmpty() ? Component.translatable("gui.thaumictinkerer.none") : id == null ? Component.translatable("entity." + pattern + ".name")
                     : BuiltInRegistries.ENTITY_TYPE.getOptional(id).map(type -> type.getDescription()).orElse(Component.translatable("entity." + pattern + ".name"));
         }
-        graphics.drawString(font, label, leftPos + imageWidth / 2 - font.width(label) / 2 - 26, topPos + 16, 0x999999, false);
-        graphics.drawString(font, Component.translatable("gui.thaumictinkerer.adult"), leftPos + 120, topPos + 30, 0x999999, false);
-        graphics.drawString(font, Component.translatable("gui.thaumictinkerer.child"), leftPos + 120, topPos + 50, 0x999999, false);
+        graphics.drawString(font, label, leftPos + MagnetVisualTransform.filterLabelX(imageWidth, font.width(label)), topPos + MagnetVisualTransform.LABEL_FILTER_Y, MagnetVisualTransform.LABEL_COLOR, false);
+        graphics.drawString(font, Component.translatable("gui.thaumictinkerer.adult"), leftPos + MagnetVisualTransform.LABEL_ADULT_X, topPos + MagnetVisualTransform.LABEL_ADULT_Y, MagnetVisualTransform.LABEL_COLOR, false);
+        graphics.drawString(font, Component.translatable("gui.thaumictinkerer.child"), leftPos + MagnetVisualTransform.LABEL_CHILD_X, topPos + MagnetVisualTransform.LABEL_CHILD_Y, MagnetVisualTransform.LABEL_COLOR, false);
     }
     @Override public void render(GuiGraphics graphics, int x, int y, float partial) { super.render(graphics, x, y, partial); renderTooltip(graphics, x, y); }
 }

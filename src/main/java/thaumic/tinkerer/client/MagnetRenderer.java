@@ -13,8 +13,6 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.texture.TextureAtlas;
-import net.minecraft.resources.ResourceLocation;
-import thaumic.tinkerer.ThaumicTinkerer;
 import thaumic.tinkerer.block.MagnetBlock;
 import thaumic.tinkerer.block.MagnetBlockEntity;
 
@@ -36,25 +34,31 @@ public final class MagnetRenderer implements BlockEntityRenderer<MagnetBlockEnti
         draw(((MagnetBlock)tile.getBlockState().getBlock()).mobs, tile.isPulling(), tile.signal(), pose, buffers, light, overlay);
     }
     public void draw(boolean mobs, boolean pulling, int signal, PoseStack pose, MultiBufferSource buffers, int light, int overlay) {
-        var texture = ThaumicTinkerer.id("textures/model/" + (mobs ? "mob_magnet_" : "magnet_") + (pulling ? "s" : "n") + ".png");
-        pose.pushPose(); pose.translate(.5, 1.5, .5); pose.scale(1, -1, -1);
+        var texture = MagnetVisualTransform.modelTexture(mobs, pulling);
+        pose.pushPose(); pose.translate(MagnetVisualTransform.TILE_TRANSLATE_X, MagnetVisualTransform.TILE_TRANSLATE_Y, MagnetVisualTransform.TILE_TRANSLATE_Z);
+        pose.scale(MagnetVisualTransform.TILE_SCALE_X, MagnetVisualTransform.TILE_SCALE_Y, MagnetVisualTransform.TILE_SCALE_Z);
         model.render(pose, buffers.getBuffer(RenderType.entityCutoutNoCull(texture)), light, overlay);
         // The original zero-scale rings have no visible area. Avoid a singular modern normal matrix.
-        if (signal == 0) { pose.popPose(); return; }
-        pose.mulPose(Axis.XP.rotationDegrees(90)); pose.translate(0, 0, -.6);
-        var sprite = Minecraft.getInstance().getTextureAtlas(TextureAtlas.LOCATION_BLOCKS).apply(ThaumicTinkerer.id("magnet_ring"));
+        if (signal <= 0) { pose.popPose(); return; }
+        pose.mulPose(Axis.XP.rotationDegrees(MagnetVisualTransform.RING_ROT_X));
+        pose.translate(0, 0, MagnetVisualTransform.RING_BASE_TRANS_Z);
+        var sprite = Minecraft.getInstance().getTextureAtlas(TextureAtlas.LOCATION_BLOCKS)
+                .apply(MagnetVisualTransform.RING_SPRITE);
+        float u0 = sprite.getU0(), u1 = sprite.getU1(), v0 = sprite.getV0(), v1 = sprite.getV1();
         var vertices = buffers.getBuffer(RenderType.entityTranslucent(TextureAtlas.LOCATION_BLOCKS));
-        float scale = signal / 15f * .7f + (signal == 0 ? 0 : .4f);
-        for (int ring = 0; ring < 3; ring++) {
-            for (int face = 0; face < 2; face++) {
+        float scale = MagnetVisualTransform.ringScale(signal);
+        float red = MagnetVisualTransform.ringRed(pulling), blue = MagnetVisualTransform.ringBlue(pulling), alpha = MagnetVisualTransform.ringAlpha();
+        int ringLight = MagnetVisualTransform.ringLight();
+        for (int ring = 0; ring < MagnetVisualTransform.RING_COUNT; ring++) {
+            for (int face = 0; face < MagnetVisualTransform.FACES_PER_RING; face++) {
                 pose.scale(1, -1, 1); pose.scale(scale, scale, scale);
-                var last = pose.last(); float red = pulling ? 0 : 1, blue = pulling ? 1 : 0;
-                vertices.addVertex(last, -.5f, .5f, 0).setColor(red, 0, blue, .9f).setUv(sprite.getU1(), sprite.getV1()).setOverlay(OverlayTexture.NO_OVERLAY).setLight(225).setNormal(last, 0, 0, 1);
-                vertices.addVertex(last, .5f, .5f, 0).setColor(red, 0, blue, .9f).setUv(sprite.getU0(), sprite.getV1()).setOverlay(OverlayTexture.NO_OVERLAY).setLight(225).setNormal(last, 0, 0, 1);
-                vertices.addVertex(last, .5f, -.5f, 0).setColor(red, 0, blue, .9f).setUv(sprite.getU0(), sprite.getV0()).setOverlay(OverlayTexture.NO_OVERLAY).setLight(225).setNormal(last, 0, 0, 1);
-                vertices.addVertex(last, -.5f, -.5f, 0).setColor(red, 0, blue, .9f).setUv(sprite.getU1(), sprite.getV0()).setOverlay(OverlayTexture.NO_OVERLAY).setLight(225).setNormal(last, 0, 0, 1);
+                var last = pose.last();
+                vertices.addVertex(last, -.5f, .5f, 0).setColor(red, 0, blue, alpha).setUv(u1, v1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(ringLight).setNormal(last, 0, 0, 1);
+                vertices.addVertex(last, .5f, .5f, 0).setColor(red, 0, blue, alpha).setUv(u0, v1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(ringLight).setNormal(last, 0, 0, 1);
+                vertices.addVertex(last, .5f, -.5f, 0).setColor(red, 0, blue, alpha).setUv(u0, v0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(ringLight).setNormal(last, 0, 0, 1);
+                vertices.addVertex(last, -.5f, -.5f, 0).setColor(red, 0, blue, alpha).setUv(u1, v0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(ringLight).setNormal(last, 0, 0, 1);
             }
-            pose.translate(0, 0, -(Math.cos((float)System.currentTimeMillis() / 500f) + 1) * .09 - .1);
+            pose.translate(0, 0, MagnetVisualTransform.ringZStep(System.currentTimeMillis()));
         }
         pose.popPose();
     }
