@@ -130,8 +130,9 @@ public final class TinkererFocusItem extends ItemFocusBasic implements FocusBeha
         // Original passes the WAND to getUpgradeLevel, not its attached focus. Keep that quirk.
         double force = 2d / 3 * (1 + getUpgradeLevel(wand, FocusUpgradeType.potency) * .2);
         PlayerMotionApi.launch(player, player.getLookAngle().scale(force));
+        for(int count=0;count<5;count++)ParticleApi.broadcastSmokeSpiral(player.serverLevel(),new ParticleApi.SmokeSpiral(
+                player.getX(),player.getY()-player.getDeltaMovement().y,player.getZ(),2f,(int)(Math.random()*360),(int)player.getY(),647935));
         player.level().playSound(null, player.blockPosition(), SoundEvent.createVariableRangeEvent(net.minecraft.resources.ResourceLocation.parse("thaumcraft:wind")), SoundSource.PLAYERS, .4f, 1);
-        // Original smokeSpiral client effect is tracked separately in the visual audit.
         return true;
     }
     private boolean pull(ServerPlayer player, ItemStack wand, ItemStack focus) {
