@@ -48,10 +48,13 @@ public final class FocusRulesTest {
         wand.getItem().releaseUsing(wand, player.level(), player, 0); player.stopUsingItem();
         player.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY); player.setShiftKeyDown(false);
     }
-    @GameTest(template = "empty", timeoutTicks = 100)
-    public static void smeltingFocus(GameTestHelper helper) {
+    @GameTest(template = "empty", batch="smelting_focus", timeoutTicks = 1200)
+    public static void smeltingFocus(GameTestHelper helper)throws Exception {
+        var target=helper.absolutePos(new BlockPos(4,4,8));var columns=new ArrayList<net.minecraft.world.level.ChunkPos>();
+        for(int x=(target.getX()-20)>>4;x<=(target.getX()+20)>>4;x++)for(int z=(target.getZ()-24)>>4;z<=(target.getZ()+20)>>4;z++)columns.add(new net.minecraft.world.level.ChunkPos(x,z));
+        ReplacementApiRulesTest.prepared(helper,"TTSmelt",columns,peer->{
         VerificationReports.install(); checks = 0;
-        var level = helper.getLevel(); var player = player(helper, "[TTSmelt]");
+        var level = helper.getLevel(); var player = peer.player; thaumic.tinkerer.item.TinkererFocusItem.playerLogout(player.getGameProfile().getName());
         var item = FocusContent.SMELT.get(); var focus = new ItemStack(item);
         for (int rank = 1; rank <= 3; rank++) check(item.applyUpgrade(focus, FocusUpgradeType.potency, rank), "focus potency rank " + rank);
         var wand = wand(player, focus); var pos = helper.absolutePos(new BlockPos(4, 4, 8));
@@ -59,7 +62,7 @@ public final class FocusRulesTest {
         try {
             for (int z = -4; z <= 0; z++) { var p = pos.offset(0, 0, z); changed.add(p); level.setBlock(p, Blocks.AIR.defaultBlockState(), 2); }
             level.setBlock(pos, Blocks.SAND.defaultBlockState(), 2);
-            player.setPos(pos.getX() + .5, pos.getY() + .5 - 1.62, pos.getZ() - 3.5); player.setYRot(0); player.setXRot(0);
+            player.setPos(pos.getX() + .5, pos.getY() + .5 - player.getEyeHeight(), pos.getZ() - 3.5); player.setYRot(0); player.setXRot(0);
             var cost = WandApi.quote(wand, player, item.getVisCost(focus));
             wand.getItem().use(level, player, InteractionHand.MAIN_HAND);
             check(player.isUsingItem(), "native wand begins continuous smelting despite per-activation tooltip");
@@ -84,8 +87,9 @@ public final class FocusRulesTest {
             var research = AddonRegistry.research().get("thaumictinkerer:focus_smelt");
             check(research.concealed() && research.parents().equals(List.of("FOCUSEXCAVATION")) && !research.secondary(), "smelting original research prerequisites and flags");
             check(FocusBehaviors.get(focus).ornament().equals(ThaumicTinkerer.id("item/focus_smelt_ornament")), "native ornament model registered before client model loading");
-            System.out.println("TT_SMELT_FOCUS_PASS checks=" + checks); helper.succeed();
+            System.out.println("TT_SMELT_FOCUS_PASS checks=" + checks);
         } finally { stop(player, wand); for (BlockPos p : changed) level.setBlock(p, Blocks.AIR.defaultBlockState(), 2); }
+        });
     }
     @GameTest(template = "empty", timeoutTicks = 100)
     public static void flightFocus(GameTestHelper helper) {
