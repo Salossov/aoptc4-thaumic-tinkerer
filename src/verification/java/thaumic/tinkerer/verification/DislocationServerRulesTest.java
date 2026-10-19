@@ -166,6 +166,22 @@ public final class DislocationServerRulesTest {
         helper.succeed();
     }
 
+    @GameTest(template="empty",batch="dislocation_server",timeoutTicks=100)
+    public static void nativeWandRestorationKeepsClearedPayload(GameTestHelper helper)throws Exception{
+        VerificationReports.install();var level=helper.getLevel();var source=base(helper);var destination=source.east(5);var support=destination.south();
+        try(var peer=new Peer(helper,"TTDislocationCallback")){
+            var wand=wand(peer.player);level.setBlock(source,Blocks.OAK_LOG.defaultBlockState(),18);
+            check(use(peer.player,wand,source,Direction.NORTH),"capture prepared through actual world operation");
+            level.setBlock(support,Blocks.STONE.defaultBlockState(),18);
+            peer.player.setPos(support.getX()+.5,support.getY()+.5-peer.player.getEyeHeight(),support.getZ()-3);peer.player.setYRot(0);peer.player.setXRot(0);
+            for(var aspect:Aspects.PRIMALS)WandApi.set(wand,aspect,0);
+            wand.getItem().use(level,peer.player,net.minecraft.world.InteractionHand.MAIN_HAND);
+            check(level.getBlockState(destination).is(Blocks.OAK_LOG),"native managed-focus callback places the stored block");
+            check(!ItemData.flag(WandApi.focus(wand),"available"),"native callback persists the cleared result instead of the stale input focus");
+        }
+        helper.succeed();
+    }
+
     @SuppressWarnings("unchecked") private static Map<ServerPlayer,?> waiting()throws ReflectiveOperationException{var field=DislocationActions.class.getDeclaredField("PENDING");field.setAccessible(true);return (Map<ServerPlayer,?>)field.get(null);}
     private static ChunkPreparationApi.Request request(Object job)throws ReflectiveOperationException{var field=job.getClass().getDeclaredField("request");field.setAccessible(true);return (ChunkPreparationApi.Request)field.get(job);}
     @GameTest(template="empty",batch="dislocation_cold",timeoutTicks=1200)

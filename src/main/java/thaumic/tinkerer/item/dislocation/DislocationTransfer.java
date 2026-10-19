@@ -114,7 +114,11 @@ public final class DislocationTransfer {
             boolean saved=false;
             try{
                 if(!WandApi.consume(wand,player,price,true))return false;
-                WandApi.focus(wand,stored);saved=true;
+                WandApi.focus(wand,stored);
+                // The native casting callback persists its mutable focus
+                // argument after success. Return the same payload through it.
+                focus.set(net.minecraft.core.component.DataComponents.CUSTOM_DATA,stored.get(net.minecraft.core.component.DataComponents.CUSTOM_DATA));
+                saved=true;
             }finally{
                 // If persisting the payload fails, rollback owns the blocks;
                 // restore the matching vis rather than charging a failed move.
@@ -178,7 +182,9 @@ public final class DislocationTransfer {
             if(canceled||!sameWand(player,wand,focus))return false;
             // Protection callbacks may have changed a cell while inspecting it.
             for(var part:capture.parts())if(level.getBlockState(destination.offset(part.offset()))!=part.state())return false;
-            WandApi.focus(wand,cleared);snapshots.commit();
+            WandApi.focus(wand,cleared);
+            focus.set(net.minecraft.core.component.DataComponents.CUSTOM_DATA,cleared.get(net.minecraft.core.component.DataComponents.CUSTOM_DATA));
+            snapshots.commit();
         }
         bursts(level,destination,true);wandSound(level,player);return true;
     }
