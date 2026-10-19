@@ -21,6 +21,7 @@ public final class KamiFoundationResearch {
         node("ichorium","ichorium",11,9,Map.of("metallum",2,"lux",1,"fabrico",1,"instrumentum",1),List.of(id("ichor")),List.of(id("ichor_cloth")),0,false,false);
         node("cap_ichor","ichor_cap",11,11,Map.of("instrumentum",2,"metallum",1,"lux",1,"praecantatio",1),List.of(id("ichorium")),List.of(),2,false,false);
         node("rod_ichorcloth","ichorcloth_rod",14,2,Map.of("instrumentum",2,"pannus",1,"lux",1,"praecantatio",1),List.of(id("ichor_cloth")),List.of(id("cap_ichor")),1,false,false);
+        KamiEquipmentResearch.register();
     }
     private KamiFoundationResearch() {}
 }

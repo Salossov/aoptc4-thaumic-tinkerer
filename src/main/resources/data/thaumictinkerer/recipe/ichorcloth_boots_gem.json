@@ -1,0 +1,69 @@
+{
+  "type": "thaumcraft:infusion",
+  "neoforge:conditions": [
+    {
+      "type": "thaumictinkerer:kami_enabled"
+    }
+  ],
+  "result": {
+    "id": "thaumictinkerer:ichorcloth_boots_gem",
+    "count": 1
+  },
+  "research": "thaumictinkerer:ichorcloth_boots_gem",
+  "instability": 13,
+  "aspects": {
+    "terra": 50,
+    "tutamen": 32,
+    "perfodio": 32,
+    "motus": 32,
+    "lux": 64,
+    "herba": 16,
+    "iter": 16
+  },
+  "input": {
+    "item": "thaumictinkerer:ichorcloth_boots"
+  },
+  "components": [
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "thaumictinkerer:ichor"
+    },
+    {
+      "item": "thaumictinkerer:ichor"
+    },
+    {
+      "item": "thaumcraft:thaumonomicon"
+    },
+    {
+      "item": "thaumcraft:focus_primal"
+    },
+    {
+      "type": "neoforge:components",
+      "items": "minecraft:golden_boots",
+      "components": {
+        "minecraft:damage": 0
+      },
+      "strict": false
+    },
+    {
+      "item": "minecraft:grass_block"
+    },
+    {
+      "item": "thaumcraft:arcane_bore"
+    },
+    {
+      "item": "thaumcraft:lamp_of_growth"
+    },
+    {
+      "item": "minecraft:wheat_seeds"
+    },
+    {
+      "item": "minecraft:white_wool"
+    },
+    {
+      "item": "minecraft:lead"
+    }
+  ]
+}

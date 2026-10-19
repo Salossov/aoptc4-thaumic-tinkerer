@@ -92,6 +92,7 @@ public final class ThaumicTinkerer {
         thaumic.tinkerer.crafting.ShareTomeCondition.register(bus);
         thaumic.tinkerer.kami.KamiEnabledCondition.register(bus);
         thaumic.tinkerer.crafting.LegacyDisplayCountIngredient.register(bus);
+        thaumic.tinkerer.crafting.LegacyPotionIngredient.register(bus);
         TABS.register(bus);
         thaumcraft.api.addon.AddonRegistrationEvent.BUS.addListener(TinkererResearch::register);
         thaumcraft.api.addon.AddonRegistrationEvent.BUS.addListener(thaumic.tinkerer.item.FocusContent::registerAddon);

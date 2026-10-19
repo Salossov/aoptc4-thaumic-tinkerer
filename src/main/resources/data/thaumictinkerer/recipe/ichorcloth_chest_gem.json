@@ -1,0 +1,74 @@
+{
+  "type": "thaumcraft:infusion",
+  "neoforge:conditions": [
+    {
+      "type": "thaumictinkerer:kami_enabled"
+    }
+  ],
+  "result": {
+    "id": "thaumictinkerer:ichorcloth_chest_gem",
+    "count": 1
+  },
+  "research": "thaumictinkerer:ichorcloth_chest_gem",
+  "instability": 13,
+  "aspects": {
+    "aer": 50,
+    "tutamen": 32,
+    "volatus": 32,
+    "ordo": 32,
+    "lux": 64,
+    "alienis": 16,
+    "sensus": 16
+  },
+  "input": {
+    "item": "thaumictinkerer:ichorcloth_chest"
+  },
+  "components": [
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "thaumictinkerer:ichor"
+    },
+    {
+      "item": "thaumictinkerer:ichor"
+    },
+    {
+      "item": "thaumcraft:focus_primal"
+    },
+    {
+      "item": "thaumcraft:thaumonomicon"
+    },
+    {
+      "type": "neoforge:components",
+      "items": "minecraft:golden_chestplate",
+      "components": {
+        "minecraft:damage": 0
+      },
+      "strict": false
+    },
+    {
+      "item": "thaumictinkerer:focus_flight"
+    },
+    {
+      "type": "neoforge:components",
+      "items": "thaumcraft:hover_harness",
+      "components": {
+        "minecraft:damage": 0
+      },
+      "strict": false
+    },
+    {
+      "item": "thaumictinkerer:focus_deflect"
+    },
+    {
+      "item": "minecraft:feather"
+    },
+    {
+      "item": "minecraft:ghast_tear"
+    },
+    {
+      "item": "minecraft:arrow"
+    }
+  ]
+}

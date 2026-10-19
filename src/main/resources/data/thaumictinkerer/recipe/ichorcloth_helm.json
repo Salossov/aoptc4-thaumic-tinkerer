@@ -1,0 +1,25 @@
+{
+  "type": "thaumcraft:arcane",
+  "neoforge:conditions": [
+    {
+      "type": "thaumictinkerer:kami_enabled"
+    }
+  ],
+  "result": {
+    "id": "thaumictinkerer:ichorcloth_helm",
+    "count": 1
+  },
+  "research": "thaumictinkerer:ichorcloth_armor",
+  "vis": {
+    "aqua": 75
+  },
+  "pattern": [
+    "CCC",
+    "C C"
+  ],
+  "key": {
+    "C": {
+      "item": "thaumictinkerer:ichor_cloth"
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "type": "thaumcraft:infusion",
+  "neoforge:conditions": [
+    {
+      "type": "thaumictinkerer:kami_enabled"
+    }
+  ],
+  "result": {
+    "id": "thaumictinkerer:ichorcloth_legs_gem",
+    "count": 1
+  },
+  "research": "thaumictinkerer:ichorcloth_legs_gem",
+  "instability": 13,
+  "aspects": {
+    "ignis": 50,
+    "tutamen": 32,
+    "sano": 32,
+    "potentia": 32,
+    "lux": 64,
+    "lucrum": 16,
+    "alienis": 16
+  },
+  "input": {
+    "item": "thaumictinkerer:ichorcloth_legs"
+  },
+  "components": [
+    {
+      "item": "minecraft:diamond"
+    },
+    {
+      "item": "thaumictinkerer:ichor"
+    },
+    {
+      "item": "thaumictinkerer:ichor"
+    },
+    {
+      "item": "thaumcraft:focus_primal"
+    },
+    {
+      "item": "thaumcraft:thaumonomicon"
+    },
+    {
+      "type": "neoforge:components",
+      "items": "minecraft:golden_chestplate",
+      "components": {
+        "minecraft:damage": 0
+      },
+      "strict": false
+    },
+    {
+      "type": "thaumictinkerer:legacy_potion",
+      "potion": "minecraft:fire_resistance"
+    },
+    {
+      "item": "thaumictinkerer:focus_smelt"
+    },
+    {
+      "item": "thaumictinkerer:bright_nitor"
+    },
+    {
+      "item": "minecraft:lava_bucket"
+    },
+    {
+      "item": "minecraft:fire_charge"
+    },
+    {
+      "item": "minecraft:blaze_rod"
+    }
+  ]
+}

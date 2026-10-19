@@ -1,0 +1,25 @@
+{
+  "type": "thaumcraft:arcane",
+  "neoforge:conditions": [
+    {
+      "type": "thaumictinkerer:kami_enabled"
+    }
+  ],
+  "result": {
+    "id": "thaumictinkerer:ichorcloth_boots",
+    "count": 1
+  },
+  "research": "thaumictinkerer:ichorcloth_armor",
+  "vis": {
+    "terra": 75
+  },
+  "pattern": [
+    "C C",
+    "C C"
+  ],
+  "key": {
+    "C": {
+      "item": "thaumictinkerer:ichor_cloth"
+    }
+  }
+}
