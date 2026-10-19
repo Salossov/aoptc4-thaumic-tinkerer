@@ -29,6 +29,11 @@ public final class KamiEquipmentResearch {
         KamiResearch.register(new ResearchDefinition(talisman,TinkererResearch.CATEGORY,List.of(id("ichor_pick_gem"),id("ichor_shovel_gem")),
                 Map.of("vacuos",2,"tenebrae",1,"alienis",1,"praecantatio",1),5,false,true,14,17,List.of(page),List.of(talisman),talisman,
                 false,false,false,false,List.of(),List.of(page,talisman),false,0,List.of(),List.of(),List.of(),List.of()));
+        String proto=id("protoclay"),protoPage="page.thaumictinkerer.kami.protoclay.0";
+        KamiResearch.register(new ResearchDefinition(proto,TinkererResearch.CATEGORY,List.of(id("ichor_pick_gem")),
+                Map.of("instrumentum",2,"perfodio",1,"humanus",1,"machina",1),5,false,true,12,17,List.of(protoPage),List.of(proto),proto,
+                false,false,false,false,List.of(),List.of(protoPage,proto),false,0,List.of(),List.of(),List.of(),List.of(id("ichor_shovel_gem"))));
+
     }
     private KamiEquipmentResearch() {}
 }

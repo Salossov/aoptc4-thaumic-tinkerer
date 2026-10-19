@@ -23,19 +23,22 @@ public final class AwakenedDiggers {
         AdvancedToolMode.change(player,stack,kind);return InteractionResultHolder.sidedSuccess(stack,level.isClientSide());
     }
     private static void tooltip(ItemStack stack,List<Component> lines,String kind){lines.add(Component.translatable(AdvancedToolMode.key(kind,AdvancedToolMode.get(stack))));}
-    public static final class Pick extends IchorTools.Pick implements IBlockStartBreakTool {
+    public static final class Pick extends IchorTools.Pick implements IBlockStartBreakTool, thaumic.tinkerer.api.IAdvancedTool {
+        @Override public String getToolType(){return "pick";}
         @Override public boolean onBlockStartBreak(ItemStack stack,BlockPos pos,ServerPlayer player){return AwakenedMining.start(stack,pos,player,Kind.PICK);}
         @Override public InteractionResultHolder<ItemStack> use(Level level,Player player,InteractionHand hand){return AwakenedDiggers.use(level,player,hand,"pick");}
         @Override public void appendHoverText(ItemStack stack,TooltipContext context,List<Component> lines,TooltipFlag flags){tooltip(stack,lines,"pick");}
         @Override public float getDestroySpeed(ItemStack stack,BlockState state){return state.is(Blocks.BEDROCK)?Float.MAX_VALUE:super.getDestroySpeed(stack,state);}
         @Override public boolean isCorrectToolForDrops(ItemStack stack,BlockState state){return state.is(Blocks.BEDROCK)||super.isCorrectToolForDrops(stack,state);}
     }
-    public static final class Shovel extends IchorTools.Shovel implements IBlockStartBreakTool {
+    public static final class Shovel extends IchorTools.Shovel implements IBlockStartBreakTool, thaumic.tinkerer.api.IAdvancedTool {
+        @Override public String getToolType(){return "shovel";}
         @Override public boolean onBlockStartBreak(ItemStack stack,BlockPos pos,ServerPlayer player){return AwakenedMining.start(stack,pos,player,Kind.SHOVEL);}
         @Override public InteractionResultHolder<ItemStack> use(Level level,Player player,InteractionHand hand){return AwakenedDiggers.use(level,player,hand,"shovel");}
         @Override public void appendHoverText(ItemStack stack,TooltipContext context,List<Component> lines,TooltipFlag flags){tooltip(stack,lines,"shovel");}
     }
-    public static final class Axe extends IchorTools.Axe implements IBlockStartBreakTool {
+    public static final class Axe extends IchorTools.Axe implements IBlockStartBreakTool, thaumic.tinkerer.api.IAdvancedTool {
+        @Override public String getToolType(){return "axe";}
         @Override public boolean onBlockStartBreak(ItemStack stack,BlockPos pos,ServerPlayer player){return AwakenedMining.start(stack,pos,player,Kind.AXE);}
         @Override public InteractionResultHolder<ItemStack> use(Level level,Player player,InteractionHand hand){return AwakenedDiggers.use(level,player,hand,"axe");}
         @Override public void appendHoverText(ItemStack stack,TooltipContext context,List<Component> lines,TooltipFlag flags){tooltip(stack,lines,"axe");}

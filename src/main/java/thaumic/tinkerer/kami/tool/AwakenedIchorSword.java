@@ -15,7 +15,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import thaumic.tinkerer.kami.SoulHearts;
 
-public final class AwakenedIchorSword extends IchorTools.Sword {
+public final class AwakenedIchorSword extends IchorTools.Sword implements thaumic.tinkerer.api.IAdvancedTool {
+    @Override public String getToolType(){return "sword";}
     private boolean ignoreLeftClick;
     @Override public InteractionResultHolder<ItemStack> use(Level level,Player player,InteractionHand hand) {
         var stack=player.getItemInHand(hand);

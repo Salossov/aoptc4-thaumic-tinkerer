@@ -417,5 +417,9 @@
   "tc.research_text.thaumictinkerer:block_talisman": "More pascal than your mind can take",
   "page.thaumictinkerer.kami.block_talisman.0": "This ring can be set to condense any block, by right clicking with it in world in the type of block you want to have it be set to, when enabled via right click will absorb any excess (over 1 stack) of that block in your inventory, and make sure at least one stack stays there. The contents can be stored in any inventory by right clicking it, or placed in world as if they were normal blocks.<BR><BR>It can store over 2 billion of the same block. Guess cobblestone clogging the space isn't an issue. If the ring is empty, it can be shift right clicked into another block to change its binding.",
   "biome.thaumictinkerer.bedrock": "Beach",
-  "thaumictinkerer.documentation.peripherals": "https://github.com/Vazkii/ThaumicTinkerer/wiki/Peripheral-Documentation"
+  "thaumictinkerer.documentation.peripherals": "https://github.com/Vazkii/ThaumicTinkerer/wiki/Peripheral-Documentation",
+  "item.thaumictinkerer.protoclay": "Protoclay",
+  "tc.research_name.thaumictinkerer:protoclay": "Protoclay",
+  "tc.research_text.thaumictinkerer:protoclay": "Stolen from the Creation",
+  "page.thaumictinkerer.kami.protoclay.0": "You grew tired of having to constantly swap your tools.<BR><BR>This mixture will, by melding with the Ichorium, switch any Awakened Ichorium tools being held by the one used for the block being pointed at, case one tries to break it with the wrong tool.<BR><BR>As an example, trying to break a dirt block with an Awakened Ichorium Pickaxe while a Shovel is present elsewhere in the inventory will swap the two, and allow for fast disposal of the dirt block."
 }

@@ -5,6 +5,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.chunk.ChunkAccess;
+import net.minecraft.world.level.chunk.status.ChunkStatus;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.core.registries.Registries;
@@ -239,12 +243,20 @@ public final class AwakenedMining {
     }
     /** Original server eye offset and float trigonometry; modern player reach
      * supplies the former server interaction-manager reach value. */
-    private static BlockHitResult raytrace(LoadedView view,ServerPlayer player,boolean fluids){
+    public record TargetRay(BlockHitResult hit,Set<ChunkPos> visited,Set<ChunkPos> missing){}
+    /** Original targeting without synchronous chunk loading, also for utility items. */
+    public static TargetRay target(Player player,boolean fluids,double clientRange){
+        var view=new LoadedView(player.level());
+        var hit=raytrace(view,player,fluids,clientRange);
+        return new TargetRay(hit,Set.copyOf(view.visited),Set.copyOf(view.missing));
+    }
+    private static BlockHitResult raytrace(LoadedView view,ServerPlayer player,boolean fluids){return raytrace(view,player,fluids,4.5);}
+    private static BlockHitResult raytrace(LoadedView view,Player player,boolean fluids,double clientRange){
         float yaw=player.getYRot(),pitch=player.getXRot();
         float cos=Mth.cos(-yaw*((float)Math.PI/180)-(float)Math.PI),sin=Mth.sin(-yaw*((float)Math.PI/180)-(float)Math.PI);
         float cp=-Mth.cos(-pitch*((float)Math.PI/180)),sp=Mth.sin(-pitch*((float)Math.PI/180));
         var start=new Vec3(player.getX(),player.getY()+1.62,player.getZ());
-        double reach=player.blockInteractionRange()+(player.isCreative()?0:.5);
+        double reach=player instanceof ServerPlayer?player.blockInteractionRange()+(player.isCreative()?0:.5):clientRange;
         var end=start.add(sin*cp*reach,sp*reach,cos*cp*reach);
         return view.clip(new ClipContext(start,end,ClipContext.Block.OUTLINE,fluids?ClipContext.Fluid.SOURCE_ONLY:ClipContext.Fluid.NONE,player){
             @Override public VoxelShape getFluidShape(FluidState state,BlockGetter reader,BlockPos pos){
@@ -256,17 +268,19 @@ public final class AwakenedMining {
         });
     }
     private static final class LoadedView implements BlockGetter {
-        final ServerLevel level;final Set<ChunkPos> visited=new LinkedHashSet<>(),missing=new LinkedHashSet<>();
-        LoadedView(ServerLevel level){this.level=level;}
+        final Level level;final Set<ChunkPos> visited=new LinkedHashSet<>(),missing=new LinkedHashSet<>();
+        LoadedView(Level level){this.level=level;}
+        LoadedView(ServerLevel level){this((Level)level);}
+        private ChunkAccess chunk(ChunkPos pos){return level instanceof ServerLevel server?server.getChunkSource().getChunkNow(pos.x,pos.z):level.getChunkSource().getChunk(pos.x,pos.z,ChunkStatus.FULL,false);}
         @Override public BlockState getBlockState(BlockPos pos){
             if(level.isOutsideBuildHeight(pos))return Blocks.VOID_AIR.defaultBlockState();
-            var cp=new ChunkPos(pos);visited.add(cp);var chunk=level.getChunkSource().getChunkNow(cp.x,cp.z);
+            var cp=new ChunkPos(pos);visited.add(cp);var chunk=chunk(cp);
             if(chunk==null){missing.add(cp);return Blocks.AIR.defaultBlockState();}
             return chunk.getBlockState(pos);
         }
         @Override public FluidState getFluidState(BlockPos pos){return getBlockState(pos).getFluidState();}
         @Override public BlockEntity getBlockEntity(BlockPos pos){
-            var chunk=level.getChunkSource().getChunkNow(pos.getX()>>4,pos.getZ()>>4);return chunk==null?null:chunk.getBlockEntity(pos);
+            var chunk=chunk(new ChunkPos(pos));return chunk==null?null:chunk.getBlockEntity(pos);
         }
         @Override public int getHeight(){return level.getHeight();}
         @Override public int getMinBuildHeight(){return level.getMinBuildHeight();}

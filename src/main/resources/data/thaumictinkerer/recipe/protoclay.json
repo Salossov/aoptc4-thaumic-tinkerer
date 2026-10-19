@@ -1,0 +1,35 @@
+{
+  "type": "thaumcraft:infusion",
+  "neoforge:conditions": [
+    {
+      "type": "thaumictinkerer:kami_enabled"
+    }
+  ],
+  "research": "thaumictinkerer:protoclay",
+  "result": {
+    "id": "thaumictinkerer:protoclay",
+    "count": 1
+  },
+  "instability": 4,
+  "aspects": {
+    "perfodio": 16,
+    "instrumentum": 16
+  },
+  "input": {
+    "item": "minecraft:clay_ball"
+  },
+  "components": [
+    {
+      "item": "minecraft:dirt"
+    },
+    {
+      "item": "minecraft:stone"
+    },
+    {
+      "item": "minecraft:oak_log"
+    },
+    {
+      "item": "thaumictinkerer:ender_shard"
+    }
+  ]
+}
