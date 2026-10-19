@@ -4,6 +4,7 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -14,6 +15,7 @@ import thaumic.tinkerer.ThaumicTinkerer;
 
 public final class BedrockContent {
     public static final ResourceKey<Level> DIMENSION=ResourceKey.create(Registries.DIMENSION,ThaumicTinkerer.id("bedrock"));
+    public static final ResourceKey<Biome> BIOME=ResourceKey.create(Registries.BIOME,ThaumicTinkerer.id("bedrock"));
     private static final DeferredRegister<MapCodec<? extends ChunkGenerator>> GENERATORS=DeferredRegister.create(Registries.CHUNK_GENERATOR,ThaumicTinkerer.ID);
     private static final DeferredRegister.Blocks BLOCKS=DeferredRegister.createBlocks(ThaumicTinkerer.ID);
     private static final DeferredRegister<BlockEntityType<?>> TILES=DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE,ThaumicTinkerer.ID);

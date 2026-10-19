@@ -7,6 +7,6 @@
   "type": "thaumictinkerer:bedrock",
   "generator": {
     "type": "thaumictinkerer:bedrock",
-    "biome": "minecraft:beach"
+    "biome": "thaumictinkerer:bedrock"
   }
 }

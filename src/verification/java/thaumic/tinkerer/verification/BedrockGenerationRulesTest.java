@@ -23,7 +23,7 @@ public final class BedrockGenerationRulesTest {
     @GameTest(template="summon_space",batch="bedrock_generation",timeoutTicks=100)
     public static void nativeSlabHeightmapsAndGeneratorCodec(GameTestHelper helper){
         VerificationReports.install();var level=helper.getLevel();var registry=level.registryAccess().registryOrThrow(Registries.BIOME);
-        var generator=new BedrockChunkGenerator(registry.getHolderOrThrow(Biomes.BEACH));
+        var generator=new BedrockChunkGenerator(registry.getHolderOrThrow(BedrockContent.BIOME));
         var bounds=LevelHeightAccessor.create(0,256);var chunk=new ProtoChunk(new ChunkPos(-1,2),UpgradeData.EMPTY,bounds,registry,null);
         // Actual native ProtoChunk; no loaded world terrain is replaced here.
         check(generator.fillFromNoise(null,null,null,chunk).getNow(null)==chunk,"native slab generation completes without waiting");
@@ -34,9 +34,31 @@ public final class BedrockGenerationRulesTest {
         check(generator.getSpawnHeight(bounds)==1&&generator.getMinY()==0&&generator.getGenDepth()==256,"source generator dimensions");
         var ops=RegistryOps.create(JsonOps.INSTANCE,level.registryAccess());var encoded=ChunkGenerator.CODEC.encodeStart(ops,generator).getOrThrow();
         var decoded=ChunkGenerator.CODEC.parse(ops,encoded).getOrThrow();check(decoded instanceof BedrockChunkGenerator,"registered native generator codec roundtrip");
+        check(decoded.getBiomeSource().possibleBiomes().equals(Set.of(registry.getHolderOrThrow(BedrockContent.BIOME))),"codec retains the approved independent biome key");
         var bedrock=level.getServer().getLevel(BedrockContent.DIMENSION);
         if(TinkererConfig.KAMI_FORCE_ENABLED.get()&&TinkererConfig.KAMI_BEDROCK_ENABLED.get())check(bedrock!=null&&bedrock.getMinBuildHeight()==0&&bedrock.getHeight()==256,"conditional dimension resources loaded with approved saved key");
         else check(bedrock==null,"disabled KAMI/bedrock omits dimension");
+        helper.succeed();
+    }
+    @GameTest(template="summon_space",batch="bedrock_generation",timeoutTicks=100)
+    public static void nativeSourceBeachFaunaAndExtensibleBiome(GameTestHelper helper){
+        VerificationReports.install();var level=helper.getLevel();var registry=level.registryAccess().registryOrThrow(Registries.BIOME);
+        var holder=registry.getHolderOrThrow(BedrockContent.BIOME);var biome=holder.value();var spawns=biome.getMobSettings();
+        check(biome.getBaseTemperature()==.8f,"source Beach temperature");
+        check(holder.is(net.minecraft.tags.BiomeTags.IS_BEACH)&&holder.is(net.minecraft.tags.BiomeTags.IS_OVERWORLD),"ordinary beach classification remains available to biome modifiers");
+        check(holder.is(net.minecraft.tags.TagKey.create(Registries.BIOME,net.minecraft.resources.ResourceLocation.parse("c:is_sandy"))),"modern sandy classification retained");
+        var expected=Map.of(
+            net.minecraft.world.entity.MobCategory.MONSTER,List.of("spider:100:4:4","zombie:95:4:4","zombie_villager:5:4:4","skeleton:100:4:4","creeper:100:4:4","slime:100:4:4","enderman:10:1:4","witch:5:1:1"),
+            net.minecraft.world.entity.MobCategory.WATER_CREATURE,List.of("squid:10:4:4"),
+            net.minecraft.world.entity.MobCategory.AMBIENT,List.of("bat:10:8:8"));
+        var generator=new BedrockChunkGenerator(holder);var pos=helper.absolutePos(new BlockPos(8,4,8));
+        for(var category:net.minecraft.world.entity.MobCategory.values()){
+            var list=spawns.getMobs(category);var actual=list.unwrap().stream().map(row->net.minecraft.core.registries.BuiltInRegistries.ENTITY_TYPE.getKey(row.type).getPath()+":"+row.getWeight().asInt()+":"+row.minCount+":"+row.maxCount).toList();
+            check(actual.equals(expected.getOrDefault(category,List.of())),"source ordered spawn list for "+category);
+            check(generator.getMobsAt(holder,level.structureManager(),category,pos)==list,"generator consumes the real extensible biome settings for "+category);
+        }
+        check(biome.getGenerationSettings().features().isEmpty(),"no native surface decorations added");
+        check(holder!=registry.getHolderOrThrow(Biomes.BEACH),"custom bedrock data does not replace ordinary Beach");
         helper.succeed();
     }
     @GameTest(template="summon_space",batch="bedrock_generation",timeoutTicks=100)
