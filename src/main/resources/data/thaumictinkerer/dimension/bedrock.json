@@ -1,0 +1,12 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "thaumictinkerer:bedrock_enabled"
+    }
+  ],
+  "type": "thaumictinkerer:bedrock",
+  "generator": {
+    "type": "thaumictinkerer:bedrock",
+    "biome": "minecraft:beach"
+  }
+}

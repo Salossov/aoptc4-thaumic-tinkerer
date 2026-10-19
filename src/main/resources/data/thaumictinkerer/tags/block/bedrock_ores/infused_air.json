@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#c:ores/infused_air",
+      "required": false
+    },
+    {
+      "id": "thaumcraft:air_infused_stone",
+      "required": false
+    }
+  ]
+}

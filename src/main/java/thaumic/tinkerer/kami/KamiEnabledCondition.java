@@ -12,7 +12,7 @@ public final class KamiEnabledCondition implements ICondition {
     public static final KamiEnabledCondition INSTANCE=new KamiEnabledCondition();
     public static final MapCodec<KamiEnabledCondition> CODEC=MapCodec.unit(INSTANCE);
     private static final DeferredRegister<MapCodec<? extends ICondition>> CONDITIONS=DeferredRegister.create(NeoForgeRegistries.Keys.CONDITION_CODECS,ThaumicTinkerer.ID);
-    public static void register(IEventBus bus) {CONDITIONS.register("kami_enabled",()->CODEC);CONDITIONS.register(bus);}
+    public static void register(IEventBus bus) {CONDITIONS.register("kami_enabled",()->CODEC);CONDITIONS.register("bedrock_enabled",()->thaumic.tinkerer.kami.bedrock.BedrockEnabledCondition.CODEC);CONDITIONS.register(bus);}
     @Override public boolean test(IContext context) {return TinkererConfig.KAMI_FORCE_ENABLED.get();}
     @Override public MapCodec<? extends ICondition> codec() {return CODEC;}
     private KamiEnabledCondition() {}

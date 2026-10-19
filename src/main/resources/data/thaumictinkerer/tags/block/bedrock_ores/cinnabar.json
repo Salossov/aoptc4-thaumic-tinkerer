@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#c:ores/cinnabar",
+      "required": false
+    },
+    {
+      "id": "thaumcraft:cinnabar_ore",
+      "required": false
+    }
+  ]
+}

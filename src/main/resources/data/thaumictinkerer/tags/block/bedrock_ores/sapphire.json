@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#c:ores/sapphire",
+      "required": false
+    }
+  ]
+}

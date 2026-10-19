@@ -15,6 +15,9 @@ public final class TinkererConfig {
     public static final ModConfigSpec.BooleanValue KAMI_FORCE_ENABLED;
     public static final ModConfigSpec.ConfigValue<String> KAMI_NETHER_DIMENSION;
     public static final ModConfigSpec.ConfigValue<String> KAMI_END_DIMENSION;
+    public static final ModConfigSpec.BooleanValue KAMI_BEDROCK_ENABLED;
+    public static final ModConfigSpec.IntValue KAMI_BEDROCK_DENSITY;
+    public static final ModConfigSpec.ConfigValue<java.util.List<? extends String>> KAMI_BEDROCK_BLACKLIST;
     static {
         var builder = new ModConfigSpec.Builder();
         KAMI_FORCE_ENABLED=builder.comment("Force-enable KAMI content, as in the release 164 default.")
@@ -23,6 +26,12 @@ public final class TinkererConfig {
                 .define("general.kami.dimension.nether.id","minecraft:the_nether",TinkererConfig::dimensionName);
         KAMI_END_DIMENSION=builder.comment("Dimension for ender-shard drops; namespaced dimension ID replaces the old numeric ID.")
                 .define("general.kami.dimension.end.id","minecraft:the_end",TinkererConfig::dimensionName);
+        KAMI_BEDROCK_ENABLED=builder.comment("Enable thaumictinkerer:bedrock; replaces the old numeric dimension ID/zero switch.")
+                .define("general.kami.bedrock.enabled",true);
+        KAMI_BEDROCK_DENSITY=builder.comment("Original number of vertical ore columns per chunk. Nonpositive values produce no columns.")
+                .defineInRange("general.bedrock.oreDensity",1,Integer.MIN_VALUE,Integer.MAX_VALUE);
+        KAMI_BEDROCK_BLACKLIST=builder.comment("Original OreDictionary group names excluded from bedrock ore generation.")
+                .defineListAllowEmpty("general.kami.bedrock.oreBlacklist",java.util.List.of("oreFirestone"),()->"",value->value instanceof String);
         DEBUG_COMMANDS=builder.comment("Enable original debug commands for every player (original permission behavior).")
                 .define("general.debugCommands.enabled",false);
         FLIGHT = builder.comment("Enable the mod's magical flight (original modFlight.enabled).")

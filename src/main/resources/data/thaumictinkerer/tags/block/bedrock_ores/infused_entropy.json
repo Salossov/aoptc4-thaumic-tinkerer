@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#c:ores/infused_entropy",
+      "required": false
+    },
+    {
+      "id": "thaumcraft:entropy_infused_stone",
+      "required": false
+    }
+  ]
+}

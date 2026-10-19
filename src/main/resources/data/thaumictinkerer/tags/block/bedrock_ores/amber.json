@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#c:ores/amber",
+      "required": false
+    },
+    {
+      "id": "thaumcraft:amber_ore",
+      "required": false
+    }
+  ]
+}

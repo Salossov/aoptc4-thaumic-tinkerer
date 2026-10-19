@@ -1,0 +1,185 @@
+{
+  "groups": [
+    {
+      "name": "oreAluminum",
+      "weight": 617,
+      "tag": "thaumictinkerer:bedrock_ores/aluminum"
+    },
+    {
+      "name": "oreAmber",
+      "weight": 161,
+      "tag": "thaumictinkerer:bedrock_ores/amber",
+      "preferred": "thaumcraft:amber_ore"
+    },
+    {
+      "name": "oreApatite",
+      "weight": 269,
+      "tag": "thaumictinkerer:bedrock_ores/apatite"
+    },
+    {
+      "name": "oreBlueTopaz",
+      "weight": 238,
+      "tag": "thaumictinkerer:bedrock_ores/blue_topaz"
+    },
+    {
+      "name": "oreCertusQuartz",
+      "weight": 234,
+      "tag": "thaumictinkerer:bedrock_ores/certus_quartz"
+    },
+    {
+      "name": "oreChimerite",
+      "weight": 270,
+      "tag": "thaumictinkerer:bedrock_ores/chimerite"
+    },
+    {
+      "name": "oreCinnabar",
+      "weight": 172,
+      "tag": "thaumictinkerer:bedrock_ores/cinnabar",
+      "preferred": "thaumcraft:cinnabar_ore"
+    },
+    {
+      "name": "oreCoal",
+      "weight": 2648,
+      "tag": "thaumictinkerer:bedrock_ores/coal",
+      "preferred": "minecraft:coal_ore"
+    },
+    {
+      "name": "oreCopper",
+      "weight": 603,
+      "tag": "thaumictinkerer:bedrock_ores/copper",
+      "preferred": "minecraft:copper_ore"
+    },
+    {
+      "name": "oreDiamond",
+      "weight": 67,
+      "tag": "thaumictinkerer:bedrock_ores/diamond",
+      "preferred": "minecraft:diamond_ore"
+    },
+    {
+      "name": "oreEmerald",
+      "weight": 48,
+      "tag": "thaumictinkerer:bedrock_ores/emerald",
+      "preferred": "minecraft:emerald_ore"
+    },
+    {
+      "name": "oreFzDarkIron",
+      "weight": 61,
+      "tag": "thaumictinkerer:bedrock_ores/dark_iron"
+    },
+    {
+      "name": "oreGold",
+      "weight": 164,
+      "tag": "thaumictinkerer:bedrock_ores/gold",
+      "preferred": "minecraft:gold_ore"
+    },
+    {
+      "name": "oreInfusedAir",
+      "weight": 94,
+      "tag": "thaumictinkerer:bedrock_ores/infused_air",
+      "preferred": "thaumcraft:air_infused_stone"
+    },
+    {
+      "name": "oreInfusedEarth",
+      "weight": 35,
+      "tag": "thaumictinkerer:bedrock_ores/infused_earth",
+      "preferred": "thaumcraft:earth_infused_stone"
+    },
+    {
+      "name": "oreInfusedEntropy",
+      "weight": 53,
+      "tag": "thaumictinkerer:bedrock_ores/infused_entropy",
+      "preferred": "thaumcraft:entropy_infused_stone"
+    },
+    {
+      "name": "oreInfusedFire",
+      "weight": 42,
+      "tag": "thaumictinkerer:bedrock_ores/infused_fire",
+      "preferred": "thaumcraft:fire_infused_stone"
+    },
+    {
+      "name": "oreInfusedOrder",
+      "weight": 31,
+      "tag": "thaumictinkerer:bedrock_ores/infused_order",
+      "preferred": "thaumcraft:order_infused_stone"
+    },
+    {
+      "name": "oreInfusedWater",
+      "weight": 27,
+      "tag": "thaumictinkerer:bedrock_ores/infused_water",
+      "preferred": "thaumcraft:water_infused_stone"
+    },
+    {
+      "name": "oreIron",
+      "weight": 1503,
+      "tag": "thaumictinkerer:bedrock_ores/iron",
+      "preferred": "minecraft:iron_ore"
+    },
+    {
+      "name": "oreLapis",
+      "weight": 57,
+      "tag": "thaumictinkerer:bedrock_ores/lapis",
+      "preferred": "minecraft:lapis_ore"
+    },
+    {
+      "name": "oreLead",
+      "weight": 335,
+      "tag": "thaumictinkerer:bedrock_ores/lead"
+    },
+    {
+      "name": "oreNickel",
+      "weight": 72,
+      "tag": "thaumictinkerer:bedrock_ores/nickel"
+    },
+    {
+      "name": "orePeridot",
+      "weight": 79,
+      "tag": "thaumictinkerer:bedrock_ores/peridot"
+    },
+    {
+      "name": "oreRedstone",
+      "weight": 364,
+      "tag": "thaumictinkerer:bedrock_ores/redstone",
+      "preferred": "minecraft:redstone_ore"
+    },
+    {
+      "name": "oreRuby",
+      "weight": 57,
+      "tag": "thaumictinkerer:bedrock_ores/ruby"
+    },
+    {
+      "name": "oreSaltpeter",
+      "weight": 768,
+      "tag": "thaumictinkerer:bedrock_ores/saltpeter"
+    },
+    {
+      "name": "oreSapphire",
+      "weight": 70,
+      "tag": "thaumictinkerer:bedrock_ores/sapphire"
+    },
+    {
+      "name": "oreSilver",
+      "weight": 416,
+      "tag": "thaumictinkerer:bedrock_ores/silver"
+    },
+    {
+      "name": "oreSulfur",
+      "weight": 105,
+      "tag": "thaumictinkerer:bedrock_ores/sulfur"
+    },
+    {
+      "name": "oreTin",
+      "weight": 507,
+      "tag": "thaumictinkerer:bedrock_ores/tin"
+    },
+    {
+      "name": "oreUranium",
+      "weight": 112,
+      "tag": "thaumictinkerer:bedrock_ores/uranium"
+    },
+    {
+      "name": "oreVinteum",
+      "weight": 392,
+      "tag": "thaumictinkerer:bedrock_ores/vinteum"
+    }
+  ]
+}

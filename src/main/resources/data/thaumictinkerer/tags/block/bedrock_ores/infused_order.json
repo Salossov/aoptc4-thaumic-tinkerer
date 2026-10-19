@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#c:ores/infused_order",
+      "required": false
+    },
+    {
+      "id": "thaumcraft:order_infused_stone",
+      "required": false
+    }
+  ]
+}

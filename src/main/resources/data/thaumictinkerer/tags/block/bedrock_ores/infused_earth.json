@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#c:ores/infused_earth",
+      "required": false
+    },
+    {
+      "id": "thaumcraft:earth_infused_stone",
+      "required": false
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#c:ores/infused_fire",
+      "required": false
+    },
+    {
+      "id": "thaumcraft:fire_infused_stone",
+      "required": false
+    }
+  ]
+}

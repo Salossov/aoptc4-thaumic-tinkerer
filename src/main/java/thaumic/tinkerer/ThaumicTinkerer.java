@@ -91,6 +91,7 @@ public final class ThaumicTinkerer {
         RECIPES.register(bus);
         thaumic.tinkerer.crafting.ShareTomeCondition.register(bus);
         thaumic.tinkerer.kami.KamiEnabledCondition.register(bus);
+        thaumic.tinkerer.kami.bedrock.BedrockContent.register(bus);
         thaumic.tinkerer.crafting.LegacyDisplayCountIngredient.register(bus);
         thaumic.tinkerer.crafting.LegacyPotionIngredient.register(bus);
         TABS.register(bus);
