@@ -103,7 +103,7 @@ public final class TinkererFocusItem extends ItemFocusBasic implements FocusBeha
         player.openMenu(new net.minecraft.world.SimpleMenuProvider((id, inventory, owner) ->
                 net.minecraft.world.inventory.ChestMenu.threeRows(id, inventory, owner.getEnderChestInventory()),
                 net.minecraft.network.chat.Component.translatable("container.enderchest")));
-        player.level().playSound(null, player.blockPosition(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 1, 1);
+        player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 1, 1);
         return true;
     }
     private boolean fly(ServerPlayer player, ItemStack wand, ItemStack focus) {
@@ -114,7 +114,7 @@ public final class TinkererFocusItem extends ItemFocusBasic implements FocusBeha
         double rawY=thaumic.tinkerer.util.LegacyPlayerCoordinates.rawY(player);
         for(int count=0;count<5;count++)ParticleApi.broadcastSmokeSpiral(player.serverLevel(),new ParticleApi.SmokeSpiral(
                 player.getX(),rawY-player.getDeltaMovement().y,player.getZ(),2f,(int)(Math.random()*360),(int)rawY,647935));
-        player.level().playSound(null, player.blockPosition(), SoundEvent.createVariableRangeEvent(net.minecraft.resources.ResourceLocation.parse("thaumcraft:wind")), SoundSource.PLAYERS, .4f, 1);
+        player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvent.createVariableRangeEvent(net.minecraft.resources.ResourceLocation.parse("thaumcraft:wind")), SoundSource.PLAYERS, .4f, 1);
         return true;
     }
     private boolean pull(ServerPlayer player, ItemStack wand, ItemStack focus) {
