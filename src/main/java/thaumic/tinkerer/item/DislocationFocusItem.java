@@ -20,6 +20,7 @@ public final class DislocationFocusItem extends ItemFocusBasic implements FocusB
     @Override public int getEnchantmentValue(){return 5;}
     @Override public int getFocusColor(ItemStack stack){return 16757248;}
     @Override public Map<Aspect,Integer> getVisCost(ItemStack stack){return Map.of(Aspects.ENTROPY,500,Aspects.ORDER,500,Aspects.EARTH,100);}
+    @Override public void appendHoverText(ItemStack stack,TooltipContext context,List<net.minecraft.network.chat.Component> lines,net.minecraft.world.item.TooltipFlag flag){FocusTooltips.append(this,stack,lines);}
     @Override public List<FocusUpgradeType> getPossibleUpgradesByRank(ItemStack stack,int rank){return List.of(FocusUpgradeType.treasure);}
     @Override public boolean managesVis(){return true;}
     @Override public String getSortingHelper(ItemStack focus){

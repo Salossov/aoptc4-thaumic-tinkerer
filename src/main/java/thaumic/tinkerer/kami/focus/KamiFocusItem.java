@@ -22,6 +22,11 @@ public abstract class KamiFocusItem extends ItemFocusBasic implements FocusBehav
     protected KamiFocusItem(Properties properties){super(properties);}
 
     @Override
+    public void appendHoverText(ItemStack stack,TooltipContext context,List<net.minecraft.network.chat.Component> lines,net.minecraft.world.item.TooltipFlag flag){
+        thaumic.tinkerer.item.FocusTooltips.append(this,stack,lines);
+    }
+
+    @Override
     public boolean isRepairable(ItemStack stack) {
         return false;
     }

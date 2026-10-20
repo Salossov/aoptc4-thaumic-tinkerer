@@ -39,7 +39,7 @@ public final class TinkererFocusItem extends ItemFocusBasic implements FocusBeha
         yield data.getBoolean("ender")?"ENDERCHEST"+data.getInt("freq")+data.getString("owner"):"ENDERCHEST-VANILLA";
     }};}
     @Override public void appendHoverText(ItemStack stack, TooltipContext context, List<net.minecraft.network.chat.Component> lines, net.minecraft.world.item.TooltipFlag flag) {
-        super.appendHoverText(stack, context, lines, flag);
+        FocusTooltips.append(this,stack,lines);
         if(kind==Kind.ENDER_CHEST&&net.neoforged.fml.ModList.get().isLoaded("enderstorage")&&stack.has(net.minecraft.core.component.DataComponents.CUSTOM_DATA)){
             String owner=thaumic.tinkerer.util.ItemData.read(stack).getString("owner");
             if(!owner.equals("global"))lines.add(net.minecraft.network.chat.Component.literal(owner));
