@@ -6,7 +6,7 @@ modId="thaumictinkerer"
 version="${mod_version}"
 displayName="Thaumic Tinkerer"
 authors="Vazkii, pixlepix, nekosune and original contributors"
-description='''Unofficial Minecraft 1.21.1 port of Thaumic Tinkerer 2.5-1.7.10-164. Work in progress; see the migration status for implemented and verified content.'''
+description='''Unofficial Minecraft 1.21.1 port of Thaumic Tinkerer 2.5-1.7.10-164. Includes the original devices, foci, enchantments, infused crops and fires, integrations, and KAMI content. Requires the matching rebuilt Thaumcraft core and Curios. Manual acceptance testing is ongoing.'''
 [[dependencies.thaumictinkerer]]
 modId="jade"
 type="optional"
