@@ -44,7 +44,7 @@ public final class AwakenedDiggersRulesTest {
                 var inputs=recipe.components().stream().map(ingredient->ingredient.getItems()[0].copy()).toList();
                 check(recipe.instability()==15&&inputs.size()==12,"source repeated infusion components");
                 check(recipe.matches(new InfusionInput(recipe.input().getItems()[0].copy(),inputs)),"native ingredient matching");
-                var node=ResearchApi.definitions(player).get(id);check(node.concealed()&&node.complexity()==5,"source concealed research");
+                var node=ResearchApi.definitions(player).get(id);check(node.concealed()&&node.complexity()==3,"source concealed research");
             }
             check(IchorTools.AWAKENED_AXE.get().getDestroySpeed(IchorTools.AWAKENED_AXE.toStack(),Blocks.OAK_LEAVES.defaultBlockState())==15,"source shears leaves speed");
             check(AwakenedMining.rightMaterial(Blocks.GLASS.defaultBlockState(),AwakenedMiningShape.Kind.SHOVEL),"tool-not-required overrides category");

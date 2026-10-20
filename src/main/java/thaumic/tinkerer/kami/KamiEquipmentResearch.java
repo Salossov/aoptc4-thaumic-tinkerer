@@ -14,7 +14,7 @@ public final class KamiEquipmentResearch {
         var texts=new ArrayList<String>();texts.add(page);
         var order=new ArrayList<String>();order.add(page);order.addAll(recipes);
         if(extraPage){String tail="page.thaumictinkerer.kami."+key+".1";texts.add(tail);order.add(tail);}
-        KamiResearch.register(new ResearchDefinition(id(key),TinkererResearch.CATEGORY,List.of(id(parent)),aspects,5,false,true,x,y,texts,recipes,id(icon),false,false,false,false,List.of(),order,false,warp,List.of(),List.of(),List.of(),List.of()));
+        KamiResearch.register(new ResearchDefinition(id(key),TinkererResearch.CATEGORY,List.of(id(parent)),aspects,3,false,true,x,y,texts,recipes,id(icon),false,false,false,false,List.of(),order,false,warp,List.of(),List.of(),List.of(),List.of()));
     }
     public static void register() {
         thaumic.tinkerer.kami.warpgate.WarpGateResearch.register();
@@ -30,12 +30,12 @@ public final class KamiEquipmentResearch {
         node("ichor_pouch","ichor_pouch","ichor_cloth",13,6,Map.of("vacuos",2,"pannus",1,"alienis",1,"humanus",1),0,List.of("ichor_pouch"),false);
         String talisman=id("block_talisman"),page="page.thaumictinkerer.kami.block_talisman.0";
         KamiResearch.register(new ResearchDefinition(talisman,TinkererResearch.CATEGORY,List.of(id("ichor_pick_gem"),id("ichor_shovel_gem")),
-                Map.of("vacuos",2,"tenebrae",1,"alienis",1,"praecantatio",1),5,false,true,14,17,List.of(page),List.of(talisman),talisman,
+                Map.of("vacuos",2,"tenebrae",1,"alienis",1,"praecantatio",1),3,false,true,14,17,List.of(page),List.of(talisman),talisman,
                 false,false,false,false,List.of(),List.of(page,talisman),false,0,List.of(),List.of(),List.of(),List.of()));
         node("placement_mirror","placement_mirror","block_talisman",17,16,Map.of("fabrico",2,"vitreus",1,"alienis",1,"cognitio",1),0,List.of("placement_mirror"),false);
         String proto=id("protoclay"),protoPage="page.thaumictinkerer.kami.protoclay.0";
         KamiResearch.register(new ResearchDefinition(proto,TinkererResearch.CATEGORY,List.of(id("ichor_pick_gem")),
-                Map.of("instrumentum",2,"perfodio",1,"humanus",1,"machina",1),5,false,true,12,17,List.of(protoPage),List.of(proto),proto,
+                Map.of("instrumentum",2,"perfodio",1,"humanus",1,"machina",1),3,false,true,12,17,List.of(protoPage),List.of(proto),proto,
                 false,false,false,false,List.of(),List.of(protoPage,proto),false,0,List.of(),List.of(),List.of(),List.of(id("ichor_shovel_gem"))));
 
     }

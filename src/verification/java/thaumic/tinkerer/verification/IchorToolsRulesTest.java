@@ -68,7 +68,7 @@ public final class IchorToolsRulesTest {
         }
         try(var fixture=new NativePlayerFixture(helper,"TTIchorTools",helper.absolutePos(new BlockPos(8,4,8)))) {
             var node=ResearchApi.definitions(fixture.player).get("thaumictinkerer:ichor_tools");
-            check(node.column()==13&&node.row()==12&&node.complexity()==5&&node.warp()==2&&node.concealed(),"source research coordinates, complexity, warp and concealment");
+            check(node.column()==13&&node.row()==12&&node.complexity()==3&&node.warp()==2&&node.concealed(),"source research coordinates, complexity, warp and concealment");
             check(node.parents().equals(List.of("thaumictinkerer:ichorium"))&&node.hiddenParents().contains("thaumictinkerer:rod_ichorcloth")&&node.recipePages().size()==4,"shared research and hidden rod prerequisite");
         }
         helper.succeed();

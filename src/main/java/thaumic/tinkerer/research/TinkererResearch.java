@@ -9,6 +9,7 @@ import thaumcraft.api.research.ResearchDefinition;
 import thaumic.tinkerer.ThaumicTinkerer;
 
 public final class TinkererResearch {
+    // Keep effective TC4 complexity: ResearchItem clamps constructor values 4/5 to 3.
     public static final String CATEGORY = ThaumicTinkerer.ID + ":tinkering";
     public static final String SPELL_CLOTH = ThaumicTinkerer.ID + ":spell_cloth";
 
@@ -18,7 +19,7 @@ public final class TinkererResearch {
         thaumic.tinkerer.fire.ImbuedFireContent.research();
         thaumic.tinkerer.crop.InfusedResearch.register();
         thaumic.tinkerer.summon.SummonContent.research();
-        AddonRegistry.research(new ResearchDefinition("thaumictinkerer:animation_tablet",CATEGORY,List.of("thaumictinkerer:magnets"),Map.of("machina",2,"metallum",1,"motus",1,"potentia",1),4,false,false,-8,2,List.of("page.thaumictinkerer.animation_tablet.0"),List.of("thaumictinkerer:animation_tablet"),"thaumictinkerer:animation_tablet",false,false,false,false,List.of(),List.of("page.thaumictinkerer.animation_tablet.0","thaumictinkerer:animation_tablet"),false,1,List.of(),List.of(),List.of(),List.of()));
+        AddonRegistry.research(new ResearchDefinition("thaumictinkerer:animation_tablet",CATEGORY,List.of("thaumictinkerer:magnets"),Map.of("machina",2,"metallum",1,"motus",1,"potentia",1),3,false,false,-8,2,List.of("page.thaumictinkerer.animation_tablet.0"),List.of("thaumictinkerer:animation_tablet"),"thaumictinkerer:animation_tablet",false,false,false,false,List.of(),List.of("page.thaumictinkerer.animation_tablet.0","thaumictinkerer:animation_tablet"),false,1,List.of(),List.of(),List.of(),List.of()));
         AddonRegistry.category(new BookCategory(CATEGORY, "category.thaumictinkerer.tinkering",
                 "thaumictinkerer:textures/misc/r_enchanting.png",
                 "thaumcraft:textures/gui/gui_researchback.png", 100, ""));

@@ -71,7 +71,7 @@ public final class IchorPouchRulesTest {
             var result=recipe.assemble(new InfusionInput(center,ingredients),helper.getLevel().registryAccess());
             check(result.is(IchorPouchContent.POUCH.get())&&IchorPouchItem.getInventory(result).stream().allMatch(ItemStack::isEmpty),"source infusion outputs fresh empty pouch");
             var node=ResearchApi.definitions(player).get("thaumictinkerer:ichor_pouch");
-            check(node.concealed()&&node.column()==13&&node.row()==6&&node.complexity()==5&&node.parents().equals(List.of("thaumictinkerer:ichor_cloth")),"source research and parent");
+            check(node.concealed()&&node.column()==13&&node.row()==6&&node.complexity()==3&&node.parents().equals(List.of("thaumictinkerer:ichor_cloth")),"source research and parent");
             var belt=CuriosApi.getCuriosInventory(player).orElseThrow().getCurios().get("belt").getStacks();check(belt.isItemValid(0,pouch),"actual Curios belt accepts pouch");
         }
         helper.succeed();
