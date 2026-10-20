@@ -62,6 +62,16 @@ public final class KamiFoundationRulesTest {
             int cost=name.equals("ichor_cloth")?125:100;
             check(recipe.vis().equals(Map.of("aer",cost,"ignis",cost,"aqua",cost,"terra",cost,"ordo",cost,"perditio",cost)),"all six source primal costs "+name);
         }
+        for(var entry:Map.of("enchanter",List.of(7),"ichorcloth_legs_gem",List.of(7),"ichorcloth_chest_gem",List.of(6,8),"focus_shadowbeam",List.of(4)).entrySet()) {
+            var recipe=(InfusionRecipe)level.getRecipeManager().byKey(ThaumicTinkerer.id(entry.getKey())).orElseThrow().value();
+            for(int index:entry.getValue()) {
+                var ingredient=recipe.components().get(index);var supplied=ingredient.getItems()[0].copyWithCount(1);
+                ItemData.update(supplied,data->data.putString("extra","allowed"));
+                check(ingredient.test(supplied),"source permits unrelated NBT on undamaged infusion input "+entry.getKey()+":"+index);
+                supplied.setDamageValue(1);
+                check(!ingredient.test(supplied),"source metadata zero rejects damaged infusion input "+entry.getKey()+":"+index);
+            }
+        }
         var nuggets=(net.minecraft.world.item.crafting.CraftingRecipe)level.getRecipeManager().byKey(ThaumicTinkerer.id("ichor_nuggets")).orElseThrow().value();
         check(nuggets.matches(CraftingInput.of(1,1,List.of(KamiMaterials.ICHORIUM.get().getDefaultInstance())),level)&&nuggets.getResultItem(level.registryAccess()).getCount()==9,"actual shapeless nine-nugget recipe");
         try(var fixture=new NativePlayerFixture(helper,"TTKamiCatalog",helper.absolutePos(new BlockPos(8,4,8)))) {
@@ -70,6 +80,11 @@ public final class KamiFoundationRulesTest {
             check(ichor.hiddenParents().contains("INFUSION")&&ichor.hiddenParents().contains("thaumictinkerer:blood_sword"),"active catalog supplies vanilla and addon requirements dynamically");
             check(!ichor.hiddenParents().contains("thaumictinkerer:ichorium")&&!ichor.hiddenParents().contains("ELDRITCHMINOR"),"KAMI and eldritch research are excluded from universal requirements");
             var shards=catalog.get("thaumictinkerer:dimension_shards");check(shards.autoUnlock()&&shards.hiddenParents().isEmpty()&&shards.round()&&shards.stub(),"auto-unlocked dimensional shard entry remains ungated");
+            var hidden=new thaumcraft.api.research.ResearchDefinition("audit:hidden","BASICS",List.of("ROOT"),Map.of(),1,false,false,0,0,List.of(),List.of(),"",false,false,false,false,List.of(),List.of(),true,0);
+            var lost=new thaumcraft.api.research.ResearchDefinition("audit:lost","BASICS",List.of("ROOT"),Map.of(),1,false,false,0,0,List.of(),List.of(),"").withLost(true);
+            var requirements=thaumic.tinkerer.kami.KamiResearch.requirements(ichor,Map.of(hidden.key(),hidden,lost.key(),lost));
+            check(requirements.contains(hidden.key())&&!requirements.contains(lost.key()),"KAMI excludes lost, independently of hidden visibility");
+            check(catalog.get("OUTERREV").lost()&&catalog.get("PRIMPEARL").lost(),"native resource loader retains original lost research flags");
             check(catalog.get("thaumictinkerer:ichorium").hiddenParents().contains("thaumictinkerer:ichor_cloth"),"explicit hidden KAMI parent survives dynamic augmentation");
             boolean immutable=false;try{catalog.clear();}catch(UnsupportedOperationException expected){immutable=true;}check(immutable,"server catalog API returns immutable definitions");
         }

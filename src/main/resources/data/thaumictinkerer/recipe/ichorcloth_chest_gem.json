@@ -48,7 +48,12 @@
       "strict": false
     },
     {
-      "item": "thaumictinkerer:focus_flight"
+      "type": "neoforge:components",
+      "items": "thaumictinkerer:focus_flight",
+      "components": {
+        "minecraft:damage": 0
+      },
+      "strict": false
     },
     {
       "type": "neoforge:components",
@@ -59,7 +64,12 @@
       "strict": false
     },
     {
-      "item": "thaumictinkerer:focus_deflect"
+      "type": "neoforge:components",
+      "items": "thaumictinkerer:focus_deflect",
+      "components": {
+        "minecraft:damage": 0
+      },
+      "strict": false
     },
     {
       "item": "minecraft:feather"

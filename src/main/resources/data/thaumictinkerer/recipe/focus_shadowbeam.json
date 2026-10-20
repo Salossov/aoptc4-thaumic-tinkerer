@@ -34,7 +34,12 @@
       "item": "thaumcraft:focus_excavation"
     },
     {
-      "item": "thaumictinkerer:focus_deflect"
+      "type": "neoforge:components",
+      "items": "thaumictinkerer:focus_deflect",
+      "components": {
+        "minecraft:damage": 0
+      },
+      "strict": false
     },
     {
       "item": "thaumictinkerer:ichor"

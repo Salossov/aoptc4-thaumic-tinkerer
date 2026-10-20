@@ -28,7 +28,12 @@
       "item": "thaumcraft:thaumium_ingot"
     },
     {
-      "item": "thaumictinkerer:spell_cloth"
+      "type": "neoforge:components",
+      "items": "thaumictinkerer:spell_cloth",
+      "components": {
+        "minecraft:damage": 0
+      },
+      "strict": false
     }
   ],
   "aspects": {

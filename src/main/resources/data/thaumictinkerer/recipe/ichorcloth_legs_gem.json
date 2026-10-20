@@ -52,7 +52,12 @@
       "potion": "minecraft:fire_resistance"
     },
     {
-      "item": "thaumictinkerer:focus_smelt"
+      "type": "neoforge:components",
+      "items": "thaumictinkerer:focus_smelt",
+      "components": {
+        "minecraft:damage": 0
+      },
+      "strict": false
     },
     {
       "item": "thaumictinkerer:bright_nitor"

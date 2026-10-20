@@ -22,7 +22,7 @@ public final class KamiResearch {
         if(!NODES.contains(definition.key())||definition.autoUnlock())return List.of();
         var result=new ArrayList<String>();
         for(var candidate:catalog.values()) {
-            if(candidate.hidden()||candidate.virtual()||NODES.contains(candidate.key())||!CATEGORIES.contains(candidate.category()))continue;
+            if(candidate.lost()||candidate.virtual()||NODES.contains(candidate.key())||!CATEGORIES.contains(candidate.category()))continue;
             if(candidate.parents().isEmpty()&&candidate.hiddenParents().isEmpty())continue;
             if(!candidate.itemTriggers().isEmpty()||!candidate.entityTriggers().isEmpty()||!candidate.aspectTriggers().isEmpty())continue;
             String raw=candidate.key(),legacy=(raw.contains(":")?raw.substring(raw.indexOf(':')+1):raw).toUpperCase(Locale.ROOT);
