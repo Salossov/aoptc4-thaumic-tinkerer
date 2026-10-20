@@ -466,5 +466,9 @@
   "tc.research_text.thaumictinkerer:blood_sword": "Du bist unfreundlich",
   "tc.research_text.thaumictinkerer:summon": "Fast Nekromantie",
   "thaumictinkerer.research.prefix": "[TT] ",
-  "thaumictinkerer.research.prefix.kami": "[TTKami] "
+  "thaumictinkerer.research.prefix.kami": "[TTKami] ",
+  "item.thaumcraft.cap.thaumictinkerer:ichor": "Ichoriumgeschmückter",
+  "thaumcraft.wand.cap.thaumictinkerer:ichor": "Ichoriumgeschmückter",
+  "item.thaumcraft.rod.thaumictinkerer:ichorcloth": "Ichortuchverstärkter Silberholz",
+  "thaumcraft.wand.rod.thaumictinkerer:ichorcloth": "Ichortuchverstärkter Silberholz"
 }

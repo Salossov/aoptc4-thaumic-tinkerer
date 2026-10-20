@@ -493,5 +493,9 @@
   "tc.research_text.thaumictinkerer:blood_sword": "Ты ведешь себя неприятно",
   "tc.research_text.thaumictinkerer:summon": "Почти некромантия",
   "thaumictinkerer.research.prefix": "[TT] ",
-  "thaumictinkerer.research.prefix.kami": "[TTKami] "
+  "thaumictinkerer.research.prefix.kami": "[TTKami] ",
+  "item.thaumcraft.cap.thaumictinkerer:ichor": "Украшенный ихором ",
+  "thaumcraft.wand.cap.thaumictinkerer:ichor": "Украшенный ихором ",
+  "item.thaumcraft.rod.thaumictinkerer:ichorcloth": "Ихорно-серебродревесный ",
+  "thaumcraft.wand.rod.thaumictinkerer:ichorcloth": "Ихорно-серебродревесный "
 }

@@ -495,5 +495,9 @@
   "tc.research_text.thaumictinkerer:blood_sword": "你又不愉快了",
   "tc.research_text.thaumictinkerer:summon": "近乎死灵法师",
   "thaumictinkerer.research.prefix": "[TT]",
-  "thaumictinkerer.research.prefix.kami": "[TT神道]  "
+  "thaumictinkerer.research.prefix.kami": "[TT神道]  ",
+  "item.thaumcraft.cap.thaumictinkerer:ichor": "灵宝杖端",
+  "thaumcraft.wand.cap.thaumictinkerer:ichor": "灵宝杖端",
+  "item.thaumcraft.rod.thaumictinkerer:ichorcloth": "灵布包层银树杖柄",
+  "thaumcraft.wand.rod.thaumictinkerer:ichorcloth": "灵布包层银树杖柄"
 }

@@ -497,5 +497,9 @@
   "tc.research_text.thaumictinkerer:blood_sword": "You're being unpleasant",
   "tc.research_text.thaumictinkerer:summon": "Almost necromancy",
   "thaumictinkerer.research.prefix": "[TT] ",
-  "thaumictinkerer.research.prefix.kami": "[TTKami] "
+  "thaumictinkerer.research.prefix.kami": "[TTKami] ",
+  "item.thaumcraft.cap.thaumictinkerer:ichor": "Ichorium Adorned",
+  "thaumcraft.wand.cap.thaumictinkerer:ichor": "Ichorium Adorned",
+  "item.thaumcraft.rod.thaumictinkerer:ichorcloth": "Ichorcloth Strapped Silverwood",
+  "thaumcraft.wand.rod.thaumictinkerer:ichorcloth": "Ichorcloth Strapped Silverwood"
 }

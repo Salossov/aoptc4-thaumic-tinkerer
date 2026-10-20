@@ -450,5 +450,9 @@
   "tc.research_text.thaumictinkerer:blood_sword": "굉장히 불쾌하군",
   "tc.research_text.thaumictinkerer:summon": "강령술",
   "thaumictinkerer.research.prefix": "[TT] ",
-  "thaumictinkerer.research.prefix.kami": "[TTKami] "
+  "thaumictinkerer.research.prefix.kami": "[TTKami] ",
+  "item.thaumcraft.cap.thaumictinkerer:ichor": "이코릭",
+  "thaumcraft.wand.cap.thaumictinkerer:ichor": "이코릭",
+  "item.thaumcraft.rod.thaumictinkerer:ichorcloth": "천상의 실버우드",
+  "thaumcraft.wand.rod.thaumictinkerer:ichorcloth": "천상의 실버우드"
 }

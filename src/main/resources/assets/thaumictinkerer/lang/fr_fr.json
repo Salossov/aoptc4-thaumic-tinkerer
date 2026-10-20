@@ -494,5 +494,9 @@
   "tc.research_text.thaumictinkerer:blood_sword": "Je t'en prie...",
   "tc.research_text.thaumictinkerer:summon": "Quasiment de la nécromentie",
   "thaumictinkerer.research.prefix": "[TT] ",
-  "thaumictinkerer.research.prefix.kami": "[TTKami] "
+  "thaumictinkerer.research.prefix.kami": "[TTKami] ",
+  "item.thaumcraft.cap.thaumictinkerer:ichor": "ornée d'Ichorium",
+  "thaumcraft.wand.cap.thaumictinkerer:ichor": "ornée d'Ichorium",
+  "item.thaumcraft.rod.thaumictinkerer:ichorcloth": "en bois d'argent enroulé de tissu d'Ichor",
+  "thaumcraft.wand.rod.thaumictinkerer:ichorcloth": "en bois d'argent enroulé de tissu d'Ichor"
 }
