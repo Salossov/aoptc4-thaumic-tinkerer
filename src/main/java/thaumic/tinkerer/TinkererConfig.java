@@ -7,6 +7,7 @@ public final class TinkererConfig {
     public static final ModConfigSpec SPEC;
     public static final ModConfigSpec.BooleanValue FLIGHT;
     public static final ModConfigSpec.BooleanValue DEBUG_COMMANDS;
+    public static final ModConfigSpec.BooleanValue TOOLTIP_INDICATORS;
     public static final ModConfigSpec.BooleanValue ORE_DICT_METAL;
     public static final ModConfigSpec.BooleanValue SURVIVAL_SHARE_TOME;
     public static final ModConfigSpec.BooleanValue IMBUED_FIRE;
@@ -37,6 +38,8 @@ public final class TinkererConfig {
                 .defineListAllowEmpty("general.kami.bedrock.oreBlacklist",java.util.List.of("oreFirestone"),()->"",value->value instanceof String);
         DEBUG_COMMANDS=builder.comment("Enable original debug commands for every player (original permission behavior).")
                 .define("general.debugCommands.enabled",false);
+        TOOLTIP_INDICATORS=builder.comment("Show the original [TT] and [TTKami] prefixes in research descriptions.")
+                .define("general.tooltipIndicators.enabled",true);
         FLIGHT = builder.comment("Enable the mod's magical flight (original modFlight.enabled).")
                 .define("general.modFlight.enabled", true);
         ORE_DICT_METAL = builder.comment("Original oreDictMetal.enabled, including its inverted empty-tag fallback quirk.")
