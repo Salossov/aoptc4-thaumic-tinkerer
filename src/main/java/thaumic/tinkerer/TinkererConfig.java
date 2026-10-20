@@ -8,6 +8,7 @@ public final class TinkererConfig {
     public static final ModConfigSpec.BooleanValue FLIGHT;
     public static final ModConfigSpec.BooleanValue DEBUG_COMMANDS;
     public static final ModConfigSpec.BooleanValue TOOLTIP_INDICATORS;
+    public static final ModConfigSpec.BooleanValue EASY_RESEARCH;
     public static final ModConfigSpec.BooleanValue ORE_DICT_METAL;
     public static final ModConfigSpec.BooleanValue SURVIVAL_SHARE_TOME;
     public static final ModConfigSpec.BooleanValue IMBUED_FIRE;
@@ -40,6 +41,8 @@ public final class TinkererConfig {
                 .define("general.debugCommands.enabled",false);
         TOOLTIP_INDICATORS=builder.comment("Show the original [TT] and [TTKami] prefixes in research descriptions.")
                 .define("general.tooltipIndicators.enabled",true);
+        EASY_RESEARCH=builder.comment("Original global easy research mode: buy research with aspect points instead of creating notes. Requires restart.")
+                .define("general.research.easymode.enabled",false);
         FLIGHT = builder.comment("Enable the mod's magical flight (original modFlight.enabled).")
                 .define("general.modFlight.enabled", true);
         ORE_DICT_METAL = builder.comment("Original oreDictMetal.enabled, including its inverted empty-tag fallback quirk.")

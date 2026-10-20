@@ -66,6 +66,7 @@ public final class ThaumicTinkerer {
 
     public ThaumicTinkerer(IEventBus bus, net.neoforged.fml.ModContainer container) {
         container.registerConfig(net.neoforged.fml.config.ModConfig.Type.STARTUP, TinkererConfig.SPEC);
+        thaumcraft.api.research.ResearchApi.registerEasyMode(id("easy_research"),TinkererConfig.EASY_RESEARCH::get);
         if(TinkererConfig.KAMI_FORCE_ENABLED.get()) {thaumic.tinkerer.kami.KamiArmorContent.register(bus);thaumic.tinkerer.kami.KamiUtilityContent.register(bus);}
         thaumic.tinkerer.enchantment.TinkererEnchantments.register(bus);
         thaumic.tinkerer.crop.InfusedContent.register(bus);
