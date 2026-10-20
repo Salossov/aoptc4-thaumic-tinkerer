@@ -256,7 +256,7 @@ tasks.register('auditRelease') {
                         forbidden.add("Internal tooltip mod reference in ${entry.name}")
                     }
                 }
-                if (entry.name.contains('thaumictinkerer_tests') || entry.name.startsWith('tt_verification_materials/') || (entry.name.endsWith('/empty.nbt') || entry.name.endsWith('/summon_space.nbt'))) {
+                if (entry.name.contains('thaumictinkerer_tests') || entry.name.startsWith('tt_verification_materials/') || entry.name == 'data/minecraft/worldgen/world_preset/flat.json' || (entry.name.endsWith('/empty.nbt') || entry.name.endsWith('/summon_space.nbt'))) {
                     forbidden.add(entry.name)
                 }
             }
