@@ -1,4 +1,5 @@
 {
+  "parent": "minecraft:block/block",
   "textures": {
     "0": "thaumictinkerer:block/enchanter_0",
     "1": "thaumictinkerer:block/enchanter_1",
