@@ -75,7 +75,9 @@ public final class SmeltingServerRulesTest {
     private static ChunkPreparationApi.Request request(Object job)throws ReflectiveOperationException{
         var field=job.getClass().getDeclaredField("request");field.setAccessible(true);return (ChunkPreparationApi.Request)field.get(job);
     }
-    @GameTest(template="empty",batch="smelting_cold",timeoutTicks=1200)
+    // GameTest advances ticks faster than wall time; allow native async generation
+    // the same budget as the other cold-column fixtures.
+    @GameTest(template="empty",batch="smelting_cold",timeoutTicks=6000)
     public static void coldUseCoalescesAndReleasesTicketsOnLookChangeOrRelease(GameTestHelper helper)throws Exception{
         VerificationReports.install();var peer=new DislocationServerRulesTest.Peer(helper,"TTSmeltCold");var player=peer.player;var level=helper.getLevel();var origin=player.position();
         var column=new ChunkPos(1_230_000,-1_230_000);check(level.getChunkSource().getChunkNow(column.x,column.z)==null,"fresh remote owner column");
