@@ -6,4 +6,4 @@ The original source README and source notices identify the license as Creative C
 
 Thaumcraft is by Azanor. The license of Thaumic Tinkerer does not grant permission to redistribute Thaumcraft itself. This project compiles against the existing public Thaumcraft API and does not bundle its classes, Minecraft classes or the decompiled reference.
 
-Original source: [Vazkii/ThaumicTinkerer](https://github.com/Vazkii/ThaumicTinkerer). Port maintained by [Salossov](https://github.com/Salossov).
+Port maintained by [Salossov](https://github.com/Salossov). Original source: [Vazkii/ThaumicTinkerer](https://github.com/Vazkii/ThaumicTinkerer). The port targets release 2.5-1.7.10-164; original archives and comparison data are not distributed here.

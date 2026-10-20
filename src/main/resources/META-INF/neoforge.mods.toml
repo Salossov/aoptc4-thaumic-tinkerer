@@ -5,20 +5,8 @@ license="CC-BY-NC-SA-3.0"
 modId="thaumictinkerer"
 version="${mod_version}"
 displayName="Thaumic Tinkerer"
-authors="Vazkii, pixlepix, nekosune and original contributors"
+authors="Salossov (port); Vazkii, pixlepix, nekosune and original contributors (original mod)"
 description='''Unofficial Minecraft 1.21.1 port of Thaumic Tinkerer 2.5-1.7.10-164. Includes the original devices, foci, enchantments, infused crops and fires, integrations, and KAMI content. Requires the matching rebuilt Thaumcraft core and Curios. Manual acceptance testing is ongoing.'''
-[[dependencies.thaumictinkerer]]
-modId="jade"
-type="optional"
-versionRange="[15.10,)"
-ordering="AFTER"
-side="BOTH"
-[[dependencies.thaumictinkerer]]
-modId="wthit"
-type="optional"
-versionRange="[12.5,)"
-ordering="AFTER"
-side="BOTH"
 [[dependencies.thaumictinkerer]]
 modId="cb_microblock"
 type="optional"

@@ -43,7 +43,8 @@ public final class BotaniaRulesTest {
                     boolean dangerous=!lens.equals("mana_lens");check(ProjectileHooks.isProjectile(burst)&&ProjectileHooks.blacklisted(burst)!=dangerous,"native mana burst uses original primary-lens classification: "+lens);
                     var old=burst.position();var motion=burst.getDeltaMovement();var cost=WandApi.quote(wand,player,FocusContent.DEFLECT.get().getVisCost(focus));int vis=WandApi.stored(wand,Aspects.ORDER);
                     player.setItemInHand(InteractionHand.MAIN_HAND,wand);wand.getItem().use(level,player,InteractionHand.MAIN_HAND);wand.getItem().onUseTick(level,player,wand,72000);
-                    check(dangerous?burst.position().distanceTo(old.add(4,0,0))<1e-8:burst.position().equals(old),"native focus preserves displacement for dangerous lens and ignores normal mana: "+lens+" old="+old+" actual="+burst.position()+" oldVis="+vis+" vis="+WandApi.stored(wand,Aspects.ORDER));
+                    boolean destroy=thaumic.tinkerer.TinkererConfig.DEFLECT_DESTROY_PROJECTILES.get();
+                    check(dangerous?(destroy?burst.isRemoved():burst.position().distanceTo(old.add(4,0,0))<1e-8):!burst.isRemoved()&&burst.position().equals(old),"native focus follows configured dangerous-burst removal/displacement and ignores normal mana: "+lens);
                     check(burst.getDeltaMovement().equals(motion)&&WandApi.stored(wand,Aspects.ORDER)==vis-cost.get(Aspects.ORDER),"trajectory and one-per-tick vis payment remain unchanged");
                     if(dangerous){
                         ProjectileHooks.DEFLECT_BLACKLIST.add(net.minecraft.world.level.entity.EntityAccess.class);

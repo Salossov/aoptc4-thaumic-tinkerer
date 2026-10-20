@@ -1,0 +1,71 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+    paths: &build_paths
+      - 'src/**'
+      - '**/*.gradle'
+      - 'gradle.properties'
+      - 'gradle/**'
+      - 'gradlew'
+      - 'gradlew.ps1'
+      - '.github/workflows/**'
+  pull_request:
+    paths: *build_paths
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Check out Thaumcraft
+        if: ${{ !env.ACT }}
+        uses: actions/checkout@v7
+        with:
+          repository: ${{ vars.THAUMCRAFT_REPOSITORY || 'Salossov/aop-thaumcraft-4' }}
+          ref: ${{ vars.THAUMCRAFT_REF || 'main' }}
+          path: .dependencies/thaumcraft
+          persist-credentials: false
+      - name: Set up Java 21
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Set up Gradle and validate wrapper
+        uses: gradle/actions/setup-gradle@v6
+        with:
+          cache-provider: basic
+          cache-disabled: ${{ env.ACT == 'true' }}
+      - name: Build Thaumcraft API and runtime
+        working-directory: .dependencies/thaumcraft
+        run: sh ./gradlew --no-daemon --console=plain :api:assemble :mod:assemble
+      - name: Build and check
+        run: |
+          api=$(find .dependencies/thaumcraft/api/build/libs -maxdepth 1 -name 'thaumcraft-api-*.jar' ! -name '*-sources.jar')
+          test -n "$api" && test "$(printf '%s\n' "$api" | wc -l)" -eq 1
+          runtime=$(find .dependencies/thaumcraft/mod/build/libs -maxdepth 1 -name 'thaumcraft-*.jar' ! -name '*-sources.jar')
+          test -n "$runtime" && test "$(printf '%s\n' "$runtime" | wc -l)" -eq 1
+          sh ./gradlew --no-daemon --console=plain clean build "-PthaumcraftApiJar=$PWD/$api" "-PthaumcraftRuntimeJar=$PWD/$runtime"
+      - name: Save build artifacts
+        if: ${{ !env.ACT }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: thaumic-tinkerer
+          path: build/libs/*.jar
+          if-no-files-found: error

@@ -34,8 +34,6 @@ public final class DeviceTooltipRulesTest {
         check(data.getInt("other_mod")==31,"scoped tooltip payload preserves other providers");
         check(DeviceTooltip.read(data,tile.getLevel().registryAccess()).equals(actual),"component JSON preserves translations, arguments and styles");
         check(DeviceTooltip.readOrLocal(new CompoundTag(),tile,tile.getLevel().registryAccess()).equals(actual),"client-only installation can use the original local block entity path");
-        if(net.neoforged.fml.ModList.get().isLoaded("jade"))JadeTooltipChecks.verify(tile,data);
-        if(net.neoforged.fml.ModList.get().isLoaded("wthit"))WthitTooltipChecks.verify(tile,data);
     }
     @GameTest(template="summon_space",batch="device_tooltips",timeoutTicks=100)
     public static void nativeDeviceTooltipBodies(GameTestHelper helper) {

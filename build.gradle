@@ -38,38 +38,22 @@ neoForge {
 
 def apiJar = file(providers.gradleProperty('thaumcraftApiJar')
         .getOrElse("libs/thaumcraft-api-${project.thaumcraft_version}.jar"))
-def botaniaJar = file(providers.gradleProperty('botaniaJar')
-        .getOrElse('libs/botania-neoforge-1.21.1-456-20260912.043547-15.jar'))
-def enderStorageJar = file(providers.gradleProperty('enderStorageJar')
-        .getOrElse('libs/EnderStorage-1.21.1-2.13.0.191.jar'))
-def codeChickenLibJar = file(providers.gradleProperty('codeChickenLibJar')
-        .getOrElse('libs/CodeChickenLib-1.21.1-4.6.1.529.jar'))
-def multipartJar = file(providers.gradleProperty('multipartJar')
-        .getOrElse('libs/CBMultipart-1.21.1-3.5.0.155.jar'))
-def jadeJar = file(providers.gradleProperty('jadeJar')
-        .getOrElse('libs/Jade-1.21.1-NeoForge-15.10.1.jar'))
-def wthitApiJar = file(providers.gradleProperty('wthitApiJar')
-        .getOrElse('libs/wthit-api-neo-12.5.5.jar'))
-def wthitJar = file(providers.gradleProperty('wthitJar')
-        .getOrElse('libs/wthit-neo-12.5.5.jar'))
-def badPacketsJar = file(providers.gradleProperty('badPacketsJar')
-        .getOrElse('libs/badpackets-neo-0.8.2.jar'))
+def optionalArtifact = { String property, String coordinate ->
+    providers.gradleProperty(property).isPresent() ? files(providers.gradleProperty(property).get()) : coordinate
+}
+def botaniaJar = optionalArtifact('botaniaJar', 'vazkii.botania:botania-neoforge-1.21.1:456-SNAPSHOT')
+def enderStorageJar = optionalArtifact('enderStorageJar', 'io.codechicken:EnderStorage:1.21.1-2.13.0.191')
+def codeChickenLibJar = optionalArtifact('codeChickenLibJar', 'io.codechicken:CodeChickenLib:1.21.1-4.6.1.529')
+def multipartJar = optionalArtifact('multipartJar', 'io.codechicken:CBMultipart:1.21.1-3.5.0.155')
 dependencies {
-    compileOnly files(jadeJar, wthitApiJar)
-    if (providers.gradleProperty('withJade').map { it.toBoolean() }.getOrElse(false)) {
-        verificationRuntimeOnly files(jadeJar)
-    }
-    if (providers.gradleProperty('withWthit').map { it.toBoolean() }.getOrElse(false)) {
-        verificationRuntimeOnly files(wthitJar, badPacketsJar)
-    }
-    compileOnly files(botaniaJar)
-    compileOnly files(enderStorageJar, codeChickenLibJar)
-    compileOnly files(multipartJar)
+    compileOnly botaniaJar
+    compileOnly enderStorageJar, codeChickenLibJar
+    compileOnly multipartJar
     if (providers.gradleProperty('withMultipart').map { it.toBoolean() }.getOrElse(false)) {
-        verificationRuntimeOnly files(multipartJar, codeChickenLibJar)
+        verificationRuntimeOnly multipartJar, codeChickenLibJar
     }
     if (providers.gradleProperty('withEnderStorage').map { it.toBoolean() }.getOrElse(false)) {
-        verificationRuntimeOnly files(enderStorageJar, codeChickenLibJar)
+        verificationRuntimeOnly enderStorageJar, codeChickenLibJar
     }
     if (providers.gradleProperty('withBloodMagic').map { it.toBoolean() }.getOrElse(false)) {
         verificationRuntimeOnly files(providers.gradleProperty('bloodMagicJar')
@@ -78,7 +62,7 @@ dependencies {
                 .getOrElse('libs/modopedia-neoforge-1.21.1-1.1.5.jar'))
     }
     if (providers.gradleProperty('withBotania').map { it.toBoolean() }.getOrElse(false)) {
-        verificationRuntimeOnly files(botaniaJar)
+        verificationRuntimeOnly botaniaJar
         verificationRuntimeOnly 'vazkii.patchouli:Patchouli:1.21.1-92-NEOFORGE'
     }
     compileOnly files(apiJar)
@@ -98,6 +82,8 @@ dependencies {
 }
 repositories {
     mavenCentral()
+    maven { url = 'https://maven.covers1624.net' }
+    maven { url = 'https://maven.blamejared.com' }
     exclusiveContent {
         forRepository { maven { url = 'https://maven.blamejared.com' } }
         filter { includeGroup 'vazkii.patchouli' }
@@ -232,6 +218,9 @@ tasks.register('auditRelease') {
         def forbidden = []
         int classCount = 0
         new java.util.zip.ZipFile(releaseJar.get().asFile).withCloseable { zip ->
+            if (zip.getEntry('waila_plugins.json') != null || zip.getEntry('thaumic/tinkerer/integration/JadeCompatibility.class') != null || zip.getEntry('thaumic/tinkerer/integration/WthitCompatibility.class') != null) {
+                forbidden.add('Tooltip adapters belong to AOP:TC4 Compact')
+            }
             zip.entries().each { entry ->
                 if (entry.name.endsWith('.class')) {
                     classCount++
