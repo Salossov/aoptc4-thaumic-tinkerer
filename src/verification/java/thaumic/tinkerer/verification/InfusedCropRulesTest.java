@@ -28,10 +28,23 @@ public final class InfusedCropRulesTest {
     @SuppressWarnings({"rawtypes","unchecked"}) private static void step(net.minecraft.server.level.ServerLevel level,BlockPos pos,int count){for(int i=0;i<count;i++){var state=level.getBlockState(pos);var tile=level.getBlockEntity(pos);BlockEntityTicker ticker=((EntityBlock)state.getBlock()).getTicker(level,state,tile.getType());ticker.tick(level,pos,state,tile);}}
     @GameTest(template="empty",timeoutTicks=100)
     public static void infusedCrops(GameTestHelper helper){
+        var level=helper.getLevel();var anchor=helper.absolutePos(BlockPos.ZERO);
+        var pos=new BlockPos((anchor.getX()>>4)*16+8,anchor.getY()+260,(anchor.getZ()>>4)*16+8);
+        level.setBlock(pos.above(),Blocks.SEA_LANTERN.defaultBlockState(),2);
+        var waiting=new boolean[1];
+        helper.startSequence().thenWaitUntil(()->{
+            int brightness=level.getMaxLocalRawBrightness(pos.above());
+            if(brightness<9&&!waiting[0]){waiting[0]=true;System.out.println("TT_CROP_WAITING_FOR_LIGHT brightness="+brightness);}
+            helper.assertTrue(brightness>=9,"fixture waits for native asynchronous lantern lighting");
+        }).thenExecute(()->verifyLitCrop(helper));
+    }
+    private static void verifyLitCrop(GameTestHelper helper){
         VerificationReports.install();checks=0;var level=helper.getLevel();var anchor=helper.absolutePos(BlockPos.ZERO);var pos=new BlockPos((anchor.getX()>>4)*16+8,anchor.getY()+260,(anchor.getZ()>>4)*16+8);var player=FocusRulesTest.player(helper,"[TTCrops]");player.setPos(pos.getCenter());player.getAbilities().instabuild=false;player.getAbilities().mayBuild=true;
         var changed=new ArrayList<BlockPos>();for(var p:BlockPos.betweenClosed(pos.offset(-4,-3,-4),pos.offset(4,5,4)))changed.add(p.immutable());
         try{
-            for(var p:changed)level.setBlock(p,Blocks.AIR.defaultBlockState(),2);
+            // Keep the awaited light source; clearing it here races light work
+            // against the 6000 manual crop ticks executed in this server tick.
+            for(var p:changed)if(!p.equals(pos.above()))level.setBlock(p,Blocks.AIR.defaultBlockState(),2);
             var blank=new ItemStack(InfusedContent.SEEDS.get());player.setItemInHand(InteractionHand.MAIN_HAND,blank);level.setBlock(pos.below(),Blocks.FARMLAND.defaultBlockState(),2);var blankHit=new BlockHitResult(pos.below().getCenter(),Direction.UP,pos.below(),false);
             check(blank.getItem().useOn(new UseOnContext(player,InteractionHand.MAIN_HAND,blankHit))==InteractionResult.PASS&&blank.getCount()==1&&level.getBlockState(pos.below()).is(Blocks.FARMLAND)&&level.getBlockState(pos).isAir(),"approved missing-aspect seed does not plant, mutate soil or consume itself");
             var emptyCrop=plant(level,pos,null,0);step(level,pos,100);check(emptyCrop.aspect==null&&level.getBlockState(pos).getValue(InfusedCropBlock.AGE)==0,"approved missing-aspect crop pauses without throwing or inventing an aspect");level.setBlock(pos,Blocks.AIR.defaultBlockState(),2);drops(level,pos).forEach(Entity::discard);
