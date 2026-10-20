@@ -14,6 +14,7 @@ public final class AnimationTabletPeripheral implements IDynamicPeripheral {
     @Override public Object getTarget(){return tile;}
     @Override public boolean equals(IPeripheral other){return other instanceof AnimationTabletPeripheral peripheral&&peripheral.tile==tile;}
     @Override public MethodResult callMethod(IComputerAccess computer,ILuaContext context,int method,IArguments args)throws LuaException{
+        args.escapes();
         return context.executeMainThreadTask(()->{
             var level=tile.getLevel();if(level==null||level.isClientSide()||level.getServer()==null||!level.getServer().isSameThread())throw new LuaException("Server thread required");
             if(tile.isRemoved())throw new LuaException("Peripheral is no longer present");
