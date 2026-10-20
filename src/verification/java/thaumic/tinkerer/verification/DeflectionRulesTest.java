@@ -100,7 +100,9 @@ public final class DeflectionRulesTest {
     @GameTest(template="empty",batch="deflection",timeoutTicks=1200)
     public static void modernSectionIndexPreventsOldSecondPassAcrossBoundary(GameTestHelper helper)throws Exception{
         warm(helper,"TTDeflectSection",(peer,ignored)->{
-            var origin=new Vec3((peer.player.blockPosition().getX()>>4)*16+8.5,peer.player.getY(),(peer.player.blockPosition().getZ()>>4)*16+8.5);peer.player.setPos(origin);
+            // Snapping horizontally to a chunk center can overlap another test's
+            // arrow. Isolate height while retaining the exact section boundary.
+            var origin=new Vec3((peer.player.blockPosition().getX()>>4)*16+8.5,peer.player.getY()+120,(peer.player.blockPosition().getZ()>>4)*16+8.5);peer.player.setPos(origin);
             var chest=KamiArmorContent.GEM_CHEST.toStack();AwakenedIchorclothArmorItem.variant(chest,2);peer.player.setItemSlot(EquipmentSlot.CHEST,chest);KamiArmorState.save(peer.player,true);
             var arrow=arrow(helper.getLevel(),origin.add(2.5,0,0),new Vec3(.2,0,0));peer.fixture.packets.clear();
             try{LivingEquipmentTickEvent.BUS.post(new LivingEquipmentTickEvent(peer.player));check(arrow.getX()==origin.x+(botania()?2.5:7.5),"first pass moves into next section; modern index removes it from second query");sparkles(peer,botania()?0:6);}
