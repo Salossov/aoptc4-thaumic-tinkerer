@@ -34,6 +34,14 @@ public final class InfernalNozzleRulesTest {
     public static void infernalNozzles(GameTestHelper helper){
         VerificationReports.install();checks=0;var level=helper.getLevel();var changed=new ArrayList<BlockPos>();
         var center=helper.absolutePos(new BlockPos(4,210,4));
+        // This high fixture can extend beyond the template's forced chunks.
+        // A newly added entity there can be hidden from the active entity query.
+        var spawned=new ArrayList<net.minecraft.world.entity.item.ItemEntity>();
+        java.util.function.Consumer<net.neoforged.neoforge.event.entity.EntityJoinLevelEvent> joined=event->{
+            if(event.getLevel()==level&&event.getEntity() instanceof net.minecraft.world.entity.item.ItemEntity item
+                    &&new net.minecraft.world.phys.AABB(center).inflate(3).contains(item.position()))spawned.add(item);
+        };
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(joined);
         var block=BuiltInRegistries.BLOCK.get(ResourceLocation.parse("thaumcraft:infernal_furnace"));
         var part=(IntegerProperty)block.defaultBlockState().getProperties().stream().filter(p->p.getName().equals("part")).findFirst().orElseThrow();
         try{
@@ -80,8 +88,9 @@ public final class InfernalNozzleRulesTest {
             tick(level,center,80);
             check(inventory.getStackInSlot(0).isEmpty()&&boost(level,core)==520,"one real smelt consumes 80 boosted cooking ticks");
             var output=level.getEntitiesOfClass(net.minecraft.world.entity.item.ItemEntity.class,new net.minecraft.world.phys.AABB(center).inflate(3));
-            check(output.stream().anyMatch(item->item.getItem().is(net.minecraft.world.item.Items.IRON_INGOT)),"native furnace ejects the actual smelting output");
-            output.forEach(net.minecraft.world.entity.Entity::discard);
+            check(spawned.stream().anyMatch(item->item.isAddedToLevel()&&!item.isRemoved()&&item.getItem().is(net.minecraft.world.item.Items.IRON_INGOT)),"native furnace adds the actual smelting output to its entity manager");
+            System.out.println("TT_INFERNAL_OUTPUT_NATIVE added="+spawned.size()+" active_query="+output.size()+" fixture_chunk="+level.getChunkSource().chunkMap.getDistanceManager().inEntityTickingRange(new net.minecraft.world.level.ChunkPos(center).toLong()));
+            spawned.forEach(net.minecraft.world.entity.Entity::discard);
             inventory.insertItem(0,new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.RAW_IRON),false);boost(level,core,0,0);tick(level,center,1);
             check(core.saveWithFullMetadata(level.registryAccess()).getInt("CookTime")==140,"without essentia or a VisNet source cooking uses the original 140 ticks");
             var dormant=center.offset(0,-1,-1);var dormantTransport=level.getCapability(EssentiaCapabilities.TRANSPORT,dormant,Direction.UP);
@@ -91,6 +100,6 @@ public final class InfernalNozzleRulesTest {
             saved=core.saveWithFullMetadata(level.registryAccess());saved.putInt("SpeedyTime",321);saved.putInt("Boost",999);core.loadWithComponents(saved,level.registryAccess());
             check(boost(level,core)==321,"original SpeedyTime has precedence and survives an actual NBT reload");
             System.out.println("TT_INFERNAL_NOZZLES_PASS checks="+checks);helper.succeed();
-        }finally{for(var pos:changed)level.setBlock(pos,Blocks.AIR.defaultBlockState(),3);}
+        }finally{net.neoforged.neoforge.common.NeoForge.EVENT_BUS.unregister(joined);spawned.forEach(net.minecraft.world.entity.Entity::discard);for(var pos:changed)level.setBlock(pos,Blocks.AIR.defaultBlockState(),3);}
     }
 }
