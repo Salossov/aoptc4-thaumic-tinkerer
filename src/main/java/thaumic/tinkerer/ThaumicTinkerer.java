@@ -33,8 +33,8 @@ public final class ThaumicTinkerer {
     private static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, ID);
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TAB = TABS.register("main", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.thaumictinkerer"))
-            .icon(() -> SPELL_CLOTH.get().getDefaultInstance())
-            .displayItems((parameters, output) -> {
+            .icon(TinkererCreativeTab::icon)
+            .displayItems((parameters, destination) -> TinkererCreativeTab.display(destination, output -> {
                 output.accept(SPELL_CLOTH.get());
                 thaumic.tinkerer.crop.InfusedContent.display(output);
                 thaumic.tinkerer.summon.SummonContent.display(output);
@@ -61,7 +61,7 @@ public final class ThaumicTinkerer {
                 thaumic.tinkerer.block.GasContent.display(output);
                 thaumic.tinkerer.item.FocusContent.display(output);
                 if(TinkererConfig.KAMI_FORCE_ENABLED.get()) {thaumic.tinkerer.kami.KamiArmorContent.display(output);thaumic.tinkerer.kami.KamiUtilityContent.display(output);}
-            })
+            }))
             .build());
 
     public ThaumicTinkerer(IEventBus bus, net.neoforged.fml.ModContainer container) {
