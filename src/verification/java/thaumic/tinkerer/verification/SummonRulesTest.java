@@ -67,6 +67,10 @@ public final class SummonRulesTest {
         var stripped=((IObjectAspectItem)fresh.getItem()).inventoryScanStack(fresh);check(MobAspectItem.variant(stripped)==42&&!stripped.has(DataComponents.CUSTOM_DATA)&&((IObjectAspectItem)fresh.getItem()).scanVariant(stripped).equals("42"),"slot-scanning contract preserves metadata identity while stripping incidental NBT");
         var research=AddonRegistry.research().get("thaumictinkerer:summon");check(research.warp()==3&&!research.secondary()&&research.hiddenParents().equals(List.of("INFUSION"))&&research.pageOrder().equals(List.of("page.thaumictinkerer.summon.0","thaumictinkerer:spawner","thaumictinkerer:mob_aspect_condensed_messis","thaumictinkerer:mob_aspect_infused_messis","page.thaumictinkerer.summon.1")),"book retains source last-write crop recipe pages and warp");
         var spawner=(IArcaneRecipe)level.getRecipeManager().byKey(ThaumicTinkerer.id("spawner")).orElseThrow().value();check(spawner.vis().equals(Map.of("ordo",50,"perditio",50)),"source spawner arcane vis");recipes++;
+        var tile=new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("thaumcraft:obsidian_tile")));
+        var totem=new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse("thaumcraft:obsidian_totem")));
+        check(spawner.matches(CraftingInput.of(3,2,List.of(tile,tile,tile,new ItemStack(Blocks.STONE),new ItemStack(Blocks.STONE),new ItemStack(Blocks.STONE))),level),"source spawner accepts three metadata-one obsidian tiles");
+        check(!spawner.matches(CraftingInput.of(3,2,List.of(totem,totem,totem,new ItemStack(Blocks.STONE),new ItemStack(Blocks.STONE),new ItemStack(Blocks.STONE))),level),"source spawner rejects metadata-zero pillar totems");
         var sword=(InfusionRecipe)level.getRecipeManager().byKey(ThaumicTinkerer.id("blood_sword")).orElseThrow().value();check(sword.instability()==6&&sword.components().size()==6&&sword.aspects().equals(Map.of("fames",20,"tenebrae",5,"spiritus",10,"humanus",6)),"original blood sword infusion costs");recipes++;
         System.out.println("TT_MOB_ASPECT_VARIANTS_PASS variants="+variants+" recipes="+recipes);helper.succeed();
     }

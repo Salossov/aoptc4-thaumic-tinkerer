@@ -9722,11 +9722,11 @@
     },
     "obsidian_tile": {
       "legacy": "thaumcraft:blockCosmeticSolid",
-      "meta": 0
+      "meta": 1
     },
     "obsidian_totem": {
       "legacy": "thaumcraft:blockCosmeticSolid",
-      "meta": 1
+      "meta": 0
     },
     "paving_stone_travel": {
       "legacy": "thaumcraft:blockCosmeticSolid",

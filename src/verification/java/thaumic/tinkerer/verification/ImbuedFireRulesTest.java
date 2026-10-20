@@ -65,6 +65,12 @@ public final class ImbuedFireRulesTest {
             check(FireLegacyStates.key(Blocks.RED_WOOL.defaultBlockState()).meta()==14&&FireLegacyStates.sameLegacyBlock(Blocks.RED_WOOL.defaultBlockState(),Blocks.WHITE_WOOL.defaultBlockState()),"flattened wool retains original shared block identity and metadata");
             check(FireLegacyStates.key(Blocks.SPRUCE_LOG.defaultBlockState().setValue(BlockStateProperties.AXIS,Direction.Axis.X)).meta()==5,"original log type and axis combine to metadata five");
             check(FireLegacyStates.key(Blocks.COPPER_ORE.defaultBlockState()).modern()!=null,"a new vanilla block uses modern state identity");
+            // Original TileEnchanter accepts cosmetic-solid metadata 0 for its
+            // totem pillars; metadata 1 is the ordinary obsidian tile cube.
+            var totem=BuiltInRegistries.BLOCK.get(net.minecraft.resources.ResourceLocation.parse("thaumcraft:obsidian_totem")).defaultBlockState();
+            var obsidianTile=BuiltInRegistries.BLOCK.get(net.minecraft.resources.ResourceLocation.parse("thaumcraft:obsidian_tile")).defaultBlockState();
+            check(FireLegacyStates.key(totem).meta()==0&&FireLegacyStates.key(obsidianTile).meta()==1,"source totem and tile metadata are not reversed");
+            check(FireLegacyStates.isMetadataZero(totem)&&!FireLegacyStates.isMetadataZero(obsidianTile)&&FireLegacyStates.matchesResult(totem,obsidianTile)&&!FireLegacyStates.matchesResult(obsidianTile,totem),"order fire preserves the source metadata-zero restriction for cosmetic stone");
             var airStone=BuiltInRegistries.BLOCK.get(net.minecraft.resources.ResourceLocation.parse("thaumcraft:air_infused_stone"));
             check(FireLegacyStates.key(airStone.defaultBlockState()).meta()==1&&FireLegacyStates.key(airStone.defaultBlockState()).zero().meta()==0,"core flattened infused stone preserves old metadata restriction");
             level.setBlock(pos,Blocks.RED_WOOL.defaultBlockState(),2);level.setBlock(pos.east(),Blocks.WHITE_WOOL.defaultBlockState(),2);
