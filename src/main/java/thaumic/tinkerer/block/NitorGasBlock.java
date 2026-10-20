@@ -35,9 +35,11 @@ public final class NitorGasBlock extends GasBlock {
         // Use the original integer corner, not the centre or an inflated block bounding box.
         for (Player player : level.getEntitiesOfClass(Player.class, new AABB(pos.getX() - range, pos.getY() - range,
                 pos.getZ() - range, pos.getX() + range, pos.getY() + range, pos.getZ() + range))) {
-            if (player.getInventory().items.stream().anyMatch(stack -> stack.is(GasContent.BRIGHT_NITOR.get()))
+            if (player.getOffhandItem().is(GasContent.BRIGHT_NITOR.get()) || player.getInventory().items.stream().anyMatch(stack -> stack.is(GasContent.BRIGHT_NITOR.get()))
                     || player.getItemBySlot(EquipmentSlot.LEGS).is(LEGGINGS)) { held = true; break; }
         }
+        if(!held)held=!level.getEntitiesOfClass(net.minecraft.world.entity.item.ItemEntity.class,
+                new AABB(pos).inflate(range),entity->entity.isAlive()&&entity.getItem().is(GasContent.BRIGHT_NITOR.get())).isEmpty();
         if (held) level.scheduleTick(pos, this, interval(level));
         else level.removeBlock(pos, false);
     }

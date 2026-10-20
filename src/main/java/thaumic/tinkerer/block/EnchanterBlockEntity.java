@@ -63,7 +63,7 @@ public final class EnchanterBlockEntity extends BlockEntity implements WorldlyCo
     private void tick(){
         if(getItem(0).isEmpty()){enchantments.clear();levels.clear();}
         if(!working)return;if(getItem(0).isEmpty()){working=false;super.setChanged();return;}
-        if(!checkPillars()){super.setChanged();return;}
+        if(!checkPillars()){sync();return;}
         for(var primal:PRIMALS)if(currentAspects.getAmount(primal)<totalAspects.getAmount(primal)){
             var wand=getItem(1);var kind=WandApi.kind(wand);
             if(kind!=WandApi.Kind.NONE&&kind!=WandApi.Kind.STAFF){

@@ -107,6 +107,11 @@ public final class GasRulesTest {
             player.getInventory().clearContent();
             level.getBlockState(origin).tick(level, origin, level.random);
             check(!level.getBlockState(origin).is(nitor), "dropping nitor stops maintenance");
+            var droppedNitor=new net.minecraft.world.entity.item.ItemEntity(level,origin.getX()+.5,origin.getY()+.1,origin.getZ()+.5,new ItemStack(GasContent.BRIGHT_NITOR.get()));
+            droppedNitor.setNoGravity(true);droppedNitor.setDeltaMovement(net.minecraft.world.phys.Vec3.ZERO);level.addFreshEntity(droppedNitor);
+            droppedNitor.tick();check(level.getBlockState(origin).is(nitor),"native dropped-item tick creates real block light");
+            level.getBlockState(origin).tick(level,origin,level.random);check(level.getBlockState(origin).is(nitor),"nearby dropped nitor maintains its light");
+            droppedNitor.discard();level.getBlockState(origin).tick(level,origin,level.random);check(!level.getBlockState(origin).is(nitor),"light expires after dropped nitor is removed");
             player.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(GasContent.REMOVER.get()));
             player.setPos(origin.getX(), origin.getY(), origin.getZ());
             level.setBlock(origin, light.defaultBlockState(), 2);

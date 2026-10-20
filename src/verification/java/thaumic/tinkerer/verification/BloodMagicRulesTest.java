@@ -55,7 +55,7 @@ public final class BloodMagicRulesTest {
                     check(ProjectileHooks.owner(friendly)==player,"native Blood Magic owner is resolved through the existing projectile API");
                 }
                 var friendlyPos=friendly==null?null:friendly.position();var cost=WandApi.quote(wand,player,FocusContent.DEFLECT.get().getVisCost(focus));int vis=WandApi.stored(wand,Aspects.ORDER);
-                player.setItemInHand(InteractionHand.MAIN_HAND,wand);wand.getItem().use(level,player,InteractionHand.MAIN_HAND);wand.getItem().onUseTick(level,player,wand,72000);
+                player.setItemInHand(InteractionHand.MAIN_HAND,wand);wand.getItem().use(level,player,InteractionHand.MAIN_HAND);DeflectionRulesTest.legacyUse(player,wand,72000);
                 check(tracked&&!botania?entity.position().distanceTo(expected)<1e-8:entity.position().equals(old),"actual focus preserves ordinary deflection or existing Botania early return: "+entry.getKey().location());
                 check(entity.getDeltaMovement().equals(motion)&&WandApi.stored(wand,Aspects.ORDER)==vis-cost.get(Aspects.ORDER),"native trajectory remains unchanged and one source payment covers the group");
                 if(friendly!=null){check(friendly.position().equals(friendlyPos),"own native Blood Magic projectile remains untouched");friendly.discard();}

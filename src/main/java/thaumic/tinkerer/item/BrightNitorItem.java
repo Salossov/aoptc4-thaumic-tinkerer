@@ -17,6 +17,10 @@ public final class BrightNitorItem extends Item {
             level.setBlock(pos, GasContent.NITOR.get().defaultBlockState().setValue(GasBlock.SPREAD, kami ? 1 : 0), 2);
         }
     }
+    @Override public boolean onEntityItemUpdate(ItemStack stack, net.minecraft.world.entity.item.ItemEntity entity) {
+        light(entity.level(),entity.blockPosition(),false);
+        return false; // Keep vanilla item movement, pickup, merging and lifetime.
+    }
     @Override public void inventoryTick(ItemStack stack, Level level, Entity entity, int slot, boolean selected) {
         light(level, new BlockPos(Mth.floor(entity.getX()), (int) entity.getY() + 1, Mth.floor(entity.getZ())), false);
     }

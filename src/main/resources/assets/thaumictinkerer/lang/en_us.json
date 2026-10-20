@@ -1,9 +1,9 @@
 {
   "item.thaumictinkerer.spell_cloth": "Spellbinding Cloth",
-  "category.thaumictinkerer.tinkering": "Thaumic Tinkering",
+  "category.thaumictinkerer.tinkering": "Thaumic Tinkerer",
   "tc.research_name.thaumictinkerer:spell_cloth": "Spellbinding Cloth",
   "page.thaumictinkerer.spell_cloth": "By mixing some Enchanted Fabric with raw magic power, you created a cloth that can be rubbed on an item to wipe it of its enchantments by combining them in a Crafting Recipe.",
-  "itemGroup.thaumictinkerer": "Thaumic Tinkering",
+  "itemGroup.thaumictinkerer": "Thaumic Tinkerer",
   "item.thaumictinkerer.dark_quartz_item": "Smokey Quartz",
   "block.thaumictinkerer.dark_quartz": "Block of Smokey Quartz",
   "block.thaumictinkerer.chiseled_dark_quartz": "Chiseled Smokey Quartz Block",
@@ -501,5 +501,7 @@
   "item.thaumcraft.cap.thaumictinkerer:ichor": "Ichorium Adorned",
   "thaumcraft.wand.cap.thaumictinkerer:ichor": "Ichorium Adorned",
   "item.thaumcraft.rod.thaumictinkerer:ichorcloth": "Ichorcloth Strapped Silverwood",
-  "thaumcraft.wand.rod.thaumictinkerer:ichorcloth": "Ichorcloth Strapped Silverwood"
+  "thaumcraft.wand.rod.thaumictinkerer:ichorcloth": "Ichorcloth Strapped Silverwood",
+  "message.thaumictinkerer.enchanter.pillars": "Requires 6 pillars within 4 blocks: 2–12 Obsidian Totems, each topped with Nitor. Bases must be at the table height.",
+  "message.thaumictinkerer.enchanter.wand": "Insert a charged wand with gold or more efficient caps (not a staff)."
 }

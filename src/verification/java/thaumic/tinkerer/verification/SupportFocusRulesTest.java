@@ -88,7 +88,7 @@ public final class SupportFocusRulesTest {
             Vec3 oldHostile=hostile.position(),oldNegative=negative.position();
             Vec3 oldOwn = own.position(), oldBottle = bottle.position(), oldOutside = outside.position(), oldFireball = fireball.position(), oldTiny = tiny.position();
             var cost = WandApi.quote(wand, player, item.getVisCost(focus));
-            wand.getItem().use(level, player, InteractionHand.MAIN_HAND); wand.getItem().onUseTick(level, player, wand, 72000);
+            wand.getItem().use(level, player, InteractionHand.MAIN_HAND); DeflectionRulesTest.legacyUse(player,wand,72000);
             check(botania?hostile.position().equals(oldHostile):hostile.position().distanceTo(player.position().add(2, 0, 0)) < 1e-8, "original deflection teleports along incoming motion by twice its distance, passing over the protected player; actual=" + hostile.position() + " player=" + player.position() + " loaded=" + level.hasChunkAt(hostile.blockPosition()) + " entities=" + level.getEntities(player, player.getBoundingBox().inflate(5)).size() + " vis=" + WandApi.stored(wand, Aspects.ORDER));
             check(hostile.getDeltaMovement().equals(new Vec3(1, 0, 0)) && hostile.getOwner() == other, "trajectory and projectile owner remain unchanged");
             check(own.position().equals(oldOwn), "original owner registry excludes the player's own arrow");

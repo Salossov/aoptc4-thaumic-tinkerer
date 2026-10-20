@@ -133,6 +133,10 @@ public final class TinkererFocusItem extends ItemFocusBasic implements FocusBeha
         if (entities.isEmpty() || !WandApi.consume(wand, player, getVisCost(focus), true)) return false;
         for (var entity : entities) {
             LegacyMotion.towards(entity, target, .3333f);
+            // Item entities normally synchronize only every twenty ticks. The focus changes
+            // their trajectory every tick, so send both position and velocity immediately.
+            entity.hasImpulse=true;
+            entity.hurtMarked=true;
             // EntityItem's old raw posY included its fixed 0.125 yOffset above the feet.
             ParticleApi.broadcastSparkle(player.serverLevel(), (float) entity.getX(), (float) (entity.getY() + .125), (float) entity.getZ(), 0);
         }

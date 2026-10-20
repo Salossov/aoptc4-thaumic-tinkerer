@@ -133,7 +133,18 @@ public final class DeflectionActions {
         try{
             if(job!=null&&(!job.valid()||!job.binding.matches(binding))){job.close();job=null;}
             if(!binding.valid()){if(job!=null)job.close();return;}
-            var origin=origin(binding.player);var moves=scan(binding.player,origin);var columns=columns(moves);
+            var origin=origin(binding.player);var moves=scan(binding.player,origin);
+            if(binding.kind==Kind.FOCUS&&thaumic.tinkerer.TinkererConfig.DEFLECT_DESTROY_PROJECTILES.get()){
+                if(job!=null)job.close();
+                for(var move:moves){
+                    if(!binding.valid())break;
+                    if(move.entity.isRemoved()||ProjectileHooks.blacklisted(move.entity)||ProjectileHooks.owner(move.entity)==binding.player)continue;
+                    for(int i=0;i<6;i++)ParticleApi.broadcastSparkle(binding.level,(float)move.position.x,(float)move.position.y,(float)move.position.z,6);
+                    move.entity.discard();
+                }
+                return;
+            }
+            var columns=columns(moves);
             if(moves.isEmpty()){if(job!=null)job.close();return;}
             if(job!=null)job.lastSeen=binding.level.getGameTime();
             if(!loaded(binding.level,columns)){

@@ -78,6 +78,14 @@ public final class ImbuedFireRulesTest {
             check(OrderFireRules.transformation(level,pos.east(),Blocks.WHITE_WOOL.defaultBlockState()).is(Blocks.GOLD_BLOCK),"real nine-slot fixture recipe computes metadata-zero packing result");
             check(OrderFireRules.transformation(level,pos,Blocks.RED_WOOL.defaultBlockState()).is(Blocks.GOLD_BLOCK),"old shared metadata-zero cache result overrides colored variant's own recipe");
             level.setBlock(pos,Blocks.DIAMOND_ORE.defaultBlockState(),2);check(OrderFireRules.transformation(level,pos,Blocks.DIAMOND_ORE.defaultBlockState()).is(Blocks.DIAMOND_BLOCK),"native diamond drops and native nine-item recipe drive order fire");
+            for(var pair:java.util.List.of(java.util.Map.entry(Blocks.IRON_ORE,Blocks.IRON_BLOCK),java.util.Map.entry(Blocks.DEEPSLATE_GOLD_ORE,Blocks.GOLD_BLOCK),java.util.Map.entry(Blocks.COPPER_ORE,Blocks.COPPER_BLOCK),java.util.Map.entry(Blocks.RAW_IRON_BLOCK,Blocks.IRON_BLOCK),java.util.Map.entry(Blocks.RAW_GOLD_BLOCK,Blocks.GOLD_BLOCK),java.util.Map.entry(Blocks.RAW_COPPER_BLOCK,Blocks.COPPER_BLOCK))){
+                level.setBlock(pos,pair.getKey().defaultBlockState(),2);
+                check(java.util.Objects.equals(OrderFireRules.transformation(level,pos,level.getBlockState(pos)),pair.getValue().defaultBlockState()),"Ordo yields finished storage block: "+pair.getKey());
+            }
+            var amberOre=net.minecraft.core.registries.BuiltInRegistries.BLOCK.get(net.minecraft.resources.ResourceLocation.parse("thaumcraft:amber_ore"));
+            var amberBlock=net.minecraft.core.registries.BuiltInRegistries.BLOCK.get(net.minecraft.resources.ResourceLocation.parse("thaumcraft:amber_block"));
+            level.setBlock(pos,amberOre.defaultBlockState(),2);check(OrderFireRules.transformation(level,pos,level.getBlockState(pos)).is(amberBlock),"amber ore becomes amber block");
+            level.setBlock(pos,Blocks.DIAMOND_ORE.defaultBlockState(),2);
             check(OrderFireRules.decayChance(level,pos)==3,"single original drop has one-in-three transmutation chance");
             level.setBlock(pos,Blocks.REDSTONE_ORE.defaultBlockState(),2);check(OrderFireRules.decayChance(level,pos)==1,"merged native redstone stack expands to original three-or-more drop count");
             level.setBlock(pos,Blocks.GLASS.defaultBlockState(),2);check(OrderFireRules.transformation(level,pos,Blocks.GLASS.defaultBlockState())==null,"initial null blacklist survives later lookups");

@@ -1,9 +1,9 @@
 {
   "item.thaumictinkerer.spell_cloth": "주문구속 천",
-  "category.thaumictinkerer.tinkering": "팅커러",
+  "category.thaumictinkerer.tinkering": "Thaumic Tinkerer",
   "tc.research_name.thaumictinkerer:spell_cloth": "주문구속 천",
   "page.thaumictinkerer.spell_cloth": "마법이 깃든 천과 다른 마법 에너지를 섞어서 만든 이 천은 다른 도구와 함께 조합될 경우 그 도구의 모든 인챈트를 제거합니다.",
-  "itemGroup.thaumictinkerer": "팅커러",
+  "itemGroup.thaumictinkerer": "Thaumic Tinkerer",
   "item.thaumictinkerer.dark_quartz_item": "잿빛 석영",
   "block.thaumictinkerer.dark_quartz": "잿빛 석영 블럭",
   "block.thaumictinkerer.chiseled_dark_quartz": "조각된 잿빛 석영 블럭",
@@ -454,5 +454,7 @@
   "item.thaumcraft.cap.thaumictinkerer:ichor": "이코릭",
   "thaumcraft.wand.cap.thaumictinkerer:ichor": "이코릭",
   "item.thaumcraft.rod.thaumictinkerer:ichorcloth": "천상의 실버우드",
-  "thaumcraft.wand.rod.thaumictinkerer:ichorcloth": "천상의 실버우드"
+  "thaumcraft.wand.rod.thaumictinkerer:ichorcloth": "천상의 실버우드",
+  "message.thaumictinkerer.enchanter.pillars": "Requires 6 pillars within 4 blocks: 2–12 Obsidian Totems, each topped with Nitor. Bases must be at the table height.",
+  "message.thaumictinkerer.enchanter.wand": "Insert a charged wand with gold or more efficient caps (not a staff)."
 }

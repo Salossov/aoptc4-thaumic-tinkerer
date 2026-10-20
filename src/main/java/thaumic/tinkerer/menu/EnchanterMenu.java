@@ -19,7 +19,15 @@ public final class EnchanterMenu extends AbstractContainerMenu {
     }
     public static int button(EnchanterCatalog.Entry entry,int level){return 1+EnchanterCatalog.ENTRIES.indexOf(entry)*32+(level+1);}
     @Override public boolean clickMenuButton(Player player,int button){
-        if(!stillValid(player)||player.level().isClientSide())return false;if(button==0)return tile.start();
+        if(!stillValid(player)||player.level().isClientSide())return false;if(button==0){
+            if(!tile.checkPillars()){
+                tile.sync();player.displayClientMessage(net.minecraft.network.chat.Component.translatable("message.thaumictinkerer.enchanter.pillars"),false);return false;
+            }
+            if(!EnchanterBlockEntity.acceptsWand(tile.getItem(1))){
+                player.displayClientMessage(net.minecraft.network.chat.Component.translatable("message.thaumictinkerer.enchanter.wand"),false);return false;
+            }
+            return tile.start();
+        }
         int index=(button-1)/32,value=(button-1)%32-1;if(button<1||index>=EnchanterCatalog.ENTRIES.size()||value>20)return false;
         return tile.select(player,net.minecraft.resources.ResourceLocation.parse(EnchanterCatalog.ENTRIES.get(index).id()),value);
     }

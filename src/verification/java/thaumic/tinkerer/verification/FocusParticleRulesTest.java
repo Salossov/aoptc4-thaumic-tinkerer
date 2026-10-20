@@ -101,6 +101,7 @@ public final class FocusParticleRulesTest {
                 for(var effect:peer.effects())check(expected.contains(new Vec3(effect.x(),effect.y(),effect.z())),"source item raw posY is feet+0.125, with cast after addition");
                 check(items.get(0).getDeltaMovement().length()>.3332&&items.get(0).getDeltaMovement().length()<.3334,"far item normalizes to source speed");
                 check(items.get(1).getDeltaMovement().distanceTo(new Vec3(-.5*.3333f,0,0))<1e-8,"near item retains unnormalised source approach");
+                check(items.stream().allMatch(e->e.hasImpulse&&e.hurtMarked),"each telekinesis tick immediately marks both position and velocity for client synchronization");
                 var before=items.stream().map(ItemEntity::getDeltaMovement).toList();WandApi.set(wand[0],Aspects.AIR,0);wand[0].getItem().onUseTick(level,player,wand[0],71998);
                 sameEffects(peer,observer,2);check(before.equals(items.stream().map(ItemEntity::getDeltaMovement).toList()),"unaffordable tick has no motion or extra effects");
                 System.out.println("TT_TELEKINESIS_PARTICLES_NATIVE_PASS recipients=2 effects_each=2 group_payment=true item_offset=0.125");helper.succeed();

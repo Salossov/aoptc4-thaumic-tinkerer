@@ -36,7 +36,7 @@ public final class EnchanterScreen extends AbstractContainerScreen<EnchanterMenu
 
     public EnchanterScreen(EnchanterMenu menu,Inventory inventory,Component title){
         super(menu,inventory,title);
-        this.imageWidth=EnchanterVisualTransform.GUI_WIDTH;
+        this.imageWidth=EnchanterVisualTransform.GUI_WIDTH+58;
         this.imageHeight=EnchanterVisualTransform.GUI_HEIGHT;
     }
 
@@ -123,7 +123,7 @@ public final class EnchanterScreen extends AbstractContainerScreen<EnchanterMenu
             int y=topPos+i*EnchanterVisualTransform.FRAMED_ROW_HEIGHT;
 
             addRenderableWidget(new Control(
-                leftPos+imageWidth+4,
+                leftPos+EnchanterVisualTransform.GUI_WIDTH+4,
                 y,
                 EnchanterVisualTransform.CANDIDATE_BUTTON_SIZE,
                 EnchanterVisualTransform.CANDIDATE_BUTTON_SIZE,
@@ -132,7 +132,7 @@ public final class EnchanterScreen extends AbstractContainerScreen<EnchanterMenu
                 1,entry,true
             ));
             addRenderableWidget(new Control(
-                leftPos+imageWidth+EnchanterVisualTransform.LEVEL_MINUS_OFFSET_X,
+                leftPos+EnchanterVisualTransform.GUI_WIDTH+EnchanterVisualTransform.LEVEL_MINUS_OFFSET_X,
                 y+EnchanterVisualTransform.LEVEL_BUTTON_OFFSET_Y,
                 EnchanterVisualTransform.LEVEL_BUTTON_SIZE,
                 EnchanterVisualTransform.LEVEL_BUTTON_SIZE,
@@ -141,7 +141,7 @@ public final class EnchanterScreen extends AbstractContainerScreen<EnchanterMenu
                 2,null,false
             ));
             addRenderableWidget(new Control(
-                leftPos+imageWidth+EnchanterVisualTransform.LEVEL_PLUS_OFFSET_X,
+                leftPos+EnchanterVisualTransform.GUI_WIDTH+EnchanterVisualTransform.LEVEL_PLUS_OFFSET_X,
                 y+EnchanterVisualTransform.LEVEL_BUTTON_OFFSET_Y,
                 EnchanterVisualTransform.LEVEL_BUTTON_SIZE,
                 EnchanterVisualTransform.LEVEL_BUTTON_SIZE,
@@ -216,7 +216,7 @@ public final class EnchanterScreen extends AbstractContainerScreen<EnchanterMenu
 
     @Override
     protected void renderBg(GuiGraphics g,float partial,int mx,int my){
-        GuiTextures.blit(g,TEXTURE,leftPos,topPos,0,0,imageWidth,imageHeight);
+        GuiTextures.blit(g,TEXTURE,leftPos,topPos,0,0,EnchanterVisualTransform.GUI_WIDTH,imageHeight);
         var tool=menu.getSlot(0).getItem();
         if(!tool.isEmpty()&&!tool.isEnchanted()){
             if(candidates.size()>8){

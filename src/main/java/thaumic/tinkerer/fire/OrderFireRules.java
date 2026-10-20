@@ -32,8 +32,22 @@ public final class OrderFireRules {
     }
     private static boolean sameLegacyItem(ItemStack a,ItemStack b){return ItemStack.isSameItem(a,b)&&Objects.equals(a.get(DataComponents.DAMAGE),b.get(DataComponents.DAMAGE));}
     private static BlockState compute(ServerLevel level,BlockPos pos){
+        var state=level.getBlockState(pos);
+        var id=net.minecraft.core.registries.BuiltInRegistries.BLOCK.getKey(state.getBlock());
+        if(id.toString().equals("thaumcraft:amber_ore"))return net.minecraft.core.registries.BuiltInRegistries.BLOCK.get(net.minecraft.resources.ResourceLocation.parse("thaumcraft:amber_block")).defaultBlockState();
+        for(var pair:List.of(Map.entry(Blocks.RAW_IRON_BLOCK,Blocks.IRON_BLOCK),Map.entry(Blocks.RAW_GOLD_BLOCK,Blocks.GOLD_BLOCK),Map.entry(Blocks.RAW_COPPER_BLOCK,Blocks.COPPER_BLOCK)))
+            if(state.is(pair.getKey()))return pair.getValue().defaultBlockState();
         var drops=drops(level,pos);if(drops.isEmpty()||drops.stream().anyMatch(stack->!sameLegacyItem(stack,drops.getFirst())))return null;
-        var stack=drops.getFirst();var result=craftNine(level,stack);
+        var stack=drops.getFirst();
+        // Modern ores drop raw metal, which packs into raw blocks. Smelt the raw
+        // item before packing so Ordo produces the finished resource block.
+        if(stack.is(net.neoforged.neoforge.common.Tags.Items.RAW_MATERIALS)){
+            var input=new SingleRecipeInput(stack);
+            var smelted=level.getRecipeManager().getRecipeFor(RecipeType.SMELTING,input,level).map(recipe->recipe.value().assemble(input,level.registryAccess())).orElse(ItemStack.EMPTY);
+            var packed=craftNine(level,smelted);
+            if(packed.getItem() instanceof BlockItem block)return block.getBlock().defaultBlockState();
+        }
+        var result=craftNine(level,stack);
         if(result.isEmpty()){
             var input=new SingleRecipeInput(stack);var smelted=level.getRecipeManager().getRecipeFor(RecipeType.SMELTING,input,level).map(recipe->recipe.value().assemble(input,level.registryAccess())).orElse(ItemStack.EMPTY);
             result=craftNine(level,smelted);
@@ -47,7 +61,11 @@ public final class OrderFireRules {
     }
     public static BlockState transformation(Level level,BlockPos pos,BlockState query){
         if(!(level instanceof ServerLevel server))return null;
-        return populate(server,pos).getOrDefault(FireLegacyStates.key(query).zero(),Optional.empty()).orElse(null);
+        var key=FireLegacyStates.key(query);
+        // Amber is an explicitly supported modern conversion, even though its
+        // historical ore metadata was nonzero. Other legacy variants keep their rule.
+        boolean amber=net.minecraft.core.registries.BuiltInRegistries.BLOCK.getKey(query.getBlock()).toString().equals("thaumcraft:amber_ore");
+        return populate(server,pos).getOrDefault(amber?key:key.zero(),Optional.empty()).orElse(null);
     }
     public static boolean isResult(Level level,BlockPos pos,BlockState query){
         if(!(level instanceof ServerLevel server))return false;

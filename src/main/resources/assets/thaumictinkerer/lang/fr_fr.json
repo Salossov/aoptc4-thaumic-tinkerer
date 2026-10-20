@@ -1,9 +1,9 @@
 {
   "item.thaumictinkerer.spell_cloth": "Habits envoûtants",
-  "category.thaumictinkerer.tinkering": "Thaumic Tinkering",
+  "category.thaumictinkerer.tinkering": "Thaumic Tinkerer",
   "tc.research_name.thaumictinkerer:spell_cloth": "Habits envoûtants",
   "page.thaumictinkerer.spell_cloth": "By mixing some Enchanted Fabric with raw magic power, you created a cloth that can be rubbed on an item to wipe it of its enchantments by combining them in a Crafting Recipe.",
-  "itemGroup.thaumictinkerer": "Thaumic Tinkering",
+  "itemGroup.thaumictinkerer": "Thaumic Tinkerer",
   "item.thaumictinkerer.dark_quartz_item": "Quartz fumeux",
   "block.thaumictinkerer.dark_quartz": "Bloc de Quartz fumeux",
   "block.thaumictinkerer.chiseled_dark_quartz": "Bloc de Quartz fumeux ciselé",
@@ -498,5 +498,7 @@
   "item.thaumcraft.cap.thaumictinkerer:ichor": "ornée d'Ichorium",
   "thaumcraft.wand.cap.thaumictinkerer:ichor": "ornée d'Ichorium",
   "item.thaumcraft.rod.thaumictinkerer:ichorcloth": "en bois d'argent enroulé de tissu d'Ichor",
-  "thaumcraft.wand.rod.thaumictinkerer:ichorcloth": "en bois d'argent enroulé de tissu d'Ichor"
+  "thaumcraft.wand.rod.thaumictinkerer:ichorcloth": "en bois d'argent enroulé de tissu d'Ichor",
+  "message.thaumictinkerer.enchanter.pillars": "Requires 6 pillars within 4 blocks: 2–12 Obsidian Totems, each topped with Nitor. Bases must be at the table height.",
+  "message.thaumictinkerer.enchanter.wand": "Insert a charged wand with gold or more efficient caps (not a staff)."
 }

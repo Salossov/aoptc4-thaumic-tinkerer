@@ -1,9 +1,9 @@
 {
   "item.thaumictinkerer.spell_cloth": "Entzauberungstuch",
-  "category.thaumictinkerer.tinkering": "Thaumische Bastelei",
+  "category.thaumictinkerer.tinkering": "Thaumic Tinkerer",
   "tc.research_name.thaumictinkerer:spell_cloth": "Entzauberungstuch",
   "page.thaumictinkerer.spell_cloth": "Durch das Mischen von Verzaubertem Stoff mit roher magischer Energie hast du ein Tuch kreiert, das an einem Item gerieben werden kann, um dieses von seinen Verzauberungen zu befreien. Kombiniere dazu beides in einem Crafting-Feld.",
-  "itemGroup.thaumictinkerer": "Thaumische Bastelei",
+  "itemGroup.thaumictinkerer": "Thaumic Tinkerer",
   "block.thaumictinkerer.dark_quartz": "Rauchiger Quarzblock",
   "block.thaumictinkerer.chiseled_dark_quartz": "Gemeißelter Rauchiger Quarzblock",
   "block.thaumictinkerer.dark_quartz_pillar": "Rauchige Quarzsäule",
@@ -470,5 +470,7 @@
   "item.thaumcraft.cap.thaumictinkerer:ichor": "Ichoriumgeschmückter",
   "thaumcraft.wand.cap.thaumictinkerer:ichor": "Ichoriumgeschmückter",
   "item.thaumcraft.rod.thaumictinkerer:ichorcloth": "Ichortuchverstärkter Silberholz",
-  "thaumcraft.wand.rod.thaumictinkerer:ichorcloth": "Ichortuchverstärkter Silberholz"
+  "thaumcraft.wand.rod.thaumictinkerer:ichorcloth": "Ichortuchverstärkter Silberholz",
+  "message.thaumictinkerer.enchanter.pillars": "Requires 6 pillars within 4 blocks: 2–12 Obsidian Totems, each topped with Nitor. Bases must be at the table height.",
+  "message.thaumictinkerer.enchanter.wand": "Insert a charged wand with gold or more efficient caps (not a staff)."
 }

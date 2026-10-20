@@ -1,9 +1,9 @@
 {
   "item.thaumictinkerer.spell_cloth": "Ткань поглощения заклинаний",
-  "category.thaumictinkerer.tinkering": "Таум-инженерия",
+  "category.thaumictinkerer.tinkering": "Thaumic Tinkerer",
   "tc.research_name.thaumictinkerer:spell_cloth": "Ткань поглощения заклинаний",
   "page.thaumictinkerer.spell_cloth": "Смешав немного зачарованной ткани с энергией Вис, Вы создаете ткань, с помощью которой можно протирать предметы таким образом, чтобы с них снимались любые наложенные зачарования.",
-  "itemGroup.thaumictinkerer": "Таум-инженерия",
+  "itemGroup.thaumictinkerer": "Thaumic Tinkerer",
   "block.thaumictinkerer.dark_quartz": "Блок закоптившегося кварца",
   "block.thaumictinkerer.chiseled_dark_quartz": "Резной блок закоптившегося кварца",
   "block.thaumictinkerer.dark_quartz_pillar": "Колонна из закоптившегося кварца",
@@ -497,5 +497,7 @@
   "item.thaumcraft.cap.thaumictinkerer:ichor": "Украшенный ихором ",
   "thaumcraft.wand.cap.thaumictinkerer:ichor": "Украшенный ихором ",
   "item.thaumcraft.rod.thaumictinkerer:ichorcloth": "Ихорно-серебродревесный ",
-  "thaumcraft.wand.rod.thaumictinkerer:ichorcloth": "Ихорно-серебродревесный "
+  "thaumcraft.wand.rod.thaumictinkerer:ichorcloth": "Ихорно-серебродревесный ",
+  "message.thaumictinkerer.enchanter.pillars": "Нужны 6 колонн в радиусе 4 блоков: 2–12 обсидиановых тотемов, над каждой — нитор. Основания — на высоте стола.",
+  "message.thaumictinkerer.enchanter.wand": "Вставь заряженный жезл с золотыми или более эффективными наконечниками (не посох)."
 }

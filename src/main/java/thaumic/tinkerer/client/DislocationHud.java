@@ -42,17 +42,21 @@ public final class DislocationHud {
             extra=selected&&!data.copyTag().getCompound("tileCmp").isEmpty();
         }
         if(!selected)return;
-        var graphics=event.getGuiGraphics();int x=4,y=WandHudSettings.dialBottom()?graphics.guiHeight()-70:50;
-        var title=Component.translatable("ttmisc.focusDislocation.tooltip");int width=mc.font.width(title);
-        graphics.fill(x-1,y-1,x+18,y+18,0x66000000);
-        graphics.fill(x+18,y,x+18+width+4,y+9,0x66000000);
-        graphics.drawString(mc.font,title,x+20,y,0xffffaa00,true);
-        if(extra) {
-            // Source deliberately sizes both backgrounds using the title width.
-            graphics.fill(x+18,y+9,x+18+width+4,y+18,0x66000000);
-            graphics.drawString(mc.font,Component.translatable("ttmisc.focusDislocation.tooltipExtra"),x+20,y+9,0xffffaa00,true);
-        }
-        if(!icon.isEmpty())graphics.renderItem(icon,x,y);
+        var graphics=event.getGuiGraphics();int x=5,y=WandHudSettings.dialBottom()?graphics.guiHeight()-76:54;
+        var title=Component.translatable("ttmisc.focusDislocation.tooltip");
+        int maxWidth=Math.max(40,Math.min(180,graphics.guiWidth()-x-32));
+        String name=mc.font.plainSubstrByWidth(icon.getHoverName().getString(),maxWidth);
+        String heading=mc.font.plainSubstrByWidth(title.getString(),maxWidth);
+        var extraLabel=Component.translatable("ttmisc.focusDislocation.tooltipExtra");
+        int width=Math.min(maxWidth,Math.max(mc.font.width(name),Math.max(mc.font.width(heading),extra?mc.font.width(extraLabel):0)));
+        int height=extra?34:24;
+        graphics.fill(x,y,x+width+30,y+height,0xc0181324);
+        graphics.fill(x,y,x+2,y+height,0xffb898d8);
+        graphics.drawString(mc.font,heading,x+25,y+3,0xffc6addc,false);
+        graphics.drawString(mc.font,name,x+25,y+13,0xffeeeeee,false);
+        if(extra)graphics.drawString(mc.font,mc.font.plainSubstrByWidth(extraLabel.getString(),maxWidth),x+25,y+23,0xffbfb2cd,false);
+        if(!icon.isEmpty())graphics.renderItem(icon,x+5,y+4);
+
     }
     private static void clear(){lastData=null;lastRegistries=null;icon=ItemStack.EMPTY;selected=extra=false;}
     @SubscribeEvent public static void logout(ClientPlayerNetworkEvent.LoggingOut event){clear();}

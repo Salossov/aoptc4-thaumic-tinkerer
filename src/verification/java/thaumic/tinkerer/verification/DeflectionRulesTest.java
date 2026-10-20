@@ -38,6 +38,12 @@ import thaumic.tinkerer.util.LegacyPlayerCoordinates;
 @GameTestHolder(ThaumicTinkerer.ID)
 @PrefixGameTestTemplate(false)
 public final class DeflectionRulesTest {
+    /** Exercise the retained legacy option without changing other tests' defaults. */
+    public static void legacyUse(ServerPlayer player,ItemStack wand,int remaining){
+        boolean old=thaumic.tinkerer.TinkererConfig.DEFLECT_DESTROY_PROJECTILES.get();
+        try{thaumic.tinkerer.TinkererConfig.DEFLECT_DESTROY_PROJECTILES.set(false);wand.getItem().onUseTick(player.level(),player,wand,remaining);}
+        finally{thaumic.tinkerer.TinkererConfig.DEFLECT_DESTROY_PROJECTILES.set(old);}
+    }
     // Release 164's Botania branch also excludes non-ManaBurst projectiles.
     private static boolean botania(){return net.neoforged.fml.ModList.get().isLoaded("botania");}
     private static void check(boolean value,String message){if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(message);}
@@ -56,6 +62,23 @@ public final class DeflectionRulesTest {
     private static void sparkles(DislocationServerRulesTest.Peer peer,int count)throws ReflectiveOperationException{
         var effects=peer.effects();check(effects.size()==count,"exactly "+count+" explicit particle packets");
         for(var effect:effects)check(effect.kind()==ParticleApi.Kind.SPARKLE&&effect.palette()==6&&effect.size()==1.5f&&effect.shrink()&&effect.noClip()&&effect.gravity()==0,"original deflection sparkle parameters");
+    }
+    @GameTest(template="empty",batch="deflection",timeoutTicks=1200)
+    public static void focusDestroysProjectilesByDefaultWithoutDrops(GameTestHelper helper)throws Exception{
+        warm(helper,"TTDeflectDestroy",(peer,origin)->{
+            check(thaumic.tinkerer.TinkererConfig.DEFLECT_DESTROY_PROJECTILES.get(),"destruction is the default");
+            var player=peer.player;var focus=FocusContent.DEFLECT.toStack();var wand=FocusRulesTest.wand(player,focus);
+            var hostile=arrow(helper.getLevel(),origin.add(0,0,2),new Vec3(0,0,-.2));
+            var own=arrow(helper.getLevel(),origin.add(1,0,0),new Vec3(0,0,-.2));own.setOwner(player);
+            try{
+                wand.getItem().use(helper.getLevel(),player,InteractionHand.MAIN_HAND);
+                wand.getItem().onUseTick(helper.getLevel(),player,wand,72000);
+                check(hostile.isRemoved()!=botania(),"default discards hostile arrow with existing blacklist respected");
+                check(!own.isRemoved(),"own projectile remains alive");
+                check(helper.getLevel().getEntitiesOfClass(net.minecraft.world.entity.item.ItemEntity.class,new AABB(origin.add(-4,-4,-4),origin.add(4,4,4))).isEmpty(),"discard does not drop an arrow item");
+                helper.succeed();
+            }finally{FocusRulesTest.stop(player,wand);hostile.discard();own.discard();}
+        });
     }
     @GameTest(template="empty",batch="deflection",timeoutTicks=1200)
     public static void warmDisplacementKeepsVelocityOwnerAndSendsSixToEachPeer(GameTestHelper helper)throws Exception{
@@ -83,7 +106,7 @@ public final class DeflectionRulesTest {
             if(wand[0]==null){player.setPos(Vec3.atCenterOf(pos));player.setNoGravity(true);var focus=FocusContent.DEFLECT.toStack();wand[0]=FocusRulesTest.wand(player,focus);cost=WandApi.quote(wand[0],player,FocusContent.DEFLECT.get().getVisCost(focus));arrows.add(arrow(helper.getLevel(),player.position().add(0,0,2),new Vec3(0,0,-.2)));wand[0].getItem().use(helper.getLevel(),player,InteractionHand.MAIN_HAND);}
             var arrow=arrows.getFirst();
             if(tick<2){arrow.setPos(player.position().add(0,0,tick==0?2:-2));arrow.setDeltaMovement(0,0,-.2);}
-            wand[0].getItem().onUseTick(helper.getLevel(),player,wand[0],72000-tick);
+            legacyUse(player,wand[0],72000-tick);
             if(tick==1){check(arrow.position().equals(player.position().add(0,0,botania()?-2:-6))&&arrow.getDeltaMovement().equals(new Vec3(0,0,-.2)),"first two source ticks displace without reversing motion");arrow.discard();}
             if(++tick==5){check(WandApi.stored(wand[0],Aspects.ORDER)==1000-cost.get(Aspects.ORDER)*5&&WandApi.stored(wand[0],Aspects.AIR)==1000-cost.get(Aspects.AIR)*5,"native focus pays original discounted8/4 every active tick, including empty scans");done=true;helper.succeed();}
         }});
@@ -135,7 +158,7 @@ public final class DeflectionRulesTest {
     @GameTest(template="empty",batch="deflection_cold",timeoutTicks=6000)
     public static void coldFocusPaysOnceThenReleaseCancelsWithoutMoving(GameTestHelper helper)throws Exception{
         cold(helper,0,(player,arrows)->{var focus=FocusContent.DEFLECT.toStack();var wand=FocusRulesTest.wand(player,focus);player.tablet().setItem(0,wand);var cost=WandApi.quote(wand,player,FocusContent.DEFLECT.get().getVisCost(focus));var before=arrows.stream().map(Arrow::position).toList();
-            try{wand.getItem().use(helper.getLevel(),player,InteractionHand.MAIN_HAND);wand.getItem().onUseTick(helper.getLevel(),player,wand,72000);var request=botania()?null:request(player);
+            try{wand.getItem().use(helper.getLevel(),player,InteractionHand.MAIN_HAND);legacyUse(player,wand,72000);var request=botania()?null:request(player);
                 check((request==null?pending(player)==null:!request.closed()&&request.submitted()<=2)&&arrows.stream().map(Arrow::position).toList().equals(before),"bounded real request does not move projectiles before readiness");
                 check(WandApi.stored(wand,Aspects.ORDER)==1000-cost.get(Aspects.ORDER)&&WandApi.stored(wand,Aspects.AIR)==1000-cost.get(Aspects.AIR),"waiting retains exactly one source tick payment");
                 FocusRulesTest.stop(player,wand);check((request==null||request.closed())&&pending(player)==null,"native release closes focus tickets immediately");check(arrows.stream().map(Arrow::position).toList().equals(before),"canceled waiting never replays saved movement");
