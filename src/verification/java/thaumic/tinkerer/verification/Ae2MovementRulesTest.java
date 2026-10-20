@@ -24,7 +24,7 @@ import thaumic.tinkerer.integration.Ae2Movement;
 @EventBusSubscriber(modid=ThaumicTinkerer.ID,bus=EventBusSubscriber.Bus.MOD)
 public final class Ae2MovementRulesTest {
     private static int checks;
-    private static void check(boolean value,String message){checks++;if(!value)throw new AssertionError(message);}
+    private static void check(boolean value,String message){checks++;if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(message);}
     @SubscribeEvent public static void setup(FMLCommonSetupEvent event){if(Ae2Movement.present())event.enqueueWork(Backend::register);}
     @GameTest(template="empty",batch="ae2_movement",timeoutTicks=70)
     public static void ae2NativeStrategies(GameTestHelper helper){

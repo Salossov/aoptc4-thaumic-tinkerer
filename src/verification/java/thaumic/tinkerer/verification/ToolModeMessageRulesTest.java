@@ -11,7 +11,7 @@ import thaumic.tinkerer.kami.ToolModeMessage;
 @GameTestHolder(ThaumicTinkerer.ID)
 @PrefixGameTestTemplate(false)
 public final class ToolModeMessageRulesTest {
-    private static void check(boolean result,String message) {if(!result)throw new IllegalStateException(message);}
+    private static void check(boolean result,String message) {if(!result)throw new net.minecraft.gametest.framework.GameTestAssertException(message);}
     public static void verify() {
         var hud=new ToolModeMessage();check(!hud.visible(),"no message before a mode change");
         hud.set("disabled");check(hud.visible()&&hud.remainingTicks()==400,"a changed message begins at 400 client ticks");

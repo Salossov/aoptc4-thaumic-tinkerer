@@ -27,7 +27,7 @@ import thaumic.tinkerer.block.*;
 @PrefixGameTestTemplate(false)
 public final class RepairerRulesTest {
     private static int checks;
-    private static void check(boolean value,String label){checks++;if(!value)throw new AssertionError(label);}
+    private static void check(boolean value,String label){checks++;if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(label);}
     @SuppressWarnings({"rawtypes","unchecked"})
     private static void tick(net.minecraft.server.level.ServerLevel level,BlockPos pos,int count){
         var state=level.getBlockState(pos);var tile=level.getBlockEntity(pos);

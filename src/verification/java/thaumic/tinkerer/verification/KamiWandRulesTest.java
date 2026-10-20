@@ -23,7 +23,7 @@ import thaumic.tinkerer.kami.KamiWandContent;
 @GameTestHolder(ThaumicTinkerer.ID)
 @PrefixGameTestTemplate(false)
 public final class KamiWandRulesTest {
-    private static void check(boolean value,String label) {if(!value)throw new IllegalStateException(label);}
+    private static void check(boolean value,String label) {if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(label);}
     @GameTest(template="summon_space",batch="kami_wands",timeoutTicks=100)
     public static void nativeWandAssemblyAndCosts(GameTestHelper helper) {
         VerificationReports.install();var level=helper.getLevel();

@@ -29,7 +29,7 @@ import top.theillusivec4.curios.api.*;
 @GameTestHolder(ThaumicTinkerer.ID)
 @PrefixGameTestTemplate(false)
 public final class BlockTalismanRulesTest {
-    private static void check(boolean value,String label){if(!value)throw new IllegalStateException(label);}
+    private static void check(boolean value,String label){if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(label);}
     private static boolean enabled(GameTestHelper helper){
         VerificationReports.install();if(TinkererConfig.KAMI_FORCE_ENABLED.get())return true;
         check(!BuiltInRegistries.ITEM.containsKey(ThaumicTinkerer.id("block_talisman")),"disabled KAMI omits talisman");helper.succeed();return false;

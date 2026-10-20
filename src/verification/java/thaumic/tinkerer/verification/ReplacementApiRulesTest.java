@@ -30,7 +30,7 @@ import thaumic.tinkerer.ThaumicTinkerer;
 @GameTestHolder(ThaumicTinkerer.ID)
 @PrefixGameTestTemplate(false)
 public final class ReplacementApiRulesTest {
-    private static void check(boolean value,String message){if(!value)throw new AssertionError(message);}
+    private static void check(boolean value,String message){if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(message);}
     private static BlockPos target(GameTestHelper helper){return helper.absolutePos(new BlockPos(3,4,3));}
     private static void prepared(GameTestHelper helper,String name,Consumer<DislocationServerRulesTest.Peer> scenario)throws Exception{
         VerificationReports.install();var peer=new DislocationServerRulesTest.Peer(helper,name);var pos=target(helper);var columns=new ArrayList<ChunkPos>();

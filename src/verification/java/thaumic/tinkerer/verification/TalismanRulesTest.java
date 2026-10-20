@@ -29,7 +29,7 @@ import top.theillusivec4.curios.api.SlotContext;
 @net.neoforged.neoforge.gametest.PrefixGameTestTemplate(false)
 public final class TalismanRulesTest {
     private static int checks;
-    private static void check(boolean value, String label) { checks++; if (!value) throw new AssertionError(label); }
+    private static void check(boolean value, String label) { checks++; if (!value) throw new net.minecraft.gametest.framework.GameTestAssertException(label); }
     private static int orbCount(ExperienceOrb orb) { var tag = new CompoundTag(); orb.addAdditionalSaveData(tag); return tag.getInt("Count"); }
     private static ExperienceOrb orb(GameTestHelper helper, net.minecraft.world.entity.LivingEntity wearer, int value, int count, double offset) {
         var orb = new ExperienceOrb(helper.getLevel(), wearer.getX() + offset, wearer.getY(), wearer.getZ(), value);

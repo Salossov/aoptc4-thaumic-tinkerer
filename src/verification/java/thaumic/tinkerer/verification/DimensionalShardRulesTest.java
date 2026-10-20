@@ -23,7 +23,7 @@ import thaumic.tinkerer.util.ItemData;
 @GameTestHolder(ThaumicTinkerer.ID)
 @PrefixGameTestTemplate(false)
 public final class DimensionalShardRulesTest {
-    private static void check(boolean value,String label) {if(!value)throw new IllegalStateException(label);}
+    private static void check(boolean value,String label) {if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(label);}
     @GameTest(template="summon_space",batch="kami_shards",timeoutTicks=100)
     public static void configuredDropsAndBloodSwordComposition(GameTestHelper helper) {
         VerificationReports.install();if(!TinkererConfig.KAMI_FORCE_ENABLED.get()) {helper.succeed();return;}

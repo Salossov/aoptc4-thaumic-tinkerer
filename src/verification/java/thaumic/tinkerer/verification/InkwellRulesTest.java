@@ -26,7 +26,7 @@ import thaumic.tinkerer.ThaumicTinkerer;
 @PrefixGameTestTemplate(false)
 public final class InkwellRulesTest {
     private static int checks;
-    private static void check(boolean value, String label) { checks++; if (!value) throw new AssertionError(label); }
+    private static void check(boolean value, String label) { checks++; if (!value) throw new net.minecraft.gametest.framework.GameTestAssertException(label); }
     @GameTest(template = "empty", timeoutTicks = 100)
     public static void infusedInkwell(GameTestHelper helper) {
         VerificationReports.install(); checks = 0;

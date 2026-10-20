@@ -26,7 +26,7 @@ import thaumic.tinkerer.util.LegacyMotion;
 @GameTestHolder(ThaumicTinkerer.ID)
 @PrefixGameTestTemplate(false)
 public final class FocusParticleRulesTest {
-    private static void check(boolean value,String message){if(!value)throw new AssertionError(message);}
+    private static void check(boolean value,String message){if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(message);}
     private static BlockPos base(GameTestHelper helper){var anchor=helper.absolutePos(BlockPos.ZERO);return new BlockPos((anchor.getX()>>4)*16+8,anchor.getY()+70,(anchor.getZ()>>4)*16+8);}
     private static List<ChunkPos> columns(GameTestHelper helper){var pos=base(helper);var result=new ArrayList<ChunkPos>();for(int x=(pos.getX()-20)>>4;x<=(pos.getX()+20)>>4;x++)for(int z=(pos.getZ()-20)>>4;z<=(pos.getZ()+20)>>4;z++)result.add(new ChunkPos(x,z));return result;}
     private static void sparkle(ParticleApi.Effect effect){check(effect.kind()==ParticleApi.Kind.SPARKLE&&effect.palette()==0&&effect.size()==1.5f&&effect.shrink()&&effect.noClip()&&effect.gravity()==0,"original ordinary-focus sparkle parameters");}

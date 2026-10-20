@@ -19,7 +19,7 @@ import thaumic.tinkerer.ThaumicTinkerer;
 @PrefixGameTestTemplate(false)
 public final class BlockEntityMovementRulesTest {
     private static int checks;
-    private static void check(boolean value,String message){checks++;if(!value)throw new AssertionError(message);}
+    private static void check(boolean value,String message){checks++;if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(message);}
     private static BlockEntity registered(net.minecraft.server.level.ServerLevel level,BlockPos pos){return level.getChunkSource().getChunkNow(pos.getX()>>4,pos.getZ()>>4).getBlockEntities().get(pos);}
     @GameTest(template="empty",timeoutTicks=80)
     public static void movementIdentity(GameTestHelper helper){

@@ -24,7 +24,7 @@ import thaumic.tinkerer.util.ItemData;
 @PrefixGameTestTemplate(false)
 public final class ShareTomeRulesTest {
     private static int checks;
-    private static void check(boolean value,String label){checks++;if(!value)throw new AssertionError(label);}
+    private static void check(boolean value,String label){checks++;if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(label);}
     public static void fixture(AddonRegistrationEvent event){
         for(String key:List.of("test_share_warp","test_share_sibling"))AddonRegistry.research(new ResearchDefinition(
                 "thaumictinkerer:"+key,"thaumictinkerer:tinkering",List.of("GOGGLES"),Map.of(),1,false,false,0,20,List.of(),List.of(),"minecraft:book",false,false,false,false,

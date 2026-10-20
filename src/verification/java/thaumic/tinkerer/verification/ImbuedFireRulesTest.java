@@ -19,7 +19,7 @@ import thaumic.tinkerer.fire.*;
 @PrefixGameTestTemplate(false)
 public final class ImbuedFireRulesTest {
     private static int checks;
-    private static void check(boolean condition,String message){checks++;if(!condition)throw new AssertionError(message);}
+    private static void check(boolean condition,String message){checks++;if(!condition)throw new net.minecraft.gametest.framework.GameTestAssertException(message);}
     @GameTest(template="empty",timeoutTicks=80)
     public static void imbuedFire(GameTestHelper helper){
         VerificationReports.install();checks=0;var level=helper.getLevel();var anchor=helper.absolutePos(BlockPos.ZERO);

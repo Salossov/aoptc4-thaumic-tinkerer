@@ -23,7 +23,7 @@ import thaumic.tinkerer.kami.tool.*;
 @GameTestHolder(ThaumicTinkerer.ID)
 @PrefixGameTestTemplate(false)
 public final class BedrockPortalRulesTest {
-    private static void check(boolean value,String label){if(!value)throw new IllegalStateException(label);}
+    private static void check(boolean value,String label){if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(label);}
     @GameTest(template="summon_space",batch="bedrock_portal",timeoutTicks=100)
     public static void nativePortalPropertiesAndDimensionTag(GameTestHelper helper){
         VerificationReports.install();var level=helper.getLevel();var pos=helper.absolutePos(new BlockPos(8,4,8));

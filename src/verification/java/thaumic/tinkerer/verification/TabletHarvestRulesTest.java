@@ -26,7 +26,7 @@ import thaumic.tinkerer.kami.tool.*;
 @GameTestHolder(ThaumicTinkerer.ID)
 @PrefixGameTestTemplate(false)
 public final class TabletHarvestRulesTest {
-    private static void check(boolean value,String message){if(!value)throw new AssertionError(message);}
+    private static void check(boolean value,String message){if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(message);}
     private static AnimationTabletBlockEntity tablet(GameTestHelper helper,BlockPos pos,Direction facing){
         helper.getLevel().setBlock(pos,AnimationTabletContent.BLOCK.get().defaultBlockState().setValue(AnimationTabletBlock.FACING,facing),18);
         var tablet=(AnimationTabletBlockEntity)helper.getLevel().getBlockEntity(pos);tablet.leftClick=true;tablet.redstone=true;tablet.player().prepare();return tablet;

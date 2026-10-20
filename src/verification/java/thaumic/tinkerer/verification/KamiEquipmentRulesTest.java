@@ -35,7 +35,7 @@ import thaumic.tinkerer.util.ItemData;
 @GameTestHolder(ThaumicTinkerer.ID)
 @PrefixGameTestTemplate(false)
 public final class KamiEquipmentRulesTest {
-    private static void check(boolean value,String label) {if(!value)throw new IllegalStateException(label);}
+    private static void check(boolean value,String label) {if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(label);}
     private static ItemStack stack(String name) {return new ItemStack(BuiltInRegistries.ITEM.get(ThaumicTinkerer.id(name)));}
     @GameTest(template="summon_space",batch="kami_equipment",timeoutTicks=100)
     public static void nativeArmorAndCatRecipes(GameTestHelper helper) {

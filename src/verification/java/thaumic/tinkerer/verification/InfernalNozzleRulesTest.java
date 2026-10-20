@@ -19,7 +19,7 @@ import thaumic.tinkerer.ThaumicTinkerer;
 @PrefixGameTestTemplate(false)
 public final class InfernalNozzleRulesTest {
     private static int checks;
-    private static void check(boolean value,String label){checks++;if(!value)throw new AssertionError(label);}
+    private static void check(boolean value,String label){checks++;if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(label);}
     @SuppressWarnings({"rawtypes","unchecked"})
     private static void tick(ServerLevel level,BlockPos pos,int times){
         var state=level.getBlockState(pos);var tile=level.getBlockEntity(pos);

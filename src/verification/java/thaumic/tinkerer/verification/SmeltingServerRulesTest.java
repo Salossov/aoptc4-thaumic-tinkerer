@@ -28,7 +28,7 @@ import thaumic.tinkerer.item.smelting.SmeltingActions;
 @GameTestHolder(ThaumicTinkerer.ID)
 @PrefixGameTestTemplate(false)
 public final class SmeltingServerRulesTest {
-    private static void check(boolean value,String message){if(!value)throw new AssertionError(message);}
+    private static void check(boolean value,String message){if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(message);}
     private static List<ParticleApi.Effect> effects(DislocationServerRulesTest.Peer peer){
         try{return peer.effects();}catch(ReflectiveOperationException failure){throw new AssertionError(failure);}
     }

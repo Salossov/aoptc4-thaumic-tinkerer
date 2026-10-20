@@ -27,7 +27,7 @@ import thaumic.tinkerer.menu.AspectAnalyzerMenu;
 @PrefixGameTestTemplate(false)
 public final class AspectAnalyzerRulesTest {
     private static int checks;
-    private static void check(boolean value,String label){checks++;if(!value)throw new AssertionError(label);}
+    private static void check(boolean value,String label){checks++;if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(label);}
     @GameTest(template="empty",timeoutTicks=100)
     public static void aspectAnalyzer(GameTestHelper helper)throws Exception{
         VerificationReports.install();checks=0;var level=helper.getLevel();var id=ThaumicTinkerer.id("aspect_analyzer");var player=FocusRulesTest.player(helper,"[TTAnalyzer]");

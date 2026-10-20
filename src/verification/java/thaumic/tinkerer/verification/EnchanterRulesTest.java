@@ -31,7 +31,7 @@ import thaumic.tinkerer.menu.EnchanterMenu;
 @PrefixGameTestTemplate(false)
 public final class EnchanterRulesTest {
     private static int checks;
-    private static void check(boolean value,String label){checks++;if(!value)throw new AssertionError(label);}
+    private static void check(boolean value,String label){checks++;if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(label);}
     private static ResourceLocation id(String name){return ResourceLocation.parse(name.contains(":")?name:"thaumictinkerer:"+name);}
     private static ItemStack wand(String kind,String cap){var stack=new ItemStack(BuiltInRegistries.ITEM.get(id("thaumcraft:casting_"+kind)));WandApi.parts(stack,new WandParts(kind.equals("staff")?"silverwood_staff":"silverwood",cap));return stack;}
     @SuppressWarnings({"rawtypes","unchecked"})

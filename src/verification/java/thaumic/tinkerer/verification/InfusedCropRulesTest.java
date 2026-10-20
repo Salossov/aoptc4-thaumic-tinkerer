@@ -22,7 +22,7 @@ import thaumic.tinkerer.crop.*;
 @PrefixGameTestTemplate(false)
 public final class InfusedCropRulesTest {
     private static int checks;
-    private static void check(boolean value,String message){checks++;if(!value)throw new AssertionError(message);}
+    private static void check(boolean value,String message){checks++;if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(message);}
     private static InfusedCropBlockEntity plant(net.minecraft.server.level.ServerLevel level,BlockPos pos,Aspect aspect,int age){level.setBlock(pos.below(),InfusedContent.SOIL.get().defaultBlockState(),2);level.setBlock(pos,InfusedContent.CROP.get().getStateForAge(age),2);var tile=(InfusedCropBlockEntity)level.getBlockEntity(pos);tile.aspect=aspect;tile.primalTendencies=new AspectList();tile.changed();return tile;}
     private static List<ItemEntity> drops(net.minecraft.server.level.ServerLevel level,BlockPos pos){return level.getEntitiesOfClass(ItemEntity.class,new AABB(pos).inflate(4));}
     @SuppressWarnings({"rawtypes","unchecked"}) private static void step(net.minecraft.server.level.ServerLevel level,BlockPos pos,int count){for(int i=0;i<count;i++){var state=level.getBlockState(pos);var tile=level.getBlockEntity(pos);BlockEntityTicker ticker=((EntityBlock)state.getBlock()).getTicker(level,state,tile.getType());ticker.tick(level,pos,state,tile);}}

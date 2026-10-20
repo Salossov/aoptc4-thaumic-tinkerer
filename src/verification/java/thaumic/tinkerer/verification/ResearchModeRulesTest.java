@@ -25,7 +25,7 @@ import thaumic.tinkerer.TinkererConfig;
 @GameTestHolder(ThaumicTinkerer.ID)
 @PrefixGameTestTemplate(false)
 public final class ResearchModeRulesTest {
-    private static void check(boolean value,String message){if(!value)throw new AssertionError(message);}
+    private static void check(boolean value,String message){if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(message);}
     private static boolean request(ServerPlayer player,String research)throws ReflectiveOperationException{
         // Exercise the real book menu, not a replacement purchase implementation.
         return (boolean)player.containerMenu.getClass().getMethod("createNote",ServerPlayer.class,String.class).invoke(player.containerMenu,player,research);

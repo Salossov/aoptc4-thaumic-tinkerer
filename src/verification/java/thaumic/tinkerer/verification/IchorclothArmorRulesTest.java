@@ -27,7 +27,7 @@ import thaumic.tinkerer.util.ItemData;
 @PrefixGameTestTemplate(false)
 public final class IchorclothArmorRulesTest {
     private static final EquipmentSlot[] SLOTS={EquipmentSlot.FEET,EquipmentSlot.LEGS,EquipmentSlot.CHEST,EquipmentSlot.HEAD};
-    private static void check(boolean value,String label) {if(!value)throw new IllegalStateException(label);}
+    private static void check(boolean value,String label) {if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(label);}
     private static void close(double actual,double expected,String label) {check(Math.abs(actual-expected)<1E-4,label+": "+actual);}
     private static void clear(net.minecraft.server.level.ServerPlayer player) {for(var slot:SLOTS)player.setItemSlot(slot,ItemStack.EMPTY);}
     private static void hurt(net.minecraft.server.level.ServerPlayer player,DamageSource source,float expected) {

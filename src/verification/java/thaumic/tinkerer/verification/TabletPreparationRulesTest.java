@@ -20,7 +20,7 @@ import thaumic.tinkerer.block.*;
 @GameTestHolder(ThaumicTinkerer.ID)
 @PrefixGameTestTemplate(false)
 public final class TabletPreparationRulesTest {
-    private static void check(boolean value,String message){if(!value)throw new AssertionError(message);}
+    private static void check(boolean value,String message){if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(message);}
     private static AnimationTabletBlockEntity tablet(ServerLevel level,BlockPos pos){
         level.setBlock(pos,AnimationTabletContent.BLOCK.get().defaultBlockState().setValue(AnimationTabletBlock.FACING,Direction.EAST),18);
         var tablet=(AnimationTabletBlockEntity)level.getBlockEntity(pos);tablet.leftClick=false;tablet.redstone=true;tablet.player().prepare();return tablet;

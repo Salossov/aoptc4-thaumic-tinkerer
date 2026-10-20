@@ -28,7 +28,7 @@ import thaumic.tinkerer.block.*;
 @PrefixGameTestTemplate(false)
 public final class FunnelRulesTest {
     private static int checks;
-    private static void check(boolean value,String label){checks++;if(!value)throw new AssertionError(label);}
+    private static void check(boolean value,String label){checks++;if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(label);}
     private static void label(BlockEntity tile,Aspect aspect,net.minecraft.server.level.ServerLevel level){var data=tile.saveWithFullMetadata(level.registryAccess());data.putString("AspectFilter",aspect.getTag());tile.loadWithComponents(data,level.registryAccess());}
     @GameTest(template="empty",timeoutTicks=100)
     public static void funnel(GameTestHelper helper){

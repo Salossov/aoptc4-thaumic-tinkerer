@@ -21,7 +21,7 @@ import thaumic.tinkerer.util.ItemData;
 @GameTestHolder(ThaumicTinkerer.ID)
 @PrefixGameTestTemplate(false)
 public final class ProtoclayRulesTest {
-    private static void check(boolean value,String label){if(!value)throw new IllegalStateException(label);}
+    private static void check(boolean value,String label){if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(label);}
     private static boolean enabled(GameTestHelper helper){VerificationReports.install();if(TinkererConfig.KAMI_FORCE_ENABLED.get())return true;helper.succeed();return false;}
     @GameTest(template="summon_space",batch="protoclay",timeoutTicks=100)
     public static void registeredRecipeResearchAndToolContract(GameTestHelper helper){

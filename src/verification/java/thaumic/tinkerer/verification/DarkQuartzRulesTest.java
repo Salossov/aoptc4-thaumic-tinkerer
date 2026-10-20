@@ -32,7 +32,7 @@ import thaumic.tinkerer.block.DarkQuartzContent;
 @PrefixGameTestTemplate(false)
 public final class DarkQuartzRulesTest {
     private static int checks;
-    private static void check(boolean value, String label) { checks++; if (!value) throw new AssertionError(label); }
+    private static void check(boolean value, String label) { checks++; if (!value) throw new net.minecraft.gametest.framework.GameTestAssertException(label); }
     private static CraftingInput input(int width, int height, Object... values) {
         var stacks = new ArrayList<ItemStack>();
         for (Object value : values) {

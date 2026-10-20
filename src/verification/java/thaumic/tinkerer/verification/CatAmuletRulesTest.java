@@ -32,7 +32,7 @@ import top.theillusivec4.curios.api.SlotContext;
 @GameTestHolder(ThaumicTinkerer.ID)
 @PrefixGameTestTemplate(false)
 public final class CatAmuletRulesTest {
-    private static void check(boolean value,String label) {if(!value)throw new IllegalStateException(label);}
+    private static void check(boolean value,String label) {if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(label);}
     private static Object field(Object object,Class<?> owner,String name) throws Exception {var f=owner.getDeclaredField(name);f.setAccessible(true);return f.get(object);}
     private static GoalSelector selector(Mob mob,String name) throws Exception {return (GoalSelector)field(mob,Mob.class,name);}
     @GameTest(template="summon_space",batch="cat_amulet",timeoutTicks=100)

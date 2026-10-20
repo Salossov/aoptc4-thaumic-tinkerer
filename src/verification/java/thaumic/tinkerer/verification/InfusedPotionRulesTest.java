@@ -30,7 +30,7 @@ import thaumic.tinkerer.crop.*;
 @PrefixGameTestTemplate(false)
 public final class InfusedPotionRulesTest {
     private static int checks;
-    private static void check(boolean value,String message){checks++;if(!value)throw new AssertionError(message);}
+    private static void check(boolean value,String message){checks++;if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(message);}
     @GameTest(template="empty",timeoutTicks=100)
     public static void infusedPotions(GameTestHelper helper){
         VerificationReports.install();checks=0;var level=helper.getLevel();var anchor=helper.absolutePos(BlockPos.ZERO);

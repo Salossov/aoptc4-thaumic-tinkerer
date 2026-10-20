@@ -29,7 +29,7 @@ import thaumic.tinkerer.util.ItemData;
 @PrefixGameTestTemplate(false)
 public final class DislocationRulesTest {
     private static int checks;
-    private static void check(boolean value,String label){checks++;if(!value)throw new AssertionError(label);}
+    private static void check(boolean value,String label){checks++;if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(label);}
     private static void aim(net.minecraft.server.level.ServerPlayer player,BlockPos pos){player.setPos(pos.getX()+.5,pos.getY()+.5-player.getEyeHeight(),pos.getZ()-3);player.setYRot(0);player.setXRot(0);}
     private static void fill(ItemStack wand){for(var aspect:Aspects.PRIMALS)WandApi.set(wand,aspect,WandApi.capacity(wand));}
     @GameTest(template="empty",timeoutTicks=100)

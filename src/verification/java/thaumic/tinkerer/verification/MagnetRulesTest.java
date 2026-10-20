@@ -41,7 +41,7 @@ import thaumic.tinkerer.menu.MobMagnetMenu;
 @PrefixGameTestTemplate(false)
 public final class MagnetRulesTest {
     private static int checks;
-    private static void check(boolean value, String label) { checks++; if (!value) throw new AssertionError(label); }
+    private static void check(boolean value, String label) { checks++; if (!value) throw new net.minecraft.gametest.framework.GameTestAssertException(label); }
     private static ItemStack core(String path) { return new ItemStack(net.minecraft.core.registries.BuiltInRegistries.ITEM.get(ResourceLocation.parse("thaumcraft:" + path))); }
     @GameTest(template = "empty", timeoutTicks = 100)
     public static void magnetMotion(GameTestHelper helper) {

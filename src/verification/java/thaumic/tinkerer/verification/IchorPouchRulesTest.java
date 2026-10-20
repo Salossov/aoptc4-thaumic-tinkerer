@@ -32,7 +32,7 @@ import top.theillusivec4.curios.api.CuriosApi;
 @GameTestHolder(ThaumicTinkerer.ID)
 @PrefixGameTestTemplate(false)
 public final class IchorPouchRulesTest {
-    private static void check(boolean value,String label){if(!value)throw new IllegalStateException(label);}
+    private static void check(boolean value,String label){if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(label);}
     private static ItemStack stack(String id){var key=ResourceLocation.parse(id);check(BuiltInRegistries.ITEM.containsKey(key),"registered item "+id);return new ItemStack(BuiltInRegistries.ITEM.get(key));}
     private static ArrayList<ItemStack> empty(){return new ArrayList<>(java.util.Collections.nCopies(117,ItemStack.EMPTY));}
     private static boolean enabled(GameTestHelper helper){VerificationReports.install();if(TinkererConfig.KAMI_FORCE_ENABLED.get())return true;check(!BuiltInRegistries.ITEM.containsKey(ThaumicTinkerer.id("ichor_pouch")),"disabled KAMI omits pouch");helper.succeed();return false;}

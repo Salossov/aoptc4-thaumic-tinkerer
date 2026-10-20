@@ -38,7 +38,7 @@ import thaumic.tinkerer.util.LegacyPlayerCoordinates;
 @GameTestHolder(ThaumicTinkerer.ID)
 @PrefixGameTestTemplate(false)
 public final class DeflectionRulesTest {
-    private static void check(boolean value,String message){if(!value)throw new AssertionError(message);}
+    private static void check(boolean value,String message){if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(message);}
     private static Arrow arrow(ServerLevel level,Vec3 position,Vec3 velocity){var arrow=new Arrow(EntityType.ARROW,level);arrow.setPos(position);arrow.setDeltaMovement(velocity);check(level.addFreshEntity(arrow),"native arrow added");return arrow;}
     private static void warm(GameTestHelper helper,String name,BiConsumer<DislocationServerRulesTest.Peer,Vec3> scenario)throws Exception{
         var pos=helper.absolutePos(new BlockPos(4,6,4));var columns=new ArrayList<ChunkPos>();

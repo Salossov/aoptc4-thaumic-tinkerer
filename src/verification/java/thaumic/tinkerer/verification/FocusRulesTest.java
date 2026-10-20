@@ -33,7 +33,7 @@ import thaumic.tinkerer.item.FocusContent;
 @PrefixGameTestTemplate(false)
 public final class FocusRulesTest {
     private static int checks;
-    private static void check(boolean value, String label) { checks++; if (!value) throw new AssertionError(label); }
+    private static void check(boolean value, String label) { checks++; if (!value) throw new net.minecraft.gametest.framework.GameTestAssertException(label); }
     static ServerPlayer player(GameTestHelper helper, String name) {
         return FakePlayerFactory.get(helper.getLevel(), new GameProfile(java.util.UUID.nameUUIDFromBytes(name.getBytes(java.nio.charset.StandardCharsets.UTF_8)), name));
     }

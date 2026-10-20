@@ -26,7 +26,7 @@ import thaumic.tinkerer.kami.*;
 @GameTestHolder(ThaumicTinkerer.ID)
 @PrefixGameTestTemplate(false)
 public final class KamiArmorEffectsRulesTest {
-    private static void check(boolean value,String label) {if(!value)throw new IllegalStateException(label);}
+    private static void check(boolean value,String label) {if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(label);}
     private static void close(double actual,double expected,String label) {check(Math.abs(actual-expected)<1E-5,label+": "+actual);}
     private static boolean disabled(GameTestHelper helper) {
         VerificationReports.install();if(!TinkererConfig.KAMI_FORCE_ENABLED.get()) {helper.succeed();return true;}return false;

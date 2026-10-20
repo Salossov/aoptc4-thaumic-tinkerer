@@ -22,7 +22,7 @@ import thaumic.tinkerer.util.ItemData;
 @GameTestHolder(ThaumicTinkerer.ID)
 @PrefixGameTestTemplate(false)
 public final class XpDrainRulesTest {
-    private static void check(boolean value,String label){if(!value)throw new IllegalStateException(label);}
+    private static void check(boolean value,String label){if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(label);}
     private static boolean enabled(GameTestHelper helper){VerificationReports.install();if(TinkererConfig.KAMI_FORCE_ENABLED.get())return true;helper.succeed();return false;}
     private static void xp(ServerPlayer player,int level,int points){player.experienceLevel=level;player.experienceProgress=0;player.totalExperience=points;}
     private static AutoCloseable resetCycle()throws Exception{

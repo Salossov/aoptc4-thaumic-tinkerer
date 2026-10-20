@@ -33,7 +33,7 @@ import thaumic.tinkerer.util.ItemData;
 @PrefixGameTestTemplate(false)
 public final class EnchantmentRulesTest {
     private static int checks;
-    private static void check(boolean value,String label){checks++;if(!value)throw new AssertionError(label);}
+    private static void check(boolean value,String label){checks++;if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(label);}
     private static void close(double actual,double expected,String label){check(Math.abs(actual-expected)<1e-5,label+" actual="+actual+" expected="+expected);}
     private static Holder.Reference<Enchantment> enchant(ServerLevel level,String id){return level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ResourceKey.create(Registries.ENCHANTMENT,ResourceLocation.parse(id.contains(":")?id:"thaumictinkerer:"+id)));}
     private static ItemStack stack(ServerLevel level,Item item,String id,int amount){var result=new ItemStack(item);result.enchant(enchant(level,id),amount);return result;}

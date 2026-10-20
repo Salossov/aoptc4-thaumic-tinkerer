@@ -22,7 +22,7 @@ import thaumic.tinkerer.block.*;
 @PrefixGameTestTemplate(false)
 public final class PlatformRulesTest {
     private static int checks;
-    private static void check(boolean value,String label){checks++;if(!value)throw new AssertionError(label);}
+    private static void check(boolean value,String label){checks++;if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(label);}
     @GameTest(template="empty",timeoutTicks=100)
     public static void platform(GameTestHelper helper){
         VerificationReports.install();checks=0;var level=helper.getLevel();var anchor=helper.absolutePos(BlockPos.ZERO);

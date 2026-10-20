@@ -17,7 +17,7 @@ import thaumic.tinkerer.TinkererConfig;
 @GameTestHolder(ThaumicTinkerer.ID)
 @PrefixGameTestTemplate(false)
 public final class KamiCommandRulesTest {
-    private static void check(boolean value,String label){if(!value)throw new AssertionError(label);}
+    private static void check(boolean value,String label){if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(label);}
     private static final class Output implements CommandSource {
         final List<String> lines=new ArrayList<>();
         public void sendSystemMessage(Component component){lines.add(component.getString());}

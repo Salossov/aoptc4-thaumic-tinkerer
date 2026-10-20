@@ -46,7 +46,7 @@ import thaumic.tinkerer.item.ConnectorItem;
 @PrefixGameTestTemplate(false)
 public final class TransvectorRulesTest {
     private static int checks;
-    private static void check(boolean value, String label) { checks++; if (!value) throw new AssertionError(label); }
+    private static void check(boolean value, String label) { checks++; if (!value) throw new net.minecraft.gametest.framework.GameTestAssertException(label); }
     private static void click(net.minecraft.server.level.ServerPlayer player, BlockPos pos) {
         var hit = new BlockHitResult(Vec3.atCenterOf(pos), Direction.UP, pos, false);
         player.getMainHandItem().useOn(new UseOnContext(player, InteractionHand.MAIN_HAND, hit));

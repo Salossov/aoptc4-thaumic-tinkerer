@@ -38,7 +38,7 @@ import thaumic.tinkerer.kami.focus.KamiFocusContent;
 @GameTestHolder(ThaumicTinkerer.ID)
 @PrefixGameTestTemplate(false)
 public final class ShadowbeamServerRulesTest {
-    private static void check(boolean v,String message){if(!v)throw new AssertionError(message);}
+    private static void check(boolean v,String message){if(!v)throw new net.minecraft.gametest.framework.GameTestAssertException(message);}
     private static boolean enabled(GameTestHelper helper){VerificationReports.install();if(TinkererConfig.KAMI_FORCE_ENABLED.get())return true;helper.succeed();return false;}
 
     private static final class Peer implements AutoCloseable {

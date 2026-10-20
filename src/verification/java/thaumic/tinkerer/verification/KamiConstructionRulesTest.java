@@ -28,7 +28,7 @@ import thaumic.tinkerer.util.ItemData;
 @GameTestHolder(ThaumicTinkerer.ID)
 @PrefixGameTestTemplate(false)
 public final class KamiConstructionRulesTest {
-    private static void check(boolean value,String label){if(!value)throw new IllegalStateException(label);}
+    private static void check(boolean value,String label){if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(label);}
     private static boolean enabled(GameTestHelper h){VerificationReports.install();if(TinkererConfig.KAMI_FORCE_ENABLED.get())return true;h.succeed();return false;}
     private static BlockPos site(GameTestHelper h){
         var p=h.absolutePos(new BlockPos(8,4,8));

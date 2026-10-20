@@ -19,7 +19,7 @@ import thaumic.tinkerer.kami.bedrock.*;
 @GameTestHolder(ThaumicTinkerer.ID)
 @PrefixGameTestTemplate(false)
 public final class BedrockGenerationRulesTest {
-    private static void check(boolean value,String label){if(!value)throw new IllegalStateException(label);}
+    private static void check(boolean value,String label){if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(label);}
     @GameTest(template="summon_space",batch="bedrock_generation",timeoutTicks=100)
     public static void nativeSlabHeightmapsAndGeneratorCodec(GameTestHelper helper){
         VerificationReports.install();var level=helper.getLevel();var registry=level.registryAccess().registryOrThrow(Registries.BIOME);

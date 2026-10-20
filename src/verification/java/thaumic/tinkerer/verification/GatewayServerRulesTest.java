@@ -40,7 +40,7 @@ import thaumic.tinkerer.kami.warpgate.WarpGateMenu;
 @GameTestHolder(ThaumicTinkerer.ID)
 @PrefixGameTestTemplate(false)
 public final class GatewayServerRulesTest {
-    private static void check(boolean condition,String label){if(!condition)throw new AssertionError(label);}
+    private static void check(boolean condition,String label){if(!condition)throw new net.minecraft.gametest.framework.GameTestAssertException(label);}
     private static boolean enabled(GameTestHelper helper){VerificationReports.install();if(TinkererConfig.KAMI_FORCE_ENABLED.get())return true;helper.succeed();return false;}
 
     private static final class Peer implements AutoCloseable {

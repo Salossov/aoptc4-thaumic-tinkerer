@@ -40,7 +40,7 @@ import thaumic.tinkerer.util.ItemData;
 @GameTestHolder(ThaumicTinkerer.ID)
 @PrefixGameTestTemplate(false)
 public final class DislocationServerRulesTest {
-    private static void check(boolean value,String message){if(!value)throw new AssertionError(message);}
+    private static void check(boolean value,String message){if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(message);}
     static final class Peer implements AutoCloseable {
         final NativePlayerFixture fixture;final ServerPlayer player;
         final Map<UUID,ServerPlayer> index;final List<ServerPlayer> players;

@@ -18,7 +18,7 @@ import thaumic.tinkerer.item.FocusContent;
 @GameTestHolder(ThaumicTinkerer.ID)
 @PrefixGameTestTemplate(false)
 public final class FlightSmokeRulesTest {
-    private static void check(boolean value,String message){if(!value)throw new AssertionError(message);}
+    private static void check(boolean value,String message){if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(message);}
     private static List<ParticleApi.SmokeSpiral> smoke(NativePlayerFixture fixture)throws ReflectiveOperationException{
         var result=new ArrayList<ParticleApi.SmokeSpiral>();
         for(var packet:fixture.packets)if(packet instanceof ClientboundCustomPayloadPacket custom&&custom.payload().type().id().equals(net.minecraft.resources.ResourceLocation.parse("thaumcraft:smoke_spiral")))

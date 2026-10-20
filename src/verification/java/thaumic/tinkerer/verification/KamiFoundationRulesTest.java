@@ -27,7 +27,7 @@ import thaumic.tinkerer.util.ItemData;
 @GameTestHolder(ThaumicTinkerer.ID)
 @PrefixGameTestTemplate(false)
 public final class KamiFoundationRulesTest {
-    private static void check(boolean value,String label) {if(!value)throw new IllegalStateException(label);}
+    private static void check(boolean value,String label) {if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(label);}
     @GameTest(template="summon_space",batch="kami_foundation",timeoutTicks=100)
     public static void nativeMaterialsRecipesAndCatalog(GameTestHelper helper) {
         VerificationReports.install();var level=helper.getLevel();

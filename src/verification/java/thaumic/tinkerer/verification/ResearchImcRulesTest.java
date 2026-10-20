@@ -20,7 +20,7 @@ import thaumic.tinkerer.research.TinkererResearch;
 @GameTestHolder(ThaumicTinkerer.ID)
 @PrefixGameTestTemplate(false)
 public final class ResearchImcRulesTest {
-    private static void check(boolean value,String label){if(!value)throw new AssertionError(label);}
+    private static void check(boolean value,String label){if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(label);}
     private static InterModComms.IMCMessage message(String method,java.util.function.Supplier<?> value){
         return new InterModComms.IMCMessage("tt_native_probe",ThaumicTinkerer.ID,method,value);
     }

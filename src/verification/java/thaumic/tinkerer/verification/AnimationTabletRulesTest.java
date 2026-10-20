@@ -33,7 +33,7 @@ import thaumic.tinkerer.menu.AnimationTabletMenu;
 @PrefixGameTestTemplate(false)
 public final class AnimationTabletRulesTest {
     private static int checks;
-    private static void check(boolean value,String label){checks++;if(!value)throw new AssertionError(label);}
+    private static void check(boolean value,String label){checks++;if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(label);}
     @SuppressWarnings({"rawtypes","unchecked"})
     private static void tick(ServerLevel level,BlockPos pos,int count){var state=level.getBlockState(pos);var tile=level.getBlockEntity(pos);BlockEntityTicker ticker=((EntityBlock)state.getBlock()).getTicker(level,state,tile.getType());for(int i=0;i<count;i++)ticker.tick(level,pos,state,tile);}
     private static Cow cow(ServerLevel level,BlockPos pos){var cow=new Cow(EntityType.COW,level);cow.setNoAi(true);cow.setPos(pos.getX()+.5,pos.getY(),pos.getZ()+.5);level.addFreshEntity(cow);return cow;}

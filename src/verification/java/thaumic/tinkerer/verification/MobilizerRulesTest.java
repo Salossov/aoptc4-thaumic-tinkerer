@@ -25,7 +25,7 @@ import thaumic.tinkerer.block.*;
 @PrefixGameTestTemplate(false)
 public final class MobilizerRulesTest {
     private static int checks;
-    private static void check(boolean value,String message){checks++;if(!value)throw new AssertionError(message);}
+    private static void check(boolean value,String message){checks++;if(!value)throw new net.minecraft.gametest.framework.GameTestAssertException(message);}
     private static ItemStack item(String id){return new ItemStack(BuiltInRegistries.ITEM.get(ResourceLocation.parse(id)));}
     private static MobilizerBlockEntity carrier(ServerLevel level,BlockPos pos){
         var first=pos.west(5);var second=pos.east(5);
