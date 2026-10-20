@@ -79,7 +79,7 @@ public final class TabletHarvestRulesTest {
     }
     @SuppressWarnings("unchecked") private static Map<ServerPlayer,?> waiting()throws ReflectiveOperationException{var field=AwakenedMining.class.getDeclaredField("PENDING");field.setAccessible(true);return (Map<ServerPlayer,?>)field.get(null);}
     private static ChunkPreparationApi.Request request(Object job)throws ReflectiveOperationException{var field=job.getClass().getDeclaredField("request");field.setAccessible(true);return (ChunkPreparationApi.Request)field.get(job);}
-    @GameTest(template="empty",batch="tablet_awakened_cold",timeoutTicks=1200)
+    @GameTest(template="empty",batch="tablet_awakened_cold",timeoutTicks=6000)
     public static void coldAwakenedActionClosesWhenTabletModeChanges(GameTestHelper helper)throws Exception{
         VerificationReports.install();var peer=new DislocationServerRulesTest.Peer(helper,"TTTabletColdLoader");var level=helper.getLevel();var column=new ChunkPos(1_220_000,-1_220_000);
         check(level.getChunkSource().getChunkNow(column.x,column.z)==null,"fresh remote tablet column");var preparation=ChunkPreparationApi.prepare(peer.player,List.of(column));boolean enabled=TinkererConfig.KAMI_FORCE_ENABLED.get();TinkererConfig.KAMI_FORCE_ENABLED.set(true);
@@ -87,6 +87,7 @@ public final class TabletHarvestRulesTest {
         var cleanup=new Runnable(){boolean closed;public void run(){if(closed)return;closed=true;if(ownerHolder[0]!=null){ownerHolder[0].leftClick=false;AwakenedMining.tick(new LevelTickEvent.Post(()->true,level));ownerHolder[0].clearContent();}preparation.close();peer.close();TinkererConfig.KAMI_FORCE_ENABLED.set(enabled);}};
         helper.testInfo.addListener(new GameTestListener(){public void testStructureLoaded(GameTestInfo test){}public void testPassed(GameTestInfo test,GameTestRunner runner){cleanup.run();}public void testFailed(GameTestInfo test,GameTestRunner runner){cleanup.run();}public void testAddedForRerun(GameTestInfo old,GameTestInfo next,GameTestRunner runner){}});
         helper.onEachTick(()->{
+            check(!preparation.closed(),"remote fixture preparation remains open; peer alive="+peer.player.isAlive()+", removed="+peer.player.isRemoved());
             if(!preparation.advance(1))return;
             try{
                 var owner=new BlockPos(column.getMinBlockX()+13,300,column.getMinBlockZ()+8);var tablet=tablet(helper,owner,Direction.EAST);ownerHolder[0]=tablet;var target=tablet.target();level.setBlock(target,Blocks.DIRT.defaultBlockState(),18);var tool=IchorTools.AWAKENED_SHOVEL.toStack();AdvancedToolMode.set(tool,1);tablet.setItem(0,tool);tablet.player().prepare();

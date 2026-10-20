@@ -50,7 +50,7 @@ public final class TalismanRulesTest {
         var item = ThaumicTinkerer.XP_TALISMAN.get();
         var stack = new ItemStack(item);
         var pos = helper.absolutePos(new BlockPos(2, 1, 2));
-        player.setPos(pos.getX() + .5, pos.getY(), pos.getZ() + .5);
+        player.setPos(pos.getX() + .5, pos.getY()+100, pos.getZ() + .5);
         player.getInventory().clearContent();
         player.getAbilities().instabuild = false;
         try {

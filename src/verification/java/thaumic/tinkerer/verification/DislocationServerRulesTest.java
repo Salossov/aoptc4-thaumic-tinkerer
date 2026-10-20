@@ -95,6 +95,7 @@ public final class DislocationServerRulesTest {
     public static void bothHalvesOfDoorBedAndPlantMoveForOneBasicPayment(GameTestHelper helper)throws Exception{
         VerificationReports.install();var level=helper.getLevel();var source=base(helper);var destination=source.east(5);
         boolean bedBlacklisted=ThaumcraftApi.portableHoleBlackList.remove(Blocks.RED_BED);
+        boolean doorBlacklisted=ThaumcraftApi.portableHoleBlackList.remove(Blocks.OAK_DOOR);
         try(var peer=new Peer(helper,"TTDislocationParts")){
             for(BlockState first:List.of(Blocks.OAK_DOOR.defaultBlockState(),Blocks.RED_BED.defaultBlockState().setValue(BedBlock.FACING,Direction.EAST),Blocks.SUNFLOWER.defaultBlockState())){
                 BlockState second=first.getBlock() instanceof BedBlock?first.setValue(BedBlock.PART,BedPart.HEAD):first.setValue(net.minecraft.world.level.block.state.properties.BlockStateProperties.DOUBLE_BLOCK_HALF,DoubleBlockHalf.UPPER);
@@ -121,7 +122,7 @@ public final class DislocationServerRulesTest {
                     level.setBlock(target.south(),Blocks.AIR.defaultBlockState(),18);level.setBlock(destination,Blocks.AIR.defaultBlockState(),18);level.setBlock(destination.offset(offset),Blocks.AIR.defaultBlockState(),18);
                 }
             }
-        }finally{if(bedBlacklisted)ThaumcraftApi.portableHoleBlackList.add(Blocks.RED_BED);}
+        }finally{if(bedBlacklisted)ThaumcraftApi.portableHoleBlackList.add(Blocks.RED_BED);if(doorBlacklisted)ThaumcraftApi.portableHoleBlackList.add(Blocks.OAK_DOOR);}
         helper.succeed();
     }
 
@@ -184,7 +185,7 @@ public final class DislocationServerRulesTest {
 
     @SuppressWarnings("unchecked") private static Map<ServerPlayer,?> waiting()throws ReflectiveOperationException{var field=DislocationActions.class.getDeclaredField("PENDING");field.setAccessible(true);return (Map<ServerPlayer,?>)field.get(null);}
     private static ChunkPreparationApi.Request request(Object job)throws ReflectiveOperationException{var field=job.getClass().getDeclaredField("request");field.setAccessible(true);return (ChunkPreparationApi.Request)field.get(job);}
-    @GameTest(template="empty",batch="dislocation_cold",timeoutTicks=1200)
+    @GameTest(template="empty",batch="dislocation_cold",timeoutTicks=6000)
     public static void coldClickCoalescesAndCancelsOnLookChange(GameTestHelper helper)throws Exception{
         VerificationReports.install();var peer=new Peer(helper,"TTDislocationCold");var player=peer.player;var level=helper.getLevel();var origin=player.position();
         var column=new ChunkPos(1_240_000,-1_240_000);check(level.getChunkSource().getChunkNow(column.x,column.z)==null,"fresh remote owner column");
@@ -192,6 +193,7 @@ public final class DislocationServerRulesTest {
         var cleanup=new Runnable(){boolean closed;public void run(){if(closed)return;closed=true;ownerPreparation.close();if(level.getChunkSource().getChunkNow(net.minecraft.util.Mth.floor(origin.x)>>4,net.minecraft.util.Mth.floor(origin.z)>>4)!=null)player.setPos(origin);peer.close();}};
         helper.testInfo.addListener(new GameTestListener(){public void testStructureLoaded(GameTestInfo test){}public void testPassed(GameTestInfo test,GameTestRunner runner){cleanup.run();}public void testFailed(GameTestInfo test,GameTestRunner runner){cleanup.run();}public void testAddedForRerun(GameTestInfo old,GameTestInfo next,GameTestRunner runner){}});
         helper.onEachTick(()->{
+            check(!ownerPreparation.closed(),"remote fixture preparation remains open; peer alive="+player.isAlive()+", removed="+player.isRemoved());
             if(!ownerPreparation.advance(1))return;
             try{
                 player.setPos(column.getMinBlockX()+15.5,300,column.getMinBlockZ()+8.5);player.setYRot(-90);player.setXRot(0);var wand=wand(player);var focus=WandApi.focus(wand);

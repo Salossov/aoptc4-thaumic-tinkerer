@@ -114,11 +114,16 @@ public final class BedrockPortalRulesTest {
             var origin=helper.absolutePos(new BlockPos(orientation==1?4:12,4,8));
             var site=new LegacyPortalSearch.Site(origin.getX(),origin.getY(),origin.getZ(),orientation,false);
             var axis=orientation==1?Direction.Axis.X:Direction.Axis.Z;
-            for(var cell:LegacyPortalSearch.frame(site)){
+            // Complete the frame before native portal neighbor-shape validation.
+            var frame=LegacyPortalSearch.frame(site);
+            for(var cell:frame)if(cell.fill()==LegacyPortalSearch.Fill.OBSIDIAN)
+                level.setBlock(new BlockPos(cell.pos().x(),cell.pos().y(),cell.pos().z()),Blocks.OBSIDIAN.defaultBlockState(),2);
+            for(var cell:frame)if(cell.fill()==LegacyPortalSearch.Fill.PORTAL){
                 var pos=new BlockPos(cell.pos().x(),cell.pos().y(),cell.pos().z());
                 var state=cell.fill()==LegacyPortalSearch.Fill.OBSIDIAN?Blocks.OBSIDIAN.defaultBlockState():Blocks.NETHER_PORTAL.defaultBlockState().setValue(net.minecraft.world.level.block.NetherPortalBlock.AXIS,axis);
                 level.setBlock(pos,state,2);
             }
+            check(level.getBlockState(origin).is(Blocks.NETHER_PORTAL),"native exit fixture has a live portal at its anchor: "+level.getBlockState(origin));
             var transition=BedrockPortalExit.transition(level,origin,entity);
             var rectangle=new net.minecraft.BlockUtil.FoundRectangle(origin,2,3);
             var nativeMethod=net.minecraft.world.level.block.NetherPortalBlock.class.getDeclaredMethod("createDimensionTransition",
