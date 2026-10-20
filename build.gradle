@@ -83,6 +83,7 @@ dependencies {
     }
     compileOnly files(apiJar)
     compileOnly 'cc.tweaked:cc-tweaked-1.21.1-forge-api:1.120.2'
+    verificationCompileOnly 'cc.tweaked:cc-tweaked-1.21.1-forge:1.120.2'
     compileOnly 'org.appliedenergistics:appliedenergistics2:19.2.18:api'
     if (providers.gradleProperty('withAppliedEnergistics').map { it.toBoolean() }.getOrElse(false)) {
         verificationRuntimeOnly 'org.appliedenergistics:appliedenergistics2:19.2.18'
