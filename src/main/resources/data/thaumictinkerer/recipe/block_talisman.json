@@ -27,9 +27,14 @@
     {
       "item": "minecraft:ender_chest"
     },
-    {
-      "item": "minecraft:diamond"
-    },
+    [
+      {
+        "item": "minecraft:diamond"
+      },
+      {
+        "tag": "c:gems/diamond"
+      }
+    ],
     {
       "item": "thaumictinkerer:ichor"
     },

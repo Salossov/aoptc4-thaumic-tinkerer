@@ -21,12 +21,22 @@
     {
       "item": "thaumcraft:obsidian_tile"
     },
-    {
-      "item": "thaumcraft:thaumium_ingot"
-    },
-    {
-      "item": "thaumcraft:thaumium_ingot"
-    },
+    [
+      {
+        "item": "thaumcraft:thaumium_ingot"
+      },
+      {
+        "tag": "c:ingots/thaumium"
+      }
+    ],
+    [
+      {
+        "item": "thaumcraft:thaumium_ingot"
+      },
+      {
+        "tag": "c:ingots/thaumium"
+      }
+    ],
     {
       "type": "neoforge:components",
       "items": "thaumictinkerer:spell_cloth",

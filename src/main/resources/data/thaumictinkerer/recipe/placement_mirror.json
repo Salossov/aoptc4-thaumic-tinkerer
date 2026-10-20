@@ -27,12 +27,22 @@
     {
       "item": "minecraft:dropper"
     },
-    {
-      "item": "minecraft:diamond"
-    },
-    {
-      "item": "minecraft:glass"
-    },
+    [
+      {
+        "item": "minecraft:diamond"
+      },
+      {
+        "tag": "c:gems/diamond"
+      }
+    ],
+    [
+      {
+        "item": "minecraft:glass"
+      },
+      {
+        "tag": "c:glass_blocks"
+      }
+    ],
     {
       "item": "minecraft:blaze_powder"
     },

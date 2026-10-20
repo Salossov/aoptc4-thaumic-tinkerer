@@ -24,9 +24,14 @@
     "item": "thaumictinkerer:ichorcloth_boots"
   },
   "components": [
-    {
-      "item": "minecraft:diamond"
-    },
+    [
+      {
+        "item": "minecraft:diamond"
+      },
+      {
+        "tag": "c:gems/diamond"
+      }
+    ],
     {
       "item": "thaumictinkerer:ichor"
     },

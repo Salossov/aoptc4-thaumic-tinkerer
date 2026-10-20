@@ -27,9 +27,14 @@
     {
       "item": "minecraft:arrow"
     },
-    {
-      "item": "minecraft:diamond"
-    },
+    [
+      {
+        "item": "minecraft:diamond"
+      },
+      {
+        "tag": "c:gems/diamond"
+      }
+    ],
     {
       "item": "thaumcraft:focus_excavation"
     },

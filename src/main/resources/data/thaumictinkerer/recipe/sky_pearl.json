@@ -27,11 +27,21 @@
     {
       "item": "thaumictinkerer:ender_shard"
     },
-    {
-      "item": "minecraft:lapis_block"
-    },
-    {
-      "item": "minecraft:diamond"
-    }
+    [
+      {
+        "item": "minecraft:lapis_block"
+      },
+      {
+        "tag": "c:storage_blocks/lapis"
+      }
+    ],
+    [
+      {
+        "item": "minecraft:diamond"
+      },
+      {
+        "tag": "c:gems/diamond"
+      }
+    ]
   ]
 }

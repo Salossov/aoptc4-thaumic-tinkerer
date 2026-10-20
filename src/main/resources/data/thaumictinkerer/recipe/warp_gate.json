@@ -35,9 +35,14 @@
     {
       "item": "thaumictinkerer:nether_shard"
     },
-    {
-      "item": "minecraft:diamond"
-    },
+    [
+      {
+        "item": "minecraft:diamond"
+      },
+      {
+        "tag": "c:gems/diamond"
+      }
+    ],
     {
       "item": "minecraft:feather"
     }

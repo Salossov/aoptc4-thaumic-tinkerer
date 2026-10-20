@@ -6,30 +6,70 @@
     "item": "minecraft:ender_pearl"
   },
   "components": [
-    {
-      "item": "minecraft:quartz"
-    },
-    {
-      "item": "minecraft:quartz"
-    },
-    {
-      "item": "minecraft:quartz"
-    },
-    {
-      "item": "minecraft:quartz"
-    },
-    {
-      "item": "thaumcraft:amber"
-    },
-    {
-      "item": "thaumcraft:amber"
-    },
-    {
-      "item": "thaumcraft:amber"
-    },
-    {
-      "item": "minecraft:diamond"
-    }
+    [
+      {
+        "item": "minecraft:quartz"
+      },
+      {
+        "tag": "c:gems/quartz"
+      }
+    ],
+    [
+      {
+        "item": "minecraft:quartz"
+      },
+      {
+        "tag": "c:gems/quartz"
+      }
+    ],
+    [
+      {
+        "item": "minecraft:quartz"
+      },
+      {
+        "tag": "c:gems/quartz"
+      }
+    ],
+    [
+      {
+        "item": "minecraft:quartz"
+      },
+      {
+        "tag": "c:gems/quartz"
+      }
+    ],
+    [
+      {
+        "item": "thaumcraft:amber"
+      },
+      {
+        "tag": "c:gems/amber"
+      }
+    ],
+    [
+      {
+        "item": "thaumcraft:amber"
+      },
+      {
+        "tag": "c:gems/amber"
+      }
+    ],
+    [
+      {
+        "item": "thaumcraft:amber"
+      },
+      {
+        "tag": "c:gems/amber"
+      }
+    ],
+    [
+      {
+        "item": "minecraft:diamond"
+      },
+      {
+        "tag": "c:gems/diamond"
+      }
+    ]
   ],
   "aspects": {
     "alienis": 20,

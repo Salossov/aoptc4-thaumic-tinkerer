@@ -40,18 +40,38 @@
     {
       "item": "minecraft:tnt"
     },
-    {
-      "item": "thaumcraft:native_cinnabar_cluster"
-    },
-    {
-      "item": "thaumcraft:native_iron_cluster"
-    },
-    {
-      "item": "thaumcraft:native_gold_cluster"
-    },
-    {
-      "item": "minecraft:diamond"
-    },
+    [
+      {
+        "item": "thaumcraft:native_cinnabar_cluster"
+      },
+      {
+        "tag": "thaumictinkerer:infusion_materials/cluster_cinnabar"
+      }
+    ],
+    [
+      {
+        "item": "thaumcraft:native_iron_cluster"
+      },
+      {
+        "tag": "thaumictinkerer:infusion_materials/cluster_iron"
+      }
+    ],
+    [
+      {
+        "item": "thaumcraft:native_gold_cluster"
+      },
+      {
+        "tag": "thaumictinkerer:infusion_materials/cluster_gold"
+      }
+    ],
+    [
+      {
+        "item": "minecraft:diamond"
+      },
+      {
+        "tag": "c:gems/diamond"
+      }
+    ],
     {
       "item": "thaumcraft:focus_excavation"
     },

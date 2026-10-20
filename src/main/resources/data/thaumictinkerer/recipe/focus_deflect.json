@@ -29,8 +29,13 @@
     {
       "item": "thaumcraft:paving_stone_warding"
     },
-    {
-      "item": "thaumcraft:order_shard"
-    }
+    [
+      {
+        "item": "thaumcraft:order_shard"
+      },
+      {
+        "tag": "thaumictinkerer:infusion_materials/shard_order"
+      }
+    ]
   ]
 }

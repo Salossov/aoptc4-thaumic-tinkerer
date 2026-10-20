@@ -6,30 +6,60 @@
     "item": "thaumcraft:thaumium_block"
   },
   "components": [
-    {
-      "item": "minecraft:iron_ingot"
-    },
-    {
-      "item": "minecraft:gold_ingot"
-    },
-    {
-      "item": "minecraft:diamond"
-    },
-    {
-      "item": "minecraft:cobblestone"
-    },
-    {
-      "item": "minecraft:oak_planks"
-    },
+    [
+      {
+        "item": "minecraft:iron_ingot"
+      },
+      {
+        "tag": "c:ingots/iron"
+      }
+    ],
+    [
+      {
+        "item": "minecraft:gold_ingot"
+      },
+      {
+        "tag": "c:ingots/gold"
+      }
+    ],
+    [
+      {
+        "item": "minecraft:diamond"
+      },
+      {
+        "tag": "c:gems/diamond"
+      }
+    ],
+    [
+      {
+        "item": "minecraft:cobblestone"
+      },
+      {
+        "tag": "c:cobblestones/normal"
+      }
+    ],
+    [
+      {
+        "item": "minecraft:oak_planks"
+      },
+      {
+        "tag": "minecraft:planks"
+      }
+    ],
     {
       "item": "minecraft:leather"
     },
     {
       "item": "thaumcraft:enchanted_fabric"
     },
-    {
-      "item": "thaumcraft:thaumium_ingot"
-    }
+    [
+      {
+        "item": "thaumcraft:thaumium_ingot"
+      },
+      {
+        "tag": "c:ingots/thaumium"
+      }
+    ]
   ],
   "aspects": {
     "instrumentum": 15,

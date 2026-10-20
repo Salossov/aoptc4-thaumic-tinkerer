@@ -15,15 +15,25 @@
     "count": 1
   },
   "components": [
-    {
-      "item": "thaumcraft:air_shard"
-    },
+    [
+      {
+        "item": "thaumcraft:air_shard"
+      },
+      {
+        "tag": "thaumictinkerer:infusion_materials/shard_air"
+      }
+    ],
     {
       "item": "thaumcraft:warded_jar"
     },
-    {
-      "item": "thaumcraft:quicksilver"
-    }
+    [
+      {
+        "item": "thaumcraft:quicksilver"
+      },
+      {
+        "tag": "thaumictinkerer:infusion_materials/quicksilver"
+      }
+    ]
   ],
   "aspects": {
     "vacuos": 8,

@@ -27,9 +27,14 @@
     {
       "item": "minecraft:experience_bottle"
     },
-    {
-      "item": "minecraft:diamond"
-    },
+    [
+      {
+        "item": "minecraft:diamond"
+      },
+      {
+        "tag": "c:gems/diamond"
+      }
+    ],
     {
       "item": "thaumictinkerer:xp_talisman"
     },

@@ -5,18 +5,38 @@
     "item": "minecraft:wheat_seeds"
   },
   "components": [
-    {
-      "item": "thaumcraft:entropy_shard"
-    },
-    {
-      "item": "thaumcraft:entropy_shard"
-    },
-    {
-      "item": "thaumcraft:entropy_shard"
-    },
-    {
-      "item": "thaumcraft:entropy_shard"
-    }
+    [
+      {
+        "item": "thaumcraft:entropy_shard"
+      },
+      {
+        "tag": "thaumictinkerer:infusion_materials/shard_entropy"
+      }
+    ],
+    [
+      {
+        "item": "thaumcraft:entropy_shard"
+      },
+      {
+        "tag": "thaumictinkerer:infusion_materials/shard_entropy"
+      }
+    ],
+    [
+      {
+        "item": "thaumcraft:entropy_shard"
+      },
+      {
+        "tag": "thaumictinkerer:infusion_materials/shard_entropy"
+      }
+    ],
+    [
+      {
+        "item": "thaumcraft:entropy_shard"
+      },
+      {
+        "tag": "thaumictinkerer:infusion_materials/shard_entropy"
+      }
+    ]
   ],
   "result": {
     "id": "thaumictinkerer:infused_seeds",

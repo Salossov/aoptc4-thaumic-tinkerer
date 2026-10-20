@@ -5,18 +5,38 @@
     "item": "minecraft:wheat_seeds"
   },
   "components": [
-    {
-      "item": "thaumcraft:water_shard"
-    },
-    {
-      "item": "thaumcraft:water_shard"
-    },
-    {
-      "item": "thaumcraft:water_shard"
-    },
-    {
-      "item": "thaumcraft:water_shard"
-    }
+    [
+      {
+        "item": "thaumcraft:water_shard"
+      },
+      {
+        "tag": "thaumictinkerer:infusion_materials/shard_water"
+      }
+    ],
+    [
+      {
+        "item": "thaumcraft:water_shard"
+      },
+      {
+        "tag": "thaumictinkerer:infusion_materials/shard_water"
+      }
+    ],
+    [
+      {
+        "item": "thaumcraft:water_shard"
+      },
+      {
+        "tag": "thaumictinkerer:infusion_materials/shard_water"
+      }
+    ],
+    [
+      {
+        "item": "thaumcraft:water_shard"
+      },
+      {
+        "tag": "thaumictinkerer:infusion_materials/shard_water"
+      }
+    ]
   ],
   "result": {
     "id": "thaumictinkerer:infused_seeds",

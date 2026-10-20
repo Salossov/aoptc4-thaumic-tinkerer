@@ -29,9 +29,14 @@
     {
       "item": "minecraft:bone"
     },
-    {
-      "item": "minecraft:diamond"
-    },
+    [
+      {
+        "item": "minecraft:diamond"
+      },
+      {
+        "tag": "c:gems/diamond"
+      }
+    ],
     {
       "item": "minecraft:ghast_tear"
     }

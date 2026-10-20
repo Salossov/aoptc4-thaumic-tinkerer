@@ -22,12 +22,22 @@
     {
       "item": "minecraft:dirt"
     },
-    {
-      "item": "minecraft:stone"
-    },
-    {
-      "item": "minecraft:oak_log"
-    },
+    [
+      {
+        "item": "minecraft:stone"
+      },
+      {
+        "tag": "c:stones"
+      }
+    ],
+    [
+      {
+        "item": "minecraft:oak_log"
+      },
+      {
+        "tag": "minecraft:logs"
+      }
+    ],
     {
       "item": "thaumictinkerer:ender_shard"
     }

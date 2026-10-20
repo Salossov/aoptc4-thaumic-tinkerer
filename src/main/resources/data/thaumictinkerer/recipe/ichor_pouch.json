@@ -28,9 +28,14 @@
     {
       "item": "thaumcraft:focus_portable_hole"
     },
-    {
-      "item": "minecraft:diamond"
-    },
+    [
+      {
+        "item": "minecraft:diamond"
+      },
+      {
+        "tag": "c:gems/diamond"
+      }
+    ],
     {
       "item": "thaumictinkerer:ichor_cloth"
     },

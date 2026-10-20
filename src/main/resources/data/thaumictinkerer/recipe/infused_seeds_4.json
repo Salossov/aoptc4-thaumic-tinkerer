@@ -5,18 +5,38 @@
     "item": "minecraft:wheat_seeds"
   },
   "components": [
-    {
-      "item": "thaumcraft:order_shard"
-    },
-    {
-      "item": "thaumcraft:order_shard"
-    },
-    {
-      "item": "thaumcraft:order_shard"
-    },
-    {
-      "item": "thaumcraft:order_shard"
-    }
+    [
+      {
+        "item": "thaumcraft:order_shard"
+      },
+      {
+        "tag": "thaumictinkerer:infusion_materials/shard_order"
+      }
+    ],
+    [
+      {
+        "item": "thaumcraft:order_shard"
+      },
+      {
+        "tag": "thaumictinkerer:infusion_materials/shard_order"
+      }
+    ],
+    [
+      {
+        "item": "thaumcraft:order_shard"
+      },
+      {
+        "tag": "thaumictinkerer:infusion_materials/shard_order"
+      }
+    ],
+    [
+      {
+        "item": "thaumcraft:order_shard"
+      },
+      {
+        "tag": "thaumictinkerer:infusion_materials/shard_order"
+      }
+    ]
   ],
   "result": {
     "id": "thaumictinkerer:infused_seeds",

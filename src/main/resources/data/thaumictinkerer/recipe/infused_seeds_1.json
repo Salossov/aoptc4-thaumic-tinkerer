@@ -5,18 +5,38 @@
     "item": "minecraft:wheat_seeds"
   },
   "components": [
-    {
-      "item": "thaumcraft:fire_shard"
-    },
-    {
-      "item": "thaumcraft:fire_shard"
-    },
-    {
-      "item": "thaumcraft:fire_shard"
-    },
-    {
-      "item": "thaumcraft:fire_shard"
-    }
+    [
+      {
+        "item": "thaumcraft:fire_shard"
+      },
+      {
+        "tag": "thaumictinkerer:infusion_materials/shard_fire"
+      }
+    ],
+    [
+      {
+        "item": "thaumcraft:fire_shard"
+      },
+      {
+        "tag": "thaumictinkerer:infusion_materials/shard_fire"
+      }
+    ],
+    [
+      {
+        "item": "thaumcraft:fire_shard"
+      },
+      {
+        "tag": "thaumictinkerer:infusion_materials/shard_fire"
+      }
+    ],
+    [
+      {
+        "item": "thaumcraft:fire_shard"
+      },
+      {
+        "tag": "thaumictinkerer:infusion_materials/shard_fire"
+      }
+    ]
   ],
   "result": {
     "id": "thaumictinkerer:infused_seeds",

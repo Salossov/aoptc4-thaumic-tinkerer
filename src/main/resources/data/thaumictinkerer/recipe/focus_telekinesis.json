@@ -16,26 +16,61 @@
     "item": "minecraft:ender_pearl"
   },
   "components": [
-    {
-      "item": "minecraft:quartz"
-    },
-    {
-      "item": "minecraft:quartz"
-    },
-    {
-      "item": "minecraft:quartz"
-    },
-    {
-      "item": "minecraft:quartz"
-    },
-    {
-      "item": "minecraft:iron_ingot"
-    },
-    {
-      "item": "minecraft:gold_ingot"
-    },
-    {
-      "item": "thaumcraft:air_shard"
-    }
+    [
+      {
+        "item": "minecraft:quartz"
+      },
+      {
+        "tag": "c:gems/quartz"
+      }
+    ],
+    [
+      {
+        "item": "minecraft:quartz"
+      },
+      {
+        "tag": "c:gems/quartz"
+      }
+    ],
+    [
+      {
+        "item": "minecraft:quartz"
+      },
+      {
+        "tag": "c:gems/quartz"
+      }
+    ],
+    [
+      {
+        "item": "minecraft:quartz"
+      },
+      {
+        "tag": "c:gems/quartz"
+      }
+    ],
+    [
+      {
+        "item": "minecraft:iron_ingot"
+      },
+      {
+        "tag": "c:ingots/iron"
+      }
+    ],
+    [
+      {
+        "item": "minecraft:gold_ingot"
+      },
+      {
+        "tag": "c:ingots/gold"
+      }
+    ],
+    [
+      {
+        "item": "thaumcraft:air_shard"
+      },
+      {
+        "tag": "thaumictinkerer:infusion_materials/shard_air"
+      }
+    ]
   ]
 }

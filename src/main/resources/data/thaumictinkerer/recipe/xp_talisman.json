@@ -1,22 +1,42 @@
 {
   "type": "thaumcraft:infusion",
   "research": "thaumictinkerer:xp_talisman",
-  "input": {
-    "item": "minecraft:gold_ingot"
-  },
+  "input": [
+    {
+      "item": "minecraft:gold_ingot"
+    },
+    {
+      "tag": "c:ingots/gold"
+    }
+  ],
   "components": [
-    {
-      "item": "minecraft:quartz"
-    },
-    {
-      "item": "minecraft:quartz"
-    },
+    [
+      {
+        "item": "minecraft:quartz"
+      },
+      {
+        "tag": "c:gems/quartz"
+      }
+    ],
+    [
+      {
+        "item": "minecraft:quartz"
+      },
+      {
+        "tag": "c:gems/quartz"
+      }
+    ],
     {
       "item": "thaumcraft:zombie_brain"
     },
-    {
-      "item": "minecraft:diamond"
-    }
+    [
+      {
+        "item": "minecraft:diamond"
+      },
+      {
+        "tag": "c:gems/diamond"
+      }
+    ]
   ],
   "result": {
     "id": "thaumictinkerer:xp_talisman",

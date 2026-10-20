@@ -20,9 +20,14 @@
     "item": "minecraft:nether_star"
   },
   "components": [
-    {
-      "item": "minecraft:diamond"
-    },
+    [
+      {
+        "item": "minecraft:diamond"
+      },
+      {
+        "tag": "c:gems/diamond"
+      }
+    ],
     {
       "type": "thaumictinkerer:legacy_display_count",
       "ingredient": {

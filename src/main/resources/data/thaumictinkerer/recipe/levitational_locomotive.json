@@ -11,15 +11,25 @@
     "item": "thaumcraft:levitator"
   },
   "components": [
-    {
-      "item": "minecraft:iron_ingot"
-    },
+    [
+      {
+        "item": "minecraft:iron_ingot"
+      },
+      {
+        "tag": "c:ingots/iron"
+      }
+    ],
     {
       "item": "minecraft:feather"
     },
-    {
-      "item": "minecraft:iron_ingot"
-    },
+    [
+      {
+        "item": "minecraft:iron_ingot"
+      },
+      {
+        "tag": "c:ingots/iron"
+      }
+    ],
     {
       "item": "thaumcraft:obsidian_tile"
     }
