@@ -130,6 +130,43 @@ public final class GatewayServerRulesTest {
         helper.succeed();
     }
 
+    @GameTest(template="summon_space",batch="infusion_output",timeoutTicks=100)
+    public static void originalTwoPearlsKeepLimitAndSurvivePedestalCollection(GameTestHelper helper)throws Exception{
+        if(!enabled(helper))return;
+        var level=helper.getLevel();var registries=level.registryAccess();
+        var recipe=(InfusionRecipe)level.getRecipeManager().byKey(ThaumicTinkerer.id("sky_pearl")).orElseThrow().value();
+        var output=recipe.getRecipeOutput();
+        check(output.is(WarpGateContent.SKY_PEARL.get())&&output.getCount()==2&&output.getMaxStackSize()==1,"source two-item result and ordinary limit one");
+        var ops=net.minecraft.resources.RegistryOps.create(com.mojang.serialization.JsonOps.INSTANCE,registries);
+        var encoded=net.minecraft.world.item.crafting.Recipe.CODEC.encodeStart(ops,recipe).getOrThrow();
+        var decoded=(InfusionRecipe)net.minecraft.world.item.crafting.Recipe.CODEC.parse(ops,encoded).getOrThrow();
+        check(decoded.getRecipeOutput().getCount()==2,"real registered recipe serializer retains the approved output");
+        var invalid=encoded.deepCopy().getAsJsonObject();invalid.getAsJsonObject("result").addProperty("count",3);
+        check(net.minecraft.world.item.crafting.Recipe.CODEC.parse(ops,invalid).isError(),"opt-in permits only two pearls");
+        invalid=encoded.deepCopy().getAsJsonObject();invalid.getAsJsonObject("result").addProperty("id","minecraft:diamond_sword");
+        check(net.minecraft.world.item.crafting.Recipe.CODEC.parse(ops,invalid).isError(),"ordinary items retain their strict inventory limit");
+        try(var fixture=new NativePlayerFixture(helper,"TTPearlOutput",helper.absolutePos(new BlockPos(8,4,8)))){
+            var player=fixture.player;var pos=helper.absolutePos(new BlockPos(8,4,8));
+            var block=net.minecraft.core.registries.BuiltInRegistries.BLOCK.get(net.minecraft.resources.ResourceLocation.parse("thaumcraft:arcane_pedestal"));
+            level.setBlock(pos,block.defaultBlockState(),18);var pedestal=level.getBlockEntity(pos);
+            check(pedestal instanceof thaumcraft.api.crafting.IInfusionPedestal,"real native infusion output inventory");
+            var inventory=(thaumcraft.api.crafting.IInfusionPedestal)pedestal;
+            // Exercise the actual matrix completion sink without importing core internals.
+            var write=pedestal.getClass().getMethod("setInfusionResult",ItemStack.class);write.invoke(pedestal,output.copy());
+            var saved=pedestal.saveWithFullMetadata(registries);inventory.clearContent();pedestal.loadWithComponents(saved,registries);
+            check(inventory.getItem(0).getCount()==2&&inventory.getMaxStackSize()==1,"pedestal NBT round trip does not clamp the crafted result");
+            var hit=new net.minecraft.world.phys.BlockHitResult(pos.getCenter(),net.minecraft.core.Direction.UP,pos,false);
+            player.getInventory().clearContent();level.getBlockState(pos).useWithoutItem(level,player,hit);
+            var pearls=player.getInventory().items.stream().filter(s->s.is(WarpGateContent.SKY_PEARL.get())).toList();
+            check(inventory.isEmpty()&&pearls.size()==2&&pearls.stream().allMatch(s->s.getCount()==1),"native collection splits both pearls into ordinary single-item slots");
+            for(int slot=0;slot<36;slot++)player.getInventory().setItem(slot,new ItemStack(Items.STONE,64));
+            write.invoke(pedestal,output.copy());level.getBlockState(pos).useWithoutItem(level,player,hit);
+            int dropped=level.getEntitiesOfClass(net.minecraft.world.entity.item.ItemEntity.class,new net.minecraft.world.phys.AABB(player.blockPosition()).inflate(3)).stream().filter(e->e.getItem().is(WarpGateContent.SKY_PEARL.get())).mapToInt(e->e.getItem().getCount()).sum();
+            check(inventory.isEmpty()&&dropped==2,"full inventory drops both pearls without loss");
+        }
+        helper.succeed();
+    }
+
     @GameTest(template="summon_space",batch="gateway_server",timeoutTicks=100)
     public static void quickMoveUsesLastInventorySlotAndHotbar(GameTestHelper helper)throws Exception{
         if(!enabled(helper))return;

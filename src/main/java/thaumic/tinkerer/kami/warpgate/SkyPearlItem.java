@@ -29,7 +29,7 @@ import thaumic.tinkerer.util.ItemData;
  * Modern 1.21.1 port of ItemSkyPearl from Thaumic Tinkerer 2.5-1.7.10-164.
  * Attunes to a Celestial Gateway (Warp Gate). Shift-right click in air resets attunement.
  */
-public class SkyPearlItem extends Item {
+public class SkyPearlItem extends Item implements thaumcraft.api.crafting.IInfusionOutput {
     public static final String TAG_ATTUNED = "attuned";
     public static final String TAG_X = "x";
     public static final String TAG_Y = "y";
@@ -39,6 +39,8 @@ public class SkyPearlItem extends Item {
     public SkyPearlItem() {
         super(new Properties().stacksTo(1).rarity(Rarity.EPIC));
     }
+
+    @Override public int getInfusionOutputLimit(ItemStack result) { return 2; }
 
     public static boolean isAttuned(ItemStack stack) {
         if(stack.isEmpty())return false;
