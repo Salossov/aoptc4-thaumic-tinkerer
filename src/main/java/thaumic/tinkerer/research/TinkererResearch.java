@@ -9,7 +9,7 @@ import thaumcraft.api.research.ResearchDefinition;
 import thaumic.tinkerer.ThaumicTinkerer;
 
 public final class TinkererResearch {
-    // Keep effective TC4 complexity: ResearchItem clamps constructor values 4/5 to 3.
+    // TC4 ResearchItem clamps the source's constructor complexity to 1..3.
     public static final String CATEGORY = ThaumicTinkerer.ID + ":tinkering";
     public static final String SPELL_CLOTH = ThaumicTinkerer.ID + ":spell_cloth";
 
@@ -25,13 +25,13 @@ public final class TinkererResearch {
                 "thaumcraft:textures/gui/gui_researchback.png", 100, ""));
         gasResearch("gaseous_light", List.of("NITOR"), Map.of("lux", 2, "aer", 1), 0, -3, 1, false, false, false);
         boolean shareRecipe=thaumic.tinkerer.TinkererConfig.SURVIVAL_SHARE_TOME.get();
-        AddonRegistry.research(new ResearchDefinition("thaumictinkerer:share_tome",CATEGORY,List.of(),Map.of(),0,true,false,0,-1,
+        AddonRegistry.research(new ResearchDefinition("thaumictinkerer:share_tome",CATEGORY,List.of(),Map.of(),1,true,false,0,-1,
                 List.of("page.thaumictinkerer.share_tome.0"),shareRecipe?List.of("thaumictinkerer:share_tome"):List.of(),"thaumictinkerer:share_tome",
                 false,true,true,false,List.of(),shareRecipe?List.of("page.thaumictinkerer.share_tome.0","thaumictinkerer:share_tome"):List.of("page.thaumictinkerer.share_tome.0"),
                 false,0,List.of(),List.of(),List.of(),List.of()));
         gasResearch("gaseous_shadow", List.of("thaumictinkerer:gaseous_light"), Map.of("tenebrae", 2, "aer", 1, "motus", 4), -1, -5, 2, true, false, false);
         gasResearch("bright_nitor", List.of("thaumictinkerer:gaseous_light"), Map.of("lux", 2, "ignis", 1, "potentia", 1, "aer", 1), 1, -5, 2, true, true, false);
-        gasResearch("gas_remover", List.of("thaumictinkerer:gaseous_shadow"), Map.of("tenebrae", 2, "lux", 2), -2, -7, 0, false, false, true);
+        gasResearch("gas_remover", List.of("thaumictinkerer:gaseous_shadow"), Map.of("tenebrae", 2, "lux", 2), -2, -7, 1, false, false, true);
         AddonRegistry.research(new ResearchDefinition("thaumictinkerer:revealing_helm", CATEGORY, List.of("GOGGLES"),
                 Map.of("auram", 2, "tutamen", 1), 1, false, false, 0, 0, List.of("page.thaumictinkerer.revealing_helm"),
                 List.of("thaumictinkerer:revealing_helm"), "thaumictinkerer:revealing_helm", false, false, false, false,
@@ -53,7 +53,7 @@ public final class TinkererResearch {
         quartzPages.add("page.thaumictinkerer.dark_quartz");
         quartzPages.addAll(quartzRecipes);
         AddonRegistry.research(new ResearchDefinition("thaumictinkerer:dark_quartz", CATEGORY, List.of(),
-                Map.of(), 0, true, false, -2, 2, List.of("page.thaumictinkerer.dark_quartz"),
+                Map.of(), 1, true, false, -2, 2, List.of("page.thaumictinkerer.dark_quartz"),
                 quartzRecipes, "thaumictinkerer:dark_quartz_item", false, true, true, false,
                 List.of(), quartzPages, false, 0, List.of(), List.of(), List.of(), List.of()));
         AddonRegistry.research(new ResearchDefinition("thaumictinkerer:interface", CATEGORY, List.of("thaumictinkerer:dark_quartz"),
@@ -83,11 +83,11 @@ public final class TinkererResearch {
                     List.of("page.thaumictinkerer.aspect_analyzer.0"),List.of("thaumictinkerer:aspect_analyzer"),"thaumictinkerer:aspect_analyzer",false,true,false,false,List.of(),List.of("page.thaumictinkerer.aspect_analyzer.0","thaumictinkerer:aspect_analyzer"),false,0,List.of(),List.of(),List.of(),List.of("GOGGLES","THAUMIUM")));
 
             AddonRegistry.research(new ResearchDefinition("thaumictinkerer:peripherals", CATEGORY, List.of(), Map.of(),
-                    0, true, false, -1, 0, List.of("page.thaumictinkerer.peripherals.0"), List.of(), "minecraft:redstone",
+                    1, true, false, -1, 0, List.of("page.thaumictinkerer.peripherals.0"), List.of(), "minecraft:redstone",
                     false, true, false, false, List.of(), List.of("page.thaumictinkerer.peripherals.0"), false, 0,
                     List.of(), List.of(), List.of(), List.of()));
             AddonRegistry.research(new ResearchDefinition("thaumictinkerer:golem_connector", CATEGORY, List.of("thaumictinkerer:peripherals"),
-                    Map.of("ordo", 1, "iter", 2, "instrumentum", 1), 0, false, true, 1, 0,
+                    Map.of("ordo", 1, "iter", 2, "instrumentum", 1), 1, false, true, 1, 0,
                     List.of("page.thaumictinkerer.golem_connector.0", "page.thaumictinkerer.golem_connector.1", "page.thaumictinkerer.golem_connector.2", "page.thaumictinkerer.golem_connector.3"),
                     List.of("thaumictinkerer:golem_connector", "thaumictinkerer:connector"), "thaumictinkerer:golem_connector",
                     false, true, false, false, List.of(),

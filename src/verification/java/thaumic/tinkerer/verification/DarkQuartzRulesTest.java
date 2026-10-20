@@ -170,7 +170,7 @@ public final class DarkQuartzRulesTest {
         level.removeBlock(pos.west(), false);
         var research = AddonRegistry.research().get("thaumictinkerer:dark_quartz");
         check(research != null && research.autoUnlock() && research.round() && research.stub(), "original auto/round/stub research flags");
-        check(research.complexity() == 0 && research.aspects().isEmpty() && research.column() == -2 && research.row() == 2, "original free research coordinates");
+        check(research.complexity() == 1 && research.aspects().isEmpty() && research.column() == -2 && research.row() == 2, "original free research coordinates and effective minimum complexity");
         check(research.recipePages().size() == 6 && research.recipePages().getFirst().equals("thaumictinkerer:dark_quartz0_1"), "book preserves last-write charcoal recipe choice");
         player.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
         level.removeBlock(pos, false);

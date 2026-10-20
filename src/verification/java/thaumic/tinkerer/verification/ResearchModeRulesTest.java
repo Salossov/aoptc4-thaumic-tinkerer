@@ -34,12 +34,13 @@ public final class ResearchModeRulesTest {
     public static void realCoreAndAddonResearchFollowServerMode(GameTestHelper helper)throws Exception{
         VerificationReports.install();boolean easy=TinkererConfig.EASY_RESEARCH.get();
         check(ResearchApi.serverEasyMode()==easy,"actual startup option reaches the public server contract");
-        for(var key:new String[]{"GOGGLES","thaumictinkerer:spell_cloth","thaumictinkerer:enchanter","thaumictinkerer:ichor"}){
+        for(var key:new String[]{"GOGGLES","thaumictinkerer:spell_cloth","thaumictinkerer:enchanter","thaumictinkerer:ichor","thaumictinkerer:gas_remover"}){
             try(var fixture=new NativePlayerFixture(helper,"TTMode"+UUID.randomUUID().toString().substring(0,8),helper.absolutePos(new BlockPos(8,4,8)))){
                 var player=fixture.player;var definition=ResearchApi.definitions(player).get(key);
                 check(definition!=null&&!definition.secondary()&&!definition.autoUnlock()&&!definition.aspects().isEmpty(),"real primary research in each namespace");
                 if(key.equals("thaumictinkerer:enchanter")||key.equals("thaumictinkerer:ichor"))
                     check(definition.complexity()==3,"TC4 ResearchItem limits the source's complexity 5 to effective 3");
+                if(key.equals("thaumictinkerer:gas_remover"))check(definition.complexity()==1,"TC4 ResearchItem raises constructor complexity 0 to effective 1");
                 for(var parent:definition.parents())ResearchApi.grant(player,parent);
                 for(var parent:definition.hiddenParents())ResearchApi.grant(player,parent);
                 for(var tag:definition.aspects().keySet())ResearchApi.completeAspect(player,Aspect.getAspect(tag),(short)20);

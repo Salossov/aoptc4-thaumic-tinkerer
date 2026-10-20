@@ -7,12 +7,12 @@ import thaumic.tinkerer.ThaumicTinkerer;
 import thaumic.tinkerer.research.TinkererResearch;
 
 public final class KamiFoundationResearch {
-    // TC4 ResearchItem caps constructor complexity at 3, including the source's literal 5.
+    // TC4 ResearchItem clamps constructor complexity to 1..3, including source literals 0/5.
     private static String id(String key) {return ThaumicTinkerer.ID+":"+key;}
     private static void node(String key,String item,int x,int y,Map<String,Integer> aspects,List<String> parents,List<String> hidden,int warp,boolean auto,boolean stub) {
         String research=id(key),page="page.thaumictinkerer.kami."+key+".0";
         List<String> recipes=auto?List.of():List.of(research);
-        KamiResearch.register(new ResearchDefinition(research,TinkererResearch.CATEGORY,parents,aspects,auto?0:3,auto,true,x,y,List.of(page),recipes,id(item),false,auto,stub,false,List.of(),auto?List.of(page):List.of(page,research),false,warp,List.of(),List.of(),List.of(),hidden));
+        KamiResearch.register(new ResearchDefinition(research,TinkererResearch.CATEGORY,parents,aspects,auto?1:3,auto,true,x,y,List.of(page),recipes,id(item),false,auto,stub,false,List.of(),auto?List.of(page):List.of(page,research),false,warp,List.of(),List.of(),List.of(),hidden));
     }
     public static void register() {
         KamiResearch.catalogRule();
