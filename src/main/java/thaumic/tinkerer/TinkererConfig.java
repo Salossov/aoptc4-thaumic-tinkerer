@@ -16,6 +16,7 @@ public final class TinkererConfig {
     public static final ModConfigSpec.ConfigValue<String> KAMI_NETHER_DIMENSION;
     public static final ModConfigSpec.ConfigValue<String> KAMI_END_DIMENSION;
     public static final ModConfigSpec.BooleanValue KAMI_BEDROCK_ENABLED;
+    public static final ModConfigSpec.BooleanValue PLACEMENT_MIRROR_PREVIEW;
     public static final ModConfigSpec.IntValue KAMI_BEDROCK_DENSITY;
     public static final ModConfigSpec.ConfigValue<java.util.List<? extends String>> KAMI_BEDROCK_BLACKLIST;
     static {
@@ -28,6 +29,8 @@ public final class TinkererConfig {
                 .define("general.kami.dimension.end.id","minecraft:the_end",TinkererConfig::dimensionName);
         KAMI_BEDROCK_ENABLED=builder.comment("Enable thaumictinkerer:bedrock; replaces the old numeric dimension ID/zero switch.")
                 .define("general.kami.bedrock.enabled",true);
+        PLACEMENT_MIRROR_PREVIEW=builder.comment("Show the phantom blocks displayed by the Worldshaper's Seeing Glass.")
+                .define("general.kami.placementMirror.blocks.show",true);
         KAMI_BEDROCK_DENSITY=builder.comment("Original number of vertical ore columns per chunk. Nonpositive values produce no columns.")
                 .defineInRange("general.bedrock.oreDensity",1,Integer.MIN_VALUE,Integer.MAX_VALUE);
         KAMI_BEDROCK_BLACKLIST=builder.comment("Original OreDictionary group names excluded from bedrock ore generation.")

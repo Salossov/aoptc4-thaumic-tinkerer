@@ -14,6 +14,7 @@ import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
 import net.neoforged.neoforge.client.model.data.ModelData;
 import net.neoforged.neoforge.client.model.pipeline.VertexConsumerWrapper;
 import thaumic.tinkerer.ThaumicTinkerer;
+import thaumic.tinkerer.TinkererConfig;
 import thaumic.tinkerer.kami.construction.PlacementMirrorItem;
 
 /** Source textured alpha-.6 predictions, with the approved real block orientation. */
@@ -21,7 +22,7 @@ import thaumic.tinkerer.kami.construction.PlacementMirrorItem;
 public final class KamiConstructionClient {
     private static final RenderType GHOST=RenderType.entityTranslucentCull(TextureAtlas.LOCATION_BLOCKS);
     @SubscribeEvent public static void render(RenderLevelStageEvent event){
-        if(event.getStage()!=RenderLevelStageEvent.Stage.AFTER_TRANSLUCENT_BLOCKS)return;
+        if(event.getStage()!=RenderLevelStageEvent.Stage.AFTER_TRANSLUCENT_BLOCKS||!TinkererConfig.PLACEMENT_MIRROR_PREVIEW.get())return;
         var mc=Minecraft.getInstance();if(mc.player==null||mc.level==null)return;
         var pose=event.getPoseStack();var camera=event.getCamera().getPosition();var buffers=mc.renderBuffers().bufferSource();
         VertexConsumer vertices=null;
