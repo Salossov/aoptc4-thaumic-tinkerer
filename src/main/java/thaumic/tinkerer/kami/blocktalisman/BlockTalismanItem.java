@@ -292,7 +292,20 @@ public class BlockTalismanItem extends Item implements ICurioItem {
             return InteractionResult.FAIL;
         }
 
-        InteractionResult result = blockItem.useOn(placeContext);
+        // Complete the native protection transaction before debiting the
+        // talisman's reserve. The enclosing talisman use owns a separate
+        // snapshot scope and must not publish the same placement twice.
+        boolean capturing = level.captureBlockSnapshots;
+        var enclosingSnapshots = new java.util.ArrayList<>(level.capturedBlockSnapshots);
+        level.capturedBlockSnapshots.clear();
+        InteractionResult result;
+        try {
+            result = tempStack.useOn(placeContext);
+        } finally {
+            level.captureBlockSnapshots = capturing;
+            level.capturedBlockSnapshots.clear();
+            level.capturedBlockSnapshots.addAll(enclosingSnapshots);
+        }
         if (result.consumesAction()) {
             if (!level.isClientSide()) {
                 remove(talisman, 1);

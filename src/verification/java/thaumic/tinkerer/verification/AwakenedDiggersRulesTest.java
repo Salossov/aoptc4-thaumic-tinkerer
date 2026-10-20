@@ -138,7 +138,7 @@ public final class AwakenedDiggersRulesTest {
         player.gameMode.destroyBlock(root);
         helper.startSequence().thenWaitUntil(()->check(!AwakenedMining.hasPending(player),"tree preparation completed"))
             .thenExecute(()->{
-                for(int y=0;y<=5;y++)check(level.getBlockState(root.above(y)).is(trunk.get(y)),"protected selected log stops mixed-metadata tree and retains root");
+                for(int y=0;y<=5;y++)check(level.getBlockState(root.above(y)).is(trunk.get(y)),"protected selected log stops mixed-metadata tree and retains root; y="+y+" actual="+level.getBlockState(root.above(y)));
                 check(!AwakenedMining.hasPending(player),"no retry job survives failed removal");
             }).thenSucceed();
     }

@@ -70,13 +70,21 @@ public final class DeflectionRulesTest {
     }
     @GameTest(template="empty",batch="deflection",timeoutTicks=1200)
     public static void focusRetainsEveryTickCostAfterProjectilesAreRemoved(GameTestHelper helper)throws Exception{
-        warm(helper,"TTDeflectCost",(peer,origin)->{
-            var player=peer.player;var focus=FocusContent.DEFLECT.toStack();var wand=FocusRulesTest.wand(player,focus);var cost=WandApi.quote(wand,player,FocusContent.DEFLECT.get().getVisCost(focus));var arrow=arrow(helper.getLevel(),origin.add(0,0,2),new Vec3(0,0,-.2));
-            try{wand.getItem().use(helper.getLevel(),player,InteractionHand.MAIN_HAND);for(int tick=0;tick<5;tick++){if(tick==2)arrow.discard();wand.getItem().onUseTick(helper.getLevel(),player,wand,72000-tick);}
-                check(WandApi.stored(wand,Aspects.ORDER)==1000-cost.get(Aspects.ORDER)*5&&WandApi.stored(wand,Aspects.AIR)==1000-cost.get(Aspects.AIR)*5,"native focus pays original discounted8/4 every active tick, including empty scans");
-                check(arrow.position().equals(origin.add(0,0,-6))&&arrow.getDeltaMovement().equals(new Vec3(0,0,-.2)),"first two source ticks displace; later empty ticks preserve position and motion");
-            }finally{FocusRulesTest.stop(player,wand);arrow.discard();}
-        });
+        VerificationReports.install();var peer=new DislocationServerRulesTest.Peer(helper,"TTDeflectCost");var player=peer.player;
+        var pos=helper.absolutePos(new BlockPos(4,6,4));var columns=new ArrayList<ChunkPos>();
+        for(int x=(pos.getX()-20)>>4;x<=(pos.getX()+20)>>4;x++)for(int z=(pos.getZ()-20)>>4;z<=(pos.getZ()+20)>>4;z++)columns.add(new ChunkPos(x,z));
+        var preparation=ChunkPreparationApi.prepare(player,columns);var wand=new ItemStack[1];var arrows=new ArrayList<Arrow>();
+        var cleanup=new Runnable(){boolean closed;public void run(){if(closed)return;closed=true;if(wand[0]!=null)FocusRulesTest.stop(player,wand[0]);arrows.forEach(Arrow::discard);preparation.close();peer.close();}};
+        helper.testInfo.addListener(new GameTestListener(){public void testStructureLoaded(GameTestInfo test){}public void testPassed(GameTestInfo test,GameTestRunner runner){cleanup.run();}public void testFailed(GameTestInfo test,GameTestRunner runner){cleanup.run();}public void testAddedForRerun(GameTestInfo old,GameTestInfo next,GameTestRunner runner){cleanup.run();}});
+        helper.onEachTick(new Runnable(){int tick;boolean done;java.util.Map<thaumcraft.api.aspects.Aspect,Integer> cost;public void run(){
+            if(done||!preparation.advance(2))return;
+            if(wand[0]==null){player.setPos(Vec3.atCenterOf(pos));player.setNoGravity(true);var focus=FocusContent.DEFLECT.toStack();wand[0]=FocusRulesTest.wand(player,focus);cost=WandApi.quote(wand[0],player,FocusContent.DEFLECT.get().getVisCost(focus));arrows.add(arrow(helper.getLevel(),player.position().add(0,0,2),new Vec3(0,0,-.2)));wand[0].getItem().use(helper.getLevel(),player,InteractionHand.MAIN_HAND);}
+            var arrow=arrows.getFirst();
+            if(tick<2){arrow.setPos(player.position().add(0,0,tick==0?2:-2));arrow.setDeltaMovement(0,0,-.2);}
+            wand[0].getItem().onUseTick(helper.getLevel(),player,wand[0],72000-tick);
+            if(tick==1){check(arrow.position().equals(player.position().add(0,0,-6))&&arrow.getDeltaMovement().equals(new Vec3(0,0,-.2)),"first two source ticks displace without reversing motion");arrow.discard();}
+            if(++tick==5){check(WandApi.stored(wand[0],Aspects.ORDER)==1000-cost.get(Aspects.ORDER)*5&&WandApi.stored(wand[0],Aspects.AIR)==1000-cost.get(Aspects.AIR)*5,"native focus pays original discounted8/4 every active tick, including empty scans");done=true;helper.succeed();}
+        }});
     }
     @GameTest(template="empty",batch="deflection",timeoutTicks=1200)
     public static void actualArmorEventKeepsBothSourcePassesWithoutVis(GameTestHelper helper)throws Exception{

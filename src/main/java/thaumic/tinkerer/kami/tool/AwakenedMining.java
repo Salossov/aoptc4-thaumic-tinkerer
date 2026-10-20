@@ -200,7 +200,7 @@ public final class AwakenedMining {
                 job.level.setBlockAndUpdate(job.origin,replacement);job.expected=job.level.getBlockState(job.origin);
                 if(job.expected!=replacement)return true;
             }
-            if(job.plan.bounds==null)return job.level.getBlockState(job.origin).isAir();
+            if(job.plan.bounds==null&&!job.plan.tree)return job.level.getBlockState(job.origin).isAir();
             if(job.plan.tree){if(!fellTree(job))return true;}
             else {
                 // The source repeats a non-fluid ray before enumerating extras.

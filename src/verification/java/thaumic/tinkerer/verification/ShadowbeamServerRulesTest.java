@@ -170,6 +170,7 @@ public final class ShadowbeamServerRulesTest {
             public void testAddedForRerun(GameTestInfo old,GameTestInfo next,GameTestRunner runner){}
         });
         helper.onEachTick(()->{
+            check(!ownerPreparation.closed(),"initial cold-column preparation still has its live owner");
             if(!ownerPreparation.advance(1))return;
             try{
                 // The native position setter sees an already prepared FULL column.

@@ -57,7 +57,7 @@ public final class BedrockGenerationRulesTest {
             check(actual.equals(expected.getOrDefault(category,List.of())),"source ordered spawn list for "+category);
             check(generator.getMobsAt(holder,level.structureManager(),category,pos)==list,"generator consumes the real extensible biome settings for "+category);
         }
-        check(biome.getGenerationSettings().features().isEmpty(),"no native surface decorations added");
+        check(generator.getBiomeGenerationSettings(holder).features().isEmpty(),"bedrock generator excludes native surface decorations, including biome-modifier additions");
         check(holder!=registry.getHolderOrThrow(Biomes.BEACH),"custom bedrock data does not replace ordinary Beach");
         helper.succeed();
     }

@@ -103,7 +103,7 @@ public final class FocusRulesTest {
             check(player.getDeltaMovement().equals(Vec3.ZERO) && player.fallDistance == 12, "unaffordable launch neither moves player nor clears fall damage");
             WandApi.set(wand, Aspects.AIR, 1000); var cost = WandApi.quote(wand, player, item.getVisCost(focus)).get(Aspects.AIR);
             wand.getItem().use(player.level(), player, InteractionHand.MAIN_HAND);
-            check(player.getDeltaMovement().distanceTo(player.getLookAngle().scale(2d / 3)) < 1e-8, "original 2/3 impulse; focus potency is not read from the attached focus by the original bug");
+            check(player.getDeltaMovement().distanceTo(thaumic.tinkerer.util.LegacyMotion.look(player.getYRot(),player.getXRot()).scale(2d / 3)) < 1e-8, "original 2/3 impulse; focus potency is not read from the attached focus by the original bug");
             check(player.fallDistance == 0 && WandApi.stored(wand, Aspects.AIR) == 1000 - cost, "native player-motion bridge and one launch payment");
             check(!player.getAbilities().mayfly && !player.isUsingItem(), "impulse launch grants no creative-flight ability or channelled session");
             TinkererConfig.FLIGHT.set(false); var before = WandApi.stored(wand, Aspects.AIR);

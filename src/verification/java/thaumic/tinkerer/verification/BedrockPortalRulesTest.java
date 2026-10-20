@@ -128,7 +128,7 @@ public final class BedrockPortalRulesTest {
             nativeMethod.setAccessible(true);
             var nativeResult=nativeMethod.invoke(null,level,rectangle,Direction.Axis.X,new net.minecraft.world.phys.Vec3(.5,0,0),entity,
                     entity.getDeltaMovement(),entity.getYRot(),entity.getXRot(),net.minecraft.world.level.portal.DimensionTransition.DO_NOTHING);
-            check(transition.equals(nativeResult),"actual native1.21 NetherPortalBlock exit, including collision-free placement");
+            check(transition.equals(nativeResult),"actual native1.21 NetherPortalBlock exit, including collision-free placement; actual="+transition+" native="+nativeResult);
             check(transition.yRot()==(axis==Direction.Axis.X?17:107)&&transition.xRot()==25,"modern axis rotation preserves pitch");
             var speed=axis==Direction.Axis.X?entity.getDeltaMovement():new net.minecraft.world.phys.Vec3(-.2,.1,-.3);
             check(transition.speed().equals(speed),"modern90degree horizontal velocity rotation");

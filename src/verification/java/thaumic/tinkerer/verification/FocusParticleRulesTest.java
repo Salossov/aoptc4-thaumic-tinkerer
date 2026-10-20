@@ -34,35 +34,44 @@ public final class FocusParticleRulesTest {
         var effects=owner.effects();check(effects.size()==count,"exactly one packet per source effect to owner");check(effects.equals(observer.effects()),"second nearby recipient gets the same effects once");effects.forEach(FocusParticleRulesTest::sparkle);
     }
 
-    @GameTest(template="empty",batch="ordinary_focus_particles",timeoutTicks=1200)
+    @GameTest(template="summon_space",batch="ordinary_focus_particles",timeoutTicks=1200)
     public static void healingCounterPausesResetsAndBroadcastsOncePerQualifyingTick(GameTestHelper helper)throws Exception{
-        ReplacementApiRulesTest.prepared(helper,"TTHealPackets",columns(helper),peer->{
-            try(var observer=new DislocationServerRulesTest.Peer(helper,"TTHealObserver")){
-                var player=peer.player;player.setPos(Vec3.atCenterOf(base(helper)));observer.player.setPos(player.position().add(2,0,0));
-                var item=FocusContent.HEAL.get();var focus=new ItemStack(item);
-                for(int rank=1;rank<=3;rank++)check(item.applyUpgrade(focus,FocusUpgradeType.potency,rank),"attached focus potency accepted");
-                var wand=FocusRulesTest.wand(player,focus);var cost=WandApi.quote(wand,player,item.getVisCost(focus));
-                TinkererFocusItem.playerLogin(player.getGameProfile().getName());player.setHealth(10);
-                peer.fixture.packets.clear();observer.fixture.packets.clear();
-                try{
-                    wand.getItem().use(player.level(),player,InteractionHand.MAIN_HAND);
-                    for(int tick=0;tick<29;tick++)wand.getItem().onUseTick(player.level(),player,wand,72000-tick);
-                    check(player.getHealth()==10&&WandApi.stored(wand,Aspects.EARTH)==1000,"29 qualifying ticks do not heal/pay; attached potency does not shorten original wand-based timer");sameEffects(peer,observer,29);
-                    player.setHealth(player.getMaxHealth());for(int tick=0;tick<10;tick++)wand.getItem().onUseTick(player.level(),player,wand,71970-tick);
-                    player.setHealth(10);WandApi.set(wand,Aspects.WATER,0);for(int tick=0;tick<10;tick++)wand.getItem().onUseTick(player.level(),player,wand,71960-tick);
-                    sameEffects(peer,observer,29);check(player.getHealth()==10&&WandApi.stored(wand,Aspects.EARTH)==1000,"full health and insufficient vis pause without effects/payment");
-                    WandApi.set(wand,Aspects.WATER,1000);wand.getItem().onUseTick(player.level(),player,wand,71950);
-                    check(player.getHealth()==11&&WandApi.stored(wand,Aspects.EARTH)==1000-cost.get(Aspects.EARTH)&&WandApi.stored(wand,Aspects.WATER)==1000-cost.get(Aspects.WATER),"thirtieth qualifying callback heals one and charges exactly one discounted45/45 payment");sameEffects(peer,observer,30);
+        VerificationReports.install();var peer=new DislocationServerRulesTest.Peer(helper,"TTHealPackets");
+        var observer=new DislocationServerRulesTest.Peer(helper,"TTHealObserver");var player=peer.player;
+        var preparation=ChunkPreparationApi.prepare(player,columns(helper));var wand=new ItemStack[1];
+        var cleanup=new Runnable(){boolean closed;public void run(){if(closed)return;closed=true;if(wand[0]!=null)FocusRulesTest.stop(player,wand[0]);TinkererFocusItem.playerLogout(player.getGameProfile().getName());preparation.close();observer.close();peer.close();}};
+        helper.testInfo.addListener(new GameTestListener(){public void testStructureLoaded(GameTestInfo test){}public void testPassed(GameTestInfo test,GameTestRunner runner){cleanup.run();}public void testFailed(GameTestInfo test,GameTestRunner runner){cleanup.run();}public void testAddedForRerun(GameTestInfo old,GameTestInfo next,GameTestRunner runner){cleanup.run();}});
+        helper.onEachTick(new Runnable(){int tick;boolean initialized,done;java.util.Map<thaumcraft.api.aspects.Aspect,Integer> cost;public void run(){
+            if(done||!preparation.advance(2))return;
+            try{
+                if(!initialized){initialized=true;
+                    // Isolate the long-running particle capture from the other
+                    // nearby scenario's 64-block broadcasts.
+                    player.setPos(Vec3.atCenterOf(base(helper).above(100)));player.setNoGravity(true);player.getFoodData().setFoodLevel(19);
+                    observer.player.setPos(player.position().add(2,0,0));observer.player.setNoGravity(true);
+                    var item=FocusContent.HEAL.get();var focus=new ItemStack(item);
+                    for(int rank=1;rank<=3;rank++)check(item.applyUpgrade(focus,FocusUpgradeType.potency,rank),"attached focus potency accepted");
+                    wand[0]=FocusRulesTest.wand(player,focus);cost=WandApi.quote(wand[0],player,item.getVisCost(focus));
+                    TinkererFocusItem.playerLogin(player.getGameProfile().getName());player.setHealth(10);
+                    peer.fixture.packets.clear();observer.fixture.packets.clear();wand[0].getItem().use(player.level(),player,InteractionHand.MAIN_HAND);
+                }
+                if(tick==29)player.setHealth(player.getMaxHealth());
+                if(tick==39){player.setHealth(10);WandApi.set(wand[0],Aspects.WATER,0);}
+                if(tick==49)WandApi.set(wand[0],Aspects.WATER,1000);
+                if(tick==60){FocusRulesTest.stop(player,wand[0]);player.setItemInHand(InteractionHand.MAIN_HAND,wand[0]);wand[0].getItem().use(player.level(),player,InteractionHand.MAIN_HAND);}
+                // Exactly one native callback per real server tick, including
+                // the core cooldown following a successful heal.
+                wand[0].getItem().onUseTick(player.level(),player,wand[0],72000-tick);
+                if(tick==28){check(player.getHealth()==10&&WandApi.stored(wand[0],Aspects.EARTH)==1000,"29 qualifying ticks do not heal/pay; attached potency does not shorten original wand-based timer");sameEffects(peer,observer,29);}
+                if(tick==48){sameEffects(peer,observer,29);check(player.getHealth()==10&&WandApi.stored(wand[0],Aspects.EARTH)==1000,"full health and insufficient vis pause without effects/payment");}
+                if(tick==49){
+                    check(player.getHealth()==11&&WandApi.stored(wand[0],Aspects.EARTH)==1000-cost.get(Aspects.EARTH)&&WandApi.stored(wand[0],Aspects.WATER)==1000-cost.get(Aspects.WATER),"thirtieth qualifying callback heals one and charges exactly one discounted45/45 payment");sameEffects(peer,observer,30);
                     for(var effect:peer.effects())check(effect.x()>=(double)((float)player.getX()-.5f)&&effect.x()<=(double)((float)player.getX()+.5f)&&effect.y()>=(float)player.getY()&&effect.y()<=(double)((float)player.getY()+1f)&&effect.z()>=(double)((float)player.getZ()-.5f)&&effect.z()<=(double)((float)player.getZ()+.5f),"heal sparkle retains source float-rounded coordinate bounds");
-                    for(int tick=0;tick<10;tick++)wand.getItem().onUseTick(player.level(),player,wand,71949-tick);
-                    FocusRulesTest.stop(player,wand);player.setItemInHand(InteractionHand.MAIN_HAND,wand);wand.getItem().use(player.level(),player,InteractionHand.MAIN_HAND);
-                    for(int tick=0;tick<29;tick++)wand.getItem().onUseTick(player.level(),player,wand,72000-tick);
-                    check(player.getHealth()==11,"native release resets previous ten ticks instead of resuming progress");
-                    wand.getItem().onUseTick(player.level(),player,wand,71970);check(player.getHealth()==12,"new use heals only after30 new qualifying callbacks");sameEffects(peer,observer,70);
-                    System.out.println("TT_HEAL_PARTICLES_NATIVE_PASS recipients=2 effects_each=70 timer=30 pause_and_release=true");
-                }finally{FocusRulesTest.stop(player,wand);TinkererFocusItem.playerLogout(player.getGameProfile().getName());}
+                }
+                if(tick==88)check(player.getHealth()==11,"native release resets previous ten ticks instead of resuming progress");
+                if(tick++==89){check(player.getHealth()==12,"new use heals only after30 new qualifying callbacks");sameEffects(peer,observer,70);done=true;System.out.println("TT_HEAL_PARTICLES_NATIVE_PASS recipients=2 effects_each=70 timer=30 pause_and_release=true");helper.succeed();}
             }catch(ReflectiveOperationException failure){throw new RuntimeException(failure);}
-        });
+        }});
     }
 
     @GameTest(template="empty",batch="ordinary_focus_particles",timeoutTicks=1200)

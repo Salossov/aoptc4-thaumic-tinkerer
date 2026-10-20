@@ -34,7 +34,7 @@ public final class ProtoclayRulesTest {
             check(recipe.instability()==4&&recipe.aspects().equals(java.util.Map.of("perfodio",16,"instrumentum",16)),"source infusion values");
             check(recipe.matches(new InfusionInput(new ItemStack(Items.CLAY_BALL),List.of(new ItemStack(Items.DIRT),new ItemStack(Items.STONE),new ItemStack(Items.OAK_LOG),new ItemStack(thaumic.tinkerer.kami.KamiMaterials.ENDER_SHARD.get())))),"actual source ingredients");
             var node=ResearchApi.definitions(fixture.player).get(key.toString());
-            check(node.parents().equals(List.of("thaumictinkerer:ichor_pick_gem"))&&node.hiddenParents().equals(List.of("thaumictinkerer:ichor_shovel_gem")),"visible and hidden parents");
+            check(node.parents().equals(List.of("thaumictinkerer:ichor_pick_gem"))&&node.hiddenParents().contains("thaumictinkerer:ichor_shovel_gem"),"source visible and hidden parents, including dynamic KAMI prerequisites");
             for(var tool:List.of(IchorTools.AWAKENED_PICK.get(),IchorTools.AWAKENED_SHOVEL.get(),IchorTools.AWAKENED_AXE.get(),IchorTools.AWAKENED_SWORD.get()))check(tool instanceof IAdvancedTool,"all four registered awakened tools expose contract");
             check(!(IchorTools.PICK.get() instanceof IAdvancedTool),"ordinary ichor tools remain outside the source contract");
         }
@@ -58,6 +58,8 @@ public final class ProtoclayRulesTest {
             check(player.getMainHandItem()==pick&&player.getInventory().getItem(5)==first,"glass selects pick through original tool-free priority");
             var axe=IchorTools.AWAKENED_AXE.toStack();player.getInventory().setItem(6,pick);player.setItemInHand(InteractionHand.MAIN_HAND,axe);
             helper.getLevel().setBlock(pos.below(),Blocks.DIRT.defaultBlockState(),2);helper.getLevel().setBlock(pos,Blocks.DANDELION.defaultBlockState(),2);
+            var flowerCenter=helper.getLevel().getBlockState(pos).getShape(helper.getLevel(),pos).bounds().getCenter();
+            player.setPos(pos.getX()+flowerCenter.x,pos.getY()+flowerCenter.y-1.62,pos.getZ()-2);
             proto.getItem().inventoryTick(proto,helper.getLevel(),player,1,false);
             check(player.getMainHandItem()==pick,"source tool-free plants select pick first despite the axe material group");
         }

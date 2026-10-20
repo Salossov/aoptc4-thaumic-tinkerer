@@ -72,7 +72,7 @@ public final class DislocationServerRulesTest {
         for(var effect:effects)check(effect.kind()==ParticleApi.Kind.BURST&&effect.size()==.2f,"source burst kind/size");peer.fixture.packets.clear();
     }
 
-    @GameTest(template="empty",batch="dislocation_server",timeoutTicks=100)
+    @GameTest(template="summon_space",batch="dislocation_server",timeoutTicks=100)
     public static void strictSavedStateRejectsUnknownAndMismatchedParts(GameTestHelper helper){
         VerificationReports.install();var focus=FocusContent.DISLOCATION.toStack();
         var state=Blocks.OAK_LOG.defaultBlockState().setValue(net.minecraft.world.level.block.state.properties.BlockStateProperties.AXIS,Direction.Axis.Z);
@@ -91,7 +91,7 @@ public final class DislocationServerRulesTest {
         helper.succeed();
     }
 
-    @GameTest(template="empty",batch="dislocation_server",timeoutTicks=100)
+    @GameTest(template="summon_space",batch="dislocation_server",timeoutTicks=100)
     public static void bothHalvesOfDoorBedAndPlantMoveForOneBasicPayment(GameTestHelper helper)throws Exception{
         VerificationReports.install();var level=helper.getLevel();var source=base(helper);var destination=source.east(5);
         boolean bedBlacklisted=ThaumcraftApi.portableHoleBlackList.remove(Blocks.RED_BED);
@@ -125,7 +125,7 @@ public final class DislocationServerRulesTest {
         helper.succeed();
     }
 
-    @GameTest(template="empty",batch="dislocation_server",timeoutTicks=100)
+    @GameTest(template="summon_space",batch="dislocation_server",timeoutTicks=100)
     public static void protectionCancellationKeepsContainerAndStoredInventory(GameTestHelper helper)throws Exception{
         VerificationReports.install();var level=helper.getLevel();var source=base(helper);var destination=source.east(5);
         try(var peer=new Peer(helper,"TTDislocationProtection")){
@@ -149,7 +149,7 @@ public final class DislocationServerRulesTest {
         helper.succeed();
     }
 
-    @GameTest(template="empty",batch="dislocation_server",timeoutTicks=100)
+    @GameTest(template="summon_space",batch="dislocation_server",timeoutTicks=100)
     public static void invalidPayloadAndUnsupportedStateRemainStored(GameTestHelper helper)throws Exception{
         VerificationReports.install();var level=helper.getLevel();var destination=base(helper);
         try(var peer=new Peer(helper,"TTDislocationInvalid")){
@@ -166,7 +166,7 @@ public final class DislocationServerRulesTest {
         helper.succeed();
     }
 
-    @GameTest(template="empty",batch="dislocation_server",timeoutTicks=100)
+    @GameTest(template="summon_space",batch="dislocation_server",timeoutTicks=100)
     public static void nativeWandRestorationKeepsClearedPayload(GameTestHelper helper)throws Exception{
         VerificationReports.install();var level=helper.getLevel();var source=base(helper);var destination=source.east(5);var support=destination.south();
         try(var peer=new Peer(helper,"TTDislocationCallback")){

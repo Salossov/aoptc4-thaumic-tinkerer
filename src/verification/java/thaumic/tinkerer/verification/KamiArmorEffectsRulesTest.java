@@ -46,6 +46,9 @@ public final class KamiArmorEffectsRulesTest {
             player.removeEffect(MobEffects.NIGHT_VISION);AwakenedIchorclothArmorItem.variant(helm,1);player.setAirSupply(20);player.aiStep();
             check(player.getAirSupply()==20&&!player.hasEffect(MobEffects.NIGHT_VISION),"dormant helmet does not grant breathing or vision");
             AwakenedIchorclothArmorItem.variant(helm,0);player.setPos(origin.getX()+.5,origin.getY(),origin.getZ()+.5);
+            // Remove all water before adding lava: native fluid placement would
+            // otherwise solidify the first lava cells against the old fixture.
+            for(int x=-1;x<=1;x++)for(int y=0;y<3;y++)for(int z=-1;z<=1;z++)level.setBlock(origin.offset(x,y,z),Blocks.AIR.defaultBlockState(),2);
             for(int x=-1;x<=1;x++)for(int y=0;y<3;y++)for(int z=-1;z<=1;z++)level.setBlock(origin.offset(x,y,z),Blocks.LAVA.defaultBlockState(),2);
             player.baseTick();check(player.isEyeInFluid(net.minecraft.tags.FluidTags.LAVA),"native lava-eye setup");
             player.setAirSupply(20);player.aiStep();check(player.getAirSupply()==300,"lava restores source air supply");

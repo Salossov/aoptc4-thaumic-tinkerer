@@ -50,6 +50,11 @@ public final class IchorPouchMenu extends AbstractContainerMenu {
         // existing oversized stack to64 and discard the remainder on next save.
         this.pouchContainer = new SimpleContainer(initial) {
             @Override
+            public int getMaxStackSize() {
+                return 64;
+            }
+
+            @Override
             public void setChanged() {
                 super.setChanged();
                 save();

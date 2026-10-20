@@ -78,21 +78,21 @@ public final class IchorToolsRulesTest {
         VerificationReports.install();if(!TinkererConfig.KAMI_FORCE_ENABLED.get()){helper.succeed();return;}
         try(var fixture=new NativePlayerFixture(helper,"TTIchorCombat",helper.absolutePos(new BlockPos(8,4,8)))) {
             var player=fixture.player;var sword=IchorTools.SWORD.get().getDefaultInstance();player.setItemInHand(InteractionHand.MAIN_HAND,sword);
-            for(int i=0;i<25;i++)player.tick();player.setYRot(0);player.setYHeadRot(0);
-            check(Math.abs(player.getAttributeValue(Attributes.ATTACK_DAMAGE)-10)<.0001,"source sword base damage plus player base");
+            player.setNoGravity(true);for(int i=0;i<25;i++)player.doTick();player.setYRot(0);player.setYHeadRot(0);
+            check(Math.abs(player.getAttributeValue(Attributes.ATTACK_DAMAGE)-10)<.0001,"source sword base damage plus player base; actual="+player.getAttributeValue(Attributes.ATTACK_DAMAGE));
             check(Math.abs(player.getAttributeValue(Attributes.ATTACK_SPEED)-1.6)<.0001,"modern sword attack speed");
             var front=EntityType.PIG.create(helper.getLevel());var behind=EntityType.PIG.create(helper.getLevel());
             check(front!=null&&behind!=null,"native combat source entities");
             front.setPos(player.getX(),player.getY(),player.getZ()+3);behind.setPos(player.getX(),player.getY(),player.getZ()-3);
             IchorTools.SWORD.get().use(helper.getLevel(),player,InteractionHand.MAIN_HAND);
             check(!player.isBlocking(),"modern shield delay starts unprotected");
-            for(int i=0;i<5;i++)player.tick();
+            for(int i=0;i<5;i++)player.doTick();
             check(player.isBlocking()&&player.isDamageSourceBlocked(player.damageSources().mobAttack(front))&&!player.isDamageSourceBlocked(player.damageSources().mobAttack(behind)),"modern shield starts after5 ticks and checks incoming direction");
             player.disableShield();check(!player.isUsingItem()&&player.getCooldowns().isOnCooldown(sword.getItem()),"modern axe disable applies item cooldown");
             check(sword.canPerformAction(ItemAbilities.SWORD_SWEEP),"modern sweep remains enabled");
             check(player.getAttackStrengthScale(0)==1,"attack starts charged");player.resetAttackStrengthTicker();
             check(player.getAttackStrengthScale(0)==0,"attack recharge is retained");
-            for(int i=0;i<13;i++)player.tick();check(player.getAttackStrengthScale(0)==1,"modern sword attack recharges normally");
+            for(int i=0;i<13;i++)player.doTick();check(player.getAttackStrengthScale(0)==1,"modern sword attack recharges normally");
         }
         helper.succeed();
     }
