@@ -48,6 +48,12 @@ public final class EnderStorageRulesTest {
         if(!loaded){absent(helper);return;}
         EnderStoragePresentChecks.run(helper);
     }
+    @GameTest(template="empty",batch="enderstorage_cold",timeoutTicks=6000)
+    public static void coldBindingCoalescesCancelsAndOpensOnMiss(GameTestHelper helper)throws Exception{
+        VerificationReports.install();
+        if(!net.neoforged.fml.ModList.get().isLoaded("enderstorage")){helper.succeed();return;}
+        EnderStoragePresentChecks.cold(helper);
+    }
     private static void absent(GameTestHelper helper)throws Exception{
         try(var fixture=new NativePlayerFixture(helper,"TTEnderAbsent",helper.absolutePos(new BlockPos(16,5,16)))){
             var player=fixture.player;var item=FocusContent.ENDER_CHEST.get();var focus=new ItemStack(item);

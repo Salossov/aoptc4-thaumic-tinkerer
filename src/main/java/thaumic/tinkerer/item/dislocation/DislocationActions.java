@@ -43,13 +43,17 @@ public final class DislocationActions {
 
     /** True means the caller must leave the current click without mutating or paying. */
     public static boolean defer(ServerPlayer player,ItemStack wand,ItemStack focus,DislocationRay.Trace ray,Action action) {
+        return defer(player,wand,focus,ray,false,action);
+    }
+    /** Ender-chest binding falls back to opening storage when the finished ray misses. */
+    public static boolean defer(ServerPlayer player,ItemStack wand,ItemStack focus,DislocationRay.Trace ray,boolean allowMiss,Action action) {
         var previous=PENDING.get(player);
         if(previous!=null){if(previous.sameClick(wand,focus,ray)&&previous.valid())return true;previous.close();}
         var chunks=DislocationRay.requiredChunks(ray);
         if(ray.complete()&&DislocationRay.loaded(player.serverLevel(),chunks))return false;
         if(player instanceof FakePlayer&&!(player instanceof TabletPlayer))return true;
         if(!(player instanceof TabletPlayer)&&player.server.getPlayerList().getPlayer(player.getUUID())!=player)return true;
-        var job=new Job(player,wand,focus,ray,chunks,action);
+        var job=new Job(player,wand,focus,ray,chunks,allowMiss,action);
         try{
             if(!job.valid()){job.close();return true;}
             PENDING.put(player,job);job.request.advance(2);return true;
@@ -61,11 +65,11 @@ public final class DislocationActions {
         final InteractionHand hand;final Vec3 position;final float yaw,pitch;final Pose pose;
         final GameType mode;final boolean sneaking;final AbstractContainerMenu menu;final double reach;
         final AnimationTabletBlockEntity tablet;final BlockPos ownerPos;final int rotation;final boolean redstone;
-        final Vec3 from,to;final BlockHitResult originalHit;final Action action;
+        final Vec3 from,to;final BlockHitResult originalHit;final boolean allowMiss;final Action action;
         final Map<BlockPos,Observed> observed=new LinkedHashMap<>();final Set<ChunkPos> columns=new LinkedHashSet<>();
         ChunkPreparationApi.Request request;
 
-        Job(ServerPlayer player,ItemStack wand,ItemStack focus,DislocationRay.Trace ray,List<ChunkPos> chunks,Action action) {
+        Job(ServerPlayer player,ItemStack wand,ItemStack focus,DislocationRay.Trace ray,List<ChunkPos> chunks,boolean allowMiss,Action action) {
             this.player=player;level=player.serverLevel();this.wand=wand;wandSnapshot=wand.copy();this.focus=focus.copy();
             hand=player.getMainHandItem()==wand?InteractionHand.MAIN_HAND:InteractionHand.OFF_HAND;
             position=player.position();yaw=player.getYRot();pitch=player.getXRot();pose=player.getPose();
@@ -73,7 +77,7 @@ public final class DislocationActions {
             tablet=player instanceof TabletPlayer actor?actor.tablet():null;
             ownerPos=tablet==null?null:tablet.getBlockPos().immutable();rotation=tablet==null?0:tablet.rotation();redstone=tablet!=null&&tablet.redstone;
             from=ray.from();to=ray.to();originalHit=ray.complete()&&ray.hit()!=null&&ray.hit().getType()==HitResult.Type.BLOCK?ray.hit():null;
-            this.action=action;columns.addAll(chunks);
+            this.allowMiss=allowMiss;this.action=action;columns.addAll(chunks);
             if(originalHit!=null){
                 observe(originalHit.getBlockPos());
                 var capture=DislocationCapture.read(focus);
@@ -116,8 +120,8 @@ public final class DislocationActions {
             return false;
         }
         void execute(DislocationRay.Trace ray){
-            if(!ray.complete()||ray.hit()==null||ray.hit().getType()!=HitResult.Type.BLOCK)return;
-            if(originalHit!=null&&(!originalHit.getBlockPos().equals(ray.hit().getBlockPos())||originalHit.getDirection()!=ray.hit().getDirection()))return;
+            if(!ray.complete()||ray.hit()==null||!allowMiss&&ray.hit().getType()!=HitResult.Type.BLOCK)return;
+            if(originalHit!=null&&(ray.hit().getType()!=HitResult.Type.BLOCK||!originalHit.getBlockPos().equals(ray.hit().getBlockPos())||originalHit.getDirection()!=ray.hit().getDirection()))return;
             if(tablet==null){if(action.run(player,wand,focus.copy(),ray))player.swing(hand,true);}
             else {
                 player.setItemInHand(hand,wand);

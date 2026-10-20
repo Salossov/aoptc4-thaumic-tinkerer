@@ -95,8 +95,16 @@ public final class TinkererFocusItem extends ItemFocusBasic implements FocusBeha
         DeflectionActions.direct(player);
     }
     private boolean chest(ServerPlayer player, ItemStack wand, ItemStack focus) {
+        if(net.neoforged.fml.ModList.get().isLoaded("enderstorage")&&player.isShiftKeyDown()) {
+            var ray=thaumic.tinkerer.item.dislocation.DislocationRay.trace(player);
+            if(thaumic.tinkerer.item.dislocation.DislocationActions.defer(player,wand,focus,ray,true,this::chestReady))return false;
+            return chestReady(player,wand,focus,ray);
+        }
+        return chestReady(player,wand,focus,null);
+    }
+    private boolean chestReady(ServerPlayer player,ItemStack wand,ItemStack focus,thaumic.tinkerer.item.dislocation.DislocationRay.Trace ray) {
         if(net.neoforged.fml.ModList.get().isLoaded("enderstorage")){
-            if(thaumic.tinkerer.integration.EnderStorageCompatibility.bind(player,wand,focus))return true;
+            if(ray!=null&&thaumic.tinkerer.integration.EnderStorageCompatibility.bind(player,wand,focus,ray.hit()))return true;
             if(thaumic.tinkerer.util.ItemData.flag(focus,"ender"))return thaumic.tinkerer.integration.EnderStorageCompatibility.open(player,wand,focus,getVisCost(focus));
         }
         if (!WandApi.consume(wand, player, getVisCost(focus), true)) return false;

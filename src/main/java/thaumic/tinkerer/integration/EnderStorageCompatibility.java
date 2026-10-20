@@ -8,9 +8,9 @@ import java.util.Map;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.BlockHitResult;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.wands.WandApi;
 import thaumic.tinkerer.util.ItemData;
@@ -20,13 +20,17 @@ public final class EnderStorageCompatibility {
     public static final String FREQUENCY_KEY = "enderstorage_frequency";
 
     public static boolean bind(ServerPlayer player, ItemStack wand, ItemStack focus) {
+        var ray=thaumic.tinkerer.item.dislocation.DislocationRay.trace(player);
+        return ray.complete()&&bind(player,wand,focus,ray.hit());
+    }
+
+    /** The click owner prepares cold columns before this native block/entity lookup. */
+    public static boolean bind(ServerPlayer player, ItemStack wand, ItemStack focus, BlockHitResult hit) {
         if (!player.isShiftKeyDown()) return false;
         var level = player.serverLevel();
-        var from = player.position().add(0, 1.62, 0);
-        var hit = level.clip(new ClipContext(from, from.add(player.getLookAngle().scale(5)),
-                ClipContext.Block.OUTLINE, ClipContext.Fluid.SOURCE_ONLY, player));
-        if (hit.getType() != HitResult.Type.BLOCK) return false;
+        if (hit==null || hit.getType() != HitResult.Type.BLOCK) return false;
         var pos = hit.getBlockPos();
+        if(level.getChunkSource().getChunkNow(pos.getX()>>4,pos.getZ()>>4)==null)return false;
         if (level.getBlockEntity(pos) instanceof TileEnderChest chest) {
             var frequency = chest.getFrequency();
             var encoded = Frequency.CODEC.encodeStart(player.registryAccess().createSerializationContext(NbtOps.INSTANCE), frequency).getOrThrow();

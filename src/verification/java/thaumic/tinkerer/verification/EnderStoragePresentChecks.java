@@ -44,6 +44,21 @@ final class EnderStoragePresentChecks {
         var foreignFrequency=new codechicken.enderstorage.api.Frequency(colours.left(),colours.middle(),colours.right(),java.util.Optional.of(java.util.UUID.randomUUID()),privateFrequency.ownerName());
         var foreignStorage=manager.getStorage(foreignFrequency,codechicken.enderstorage.storage.EnderItemStorage.TYPE);
         publicStorage.setItem(0,new ItemStack(Items.DIAMOND,3));privateStorage.setItem(0,new ItemStack(Items.EMERALD,7));foreignStorage.setItem(0,new ItemStack(Items.IRON_INGOT,5));
+        // The selected block stays at eye height for every native player pose.
+        for(var pose:List.of(net.minecraft.world.entity.Pose.STANDING,net.minecraft.world.entity.Pose.CROUCHING,net.minecraft.world.entity.Pose.SWIMMING)){
+            player.setPose(pose);player.setShiftKeyDown(true);
+            player.setPos(pos.getX()+.5,pos.getY()+.4-player.getEyeHeight(),pos.getZ()-3.5);
+            var current=WandApi.focus(wand);check(item.cast(player,wand,current)&&ItemData.flag(WandApi.focus(wand),"ender"),"binding follows modern eye in pose "+pose);
+        }
+        var reach=player.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.BLOCK_INTERACTION_RANGE);
+        var reachId=ResourceLocation.parse("thaumictinkerer:verification_ender_reach");
+        reach.addTransientModifier(new net.minecraft.world.entity.ai.attributes.AttributeModifier(reachId,1,net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation.ADD_VALUE));
+        try{
+            player.setPose(net.minecraft.world.entity.Pose.STANDING);player.setPos(pos.getX()+.5,pos.getY()+.4-player.getEyeHeight(),pos.getZ()-5.5);
+            WandApi.focus(wand,new ItemStack(item));check(item.cast(player,wand,WandApi.focus(wand))&&ItemData.flag(WandApi.focus(wand),"ender"),"binding keeps source five blocks plus modern range bonus");
+        }finally{reach.removeModifier(reachId);}
+        player.setPose(net.minecraft.world.entity.Pose.STANDING);player.setShiftKeyDown(false);
+        player.setPos(pos.getX()+.5,pos.getY()+.5-1.62,pos.getZ()-3.5);WandApi.focus(wand,new ItemStack(item));
         int[] stage={0},ticks={0};boolean[] done={false};
         Runnable cleanup=()->{player.closeContainer();level.setBlock(pos,Blocks.AIR.defaultBlockState(),3);publicStorage.clearStorage();privateStorage.clearStorage();foreignStorage.clearStorage();player.getEnderChestInventory().clearContent();fixture.close();};
         helper.onEachTick(()->{
@@ -102,6 +117,44 @@ final class EnderStoragePresentChecks {
                     }
                 }
             }catch(Throwable error){done[0]=true;cleanup.run();if(error instanceof RuntimeException failure)throw failure;throw new GameTestAssertException(error.toString());}
+        });
+    }
+    @SuppressWarnings("unchecked")
+    static void cold(GameTestHelper helper)throws Exception{
+        var level=helper.getLevel();var peer=new DislocationServerRulesTest.Peer(helper,"TTEnderCold");var player=peer.player;
+        player.setNoGravity(true);
+        var column=new net.minecraft.world.level.ChunkPos(1_290_000,-1_290_000);
+        check(level.getChunkSource().getChunkNow(column.x,column.z)==null,"fresh EnderStorage cold column");
+        var preparation=thaumcraft.api.world.ChunkPreparationApi.prepare(player,List.of(column));
+        var field=thaumic.tinkerer.item.dislocation.DislocationActions.class.getDeclaredField("PENDING");field.setAccessible(true);
+        var pending=(java.util.Map<net.minecraft.server.level.ServerPlayer,?>)field.get(null);
+        var done=new boolean[1];var stage=new int[1];var wand=new ItemStack[1];var request=new thaumcraft.api.world.ChunkPreparationApi.Request[1];
+        Runnable cleanup=()->{if(done[0])return;done[0]=true;preparation.close();if(request[0]!=null)request[0].close();player.setShiftKeyDown(false);thaumic.tinkerer.item.dislocation.DislocationActions.tick(new net.neoforged.neoforge.event.tick.LevelTickEvent.Post(()->true,level));player.closeContainer();peer.close();};
+        helper.testInfo.addListener(new GameTestListener(){public void testStructureLoaded(GameTestInfo t){}public void testAddedForRerun(GameTestInfo t,GameTestInfo n,GameTestRunner r){}public void testPassed(GameTestInfo t,GameTestRunner r){cleanup.run();}public void testFailed(GameTestInfo t,GameTestRunner r){cleanup.run();}});
+        helper.onEachTick(()->{
+            if(done[0])return;
+            try{
+                if(stage[0]==0){
+                    check(!preparation.closed(),"fixture peer remains a valid preparation owner");if(!preparation.advance(1))return;
+                    player.setPos(column.getMinBlockX()+15.5,300,column.getMinBlockZ()+8.5);player.setYRot(-90);player.setXRot(0);player.setShiftKeyDown(true);
+                    wand[0]=FocusRulesTest.wand(player,FocusContent.ENDER_CHEST.toStack());player.setItemInHand(InteractionHand.MAIN_HAND,wand[0]);
+                    var item=FocusContent.ENDER_CHEST.get();
+                    check(!item.cast(player,wand[0],WandApi.focus(wand[0])),"cold binding defers without opening storage");
+                    var job=pending.get(player);check(job!=null,"cold binding owns the existing click preparation");
+                    var requestField=job.getClass().getDeclaredField("request");requestField.setAccessible(true);request[0]=(thaumcraft.api.world.ChunkPreparationApi.Request)requestField.get(job);
+                    check(!item.cast(player,wand[0],WandApi.focus(wand[0]))&&pending.get(player)==job,"repeated click coalesces");
+                    check(!WandApi.focus(wand[0]).has(DataComponents.CUSTOM_DATA)&&player.containerMenu==player.inventoryMenu&&WandApi.stored(wand[0],Aspects.ORDER)==1000,"waiting does not bind, open or spend vis");
+                    player.setYRot(90);thaumic.tinkerer.item.dislocation.DislocationActions.tick(new net.neoforged.neoforge.event.tick.LevelTickEvent.Post(()->true,level));
+                    check(request[0].closed()&&!pending.containsKey(player),"changed look releases binding tickets");
+                    player.setYRot(-90);player.getEnderChestInventory().setItem(0,new ItemStack(Items.APPLE,2));
+                    check(!item.cast(player,wand[0],WandApi.focus(wand[0]))&&pending.containsKey(player),"new cold miss is staged separately");stage[0]=1;
+                }else if(player.containerMenu instanceof ChestMenu){
+                    check(!pending.containsKey(player)&&player.containerMenu.getSlot(0).getItem().is(Items.APPLE),"ready miss follows source fallback and opens native vanilla storage");
+                    var cost=WandApi.quote(wand[0],player,FocusContent.ENDER_CHEST.get().getVisCost(WandApi.focus(wand[0])));
+                    check(WandApi.stored(wand[0],Aspects.ORDER)==1000-cost.get(Aspects.ORDER)&&WandApi.stored(wand[0],Aspects.ENTROPY)==1000-cost.get(Aspects.ENTROPY),"ready fallback charges once");
+                    cleanup.run();helper.succeed();
+                }
+            }catch(Exception error){cleanup.run();if(error instanceof RuntimeException e)throw e;throw new GameTestAssertException(error.toString());}
         });
     }
     private EnderStoragePresentChecks(){}
