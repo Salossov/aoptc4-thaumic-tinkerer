@@ -346,7 +346,7 @@
   "item.thaumictinkerer.ender_shard": "Éclat des Limbes",
   "tc.research_name.thaumictinkerer:dimension_shards": "Éclats dimensionnels",
   "tc.research_text.thaumictinkerer:dimension_shards": "Raretés de l'Autre-monde",
-  "page.thaumictinkerer.kami.dimension_shards.0": "Similarly to the overworld, the Nether and the End also have their specific shards, these are rarely held by either Zombie Pigmen living in the Nether or Endermen living in the End. They might be useful for something later on, although you're not quite sure how.<BR><BR><IMG>ttinkerer:textures/items/netherShard.png:0:0:255:255:0.0625</IMG><IMG>ttinkerer:textures/items/enderShard.png:0:0:255:255:0.0625</IMG>",
+  "page.thaumictinkerer.kami.dimension_shards.0": "Similarly to the overworld, the Nether and the End also have their specific shards, these are rarely held by either Zombie Pigmen living in the Nether or Endermen living in the End. They might be useful for something later on, although you're not quite sure how.<BR><BR><IMG>thaumictinkerer:textures/item/nether_shard.png:0:0:255:255:0.0625</IMG><IMG>thaumictinkerer:textures/item/ender_shard.png:0:0:255:255:0.0625</IMG>",
   "tc.research_name.thaumictinkerer:ichor": "Ichor",
   "tc.research_text.thaumictinkerer:ichor": "Sang des Dieux",
   "page.thaumictinkerer.kami.ichor.0": "Through extensive study in all subjects of thaumaturgy you have discovered a substance that is what you consider to be the next step in your endeavours.<BR><BR>This extremely powerful substance, which you call \"Ichor\" contains the raw awakened power of a nether star. You are sure you will be able to put it to use for countless devices in the future.",

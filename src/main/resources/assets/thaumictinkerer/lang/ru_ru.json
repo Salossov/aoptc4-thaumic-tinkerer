@@ -345,7 +345,7 @@
   "item.thaumictinkerer.ender_shard": "Кристалл Края",
   "tc.research_name.thaumictinkerer:dimension_shards": "Кристаллы измерений",
   "tc.research_text.thaumictinkerer:dimension_shards": "Редкости обычного мира",
-  "page.thaumictinkerer.kami.dimension_shards.0": "Как и в обычном мире, в Нижнем мире и в Крае также есть специфические кристаллы, которые редко носят Свинозомби в Нижнем мире или странники Края в Крае. Они могут быть полезны, но Вы пока не знаете, в чем.<BR><BR><IMG>ttinkerer:textures/items/netherShard.png:0:0:255:255:0.0625</IMG><IMG>ttinkerer:textures/items/enderShard.png:0:0:255:255:0.0625</IMG>",
+  "page.thaumictinkerer.kami.dimension_shards.0": "Как и в обычном мире, в Нижнем мире и в Крае также есть специфические кристаллы, которые редко носят Свинозомби в Нижнем мире или странники Края в Крае. Они могут быть полезны, но Вы пока не знаете, в чем.<BR><BR><IMG>thaumictinkerer:textures/item/nether_shard.png:0:0:255:255:0.0625</IMG><IMG>thaumictinkerer:textures/item/ender_shard.png:0:0:255:255:0.0625</IMG>",
   "tc.research_name.thaumictinkerer:ichor": "Ихор",
   "tc.research_text.thaumictinkerer:ichor": "Кровь Богов",
   "page.thaumictinkerer.kami.ichor.0": "Получив очень много you знаний в тауматургии, Вы открыли субстанцию, открывающую новые высоты в исследованиях.<BR><BR>Эта невероятно сильная субстанция, которую Вы назвали «Ихор», содержит сырую энергию Адской звезды. Вы уверены, что эта субстанция уж точно найдет применение.",

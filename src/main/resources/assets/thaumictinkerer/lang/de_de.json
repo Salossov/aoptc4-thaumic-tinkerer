@@ -325,7 +325,7 @@
   "item.thaumictinkerer.ender_shard": "Enderscherbe",
   "tc.research_name.thaumictinkerer:dimension_shards": "Dimensionale Scherben",
   "tc.research_text.thaumictinkerer:dimension_shards": "Raritäten des Jenseitigen",
-  "page.thaumictinkerer.kami.dimension_shards.0": "Gleich der Hauptwelt besitzen auch der Nether und das Ende ihre spezifische Scherben, diese werden selten von Zombie-Pigmen im Nether oder Endermen im Ende getragen. Sie könnten für spätere Dinge nützlich sein, obwohl du nicht sicher bist, inwiefern.<BR><BR><IMG>ttinkerer:textures/items/netherShard.png:0:0:255:255:0.0625</IMG><IMG>ttinkerer:textures/items/enderShard.png:0:0:255:255:0.0625</IMG>",
+  "page.thaumictinkerer.kami.dimension_shards.0": "Gleich der Hauptwelt besitzen auch der Nether und das Ende ihre spezifische Scherben, diese werden selten von Zombie-Pigmen im Nether oder Endermen im Ende getragen. Sie könnten für spätere Dinge nützlich sein, obwohl du nicht sicher bist, inwiefern.<BR><BR><IMG>thaumictinkerer:textures/item/nether_shard.png:0:0:255:255:0.0625</IMG><IMG>thaumictinkerer:textures/item/ender_shard.png:0:0:255:255:0.0625</IMG>",
   "tc.research_name.thaumictinkerer:ichor": "Ichor",
   "tc.research_text.thaumictinkerer:ichor": "Blut der Götter",
   "page.thaumictinkerer.kami.ichor.0": "Durch ausgedehnte Studien in allen Aspekten der Thaumaturgie hast du eine Substanz entdeckt, die, wie du glaubst, der nächste Schritt in deinen Bestrebungen ist.<BR><BR>Diese extrem mächtige Substanz, die du \"Ichor\" nennst, enthält die rohe erweckte Macht eines Nethersterns. Du bist sicher, dass du fähig sein wirst, es in Zukunft für zahllose Gerätschaften zu verwenden.",

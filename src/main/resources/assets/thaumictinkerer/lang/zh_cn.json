@@ -347,7 +347,7 @@
   "item.thaumictinkerer.ender_shard": "末影碎片",
   "tc.research_name.thaumictinkerer:dimension_shards": "次元裂片",
   "tc.research_text.thaumictinkerer:dimension_shards": "自新世界的珍奇",
-  "page.thaumictinkerer.kami.dimension_shards.0": "类似主世界,下界和末地同样也有独特的水晶碎片,有时候它们会极少见地出现在原住民,比如下界的僵尸猪人或者末地的末影人,手中.或许它们在今后的某些研究里能派得上用场,尽管你还不能非常确定. <BR><BR><IMG>ttinkerer:textures/items/netherShard.png:0:0:255:255:0.0625</IMG><IMG>ttinkerer:textures/items/enderShard.png:0:0:255:255:0.0625</IMG>",
+  "page.thaumictinkerer.kami.dimension_shards.0": "类似主世界,下界和末地同样也有独特的水晶碎片,有时候它们会极少见地出现在原住民,比如下界的僵尸猪人或者末地的末影人,手中.或许它们在今后的某些研究里能派得上用场,尽管你还不能非常确定. <BR><BR><IMG>thaumictinkerer:textures/item/nether_shard.png:0:0:255:255:0.0625</IMG><IMG>thaumictinkerer:textures/item/ender_shard.png:0:0:255:255:0.0625</IMG>",
   "tc.research_name.thaumictinkerer:ichor": "灵液",
   "tc.research_text.thaumictinkerer:ichor": "神之血",
   "page.thaumictinkerer.kami.ichor.0": "涉猎神秘学的全部科类,进行广泛的研究,你发现了一种物质,你认为它将是你今后竭力研究的对象.<BR><BR>这种极端强大的物质,你名之为\"灵液\",蕴含着来自下界之星的天然觉醒之力.你确信今后它将会被广泛应用于不计其数的设备.",
