@@ -123,7 +123,7 @@ public final class KamiArmorEffectsRulesTest {
             var arrow=new net.minecraft.world.entity.projectile.Arrow(net.minecraft.world.entity.EntityType.ARROW,helper.getLevel());
             double start=player.getX();arrow.setPos(start+.5,player.getY(),player.getZ());arrow.setDeltaMovement(1,0,0);
             check(helper.getLevel().addFreshEntity(arrow),"actual projectile enters the test level");
-            player.aiStep();close(arrow.getX(),start+4.5,"both source chest callbacks move the same projectile in one equipment update");
+            player.aiStep();close(arrow.getX(),start+(net.neoforged.fml.ModList.get().isLoaded("botania")?.5:4.5),"source chest callbacks respect the optional Botania projectile filter");
             close(arrow.getDeltaMovement().x,1,"deflection changes position without changing trajectory");arrow.discard();
             if(TinkererConfig.FLIGHT.get()) {
                 player.getAbilities().flying=true;player.getAbilities().invulnerable=true;

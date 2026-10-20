@@ -44,7 +44,7 @@ public final class ReplacementApiRulesTest {
         var request=ChunkPreparationApi.prepare(peer.player,columns);
         var cleanup=new Runnable(){boolean closed;public void run(){if(closed)return;closed=true;request.close();peer.close();}};
         helper.testInfo.addListener(new GameTestListener(){public void testStructureLoaded(GameTestInfo test){}public void testPassed(GameTestInfo test,GameTestRunner runner){cleanup.run();}public void testFailed(GameTestInfo test,GameTestRunner runner){cleanup.run();}public void testAddedForRerun(GameTestInfo old,GameTestInfo next,GameTestRunner runner){}});
-        helper.onEachTick(new Runnable(){boolean done;public void run(){if(done||!request.advance(2))return;done=true;try{scenario.accept(peer);helper.succeed();}finally{cleanup.run();}}});
+        helper.onEachTick(new Runnable(){boolean done;public void run(){if(done)return;check(!request.closed(),"native fixture preparation owner remains alive and registered");if(!request.advance(2))return;done=true;try{scenario.accept(peer);helper.succeed();}finally{cleanup.run();}}});
     }
     private static List<ItemEntity> drops(GameTestHelper helper,BlockPos pos){return helper.getLevel().getEntitiesOfClass(ItemEntity.class,new AABB(pos).inflate(2));}
     private static ChestBlockEntity chest(GameTestHelper helper,BlockPos pos){helper.getLevel().setBlock(pos,Blocks.CHEST.defaultBlockState(),18);var entity=(ChestBlockEntity)helper.getLevel().getBlockEntity(pos);entity.setItem(0,new ItemStack(Items.DIAMOND,17));return entity;}

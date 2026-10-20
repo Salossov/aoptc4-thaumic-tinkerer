@@ -27,7 +27,7 @@ import thaumic.tinkerer.util.ItemData;
 @GameTestHolder(ThaumicTinkerer.ID)
 @PrefixGameTestTemplate(false)
 public final class EnderStorageRulesTest {
-    static final Path SAVED_FOCUS=Path.of(System.getProperty("thaumictinkerer.testReport")).resolveSibling("enderstorage-bound-focus.snbt");
+    static final Path SAVED_FOCUS=Path.of(System.getProperty("thaumictinkerer.testReport","build/test-results/gametest.xml")).resolveSibling("enderstorage-bound-focus.snbt");
     static void check(boolean value,String message){if(!value)throw new GameTestAssertException(message);}
     static void use(net.minecraft.server.level.ServerPlayer player,ItemStack wand){
         player.setItemInHand(InteractionHand.MAIN_HAND,wand);wand.getItem().use(player.level(),player,InteractionHand.MAIN_HAND);

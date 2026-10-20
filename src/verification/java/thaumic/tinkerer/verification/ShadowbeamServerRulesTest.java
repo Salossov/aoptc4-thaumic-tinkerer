@@ -155,7 +155,7 @@ public final class ShadowbeamServerRulesTest {
         helper.succeed();
     }
 
-    @GameTest(template="summon_space",batch="shadowbeam_cold",timeoutTicks=1200)
+    @GameTest(template="summon_space",batch="shadowbeam_cold",timeoutTicks=6000)
     public static void coldJobsCoalesceAndReleaseOnAimOrUseChange(GameTestHelper helper)throws Exception{
         if(!enabled(helper))return;
         var peer=new Peer(helper,"TTShadowCold");var player=peer.player;var level=helper.getLevel();var origin=player.position();

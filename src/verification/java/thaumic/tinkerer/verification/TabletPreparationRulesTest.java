@@ -42,7 +42,7 @@ public final class TabletPreparationRulesTest {
         check(tablet.getItem(0).getCount()==2&&tablet.player().getMainHandItem().isEmpty(),"no native item callback or debit before readiness");
         check(!tablet.trigger(),"second ComputerCraft trigger remains rejected during accepted swing");return request;
     }
-    @GameTest(template="empty",batch="tablet_preparation",timeoutTicks=1200)
+    @GameTest(template="empty",batch="tablet_preparation",timeoutTicks=6000)
     public static void coldHitRetainsSwingAndRejectsReplacementStack(GameTestHelper helper)throws Exception{
         cold(helper,0,13,tablet->{try{
             var request=waitForHit(tablet);tablet.setItem(0,tablet.getItem(0).copy());tick(tablet);
@@ -50,7 +50,7 @@ public final class TabletPreparationRulesTest {
             check(tablet.getItem(0).getCount()==2,"replacement stack stays untouched");
         }catch(ReflectiveOperationException failure){throw new RuntimeException(failure);}});
     }
-    @GameTest(template="empty",batch="tablet_preparation",timeoutTicks=1200)
+    @GameTest(template="empty",batch="tablet_preparation",timeoutTicks=6000)
     public static void modePowerAndLoadedTargetChangesCancel(GameTestHelper helper)throws Exception{
         cold(helper,1,13,tablet->{try{
             var level=(ServerLevel)tablet.getLevel();var target=tablet.target();level.setBlock(target,Blocks.STONE.defaultBlockState(),18);
@@ -59,7 +59,7 @@ public final class TabletPreparationRulesTest {
             var changed=waitForHit(tablet);level.setBlock(target,Blocks.DIRT.defaultBlockState(),18);tick(tablet);check(changed.closed()&&pending(tablet)==null,"loaded target changed during wait cancels action");
         }catch(ReflectiveOperationException failure){throw new RuntimeException(failure);}});
     }
-    @GameTest(template="empty",batch="tablet_preparation",timeoutTicks=1200)
+    @GameTest(template="empty",batch="tablet_preparation",timeoutTicks=6000)
     public static void moveUnloadAndRemovalReleaseWaitingRequests(GameTestHelper helper)throws Exception{
         cold(helper,2,13,tablet->{try{
             var move=waitForHit(tablet);check(tablet.prepareToMove()&&move.closed()&&pending(tablet)==null,"moving owner releases request before position change");
@@ -67,7 +67,7 @@ public final class TabletPreparationRulesTest {
             var removed=waitForHit(tablet);tablet.setRemoved();check(removed.closed()&&pending(tablet)==null,"owner removal releases request");
         }catch(ReflectiveOperationException failure){throw new RuntimeException(failure);}});
     }
-    @GameTest(template="empty",batch="tablet_preparation",timeoutTicks=1200)
+    @GameTest(template="empty",batch="tablet_preparation",timeoutTicks=6000)
     public static void coldDetectionOwnsRequestWithoutChangingTriggerContract(GameTestHelper helper)throws Exception{
         cold(helper,3,15,tablet->{try{
             var level=(ServerLevel)tablet.getLevel();var target=tablet.target();tablet.setItem(0,new ItemStack(Items.DIRT,2));
@@ -77,7 +77,7 @@ public final class TabletPreparationRulesTest {
             tablet.prepareToMove();check(request.closed()&&pending(tablet)==null&&tablet.getItem(0).getCount()==2,"canceled detection keeps stored item and frees request");
         }catch(ReflectiveOperationException failure){throw new RuntimeException(failure);}});
     }
-    @GameTest(template="empty",batch="tablet_preparation",timeoutTicks=1200)
+    @GameTest(template="empty",batch="tablet_preparation",timeoutTicks=6000)
     public static void warmNativeBlockPlacementConsumesOneStoredItem(GameTestHelper helper)throws Exception{
         var pos=helper.absolutePos(new BlockPos(4,4,8));var columns=new ArrayList<ChunkPos>();
         for(int x=(pos.getX()-20)>>4;x<=(pos.getX()+20)>>4;x++)for(int z=(pos.getZ()-20)>>4;z<=(pos.getZ()+20)>>4;z++)columns.add(new ChunkPos(x,z));

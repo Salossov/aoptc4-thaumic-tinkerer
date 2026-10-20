@@ -33,6 +33,7 @@ public final class TalismanRulesTest {
     private static int orbCount(ExperienceOrb orb) { var tag = new CompoundTag(); orb.addAdditionalSaveData(tag); return tag.getInt("Count"); }
     private static ExperienceOrb orb(GameTestHelper helper, net.minecraft.world.entity.LivingEntity wearer, int value, int count, double offset) {
         var orb = new ExperienceOrb(helper.getLevel(), wearer.getX() + offset, wearer.getY(), wearer.getZ(), value);
+        orb.setNoGravity(true);orb.setDeltaMovement(net.minecraft.world.phys.Vec3.ZERO);
         if (count > 1) { var tag = new CompoundTag(); orb.addAdditionalSaveData(tag); tag.putInt("Count", count); orb.readAdditionalSaveData(tag); }
         helper.getLevel().addFreshEntity(orb);
         return orb;
@@ -40,12 +41,12 @@ public final class TalismanRulesTest {
     private static InfusionRecipe infusion(GameTestHelper helper, String id) {
         return (InfusionRecipe) helper.getLevel().getRecipeManager().byKey(ThaumicTinkerer.id(id)).orElseThrow().value();
     }
-    @GameTest(template = "empty", timeoutTicks = 100)
+    @GameTest(template = "empty", timeoutTicks = 1200)
     public static void experienceTalisman(GameTestHelper helper) {
         VerificationReports.install();
         checks = 0;
         var level = helper.getLevel();
-        var player = net.neoforged.neoforge.common.util.FakePlayerFactory.getMinecraft(level);
+        var player = net.neoforged.neoforge.common.util.FakePlayerFactory.get(level,new com.mojang.authlib.GameProfile(java.util.UUID.randomUUID(),"TTXpTalisman"));
         var created = new ArrayList<ExperienceOrb>();
         var item = ThaumicTinkerer.XP_TALISMAN.get();
         var stack = new ItemStack(item);
@@ -53,6 +54,8 @@ public final class TalismanRulesTest {
         player.setPos(pos.getX() + .5, pos.getY()+100, pos.getZ() + .5);
         player.getInventory().clearContent();
         player.getAbilities().instabuild = false;
+        boolean[] awaiting={false};
+        Runnable cleanup=()->{created.forEach(ExperienceOrb::discard);player.setShiftKeyDown(false);player.getInventory().clearContent();};
         try {
             check(XpTalismanItem.xp(stack) == 0 && !XpTalismanItem.absorbing(stack), "new talisman is empty and inactive");
             ItemData.update(stack, tag -> tag.putString("unrelated", "retained"));
@@ -87,6 +90,16 @@ public final class TalismanRulesTest {
             var near = orb(helper, player, 7, 1, 0); created.add(near);
             item.wornTick(stack, player);
             check(near.isAlive() && XpTalismanItem.xp(stack) == 0, "inactive talisman ignores experience orbs");
+            // FULL chunks can precede native entity-section visibility. Wait for
+            // the real orb to become queryable instead of assuming addFreshEntity is immediate.
+            awaiting[0]=true;
+            helper.testInfo.addListener(new net.minecraft.gametest.framework.GameTestListener(){public void testStructureLoaded(net.minecraft.gametest.framework.GameTestInfo t){}public void testAddedForRerun(net.minecraft.gametest.framework.GameTestInfo t,net.minecraft.gametest.framework.GameTestInfo n,net.minecraft.gametest.framework.GameTestRunner r){}public void testPassed(net.minecraft.gametest.framework.GameTestInfo t,net.minecraft.gametest.framework.GameTestRunner r){cleanup.run();}public void testFailed(net.minecraft.gametest.framework.GameTestInfo t,net.minecraft.gametest.framework.GameTestRunner r){cleanup.run();}});
+            helper.onEachTick(new Runnable(){boolean done;public void run(){
+                if(done)return;
+                check(near.isAlive(),"isolated orb remains alive while its native section is loading");
+                if(!level.getEntitiesOfClass(ExperienceOrb.class,new net.minecraft.world.phys.AABB(near.blockPosition()).inflate(1)).contains(near))return;
+                done=true;
+                try{
             XpTalismanItem.absorbing(stack, true);
             var far = orb(helper, player, 3, 1, 4); created.add(far);
             item.curioTick(new SlotContext("necklace", player, 0, false, true), stack);
@@ -134,10 +147,10 @@ public final class TalismanRulesTest {
                     && research.hiddenParents().equals(List.of("INFUSION")), "original XP research flags, parents and implicit infusion requirement");
             System.out.println("TT_XP_TALISMAN_PASS checks=" + checks);
             helper.succeed();
+                }finally{cleanup.run();}
+            }});
         } finally {
-            created.forEach(ExperienceOrb::discard);
-            player.setShiftKeyDown(false);
-            player.getInventory().clearContent();
+            if(!awaiting[0])cleanup.run();
         }
     }
 
