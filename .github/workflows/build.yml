@@ -191,7 +191,7 @@ jobs:
       - name: Find matching published Tinkerer
         if: ${{ !env.ACT }}
         env:
-          GH_TOKEN: ${{ secrets.DEPENDENCY_TOKEN || github.token }}
+          GH_TOKEN: ${{ github.token }}
         run: python3 .github/scripts/suite.py fetch tinkerer
       - name: '3 - Build or reuse Tinkerer'
         id: build_tinkerer
