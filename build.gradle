@@ -46,6 +46,7 @@ def enderStorageJar = optionalArtifact('enderStorageJar', 'io.codechicken:EnderS
 def codeChickenLibJar = optionalArtifact('codeChickenLibJar', 'io.codechicken:CodeChickenLib:1.21.1-4.6.1.529')
 def multipartJar = optionalArtifact('multipartJar', 'io.codechicken:CBMultipart:1.21.1-3.5.0.155')
 dependencies {
+    implementation files(providers.gradleProperty('aopUiJar').getOrElse('libs/aopui-1.21.1-0.7.0.jar'))
     compileOnly botaniaJar
     compileOnly enderStorageJar, codeChickenLibJar
     compileOnly multipartJar

@@ -1,55 +1,92 @@
 # Thaumic Tinkerer
 
-[Русский](README.ru.md)
+<img src="src/main/resources/logo.png" alt="Thaumic Tinkerer" width="128" height="128">
 
-I maintain an unofficial port of **Thaumic Tinkerer 2.5-1.7.10-164** to **Minecraft 1.21.1 / NeoForge**. It uses the public API of AOP: Thaumcraft 4.
+Unofficial port of **Thaumic Tinkerer 2.5-1.7.10-164** to **Minecraft 1.21.1 / NeoForge**, using the public AOP: Thaumcraft 4 API.
 
-## Content
+[Русский](README.ru.md) | [Attribution and license](NOTICE.md)
 
-The port includes the original devices, foci, enchantments, infused crops and fires, golem control and ComputerCraft peripherals. KAMI includes materials, equipment, awakened tools, wings, focus storage, the building mirror, warp gates, Recall, Shadowbeam and the bedrock dimension.
+## Overview
 
-Optional integrations support CC: Tweaked, Applied Energistics 2, Botania, EnderStorage, CB Multipart and the unofficial Blood Magic port. Tinkers' Construct, IndustrialCraft 2 and OpenComputers are not included. Legacy VersionChecker integration is removed; a replacement updater is planned.
+The addon includes devices, foci, enchantments, infused crops and fire, golem control and ComputerCraft peripherals. KAMI content includes materials, equipment, awakened tools, wings, the pouch, Worldshaper's Seeing Glass, warp gates, Recall, Shadowbeam and the bedrock dimension.
 
-## Installation
+Optional integrations are available for CC: Tweaked, Applied Energistics 2, Botania, EnderStorage, CB Multipart and an unofficial Blood Magic port. Tinkers' Construct, IndustrialCraft 2 and OpenComputers are not included. The legacy VersionChecker integration has been removed; a replacement update mechanism is planned.
 
-Use Minecraft **1.21.1**, Java **21**, NeoForge **21.1.252 or newer**, **Curios 9.5.1+1.21.1 or newer** and the matching **AOP: Thaumcraft 4 1.0.0** build. All dependencies must target Minecraft 1.21.1 / NeoForge. Install the gameplay JAR on both client and server. Do not install the separate Thaumcraft API JAR as a mod.
+Manual gameplay, visual and multiplayer acceptance remains in progress.
 
-The port requires the core's added public contracts, so an older core JAR with the same version number may be incompatible. Update the core and addon together.
+## Requirements and installation
 
-Install optional mods with their own dependencies. **AOP:TC4 Compact** separately provides JEI/EMI recipes and Jade/WTHIT tooltips, including optional Tinkerer device details. Tinkerer itself does not require those viewers.
+| Component | Requirement |
+| --- | --- |
+| Minecraft | 1.21.1 |
+| Java | 21 |
+| NeoForge | 21.1.252 or newer within 21.1 |
+| AOP: Thaumcraft 4 | Compatible 1.0.0 build |
+| AOP: UI | Compatible 0.7.x build |
+| Curios | 9.5.1+1.21.1 or newer within 9.x |
 
-## Building
+Install `ThaumicTinkerer-1.21.1-1.0.0.jar` and the required dependencies on both client and server. Every dependency must target Minecraft 1.21.1 / NeoForge. The separate Thaumcraft API JAR is a development dependency and must not be installed as a mod.
 
-Install JDK 21. Build the API and runtime from the matching AOP: Thaumcraft 4 source:
+Core and addon builds must be compatible: this addon uses public contracts added during the port, so an older core artifact with the same version number may be insufficient. Update both components together.
+
+Optional integrations require their own dependencies. **AOP:TC4 Compact** separately provides JEI/EMI recipes and Jade/WTHIT tooltips for Tinkerer devices. Recipe and tooltip viewers are not required by Tinkerer itself.
+
+## Configuration
+
+The AOP: UI settings interface opens from Mods, the Thaumonomicon gear or the pause menu. Client changes save immediately. Server changes save with **Save** or **Esc**; multiplayer editing requires OP level 4, while the singleplayer world owner can edit without cheats.
+
+Restart-marked options apply after restart. Existing configuration files, keys and defaults are retained. Dependent controls preserve their individual saved values when a parent option disables them.
+
+## Building from source
+
+JDK 21 and compatible AOP: UI, Thaumcraft API and core runtime artifacts are required. Build the API and runtime from the core repository with `:api:assemble :mod:assemble`, supplying its `aopUiJar` property.
+
+From this repository:
 
 ```powershell
-./gradlew.ps1 :api:assemble :mod:assemble
+$dependencies = @(
+    '-PaopUiJar=C:/dependencies/aopui-1.21.1-0.7.0.jar'
+    '-PthaumcraftApiJar=C:/dependencies/thaumcraft-api-1.0.0.jar'
+    '-PthaumcraftRuntimeJar=C:/dependencies/thaumcraft-1.21.1-1.0.0.jar'
+)
+./gradlew.ps1 build @dependencies
 ```
 
-From this repository, pass the API JAR explicitly:
+On Linux and macOS, use `sh ./gradlew` with the same Gradle properties. JARs can alternatively be placed in `libs/` using the filenames declared in `build.gradle`.
 
-```powershell
-./gradlew.ps1 build -PthaumcraftApiJar=/path/to/thaumcraft-api-1.0.0.jar
-```
+Optional APIs are resolved from their publishers' Maven repositories. Development overrides are available through `botaniaJar`, `enderStorageJar`, `codeChickenLibJar` and `multipartJar`.
 
-Alternatively place it in `libs/`. On Linux/macOS use `sh ./gradlew`. Optional APIs are downloaded from their publishers' Maven repositories. Explicit `-PbotaniaJar`, `-PenderStorageJar`, `-PcodeChickenLibJar` and `-PmultipartJar` overrides are available for development.
-
-The gameplay artifact is `build/libs/ThaumicTinkerer-1.21.1-2.5.164-port.1.jar`. Tests and third-party classes are excluded from it.
+The gameplay artifact is `build/libs/ThaumicTinkerer-1.21.1-1.0.0.jar`. Verification code and third-party classes are excluded.
 
 ## Verification
 
-`build` compiles verification sources and runs standalone data and presentation checks. Native GameTests are separate and require a compatible core runtime via `-PthaumcraftRuntimeJar=/path/to/core.jar`. Optional integration profiles use `-PwithComputerCraft=true`, `-PwithAppliedEnergistics=true`, `-PwithBotania=true`, `-PwithEnderStorage=true` and `-PwithMultipart=true`. Blood Magic and Modopedia JARs must be supplied explicitly when enabling their profile.
+`build` compiles verification sources and runs standalone data and presentation checks. Native GameTests run separately and require the core runtime through `thaumcraftRuntimeJar`.
 
-Manual gameplay, graphics and multiplayer acceptance is ongoing. Report reproducible bugs with versions and relevant logs. The GitHub workflow builds code changes; documentation-only changes do not start a build.
+Integration profiles use `withComputerCraft`, `withAppliedEnergistics`, `withBotania`, `withEnderStorage` and `withMultipart`, each set to `true`. The Blood Magic profile additionally requires explicit Blood Magic and Modopedia JARs.
+
+Bug reports should include component versions, reproduction steps and the relevant log. Successful compilation does not establish complete gameplay, visual or multiplayer compatibility.
+
+## Continuous integration
+
+In **Actions → Build and release → Run workflow**, enable **release** to publish an ordinary GitHub release with tag `v<version>`. Leave **version** blank to use `mod_version` from `gradle.properties`, or enter `major.minor.patch` to override it for that run. The selected version is used in the JAR metadata, filenames and tag; the workflow does not modify the source files. Prerelease suffixes are rejected in release mode. Existing release tags are never overwritten. With **release** disabled, a manual run builds artifacts without publishing. Local `act` runs never publish. Ordinary release notes list every commit since the nearest previous ordinary release on the selected history, with commit links and a comparison link. The first release includes the full history. Nightly notes omit this list.
+
+For local `act` runs, place compatible dependency source checkouts at `.dependencies/aopui`, `.dependencies/thaumcraft` before running `act workflow_dispatch --input release=true`. Local runs use these checkouts and skip GitHub publication. For private dependency repositories, configure the optional `DEPENDENCY_TOKEN` secret with read access to those repositories.
+
+The GitHub workflow runs for code and build changes. Documentation-only changes do not trigger a build.
+
+| Repository variable | Purpose / default |
+| --- | --- |
+| `THAUMCRAFT_REPOSITORY` | Core source; `Salossov/aop-thaumcraft-4` |
+| `THAUMCRAFT_REF` | Core revision; `main` |
+| `AOPUI_REPOSITORY` | AOP: UI source; `Salossov/aop-ui` |
+| `AOPUI_REF` | AOP: UI revision; `main` |
+
+Builds must use compatible core and addon revisions. Private dependency checkouts require a token with repository read access.
 
 ## Credits and license
 
-- [Vazkii](https://github.com/Vazkii/ThaumicTinkerer), pixlepix, nekosune and the original contributors — Thaumic Tinkerer.
-- [Azanor](https://www.curseforge.com/minecraft/mc-mods/thaumcraft) — Thaumcraft.
-- [Salossov](https://github.com/Salossov) — Minecraft 1.21.1 port, with AI-assisted implementation and verification.
+- [Vazkii](https://github.com/Vazkii/ThaumicTinkerer), pixlepix, nekosune and the original contributors - Thaumic Tinkerer.
+- [Azanor](https://www.curseforge.com/minecraft/mc-mods/thaumcraft) - Thaumcraft.
+- [Salossov](https://github.com/Salossov) - Minecraft 1.21.1 port and maintenance.
 
-I preserve the original **CC BY-NC-SA 3.0** attribution and terms. See [NOTICE.md](NOTICE.md). This license does not grant permission to redistribute Thaumcraft itself. This is an unofficial port.
-
-## CI configuration
-
-Repository variables `THAUMCRAFT_REPOSITORY` and `THAUMCRAFT_REF` select the core source (defaults: `Salossov/aop-thaumcraft-4`, `main`). Build against matching core and addon revisions. For private dependencies, the checkout workflow needs a token with read access.
+The original **CC BY-NC-SA 3.0** attribution and terms are preserved; see [NOTICE.md](NOTICE.md). The Tinkerer license does not grant permission to redistribute Thaumcraft itself. This project is unofficial.

@@ -1,4 +1,4 @@
-name: Build
+name: Build and release
 
 on:
   push:
@@ -11,37 +11,77 @@ on:
       - 'gradlew'
       - 'gradlew.ps1'
       - '.github/workflows/**'
+      - '.github/scripts/**'
+      - '!**/*.md'
+      - '!**/*.rst'
+      - '!**/*.adoc'
   pull_request:
     paths: *build_paths
   workflow_dispatch:
+    inputs:
+      release:
+        description: Publish an ordinary release (not a prerelease or nightly)
+        type: boolean
+        required: false
+        default: false
+      version:
+        description: 'Optional version, e.g. 1.0.0; blank uses mod_version from gradle.properties'
+        type: string
+        required: false
+        default: ''
 
 permissions:
   contents: read
 
 concurrency:
   group: build-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     timeout-minutes: 45
     defaults:
       run:
         shell: bash
+    env:
+      RELEASE_MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.release && 'release' || 'build' }}
+      RELEASE_VERSION: ${{ inputs.version || '' }}
+      RELEASE_NAME: 'Thaumic Tinkerer'
+      RELEASE_REQUIREMENTS: 'AOP: Thaumcraft 4 1.0.0, AOP: UI 0.7.x and Curios are required on client and server.'
+      RELEASE_ARTIFACTS: |
+        build/libs/ThaumicTinkerer-*.jar
     steps:
       - name: Check out source
         uses: actions/checkout@v7
         with:
+          fetch-depth: 0
           persist-credentials: false
       - name: Check out Thaumcraft
         if: ${{ !env.ACT }}
         uses: actions/checkout@v7
         with:
           repository: ${{ vars.THAUMCRAFT_REPOSITORY || 'Salossov/aop-thaumcraft-4' }}
+          token: ${{ secrets.DEPENDENCY_TOKEN || github.token }}
           ref: ${{ vars.THAUMCRAFT_REF || 'main' }}
           path: .dependencies/thaumcraft
           persist-credentials: false
+      - name: Check out AOP UI
+        if: ${{ !env.ACT }}
+        uses: actions/checkout@v7
+        with:
+          repository: ${{ vars.AOPUI_REPOSITORY || 'Salossov/aop-ui' }}
+          token: ${{ secrets.DEPENDENCY_TOKEN || github.token }}
+          ref: ${{ vars.AOPUI_REF || 'main' }}
+          path: .dependencies/aopui
+          persist-credentials: false
+      - name: Check release rules
+        run: python3 -m unittest discover -s .github/scripts -p 'test_*.py' -v
+      - name: Select build version
+        id: version
+        run: python3 .github/scripts/release.py prepare
       - name: Set up Java 21
         uses: actions/setup-java@v6
         with:
@@ -52,20 +92,39 @@ jobs:
         with:
           cache-provider: basic
           cache-disabled: ${{ env.ACT == 'true' }}
+      - name: Build AOP UI
+        working-directory: .dependencies/aopui
+        run: sh ./gradlew --no-daemon --console=plain assemble
+      - name: Select AOP UI artifact
+        run: |
+          ui=$(find .dependencies/aopui/build/libs -maxdepth 1 -name 'aopui-*.jar' ! -name '*-sources.jar')
+          test -n "$ui" && test "$(printf '%s\n' "$ui" | wc -l)" -eq 1
+          echo "AOP_UI_JAR=$PWD/$ui" >> "$GITHUB_ENV"
       - name: Build Thaumcraft API and runtime
         working-directory: .dependencies/thaumcraft
-        run: sh ./gradlew --no-daemon --console=plain :api:assemble :mod:assemble
+        run: sh ./gradlew --no-daemon --console=plain :api:assemble :mod:assemble "-PaopUiJar=$AOP_UI_JAR"
       - name: Build and check
         run: |
           api=$(find .dependencies/thaumcraft/api/build/libs -maxdepth 1 -name 'thaumcraft-api-*.jar' ! -name '*-sources.jar')
           test -n "$api" && test "$(printf '%s\n' "$api" | wc -l)" -eq 1
           runtime=$(find .dependencies/thaumcraft/mod/build/libs -maxdepth 1 -name 'thaumcraft-*.jar' ! -name '*-sources.jar')
           test -n "$runtime" && test "$(printf '%s\n' "$runtime" | wc -l)" -eq 1
-          sh ./gradlew --no-daemon --console=plain clean build "-PthaumcraftApiJar=$PWD/$api" "-PthaumcraftRuntimeJar=$PWD/$runtime"
+          sh ./gradlew --no-daemon --console=plain "-Pmod_version=$BUILD_VERSION" clean build "-PthaumcraftApiJar=$PWD/$api" "-PthaumcraftRuntimeJar=$PWD/$runtime" "-PaopUiJar=$AOP_UI_JAR"
+      - name: Collect release files
+        run: python3 .github/scripts/release.py collect
+      - name: Verify publication plan locally
+        if: ${{ env.ACT && env.RELEASE_MODE != 'build' }}
+        run: python3 .github/scripts/release.py publish --dry-run
       - name: Save build artifacts
         if: ${{ !env.ACT }}
         uses: actions/upload-artifact@v7
         with:
-          name: thaumic-tinkerer
-          path: build/libs/*.jar
+          name: thaumic-tinkerer-${{ steps.version.outputs.version }}
+          path: dist/*
           if-no-files-found: error
+      - name: Publish to GitHub Releases
+        if: ${{ env.RELEASE_MODE != 'build' && !env.ACT }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: python3 .github/scripts/release.py publish
