@@ -60,6 +60,6 @@ side="BOTH"
 [[dependencies.thaumictinkerer]]
 modId="aop_ui"
 type="required"
-versionRange="[0.7.0,0.8)"
+versionRange="[0.7.0,)"
 ordering="AFTER"
 side="BOTH"
